@@ -54,13 +54,13 @@ export default function DocumentManagement() {
 
   // Fetch books and stats
   const { data: booksData, error: booksError, isLoading: booksLoading, mutate: mutateBooks } = useSWR(
-    '/api/admin/qdrant/books',
+    '/api/super-admin/qdrant/books',
     fetcher,
     { refreshInterval: 10000 }
   )
 
   const { data: statsData, error: statsError, isLoading: statsLoading, mutate: mutateStats } = useSWR(
-    '/api/admin/qdrant/stats',
+    '/api/super-admin/qdrant/stats',
     fetcher,
     { refreshInterval: 10000 }
   )
@@ -87,7 +87,7 @@ export default function DocumentManagement() {
     setMessage(null)
 
     try {
-      const response = await fetch(`/api/admin/qdrant/books/${bookId}`, {
+      const response = await fetch(`/api/super-admin/qdrant/books/${bookId}`, {
         method: 'DELETE'
       })
 
@@ -127,7 +127,7 @@ export default function DocumentManagement() {
     setMessage(null)
 
     try {
-      const response = await fetch('/api/admin/qdrant/clear', {
+      const response = await fetch('/api/super-admin/qdrant/clear', {
         method: 'POST'
       })
 

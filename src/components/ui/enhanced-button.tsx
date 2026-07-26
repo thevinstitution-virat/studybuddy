@@ -197,7 +197,8 @@ const EducationalButton = React.forwardRef<HTMLButtonElement, EducationalButtonP
   ({ subject, achievement, educational = true, ...props }, ref) => {
     // Subject-specific styling
     const getSubjectVariant = () => {
-      if (achievement) return "success"
+      if (achievement)
+  return "success"
       
       switch (subject) {
         case "mathematics":

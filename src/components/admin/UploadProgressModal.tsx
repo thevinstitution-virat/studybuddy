@@ -47,7 +47,7 @@ export default function UploadProgressModal(props: UploadProgressModalProps) {
     console.log(`🔌 UploadProgressModal: Opening SSE connection for uploadId: ${uploadId}`)
 
     // Subscribe to SSE stream
-    const es = new EventSource(`/api/admin/content/progress/${uploadId}`)
+    const es = new EventSource(`/api/super-admin/content/progress/${uploadId}`)
     esRef.current = es
 
     es.addEventListener('ready', () => {
@@ -144,9 +144,12 @@ export default function UploadProgressModal(props: UploadProgressModalProps) {
   const etaSec = useMemo(() => (rate > 0 && total > 0 ? Math.max(0, Math.round((total - current) / rate)) : 0), [rate, total, current])
 
   const etaText = useMemo(() => {
-    if (stage === 'completed') return 'Completed!'
-    if (stage === 'error') return 'Failed'
-    if (current >= total && total > 0) return 'Finalizing...'
+    if (stage === 'completed')
+  return 'Completed!'
+    if (stage === 'error')
+  return 'Failed'
+    if (current >= total && total > 0)
+  return 'Finalizing...'
     if (etaSec > 0) {
       const minutes = Math.floor(etaSec / 60)
       const seconds = etaSec % 60
@@ -165,15 +168,19 @@ export default function UploadProgressModal(props: UploadProgressModalProps) {
     await onCancel()
   }
 
-  const handleRetry = async () => { if (onRetry) await onRetry() }
+  const handleRetry = async () => { if (onRetry)
+  await onRetry() }
 
   const handlePauseResume = async () => {
     if (!canPause) return
-    if (paused) { if (onResume) await onResume(); setPaused(false) }
-    else { if (onPause) await onPause(); setPaused(true) }
+    if (paused) { if (onResume)
+  await onResume(); setPaused(false) }
+    else { if (onPause)
+  await onPause(); setPaused(true) }
   }
 
-  if (!open) return null
+  if (!open)
+  return null
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm" role="dialog" aria-modal="true">

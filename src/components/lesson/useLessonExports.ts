@@ -44,7 +44,8 @@ export function useLessonExports() {
   }, [])
 
   const exportPdf = useCallback(async () => {
-    if (!printRef.current) return false
+    if (!printRef.current)
+  return false
     const el = printRef.current
     // Lazy import to keep initial bundle small
     const html2canvas = (await import('html2canvas')).default

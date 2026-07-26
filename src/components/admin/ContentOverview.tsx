@@ -46,7 +46,7 @@ export default function ContentOverview({ isActive = true }: ContentOverviewProp
 
   // Use SWR for real-time data fetching with auto-refresh
   const { data: booksData, error: booksError, isLoading: booksLoading, mutate: mutateBooks } = useSWR(
-    isActive ? '/api/admin/qdrant/books' : null,
+    isActive ? '/api/super-admin/qdrant/books' : null,
     fetcher,
     {
       refreshInterval: 10000, // Auto-refresh every 10 seconds
@@ -56,7 +56,7 @@ export default function ContentOverview({ isActive = true }: ContentOverviewProp
   )
 
   const { data: statsData, error: statsError, isLoading: statsLoading, mutate: mutateStats } = useSWR(
-    isActive ? '/api/admin/qdrant/stats' : null,
+    isActive ? '/api/super-admin/qdrant/stats' : null,
     fetcher,
     {
       refreshInterval: 10000,
@@ -93,7 +93,7 @@ export default function ContentOverview({ isActive = true }: ContentOverviewProp
   const handleDeleteBook = async (bookId: string, bookTitle: string) => {
     if (confirm(`Are you sure you want to delete "${bookTitle}"?\n\nThis action cannot be undone.`)) {
       try {
-        const response = await fetch(`/api/admin/qdrant/books/${bookId}`, {
+        const response = await fetch(`/api/super-admin/qdrant/books/${bookId}`, {
           method: 'DELETE'
         })
         const result = await response.json()

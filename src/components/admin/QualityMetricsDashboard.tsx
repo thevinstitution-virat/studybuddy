@@ -90,7 +90,7 @@ export default function QualityMetricsDashboard() {
   const fetchMetrics = async () => {
     try {
       setLoading(true)
-      const response = await fetch(`/api/admin/quality-metrics?window=${timeWindow}`)
+      const response = await fetch(`/api/super-admin/quality-metrics?window=${timeWindow}`)
       
       if (!response.ok) {
         throw new Error('Failed to fetch metrics')
@@ -138,28 +138,37 @@ export default function QualityMetricsDashboard() {
     )
   }
 
-  if (!data) return null
+  if (!data)
+  return null
 
   // Helper function to get status color
   const getStatusColor = (value: number, metric: string): string => {
     if (metric === 'avgUserRating') {
-      if (value >= 4.5) return 'text-green-600 dark:text-green-400'
-      if (value >= 3.5) return 'text-yellow-600 dark:text-yellow-400'
+      if (value >= 4.5)
+  return 'text-green-600 dark:text-green-400'
+      if (value >= 3.5)
+  return 'text-yellow-600 dark:text-yellow-400'
       return 'text-red-600 dark:text-red-400'
     }
     if (metric === 'avgFaithfulness' || metric === 'avgRelevance') {
-      if (value >= 0.8) return 'text-green-600 dark:text-green-400'
-      if (value >= 0.7) return 'text-yellow-600 dark:text-yellow-400'
+      if (value >= 0.8)
+  return 'text-green-600 dark:text-green-400'
+      if (value >= 0.7)
+  return 'text-yellow-600 dark:text-yellow-400'
       return 'text-red-600 dark:text-red-400'
     }
     if (metric === 'avgResponseTime') {
-      if (value <= 3000) return 'text-green-600 dark:text-green-400'
-      if (value <= 5000) return 'text-yellow-600 dark:text-yellow-400'
+      if (value <= 3000)
+  return 'text-green-600 dark:text-green-400'
+      if (value <= 5000)
+  return 'text-yellow-600 dark:text-yellow-400'
       return 'text-red-600 dark:text-red-400'
     }
     if (metric === 'cacheHitRate' || metric === 'satisfactionRate') {
-      if (value >= 0.7) return 'text-green-600 dark:text-green-400'
-      if (value >= 0.5) return 'text-yellow-600 dark:text-yellow-400'
+      if (value >= 0.7)
+  return 'text-green-600 dark:text-green-400'
+      if (value >= 0.5)
+  return 'text-yellow-600 dark:text-yellow-400'
       return 'text-red-600 dark:text-red-400'
     }
     return 'text-gray-600 dark:text-gray-400'
