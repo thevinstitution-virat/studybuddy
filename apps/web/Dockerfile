@@ -43,6 +43,15 @@ ARG NEXT_PUBLIC_GOOGLE_API_KEY
 ARG NEXT_PUBLIC_GOOGLE_CLIENT_ID
 ARG NEXT_PUBLIC_FEDERATION_ENABLED
 ARG NEXT_PUBLIC_SENTRY_DSN
+
+# API_URL is NOT a NEXT_PUBLIC_ var, but it is still needed at BUILD time:
+# next.config.ts reads it inside `rewrites()`, and Next evaluates rewrites during
+# the build and freezes the result into .next/routes-manifest.json. Supplying it
+# only at runtime leaves the manifest pointing at the dev default
+# (http://localhost:3002), so every /api/* proxy hop fails with ECONNREFUSED.
+# It is a plain hostname, not a credential, so passing it as a build arg is safe.
+ARG API_URL
+ENV API_URL=$API_URL
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL \
     NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL \
     NEXT_PUBLIC_GOOGLE_API_KEY=$NEXT_PUBLIC_GOOGLE_API_KEY \
