@@ -26,7 +26,10 @@ ENV HUSKY=0 NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-RUN npm run build --workspace=@repo/api
+# next build imports every route to collect page data, and OpenAIService.getInstance() runs at
+# module scope, so it throws without a key. A PLACEHOLDER for this one RUN only: it is not an
+# ENV, so it never reaches the runtime stage; the real key is a runtime variable.
+RUN OPENAI_API_KEY=build-time-placeholder npm run build --workspace=@repo/api
 
 # ---- runner (production) ----------------------------------------------------
 FROM node:20-alpine AS production
