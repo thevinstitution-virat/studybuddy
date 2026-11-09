@@ -34,7 +34,7 @@ const TYPE_GRAD: Record<string, string> = {
   notes: 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))',
   summaries: 'linear-gradient(135deg,var(--teal-light),var(--peacock-teal))',
   mind_maps: 'linear-gradient(135deg,var(--lotus-deep),var(--lotus-pink))',
-  quizzes: 'linear-gradient(135deg,var(--kumkum),var(--saffron))',
+  quizzes: 'var(--bb-grad-primary)',
   textbooks: 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))',
   reference: 'linear-gradient(135deg,var(--turmeric),var(--gold))',
 }
@@ -275,7 +275,7 @@ export default function MaterialsPage() {
           </div>
         ) : dashboardState.error ? (
           <div className="card" style={{ padding: 32, textAlign: 'center' }}>
-            <span className="plinth" style={{ width: 56, height: 56, margin: '0 auto 14px', background: 'linear-gradient(135deg,var(--kumkum),var(--lotus-deep))' }}>
+            <span className="plinth" style={{ width: 56, height: 56, margin: '0 auto 14px', background: 'linear-gradient(135deg,#FF5468,#E5283A 55%,#B0182A)' }}>
               <FileText className="h-7 w-7" />
             </span>
             <h3 style={{ fontSize: 16, fontWeight: 800, color: 'var(--ink)', margin: '0 0 6px' }}>Error loading materials</h3>

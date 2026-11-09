@@ -320,11 +320,11 @@ export default function MitramDashboard() {
         <div className="container mx-auto px-4 py-8 max-w-7xl">
           <div className="flex items-center justify-center min-h-[60vh]">
             <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-12 shadow-xl border border-white/20 text-center">
-              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-[#C0392B] to-[#FF6B35] rounded-2xl flex items-center justify-center shadow-lg animate-pulse">
+              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-[#E5283A] to-[#FF6B35] rounded-2xl flex items-center justify-center shadow-lg animate-pulse">
                 <Sparkles className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-2xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-[#FF6B35] via-[#F5A623] to-[#FFD700] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
                   Loading Mitram Dashboard...
                 </span>
               </h3>
@@ -364,7 +364,7 @@ export default function MitramDashboard() {
                 <Brain className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-3xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-[#FF6B35] via-[#F5A623] to-[#FFD700] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
                   Assessment Module: {module?.name}
                 </span>
               </h3>
@@ -379,7 +379,7 @@ export default function MitramDashboard() {
                   setActiveModule(null)
                   setCurrentAssessment(null)
                 }}
-                className="px-8 py-3 h-12 bg-gradient-to-r from-[#C0392B] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
+                className="px-8 py-3 h-12 bg-gradient-to-r from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
               >
                 <ArrowRight className="h-5 w-5 mr-2 rotate-180" />
                 <span>Back to Dashboard</span>
@@ -398,13 +398,13 @@ export default function MitramDashboard() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500/10 to-primary/10 backdrop-blur-sm border border-orange-200/30 rounded-2xl px-6 py-3 mb-6">
             <Sparkles className="h-5 w-5 text-orange-500" />
-            <span className="text-sm font-medium bg-gradient-to-r from-[#FF6B35] via-[#F5A623] to-[#FFD700] bg-clip-text text-transparent">
+            <span className="text-sm font-medium bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
               AI-Powered Psychological Assessment Platform
             </span>
           </div>
           
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-[#FF6B35] via-[#F5A623] to-[#FFD700] bg-clip-text text-transparent flex items-center justify-center gap-4">
+            <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent flex items-center justify-center gap-4">
               <Brain className="h-12 w-12 text-orange-500" />
               मित्रम् (Mitram)
             </span>
@@ -422,7 +422,7 @@ export default function MitramDashboard() {
               <BookOpen className="h-8 w-8 text-white" />
             </div>
             <h2 className="text-2xl font-bold mb-2">
-              <span className="bg-gradient-to-r from-[#FF6B35] via-[#F5A623] to-[#FFD700] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
                 Sanskrit Wisdom
               </span>
             </h2>
@@ -460,7 +460,7 @@ export default function MitramDashboard() {
                 <Zap className="h-6 w-6 text-white" />
               </div>
               <h4 className="text-lg font-bold mb-2">
-                <span className="bg-gradient-to-r from-[#FF6B35] via-[#F5A623] to-[#FFD700] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
                   {notifications.length} New Notification{notifications.length > 1 ? 's' : ''}
                 </span>
               </h4>
@@ -480,7 +480,7 @@ export default function MitramDashboard() {
                   <BarChart3 className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#F5A623] to-[#FFD700] bg-clip-text text-transparent">
+                  <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
                     Your Assessment Journey
                   </h2>
                   <p className="text-muted-foreground">
@@ -534,7 +534,7 @@ export default function MitramDashboard() {
                 <Cpu className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#F5A623] to-[#FFD700] bg-clip-text text-transparent">
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
                   Assessment Modules
                 </h2>
                 <p className="text-muted-foreground">
@@ -597,7 +597,7 @@ export default function MitramDashboard() {
                     <Button
                       onClick={() => handleStartAssessment(module.id)}
                       disabled={!module.available}
-                      className="w-full bg-gradient-to-r from-[#C0392B] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                      className="w-full bg-gradient-to-r from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                     >
                       <div className="flex items-center justify-center space-x-2">
                         <span>{module.completed ? 'Retake Assessment' : 'Start Assessment'}</span>
@@ -620,7 +620,7 @@ export default function MitramDashboard() {
                   <Award className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#F5A623] to-[#FFD700] bg-clip-text text-transparent">
+                  <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
                     Recent Assessment Results
                   </h2>
                   <p className="text-muted-foreground">
@@ -637,7 +637,7 @@ export default function MitramDashboard() {
                     {index + 1}
                   </div>
                   <h4 className="text-lg font-bold text-foreground mb-2">{result.module}</h4>
-                  <div className="text-3xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#F5A623] to-[#FFD700] bg-clip-text text-transparent mb-2">{result.average}</div>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent mb-2">{result.average}</div>
                   <div className="text-sm text-muted-foreground">{result.interpretation}</div>
                 </div>
               ))}
@@ -652,7 +652,7 @@ export default function MitramDashboard() {
               <BookOpen className="h-10 w-10 text-white" />
             </div>
             <h3 className="text-3xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-[#FF6B35] via-[#F5A623] to-[#FFD700] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
                 Designed for Indian Students
               </span>
             </h3>

@@ -18,8 +18,8 @@ import {
 // Difficulty → [background tint, foreground] (mock diffTint).
 const DIFF_TINT: Record<string, [string, string]> = {
   EASY: ['rgb(14 159 110 / 0.14)', 'var(--emerald)'],
-  MEDIUM: ['rgb(0 106 110 / 0.12)', '#006A6E'],
-  HARD: ['rgb(192 57 43 / 0.12)', 'var(--kumkum)'],
+  MEDIUM: ['rgb(59 91 219 / 0.12)', '#1E3A8A'],
+  HARD: ['rgb(229 40 58 / 0.12)', 'var(--kumkum)'],
 }
 
 export interface GeneratedOption {
@@ -204,7 +204,7 @@ export default function ActiveTestInterface({ session, onTestCompleted, onError,
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: 'monospace',
                 fontWeight: 800, fontSize: 17, padding: '8px 16px', borderRadius: 11,
-                background: timerRed ? 'rgb(192 57 43 / 0.14)' : 'rgb(var(--accent-primary-rgb) / 0.12)',
+                background: timerRed ? 'rgb(229 40 58 / 0.14)' : 'rgb(var(--accent-primary-rgb) / 0.12)',
                 color: timerRed ? 'var(--kumkum)' : 'var(--accent-text)',
               }}
             >
@@ -260,7 +260,7 @@ export default function ActiveTestInterface({ session, onTestCompleted, onError,
                       style={{
                         width: 28, height: 28, borderRadius: 999, flex: 'none', display: 'inline-flex',
                         alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 13,
-                        background: selected ? 'linear-gradient(135deg,var(--kumkum),var(--saffron))' : 'var(--chip-bg)',
+                        background: selected ? 'var(--bb-grad-primary)' : 'var(--chip-bg)',
                         color: selected ? '#fff' : 'var(--accent-text)',
                       }}
                     >
@@ -304,7 +304,7 @@ export default function ActiveTestInterface({ session, onTestCompleted, onError,
                       style={{
                         height: 40, borderRadius: 9, cursor: 'pointer', fontFamily: 'var(--font-body)',
                         fontWeight: 700, fontSize: 13.5,
-                        background: isCurrent ? 'linear-gradient(135deg,var(--kumkum),var(--saffron))' : isAnswered ? 'rgb(14 159 110 / 0.14)' : 'var(--panel-2)',
+                        background: isCurrent ? 'var(--bb-grad-primary)' : isAnswered ? 'rgb(14 159 110 / 0.14)' : 'var(--panel-2)',
                         color: isCurrent ? '#fff' : isAnswered ? 'var(--emerald)' : 'var(--muted)',
                         border: `1.5px solid ${isCurrent ? 'transparent' : isAnswered ? 'var(--emerald)' : 'var(--line)'}`,
                         boxShadow: isFlagged ? '0 0 0 2px var(--kumkum)' : 'none',

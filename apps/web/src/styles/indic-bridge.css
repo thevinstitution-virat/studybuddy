@@ -12,7 +12,7 @@
 
    ⚠ These values MUST stay bare "H S% L%" channel triplets. Tailwind compiles
    `bg-primary/50` into `hsl(var(--primary) / 0.5)`. If anyone "simplifies"
-   --primary to a full colour (#F5A623 or hsl(37 91% 55%)), every opacity
+   --primary to a full colour (#FF4D00 or hsl(37 91% 55%)), every opacity
    modifier across the codebase silently produces an invalid colour and the
    declaration is dropped — with no build error.
 
@@ -34,24 +34,24 @@
      the mock's exact hexes (--bg/--panel/--ink/--muted/--line …) converted to
      the bare "H S% L%" channel triplets shadcn's hsl(var(--x)) contract needs
      — never full colours here, or every /opacity modifier breaks (see top).  */
-  --background: 41 60% 95%;          /* --bg     #FBF6EC warm cream page   */
-  --foreground: 36 80% 8%;           /* --ink    #241704 rich brown-ink    */
-  --card: 40 100% 99%;               /* --panel  #FFFDF9 raised parchment  */
+  --background: 41 60% 95%;          /* --bg     #F2F4F8 warm cream page   */
+  --foreground: 36 80% 8%;           /* --ink    #0A0F24 rich brown-ink    */
+  --card: 40 100% 99%;               /* --panel  #FFFFFF raised parchment  */
   --card-foreground: 36 80% 8%;
   --popover: 40 100% 99%;
   --popover-foreground: 36 80% 8%;
-  --secondary: 34 100% 96%;          /* --panel-2 #FFF6EA sunken warm wash */
+  --secondary: 34 100% 96%;          /* --panel-2 #EEF1F6 sunken warm wash */
   --secondary-foreground: 35 40% 24%;
   --muted: 34 100% 96%;
-  --muted-foreground: 35 23% 35%;    /* --muted  #6E5D45 bark text         */
+  --muted-foreground: 35 23% 35%;    /* --muted  #4A5470 bark text         */
   --border: 40 44% 82%;              /* --line   faint temple-gold hairline */
   --input: 38 42% 80%;
-  --destructive: 6 63% 46%;          /* --kumkum #C0392B crimson           */
+  --destructive: 6 63% 46%;          /* --kumkum #E5283A crimson           */
   --destructive-foreground: 0 0% 100%;
 
-  --sidebar-background: 38 100% 98%; /* --sidebar #FFFCF7 parchment rail    */
+  --sidebar-background: 38 100% 98%; /* --sidebar #FFFFFF parchment rail    */
   --sidebar-foreground: 35 26% 32%;
-  --sidebar-accent: 43 100% 93%;     /* --chip-bg #FFF4DC hover wash        */
+  --sidebar-accent: 43 100% 93%;     /* --chip-bg #FFE7DC hover wash        */
   --sidebar-accent-foreground: 37 95% 32%;
   --sidebar-border: 40 44% 82%;
 }
@@ -67,13 +67,13 @@
   /* ── Warm-Indic SURFACES (dark) ──────────────────────────────────────
      Night-ink base with slightly-warmed panels and ivory text — the mock's
      dark-theme surface set. Kept in sync with the light block above.        */
-  --background: 225 50% 8%;          /* --bg     #0A0F1E night-ink          */
-  --foreground: 32 100% 97%;         /* --ink    #FFF8F0 ivory-cream        */
-  --card: 225 46% 13%;               /* --panel  #121A31 raised indigo-ink  */
+  --background: 225 50% 8%;          /* --bg     #0A0F24 night-ink          */
+  --foreground: 32 100% 97%;         /* --ink    #F2F4F8 ivory-cream        */
+  --card: 225 46% 13%;               /* --panel  #121A33 raised indigo-ink  */
   --card-foreground: 32 100% 97%;
   --popover: 226 46% 10%;
   --popover-foreground: 32 100% 97%;
-  --secondary: 226 46% 10%;          /* --panel-2 #0E1426 sunken            */
+  --secondary: 226 46% 10%;          /* --panel-2 #0E1530 sunken            */
   --secondary-foreground: 32 60% 90%;
   --muted: 226 46% 10%;
   --muted-foreground: 34 35% 68%;    /* --muted  ivory @ .64                */
@@ -82,7 +82,7 @@
   --destructive: 6 63% 46%;
   --destructive-foreground: 0 0% 100%;
 
-  --sidebar-background: 225 50% 9%;  /* --sidebar #0C1224                   */
+  --sidebar-background: 225 50% 9%;  /* --sidebar #0C1330                   */
   --sidebar-foreground: 34 30% 70%;
   --sidebar-accent: 46 40% 16%;
   --sidebar-accent-foreground: 38 100% 66%;

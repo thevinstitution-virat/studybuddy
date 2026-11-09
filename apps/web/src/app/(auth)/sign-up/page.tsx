@@ -114,7 +114,7 @@ function SignUpForm() {
                     </div>
                     <Link
                         href="/sign-in"
-                        className="flex w-full items-center justify-center gap-2 rounded-[14px] bg-[linear-gradient(135deg,var(--kumkum),var(--saffron))] py-3 px-4 font-bold text-white shadow-[0_14px_30px_-14px_rgba(192,57,43,0.65)] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                        className="flex w-full items-center justify-center gap-2 rounded-[14px] bg-[image:var(--bb-grad-primary)] py-3 px-4 font-bold text-white shadow-[var(--bb-shadow-glow-blaze)] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
                     >
                         Go to Sign In
                     </Link>
@@ -246,7 +246,7 @@ function SignUpForm() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="flex w-full items-center justify-center gap-2 rounded-[14px] bg-[linear-gradient(135deg,var(--kumkum),var(--saffron))] py-3 px-4 font-bold text-white shadow-[0_14px_30px_-14px_rgba(192,57,43,0.65)] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50"
+                        className="flex w-full items-center justify-center gap-2 rounded-[14px] bg-[image:var(--bb-grad-primary)] py-3 px-4 font-bold text-white shadow-[var(--bb-shadow-glow-blaze)] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50"
                     >
                         {loading ? (
                             <>

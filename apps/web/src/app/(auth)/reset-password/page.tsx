@@ -78,7 +78,7 @@ function ResetPasswordForm() {
                     </p>
                     <Link
                         href="/forgot-password"
-                        className="inline-block w-full rounded-[14px] bg-[linear-gradient(135deg,var(--kumkum),var(--saffron))] py-3 text-center font-bold text-white shadow-[0_14px_30px_-14px_rgba(192,57,43,0.65)] transition-all duration-200 hover:-translate-y-0.5"
+                        className="inline-block w-full rounded-[14px] bg-[image:var(--bb-grad-primary)] py-3 text-center font-bold text-white shadow-[var(--bb-shadow-glow-blaze)] transition-all duration-200 hover:-translate-y-0.5"
                     >
                         Request new reset link
                     </Link>
@@ -92,14 +92,14 @@ function ResetPasswordForm() {
             <AuthShell title="Password reset!">
                 <div className="text-center">
                     <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[rgb(14_159_110_/_0.14)]">
-                        <CheckCircle2 className="h-8 w-8 text-[color:var(--emerald,#0E9F6E)]" />
+                        <CheckCircle2 className="h-8 w-8 text-[color:var(--emerald,#12B85A)]" />
                     </div>
                     <p className="mb-6 leading-relaxed text-muted-foreground">
                         Your password has been reset successfully. You can now sign in with your new password.
                     </p>
                     <Link
                         href="/sign-in"
-                        className="inline-block w-full rounded-[14px] bg-[linear-gradient(135deg,var(--kumkum),var(--saffron))] py-3 text-center font-bold text-white shadow-[0_14px_30px_-14px_rgba(192,57,43,0.65)] transition-all duration-200 hover:-translate-y-0.5"
+                        className="inline-block w-full rounded-[14px] bg-[image:var(--bb-grad-primary)] py-3 text-center font-bold text-white shadow-[var(--bb-shadow-glow-blaze)] transition-all duration-200 hover:-translate-y-0.5"
                     >
                         Sign in now
                     </Link>
@@ -147,7 +147,7 @@ function ResetPasswordForm() {
                         {passwordRequirements.map((req, i) => (
                             <div
                                 key={i}
-                                className={`flex items-center gap-2 text-[12.5px] ${req.met ? 'text-[color:var(--emerald,#0E9F6E)]' : 'text-muted-foreground'}`}
+                                className={`flex items-center gap-2 text-[12.5px] ${req.met ? 'text-[color:var(--emerald,#12B85A)]' : 'text-muted-foreground'}`}
                             >
                                 {req.met ? <CheckCircle2 className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
                                 {req.label}
@@ -180,7 +180,7 @@ function ResetPasswordForm() {
                 <button
                     type="submit"
                     disabled={loading}
-                    className="flex w-full items-center justify-center gap-2 rounded-[14px] bg-[linear-gradient(135deg,var(--kumkum),var(--saffron))] py-3 font-bold text-white shadow-[0_14px_30px_-14px_rgba(192,57,43,0.65)] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex w-full items-center justify-center gap-2 rounded-[14px] bg-[image:var(--bb-grad-primary)] py-3 font-bold text-white shadow-[var(--bb-shadow-glow-blaze)] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                     {loading ? (
                         <>

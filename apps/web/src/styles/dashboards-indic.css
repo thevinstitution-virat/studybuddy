@@ -17,20 +17,20 @@
 .dcd {
   --radius: 18px;
   /* light theme (default) */
-  --bg: #FBF6EC;
-  --panel: #FFFDF9;
-  --panel-2: #FFF6EA;
-  --sidebar: #FFFCF7;
-  --ink: #241704;
-  --muted: #6E5D45;
-  --line: rgb(184 134 11 / 0.18);
-  --line-soft: rgb(184 134 11 / 0.10);
-  --accent-text: #A06504;
-  --chip-bg: #FFF4DC;
-  --track: rgb(184 134 11 / 0.16);
-  --shadow: 0 18px 40px -28px rgba(120, 74, 10, .5);
-  --shadow-sm: 0 8px 20px -14px rgba(120, 74, 10, .5);
-  --emerald: #0E9F6E;
+  --bg: #F2F4F8;
+  --panel: #FFFFFF;
+  --panel-2: #EEF1F6;
+  --sidebar: #FFFFFF;
+  --ink: #0A0F24;
+  --muted: #4A5470;
+  --line: rgb(95 107 140 / 0.18);
+  --line-soft: rgb(95 107 140 / 0.10);
+  --accent-text: #B83300;
+  --chip-bg: #FFE7DC;
+  --track: rgb(95 107 140 / 0.16);
+  --shadow: 0 18px 40px -28px rgba(6, 10, 30, .5);
+  --shadow-sm: 0 8px 20px -14px rgba(6, 10, 30, .5);
+  --emerald: #12B85A;
 
   background: var(--bg);
   color: var(--ink);
@@ -39,16 +39,16 @@
 }
 
 .dark .dcd {
-  --bg: #0A0F1E;
-  --panel: #121A31;
-  --panel-2: #0E1426;
-  --sidebar: #0C1224;
-  --ink: #FFF8F0;
-  --muted: rgb(255 248 240 / 0.64);
-  --line: rgb(255 215 0 / 0.14);
-  --line-soft: rgb(255 215 0 / 0.08);
+  --bg: #0A0F24;
+  --panel: #121A33;
+  --panel-2: #0E1530;
+  --sidebar: #0C1330;
+  --ink: #F2F4F8;
+  --muted: rgb(242 244 248 / 0.64);
+  --line: rgb(169 180 208 / 0.14);
+  --line-soft: rgb(169 180 208 / 0.08);
   --accent-text: var(--accent-primary-dark);
-  --chip-bg: rgb(255 215 0 / 0.09);
+  --chip-bg: rgb(169 180 208 / 0.09);
   --track: rgb(255 255 255 / 0.10);
   --shadow: 0 22px 50px -28px rgba(0, 0, 0, .7);
   --shadow-sm: 0 10px 26px -18px rgba(0, 0, 0, .7);
@@ -58,7 +58,7 @@
 .dcd a:hover { color: var(--lotus-pink); }
 .dcd ::selection { background: rgb(var(--accent-primary-rgb) / 0.26); }
 .dcd ::-webkit-scrollbar { width: 9px; height: 9px; }
-.dcd ::-webkit-scrollbar-thumb { background: rgb(184 134 11 / .32); border-radius: 99px; }
+.dcd ::-webkit-scrollbar-thumb { background: rgb(95 107 140 / .32); border-radius: 99px; }
 
 /* All dashboard headings ride the body face; the global h1/h2/h3 rule
    (indic-design-system.css) puts them in the Yatra One display face, which the
@@ -77,7 +77,7 @@
 .dcd .plinth {
   display: inline-flex; align-items: center; justify-content: center;
   border-radius: 14px; color: #fff;
-  box-shadow: 0 10px 22px -10px rgba(255, 107, 53, .6);
+  box-shadow: 0 10px 22px -10px rgba(255,77,0, .6);
 }
 
 .dcd .card {
@@ -100,8 +100,8 @@
   transition: transform .18s, box-shadow .18s, background .18s, color .18s;
 }
 .dcd .btn-primary {
-  background: linear-gradient(135deg, var(--kumkum), var(--saffron)); color: #fff;
-  box-shadow: 0 12px 26px -12px rgba(192, 57, 43, .6);
+  background: var(--bb-grad-primary); color: #fff;
+  box-shadow: 0 12px 26px -12px rgba(255, 77, 0, .6);
 }
 .dcd .btn-primary:hover { transform: translateY(-2px); color: #fff; }
 .dcd .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
@@ -139,8 +139,8 @@
 }
 .dcd .pill:hover { color: var(--accent-text); border-color: rgb(var(--accent-primary-rgb) / 0.4); }
 .dcd .pill.on {
-  background: linear-gradient(135deg, var(--kumkum), var(--saffron)); color: #fff;
-  border-color: transparent; box-shadow: 0 8px 18px -9px rgba(192, 57, 43, .6);
+  background: var(--bb-grad-primary); color: #fff;
+  border-color: transparent; box-shadow: 0 8px 18px -9px rgba(255, 77, 0, .6);
 }
 
 .dcd .eyebrow {

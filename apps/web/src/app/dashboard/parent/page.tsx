@@ -11,7 +11,7 @@ import { UsersRound } from 'lucide-react'
 import { PARENT_NAV } from '@/lib/dashboard/dashboard-nav'
 
 const GRADS = [
-  'linear-gradient(135deg,var(--kumkum),var(--saffron))',
+  'var(--bb-grad-primary)',
   'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))',
   'linear-gradient(135deg,var(--teal-light),var(--peacock-teal))',
   'linear-gradient(135deg,var(--turmeric),var(--gold))',

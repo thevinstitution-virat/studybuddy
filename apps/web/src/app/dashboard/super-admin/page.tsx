@@ -56,7 +56,7 @@ export default function AdminDashboard() {
     { name: 'Subscription Plans', desc: 'Billing & plans', href: '/dashboard/super-admin/plans', icon: CreditCard, grad: GT },
     { name: 'Feature Flags', desc: 'Platform toggles', href: '/dashboard/super-admin/feature-flags', icon: Flag, grad: GW },
     { name: 'Content', desc: 'NCERT & ingestion', href: '/dashboard/super-admin/content', icon: FileText, grad: GP },
-    { name: 'Danger Zone', desc: 'Destructive ops', href: '/dashboard/super-admin/danger-zone', icon: AlertTriangle, grad: 'linear-gradient(135deg,var(--kumkum),var(--lotus-deep))' },
+    { name: 'Danger Zone', desc: 'Destructive ops', href: '/dashboard/super-admin/danger-zone', icon: AlertTriangle, grad: 'linear-gradient(135deg,#FF5468,#E5283A 55%,#B0182A)' },
   ]
 
   return (

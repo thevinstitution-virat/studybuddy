@@ -23,7 +23,7 @@ export function BatchModeSelector({ mode, setMode }: { mode: 'general' | 'batch'
               padding: '9px 22px', borderRadius: 11, border: 'none', cursor: 'pointer',
               fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 13.5,
               display: 'inline-flex', alignItems: 'center', gap: 7,
-              background: on ? 'linear-gradient(135deg,var(--kumkum),var(--saffron))' : 'transparent',
+              background: on ? 'var(--bb-grad-primary)' : 'transparent',
               color: on ? '#fff' : 'var(--muted)',
             }}
           >

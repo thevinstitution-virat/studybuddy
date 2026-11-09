@@ -15,7 +15,7 @@ interface ProgressMetrics {
 }
 
 const GC = 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))';
-const GP = 'linear-gradient(135deg,var(--kumkum),var(--saffron))';
+const GP = 'var(--bb-grad-primary)';
 const GW = 'linear-gradient(135deg,var(--turmeric),var(--gold))';
 const GT = 'linear-gradient(135deg,var(--teal-light),var(--peacock-teal))';
 
@@ -65,7 +65,7 @@ export default function StudentProgressDashboard() {
     if (error || !metrics) {
         return (
             <div className="dcs">
-                <div className="card" style={{ padding: 16, borderColor: 'rgb(192 57 43 / 0.3)', color: 'var(--kumkum)' }}>
+                <div className="card" style={{ padding: 16, borderColor: 'rgb(229 40 58 / 0.3)', color: 'var(--kumkum)' }}>
                     Error loading progress dashboard: {error}
                 </div>
             </div>

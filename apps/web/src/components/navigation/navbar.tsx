@@ -9,7 +9,7 @@ import { useState } from 'react'
 // Shared brand mark, vendored from PDLMS. Replaces the GraduationCap-on-a-
 // gradient-square tile: the trio now shares one circular mandala mark that
 // takes each app's accent, so the SSO hop between products stays continuous.
-import { MandalaMark } from '@/design/indic/motifs/mandala-mark'
+import MandalaMark from '@/components/dashboard/MandalaMark'
 
 interface NavbarProps {
   className?: string

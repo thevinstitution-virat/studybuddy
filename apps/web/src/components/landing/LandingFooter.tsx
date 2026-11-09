@@ -1,7 +1,7 @@
 'use client'
 
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react'
-import { MandalaMark } from '@/design/indic/motifs/mandala-mark'
+import MandalaMark from '@/components/dashboard/MandalaMark'
 
 /**
  * LandingFooter — the app's existing footer, preserved verbatim from the prior

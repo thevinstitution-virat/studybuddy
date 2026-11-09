@@ -138,7 +138,7 @@ export default function TestGeneratorForm({ onTestGenerated, onError, loading, u
     return (
       <div className="dcs">
         <div className="card" style={{ padding: 32, textAlign: 'center' }}>
-          <span className="plinth" style={{ width: 56, height: 56, margin: '0 auto 14px', background: 'linear-gradient(135deg,var(--kumkum),var(--saffron))' }}>
+          <span className="plinth" style={{ width: 56, height: 56, margin: '0 auto 14px', background: 'var(--bb-grad-primary)' }}>
             <GraduationCap className="h-7 w-7" />
           </span>
           <h3 style={{ fontSize: 17, fontWeight: 800, color: 'var(--ink)', margin: 0 }}>Complete your profile first</h3>
@@ -152,7 +152,7 @@ export default function TestGeneratorForm({ onTestGenerated, onError, loading, u
   }
 
   const distTotal = dist.EASY + dist.MEDIUM + dist.HARD
-  const diffColor: Record<string, string> = { EASY: 'var(--emerald)', MEDIUM: '#006A6E', HARD: 'var(--kumkum)' }
+  const diffColor: Record<string, string> = { EASY: 'var(--emerald)', MEDIUM: '#1E3A8A', HARD: 'var(--kumkum)' }
 
   return (
     <div className="dcs">
@@ -162,7 +162,7 @@ export default function TestGeneratorForm({ onTestGenerated, onError, loading, u
           {/* Profile context bar (auto — not a picker) */}
           <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginBottom: 18, padding: '11px 13px', borderRadius: 12, background: 'var(--panel-2)', border: '1px solid var(--line-soft)' }}>
             <span className="tag" style={{ background: 'var(--chip-bg)', color: 'var(--accent-text)' }}><GraduationCap className="h-[13px] w-[13px]" /> Class {effectiveClass}</span>
-            <span className="tag" style={{ background: 'rgb(0 106 110 / 0.12)', color: '#006A6E' }}>{BOARD_LABEL[userBoard ?? ''] || userBoard}</span>
+            <span className="tag" style={{ background: 'rgb(59 91 219 / 0.12)', color: '#1E3A8A' }}>{BOARD_LABEL[userBoard ?? ''] || userBoard}</span>
             {userMedium && <span className="tag" style={{ background: 'var(--panel)', color: 'var(--muted)', border: '1px solid var(--line)' }}>{`${String(userMedium).charAt(0)}${String(userMedium).slice(1).toLowerCase()}`} medium</span>}
             {planName && <span style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 12, color: 'var(--muted)' }}><Sparkles className="h-[13px] w-[13px]" /> {planName}</span>}
 
@@ -255,7 +255,7 @@ export default function TestGeneratorForm({ onTestGenerated, onError, loading, u
                       style={{
                         flex: 1, padding: '10px 0', borderRadius: 10, cursor: 'pointer', fontFamily: 'var(--font-body)',
                         fontWeight: 700, fontSize: 13.5,
-                        background: on ? 'linear-gradient(135deg,var(--kumkum),var(--saffron))' : 'var(--panel-2)',
+                        background: on ? 'var(--bb-grad-primary)' : 'var(--panel-2)',
                         color: on ? '#fff' : 'var(--muted)',
                         border: `1.5px solid ${on ? 'transparent' : 'var(--line)'}`,
                       }}

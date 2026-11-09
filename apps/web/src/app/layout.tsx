@@ -27,19 +27,24 @@ import "../design/indic/indic-design-system.css";
 import "../styles/indic-bridge.css";
 // Self-hosted fonts, imported here rather than from CSS so Next and Vite
 // resolve them identically across the trio. Must precede indic-fonts.css.
-import "@fontsource-variable/plus-jakarta-sans";
-import "@fontsource/yatra-one/400.css";
+// Buddy design system faces: Bricolage (display), Familjen (UI), Newsreader (reading).
+import "@fontsource-variable/bricolage-grotesque";
+import "@fontsource-variable/familjen-grotesk";
+import "@fontsource-variable/newsreader";
 import "@fontsource/noto-sans-devanagari/400.css";
 import "@fontsource/noto-sans-devanagari/600.css";
 import "../design/indic/indic-fonts.css";
+// Navy + blaze (Buddy design system): re-points the Indic pigments, accent layer and scoped surface
+// tokens, and brings in the --bb-* palette. MUST be last so it wins over every sheet above.
+import "../styles/buddy-theme.css";
 
 export const metadata: Metadata = {
-  title: "Virat Gyankosh - AI-Powered Educational Platform",
+  title: "Study Buddy - AI tutor for every student",
   description: "Revolutionizing personalized learning through intelligent AI agents and multi-tenant role-based access control",
   keywords: ["education", "AI", "learning", "tutoring", "personalized learning"],
-  authors: [{ name: "Virat Gyankosh Team" }],
+  authors: [{ name: "Study Buddy Team" }],
   openGraph: {
-    title: "Virat Gyankosh - AI-Powered Educational Platform",
+    title: "Study Buddy - AI tutor for every student",
     description: "Revolutionizing personalized learning through intelligent AI agents",
     type: "website",
   },
