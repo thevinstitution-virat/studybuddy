@@ -43,7 +43,7 @@ const config: Config = {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
-        // DigiClassroom brand palette (orange → indigo → blue)
+        // Study Buddy brand palette (orange → indigo → blue)
         brand: {
           orange: 'var(--dc-orange)',
           'orange-light': 'var(--dc-orange-light)',

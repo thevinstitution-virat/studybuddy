@@ -145,9 +145,9 @@ export async function POST(request: NextRequest) {
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.BETTER_AUTH_URL || 'http://localhost:3000'
     const emailResult = await sendEmail({
       to: email,
-      subject: 'Welcome to DigiClassroom Pro',
+      subject: 'Welcome to Study Buddy',
       html: emailLayout({
-        heading: 'Your DigiClassroom Pro account is ready',
+        heading: 'Your Study Buddy account is ready',
         body: `An account has been created for you as <strong>${role.replace(/_/g, ' ')}</strong>. Click below to sign in — use the “magic link” option or Google with this email address.`,
         ctaLabel: 'Sign in',
         ctaUrl: `${appUrl}/sign-in`,

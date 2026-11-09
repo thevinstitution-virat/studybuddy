@@ -23,7 +23,7 @@ export const SimpleLandingPage: React.FC = () => {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-            <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">Digi Classroom</span>
+            <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">Study Buddy</span>
             <br />
             <span className="text-4xl md:text-5xl">Next-Gen Learning Platform</span>
           </h1>
@@ -108,9 +108,9 @@ export const SimpleLandingPage: React.FC = () => {
       {/* Simple Footer */}
       <footer className="py-12 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="text-2xl font-bold mb-4">Digi Classroom</h3>
+          <h3 className="text-2xl font-bold mb-4">Study Buddy</h3>
           <p className="text-gray-300 mb-6">Revolutionizing education with AI-powered learning experiences</p>
-          <p className="text-gray-400">© 2024 Digi Classroom. All rights reserved.</p>
+          <p className="text-gray-400">© 2024 Study Buddy. All rights reserved.</p>
         </div>
       </footer>
     </div>

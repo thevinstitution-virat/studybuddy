@@ -23,7 +23,7 @@ function getResend(): Resend {
 }
 
 const FROM_EMAIL =
-  process.env.RESEND_FROM_EMAIL ?? 'DigiClassroomPro <no-reply@digiclassroompro.in>'
+  process.env.RESEND_FROM_EMAIL ?? 'Study Buddy <no-reply@digiclassroompro.in>'
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://digiclassroompro.in'
 
 /** Resend batch API hard limit */

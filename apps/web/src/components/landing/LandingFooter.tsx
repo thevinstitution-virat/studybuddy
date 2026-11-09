@@ -22,7 +22,7 @@ export function LandingFooter() {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
               <MandalaMark size={40} />
-              <span className="text-2xl" style={{ fontFamily: 'var(--font-display)' }}>Digi Classroom</span>
+              <span className="text-2xl" style={{ fontFamily: 'var(--font-display)' }}>Study Buddy</span>
             </div>
             <p className="mb-6 max-w-md" style={{ color: 'rgb(var(--ivory-cream-rgb) / 0.72)' }}>
               Revolutionizing education with AI-powered, NCERT-grounded learning. Launching 2026 —
@@ -107,7 +107,7 @@ export function LandingFooter() {
         <div className="pt-8" style={{ borderTop: '1px solid rgb(var(--gold-rgb) / 0.14)' }}>
           <div className="flex flex-col md:flex-row justify-between items-center gap-4" style={{ color: 'rgb(var(--ivory-cream-rgb) / 0.6)' }}>
             <p className="text-center md:text-left leading-relaxed">
-              Digi Classroom is a brand of the Vinstitution segment of VPD Vastus
+              Study Buddy is a brand of the Vinstitution segment of VPD Vastus
               Ventures Private Limited.
             </p>
             <div className="flex gap-6">

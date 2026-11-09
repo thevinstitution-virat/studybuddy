@@ -1,5 +1,5 @@
 # ============================================================================
-# DigiClassroom Pro — Sarvagya (SurfSense) Microservice Dockerfile
+# Study Buddy — Sarvagya (SurfSense) Microservice Dockerfile
 # Based on the upstream surfsense_backend Dockerfile with:
 #   - SERVICE_ROLE=api  (Celery disabled — BullMQ replaces it)
 #   - DB_SCHEMA=sarvagya  (C1 fix: tables live in "sarvagya" schema)

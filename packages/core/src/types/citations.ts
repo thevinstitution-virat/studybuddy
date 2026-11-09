@@ -1,5 +1,5 @@
 /**
- * Canonical Citation & Source Types for DigiClassroom Pro
+ * Canonical Citation & Source Types for Study Buddy
  * 
  * This file unifies the THREE competing Citation interfaces and TWO competing
  * SourceChunk interfaces that previously existed across the codebase:
@@ -69,6 +69,9 @@ export interface NCERTCitation {
 
     /** Extraction method used (e.g. "pdf-extract-kit", "docling") */
     extractionMethod?: string;
+
+    /** Library hub passages: the stable passage id this citation points at (survives a re-index of the book). */
+    passageId?: string;
 }
 
 // =============================================================================

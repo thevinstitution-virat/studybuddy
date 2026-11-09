@@ -1,7 +1,7 @@
 import { logger } from '@/lib/logger';
 
 /**
- * Visualization Generator for DigiClassroom Pro AI Tutor
+ * Visualization Generator for Study Buddy AI Tutor
  * Generates educational visualizations (tables, flowcharts, concept maps, timelines, charts, etc.)
  * Maintains NCERT textbook fidelity by extracting data only from retrieved chunks
  */

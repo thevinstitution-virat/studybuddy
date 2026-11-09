@@ -132,9 +132,9 @@ const STEPS = [
 ]
 
 const TRIO = [
-  { Icon: Bot, name: 'Digi Classroom', role: 'AI Tutor', here: true, desc: 'NCERT-grounded tutoring & adaptive practice for Classes 6–12.' },
+  { Icon: Bot, name: 'Study Buddy', role: 'AI Tutor', here: true, desc: 'NCERT-grounded tutoring & adaptive practice for Classes 6–12.' },
   { Icon: GraduationCap, name: 'Vidyaverse', role: 'Campus OS', here: false, desc: 'The institution operating system — admissions to ID cards.' },
-  { Icon: Library, name: 'PDLMS', role: 'Digital Library', here: false, desc: 'Multi-tenant digital library of learning resources.' },
+  { Icon: Library, name: 'Book Buddy', role: 'Digital Library', here: false, desc: 'Multi-tenant digital library of learning resources.' },
 ]
 
 const COUNTERS = [
@@ -217,7 +217,7 @@ export const EnhancedLandingPage: React.FC = () => {
           <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', height: 68, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
             <a href="#top" style={{ display: 'flex', alignItems: 'center', gap: 11, color: 'var(--ink)' }}>
               <NavMandala id="mm-nav" spin="spin-slow" />
-              <span className="deva" style={{ fontSize: 23, letterSpacing: '.01em' }}>Digi Classroom</span>
+              <span className="deva" style={{ fontSize: 23, letterSpacing: '.01em' }}>Study Buddy</span>
             </a>
 
             <div className="nav-links" style={{ alignItems: 'center', gap: 30 }}>
@@ -290,7 +290,7 @@ export const EnhancedLandingPage: React.FC = () => {
                   <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#C0392B', opacity: 0.75 }} />
                   <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#F5A623' }} />
                   <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#00897B' }} />
-                  <span style={{ marginLeft: 10, fontSize: 12, fontWeight: 700, color: '#5A4E3C' }}>Digi Classroom · Class 9 Science</span>
+                  <span style={{ marginLeft: 10, fontSize: 12, fontWeight: 700, color: '#5A4E3C' }}>Study Buddy · Class 9 Science</span>
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr' }}>
                   <div style={{ padding: 20, borderRight: '1px solid rgb(184 134 11 / 0.16)', textAlign: 'left' }}>
@@ -545,7 +545,7 @@ export const EnhancedLandingPage: React.FC = () => {
             <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
               <span className="eyebrow"><Heart size={17} /> Built with learners</span>
               <h2 className="h2" style={{ marginTop: 18 }}>Designed with <span className="grad">real learners.</span></h2>
-              <p className="sub" style={{ marginBottom: 6 }}>We’re building Digi Classroom alongside students. These are the needs they voiced.</p>
+              <p className="sub" style={{ marginBottom: 6 }}>We’re building Study Buddy alongside students. These are the needs they voiced.</p>
               <p style={{ color: 'var(--muted)', fontSize: 13, fontStyle: 'italic', opacity: 0.8, margin: '4px 0 40px' }}>Illustrative voices from design-partner interviews · launching 2026</p>
 
               <div className="card" style={{ padding: 'clamp(30px,5vw,52px)', textAlign: 'center' }}>
@@ -623,7 +623,7 @@ export const EnhancedLandingPage: React.FC = () => {
               <div style={{ textAlign: 'center', marginBottom: 48 }}>
                 <span className="eyebrow"><Share2 size={17} /> The Vidyaverse ecosystem</span>
                 <h2 className="h2" style={{ marginTop: 18 }}>One login. <span className="grad">Three platforms.</span></h2>
-                <p className="sub">Digi Classroom is part of the Vidyaverse trio — the tutor, the campus OS, and the digital library, all connected.</p>
+                <p className="sub">Study Buddy is part of the Vidyaverse trio — the tutor, the campus OS, and the digital library, all connected.</p>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(270px,1fr))', gap: 20 }}>
                 {TRIO.map((app) => (

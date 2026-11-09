@@ -1,6 +1,6 @@
 # A/B Testing Infrastructure
 
-Complete A/B testing framework for DigiClassroom Pro validation system.
+Complete A/B testing framework for Study Buddy validation system.
 
 ## 📁 Directory Structure
 

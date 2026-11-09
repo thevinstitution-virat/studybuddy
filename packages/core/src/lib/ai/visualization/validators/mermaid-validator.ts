@@ -1,7 +1,7 @@
 import { logger } from '@/lib/logger';
 
 /**
- * Mermaid Syntax Validator for DigiClassroom Pro
+ * Mermaid Syntax Validator for Study Buddy
  * Validates Mermaid.js syntax before rendering to prevent errors
  * Includes auto-fix capabilities for common mistakes
  */

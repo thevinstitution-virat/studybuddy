@@ -1,5 +1,5 @@
 /**
- * Real-time Streaming Service for DigiClassroom AI Tutor
+ * Real-time Streaming Service for Study Buddy AI Tutor
  * Provides streaming response validation, failure-graceful fallbacks, and multi-modal context preservation
  */
 

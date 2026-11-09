@@ -1,5 +1,5 @@
 /**
- * Jest Configuration for DigiClassroom AI Tutor
+ * Jest Configuration for Study Buddy AI Tutor
  *
  * Uses next/jest for SWC-based TypeScript transformation.
  * The `projects` array is intentionally avoided — it creates isolated
@@ -132,7 +132,7 @@ const customJestConfig = {
       {
         outputDirectory: '<rootDir>/test-results',
         outputName: 'junit.xml',
-        suiteName: 'DigiClassroom AI Tutor Tests',
+        suiteName: 'Study Buddy AI Tutor Tests',
         classNameTemplate: '{classname}',
         titleTemplate: '{title}',
         ancestorSeparator: ' › ',
@@ -146,7 +146,7 @@ const customJestConfig = {
         filename: 'test-report.html',
         expand: true,
         hideIcon: false,
-        pageTitle: 'DigiClassroom AI Tutor Test Report',
+        pageTitle: 'Study Buddy AI Tutor Test Report',
       },
     ],
   ],

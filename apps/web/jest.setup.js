@@ -1,5 +1,5 @@
 /**
- * Jest Setup for DigiClassroom AI Tutor Tests
+ * Jest Setup for Study Buddy AI Tutor Tests
  * Global test configuration and mocks
  *
  * Guards browser-only setup (DOM matchers, WebSocket, etc.) so that

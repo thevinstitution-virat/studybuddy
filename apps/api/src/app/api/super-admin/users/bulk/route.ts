@@ -68,13 +68,13 @@ export async function POST(request: NextRequest) {
 
       case 'sendEmail': {
         const rows = await db.select({ email: user.email }).from(user).where(inArray(user.id, ids))
-        const message = payload?.message || 'You have a new notification from DigiClassroom Pro.'
+        const message = payload?.message || 'You have a new notification from Study Buddy.'
         const results = await Promise.all(
           rows.map((r) =>
             sendEmail({
               to: r.email,
-              subject: 'A message from DigiClassroom Pro',
-              html: emailLayout({ heading: 'DigiClassroom Pro', body: message }),
+              subject: 'A message from Study Buddy',
+              html: emailLayout({ heading: 'Study Buddy', body: message }),
             })
           )
         )

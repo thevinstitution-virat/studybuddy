@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * ECharts Visualization Component for DigiClassroom Pro
+ * ECharts Visualization Component for Study Buddy
  * Renders statistical charts (bar, pie, line) with responsive design
  * Implements tree-shaking and lazy loading for optimal bundle size
  */

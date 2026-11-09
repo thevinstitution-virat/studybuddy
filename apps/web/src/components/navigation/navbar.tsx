@@ -49,7 +49,7 @@ export function Navbar({ className = '' }: NavbarProps) {
                 className="text-xl tracking-tight text-[color:var(--night-ink)] dark:text-[color:var(--ivory-cream)]"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
-                Digi Classroom
+                Study Buddy
               </span>
             </Link>
           </div>

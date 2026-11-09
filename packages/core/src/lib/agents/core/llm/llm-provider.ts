@@ -26,7 +26,7 @@ export interface LLMChatResponse {
 
 /**
  * Core LLM Provider Interface
- * Allows DigiClassroom to swap backend LLMs (OpenAI, Gemini, Claude)
+ * Allows Study Buddy to swap backend LLMs (OpenAI, Gemini, Claude)
  * without altering any agent logic.
  */
 export interface ILLMProvider {

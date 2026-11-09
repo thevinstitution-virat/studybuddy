@@ -51,7 +51,7 @@ function DashboardLayoutInner({ children, sidebar, header, profilePath }: Dashbo
     [pathname, items],
   )
   const activeItem = items.find((i) => i.href === activeHref)
-  const topTitle = activeItem?.name || shell?.data.brandName || 'Digi Classroom'
+  const topTitle = activeItem?.name || shell?.data.brandName || 'Study Buddy'
   const topKicker = shell?.data.roleLabel || ''
 
   const isDark = resolvedTheme === 'dark'

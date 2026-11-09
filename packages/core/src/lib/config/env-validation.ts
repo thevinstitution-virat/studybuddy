@@ -1,5 +1,5 @@
 /**
- * Environment Variable Validation for DigiClassroom
+ * Environment Variable Validation for Study Buddy
  * Validates required environment variables at application startup
  */
 

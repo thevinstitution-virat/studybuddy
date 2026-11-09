@@ -25,7 +25,7 @@ def _ensure_toolkit_imported() -> None:
 
 def extract_pdf(pdf_path: str, config_path: str | None, metadata: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Execute PDF-Extract-Kit processing and map to DigiClassroom JSON.
+    Execute PDF-Extract-Kit processing and map to Study Buddy JSON.
     """
     _ensure_toolkit_imported()
 

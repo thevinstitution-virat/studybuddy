@@ -14,6 +14,8 @@ import {
     decimal,
     date,
     foreignKey,
+    uuid,
+    primaryKey,
 } from 'drizzle-orm/pg-core';
 
 // ============================================================================
@@ -73,6 +75,8 @@ export const enhancedUserProfiles = pgTable('enhanced_user_profiles', {
     performanceMetrics: json('performance_metrics'),
     difficultyPreferences: json('difficulty_preferences'),
     isOnboardingComplete: boolean('is_onboarding_complete').default(false),
+    /** "I'm just exploring" instead of saying what they study (016_learning_path.sql): do not ask again. */
+    learningPathSkippedAt: timestamp('learning_path_skipped_at', { withTimezone: true }),
 
     createdAt: timestamp('created_at').defaultNow(),
     updatedAt: timestamp('updated_at').defaultNow().$onUpdate(() => new Date()),
@@ -150,9 +154,24 @@ export const aiTutorUsage = pgTable('ai_tutor_usage', {
     userId: varchar('user_id', { length: 255 }).notNull(),
     date: timestamp('date').defaultNow(),
     questionsAsked: integer('questions_asked').default(0),
+    /** Of questions_asked, how many were answered on Prime (tutor Basic/Prime tiers, migration 017). */
+    primeAsked: integer('prime_asked').default(0),
     totalTokensUsed: integer('total_tokens_used').default(0),
     createdAt: timestamp('created_at').defaultNow(),
     updatedAt: timestamp('updated_at').defaultNow().$onUpdate(() => new Date()),
+});
+
+/**
+ * What each tutor answer cost in tokens (every OpenAI call of the question), for the 4-hour token windows
+ * (TUTOR_TOKEN_QUOTA_ENABLED, migration 018). Written only while that flag is on.
+ */
+export const tutorTokenUsage = pgTable('tutor_token_usage', {
+    id: varchar('id', { length: 36 }).primaryKey().default(sql`gen_random_uuid()::text`),
+    userId: varchar('user_id', { length: 255 }).notNull(),
+    tier: varchar('tier', { length: 10 }).notNull().default('basic'),
+    tokensIn: integer('tokens_in').notNull().default(0),
+    tokensOut: integer('tokens_out').notNull().default(0),
+    createdAt: timestamp('created_at').notNull().defaultNow(),
 });
 
 /**
@@ -1608,3 +1627,23 @@ export const appConfig = pgTable('app_config', {
   sessionTimeoutMinutes: integer('session_timeout_minutes').default(60).notNull(),
   updatedAt: timestamp('updated_at').defaultNow().$onUpdate(() => new Date()),
 });
+
+// What a learner is studying (curriculum v2 goals; 016_learning_path.sql, docs/learning-path.md). A snapshot of each
+// node, since there are no taxonomy tables here; for a learner signed in with Vidyaverse, a copy of Vidyaverse's.
+export const userLearningGoal = pgTable('user_learning_goal', {
+  userId: varchar('user_id', { length: 255 }).notNull().references(() => user.id, { onDelete: 'cascade' }),
+  nodeId: uuid('node_id').notNull(),
+  isPrimary: boolean('is_primary').notNull().default(false),
+  nodeCode: text('node_code').notNull(),
+  nodeName: text('node_name').notNull(),
+  nodeType: text('node_type').notNull(),
+  nodePath: text('node_path').notNull(),
+  verification: text('verification').notNull().default('verify'),
+  gradeLevel: integer('grade_level'),
+  combinationCode: text('combination_code'),
+  combinationName: text('combination_name'),
+  source: text('source', { enum: ['self', 'institution'] }).notNull().default('self'),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+}, (t) => ({
+  pk: primaryKey({ columns: [t.userId, t.nodeId] }),
+}));

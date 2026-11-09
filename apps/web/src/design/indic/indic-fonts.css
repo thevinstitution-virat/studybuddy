@@ -2,7 +2,7 @@
    DO NOT EDIT HERE. Edit the canonical file and re-run sync-indic.mjs.
    sha256:bc13601b0b696761 */
 /* ============================================================
-   INDIC FONT LOADING — shared by PDLMS, Vidyaverse & DigiClassroom.
+   INDIC FONT LOADING — shared by PDLMS, Vidyaverse & Study Buddy.
 
    Loading only. The typographic RULES (h1/h2 treatment, guardrails) live in
    indic-design-system.css; this file exists purely to get the same font bytes

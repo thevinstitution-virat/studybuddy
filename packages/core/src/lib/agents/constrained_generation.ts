@@ -1,5 +1,5 @@
 /**
- * Constrained Generation Tools for DigiClassroom AI Tutor
+ * Constrained Generation Tools for Study Buddy AI Tutor
  * Implements textbook-only content generation with strict verification
  */
 

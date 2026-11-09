@@ -1,5 +1,5 @@
 /**
- * Subject Matrix Configuration for DigiClassroom Pro
+ * Subject Matrix Configuration for Study Buddy
  * Defines class-wise subject availability based on medium and stream
  *
  * This matrix is applicable to all boards (CBSE/ICSE/State Boards) and all user types

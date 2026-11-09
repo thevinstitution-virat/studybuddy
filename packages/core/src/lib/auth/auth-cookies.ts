@@ -1,5 +1,5 @@
 /**
- * Session cookie naming — single source of truth for DigiClassroom.
+ * Session cookie naming — single source of truth for Study Buddy.
  *
  * All three apps in the trio currently use better-auth's default (`better-auth.*`).
  * That is harmless while cookies stay host-scoped, but single logout requires the

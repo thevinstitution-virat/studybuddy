@@ -36,7 +36,7 @@ const DashboardShellContext = createContext<ShellCtx | null>(null)
 export function DashboardShellProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<ShellData>({
     items: [],
-    brandName: 'Digi Classroom',
+    brandName: 'Study Buddy',
     roleLabel: '',
   })
   return (

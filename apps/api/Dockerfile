@@ -1,5 +1,5 @@
 # ============================================================================
-# DigiClassroom — api (backend) — headless Next.js standalone, monorepo build.
+# Study Buddy — api (backend) — headless Next.js standalone, monorepo build.
 # Build CONTEXT must be the REPO ROOT (so packages/* are available).
 # In Coolify: Build Pack = Dockerfile, Base Directory = / ,
 #   Dockerfile Location = apps/api/Dockerfile, Ports Exposes = 3000.

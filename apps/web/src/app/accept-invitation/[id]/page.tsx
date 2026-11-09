@@ -80,7 +80,7 @@ export default function AcceptInvitationPage() {
           // ── Not signed in ──
           <>
             <h1 className="text-2xl font-bold tracking-tight text-foreground">You&apos;re invited{orgName ? ` to ${orgName}` : ''}</h1>
-            <p className="mt-2 text-sm text-muted-foreground">Sign in or create your account to join your institution on Digi Classroom.</p>
+            <p className="mt-2 text-sm text-muted-foreground">Sign in or create your account to join your institution on Study Buddy.</p>
             <div className="mt-6 space-y-3">
               <Link href={`/sign-up?redirect_url=${encodeURIComponent(here)}`}
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-dc-grad-br py-3 font-semibold text-white shadow-glow-brand transition-all hover:shadow-elev-3">

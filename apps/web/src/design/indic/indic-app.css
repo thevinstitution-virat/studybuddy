@@ -7,7 +7,7 @@
    Regenerate: node shared/design/indic/build-indic-css.mjs
    ============================================================ */
 
-/* Accent layer for DigiClassroom Pro — the only file that differs per app.
+/* Accent layer for Study Buddy — the only file that differs per app.
    --accent-strong is the ONLY token permitted under white text. */
 
 :root {
