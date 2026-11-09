@@ -1,4 +1,4 @@
-# DigiClassroom Pro
+# Study Buddy
 
 An AI-powered educational platform built with Next.js 15.3.4, featuring advanced document processing, RAG (Retrieval-Augmented Generation), GPU-accelerated PDF extraction, and comprehensive learning tools.
 
@@ -8,7 +8,7 @@ This application is proudly part of an integrated trio of platforms designed to 
 
 1. **Vidyaverse Pro**: The core Educational Management Platform. Handles institutional administration, student records, ID cards, certificates, and operational workflows.
 2. **PDLMS Pro**: The Digital Library Management System. Provides a comprehensive, multi-tenant digital library for students and institutions to access and manage educational resources.
-3. **DigiClassroom Pro**: The AI-Powered Learning Engine. Delivers advanced document processing, Retrieval-Augmented Generation (RAG), and AI tutoring capabilities to transform static materials into interactive learning experiences.
+3. **Study Buddy**: The AI-Powered Learning Engine. Delivers advanced document processing, Retrieval-Augmented Generation (RAG), and AI tutoring capabilities to transform static materials into interactive learning experiences.
 
 ## 🚀 Key Features
 
@@ -58,7 +58,7 @@ nvidia-smi        # NVIDIA GPU info
 
 ```bash
 git clone <repository-url>
-cd "DigiClassroom Pro"
+cd "Study Buddy"
 ```
 
 ### 2. Install Node.js Dependencies
@@ -165,7 +165,7 @@ npm run dev
 ## 📁 Project Structure
 
 ```
-DigiClassroom Pro/
+Study Buddy/
 ├── src/
 │   ├── app/                    # Next.js App Router pages
 │   ├── components/             # React components

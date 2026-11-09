@@ -1,4 +1,4 @@
-// The learning-path rules DigiClassroom shares with Vidyaverse, PDLMS and Book Buddy, and its own mapping of the
+// The learning-path rules Study Buddy shares with Vidyaverse, PDLMS and Book Buddy, and its own mapping of the
 // derived legacy fields onto enhanced_user_profiles' board, stream and medium.
 
 import { dcpBoard, dcpProfileFields, dcpStream } from '@/lib/learning-path/legacy'
@@ -9,7 +9,7 @@ const goal = (over: Partial<Goal>): Goal => ({
   path: 'School Education > CBSE > Class 12', verification: 'verify', gradeLevel: 12, combination: null, source: 'self', ...over,
 })
 
-describe('DigiClassroom legacy fields', () => {
+describe('Study Buddy legacy fields', () => {
   it('boards: CBSE and CISCE are their own, other school boards are state boards, none outside school', () => {
     expect(['CBSE', 'CISCE', 'UP_BOARD', 'KERALA', 'NIOS', null].map(dcpBoard)).toEqual(['CBSE', 'ICSE', 'STATE_BOARD', 'STATE_BOARD', 'CBSE', null])
   })

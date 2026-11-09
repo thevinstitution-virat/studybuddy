@@ -1,5 +1,5 @@
 // src/lib/email/send-email.ts
-// Transactional email sender for DigiClassroom Pro.
+// Transactional email sender for Study Buddy.
 //
 // Uses Resend's HTTP API directly (no SDK dependency — keeps the bundle lean
 // and avoids an install). Swap the transport here if you move to SMTP/SES later;
@@ -8,7 +8,7 @@
 // Config (env):
 //   RESEND_API_KEY   — Resend API key. If unset, emails are logged, NOT sent
 //                      (dev fallback — auth flows degrade gracefully instead of crashing).
-//   EMAIL_FROM       — From address, e.g. "DigiClassroom Pro <noreply@yourdomain.com>"
+//   EMAIL_FROM       — From address, e.g. "Study Buddy <noreply@yourdomain.com>"
 
 import { logger } from '@/lib/logger';
 import { Resend } from 'resend';
@@ -35,7 +35,7 @@ export async function sendEmail({ to, subject, html, text }: SendEmailParams): P
     throw new Error('RESEND_API_KEY is missing. Production requires a valid Resend API key to send emails.');
   }
 
-  const EMAIL_FROM = process.env.EMAIL_FROM || 'DigiClassroom Pro <onboarding@resend.dev>';
+  const EMAIL_FROM = process.env.EMAIL_FROM || 'Study Buddy <onboarding@resend.dev>';
   const resend = new Resend(apiKey);
 
   try {
@@ -74,6 +74,6 @@ export function emailLayout(opts: { heading: string; body: string; ctaLabel?: st
     <h1 style="font-size:20px;margin:0 0 12px">${heading}</h1>
     <div style="font-size:15px;line-height:1.6;color:#334155">${body}</div>
     ${button}
-    <p style="font-size:12px;color:#94a3b8;margin-top:24px">DigiClassroom Pro · If you didn't request this, you can safely ignore this email.</p>
+    <p style="font-size:12px;color:#94a3b8;margin-top:24px">Study Buddy · If you didn't request this, you can safely ignore this email.</p>
   </div></body></html>`;
 }

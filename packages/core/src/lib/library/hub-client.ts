@@ -1,7 +1,7 @@
 /**
  * Client for the PDLMS library hub (`POST /api/hub/search`, docs/library-hub.md in PDLMS), server to server.
  *
- * DigiClassroom no longer ingests books: the hub is the only writer of the library and this is the read path. The
+ * Study Buddy no longer ingests books: the hub is the only writer of the library and this is the read path. The
  * caller sends the learner's goals (curriculum v2 node ids or codes) and medium; the hub scopes the search through
  * its placements, so no board, class or subject is guessed here. Results carry the `passage_id` every stored
  * reference uses (hw answer-key citations, Practest `casaAnchor`, tutor sources).

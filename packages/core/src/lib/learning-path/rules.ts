@@ -12,7 +12,7 @@
  * derived from the main goal here, never asked for separately.
  *
  * Pure: no database. The same rules as Vidyaverse (backend/src/modules/academic/learning-path.ts there, the
- * reference) and PDLMS; Book Buddy carries the legacy derivation. Keep them in step. DigiClassroom's own legacy
+ * reference) and PDLMS; Book Buddy carries the legacy derivation. Keep them in step. Study Buddy's own legacy
  * enums (board, stream, medium) are mapped from these in ./legacy.ts.
  */
 

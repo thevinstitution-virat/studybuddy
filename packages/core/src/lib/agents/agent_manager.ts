@@ -1,5 +1,5 @@
 /**
- * Agent Manager for DigiClassroom AI Tutor
+ * Agent Manager for Study Buddy AI Tutor
  * Coordinates different specialized agents based on menu selection
  */
 

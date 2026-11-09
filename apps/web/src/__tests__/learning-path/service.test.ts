@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-syntax -- this test sets the environment the service reads */
-// The learning path in DigiClassroom: Vidyaverse's for a federated learner (a copy kept here), DigiClassroom's own
+// The learning path in Study Buddy: Vidyaverse's for a federated learner (a copy kept here), Study Buddy's own
 // otherwise, checked against curriculum v2; saving it writes the legacy profile fields and completes onboarding.
 // The database is a small in-memory stand-in for the Drizzle calls the service makes.
 
@@ -155,7 +155,7 @@ describe('learning path, signed in with Vidyaverse', () => {
     expect(await getLearningPath('u')).toMatchObject({ prompt: true })
   })
 
-  it('a Vidyaverse without the endpoint (404) leaves DigiClassroom as the keeper', async () => {
+  it('a Vidyaverse without the endpoint (404) leaves Study Buddy as the keeper', async () => {
     store.token = 'tok'
     answer(404, {})
     expect((await setLearningPath('u', { goals: [{ nodeId: NEET.id }] })).goals.map((g) => g.code)).toEqual(['ENT.NEET_UG'])

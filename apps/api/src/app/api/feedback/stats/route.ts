@@ -1,5 +1,5 @@
 /**
- * DigiClassroom Pro - Feedback Stats API Endpoint
+ * Study Buddy - Feedback Stats API Endpoint
  * GET /api/feedback/stats
  * 
  * Returns aggregated feedback statistics with filtering options

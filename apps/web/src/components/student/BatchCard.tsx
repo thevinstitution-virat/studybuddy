@@ -41,7 +41,7 @@ export function BatchCard({ batch, onNavigate }: BatchCardProps) {
         amount: data.amountPaise,
         currency: 'INR',
         order_id: data.razorpayOrderId,
-        name: 'DigiClassroomPro',
+        name: 'Study Buddy',
         description: batch.batchName,
         handler: async () => {
           await utils.student.getEnrolledBatches.invalidate();

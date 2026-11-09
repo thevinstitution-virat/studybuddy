@@ -1,5 +1,5 @@
 /**
- * Source Validation Tools for DigiClassroom AI Tutor
+ * Source Validation Tools for Study Buddy AI Tutor
  * TypeScript implementation with strict textbook fidelity verification
  */
 

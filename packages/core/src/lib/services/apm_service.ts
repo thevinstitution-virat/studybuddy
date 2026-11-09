@@ -1,5 +1,5 @@
 /**
- * Application Performance Monitoring (APM) Service for DigiClassroom
+ * Application Performance Monitoring (APM) Service for Study Buddy
  * Provides comprehensive monitoring, tracing, and analytics
  */
 

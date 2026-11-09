@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * DigiClassroom Pro - Simplified Feedback Widget Component
+ * Study Buddy - Simplified Feedback Widget Component
  * Streamlined single-line feedback with auto-submit
  */
 

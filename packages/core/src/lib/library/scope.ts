@@ -1,7 +1,7 @@
 /**
- * Which library scope a DigiClassroom reader searches in: the learner's goals and medium (the learning path, Phase 6),
+ * Which library scope a Study Buddy reader searches in: the learner's goals and medium (the learning path, Phase 6),
  * or, for a caller that only has the old board and class, the class node's code. The hub resolves either through the
- * placements of its books; DigiClassroom never maps a goal to a book itself.
+ * placements of its books; Study Buddy never maps a goal to a book itself.
  */
 import type { HubSearchRequest } from './hub-client';
 

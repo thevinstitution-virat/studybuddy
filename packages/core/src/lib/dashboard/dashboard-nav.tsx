@@ -3,7 +3,7 @@
 // CANONICAL ROLE → DASHBOARD → FEATURES MATRIX  (single source of truth)
 // ============================================================================
 // TRIO NOTE: the TIER STRUCTURE below is shared across the three apps —
-//   DigiClassroom Pro · PDLMS · Vidyaverse.
+//   Study Buddy · PDLMS · Vidyaverse.
 // Only the per-tier FEATURE CONTENT differs by app domain. Keep the tiers and
 // their access rules identical across the trio; swap the nav items per app.
 //

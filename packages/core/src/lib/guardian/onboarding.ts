@@ -139,7 +139,7 @@ export async function invite(c: Caller, input: { mode: 'institution' | 'independ
 
   const link = `${deps.appUrl().replace(/\/$/, '')}/accept-guardian/${token}`;
   const first = (created.studentName || 'your child').split(/\s+/)[0];
-  const where = created.orgName ?? 'DigiClassroom';
+  const where = created.orgName ?? 'Study Buddy';
   const sent = await deps.send({
     to: email,
     subject: `${where}: you are invited to follow ${first}'s learning / ${first} की पढ़ाई देखने का निमंत्रण`,

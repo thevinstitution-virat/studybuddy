@@ -2,7 +2,7 @@
 
 ## Overview
 
-This schema implements a **Freemium + Tiered Subscriptions** monetization model for the DigiClassroom AI Tutor feature.
+This schema implements a **Freemium + Tiered Subscriptions** monetization model for the Study Buddy AI Tutor feature.
 
 ## Database Tables
 

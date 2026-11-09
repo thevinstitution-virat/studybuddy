@@ -1,5 +1,5 @@
 /**
- * DigiClassroom Pro - Feedback Validation Schemas
+ * Study Buddy - Feedback Validation Schemas
  * Zod schemas for validating feedback API requests and responses
  */
 

@@ -1,7 +1,7 @@
 import { logger } from '@/lib/logger';
 
 /**
- * ECharts Generator for DigiClassroom Pro
+ * ECharts Generator for Study Buddy
  * Generates statistical charts (bar, pie, line) using LLM and ECharts
  * Maintains NCERT fidelity - no data hallucination
  */

@@ -196,7 +196,7 @@ export default function UserSidebar({ user }: UserSidebarProps) {
     <BaseSidebar
       navigation={isRater ? [...navigation, createNavigationItem(EVALUATE_NAV.name, EVALUATE_NAV.href, EVALUATE_NAV.icon, { description: EVALUATE_NAV.description, section: EVALUATE_NAV.section })] : navigation}
       user={sidebarUser}
-      brandName="Digi Classroom"
+      brandName="Study Buddy"
       brandSubtitle={`${getPersonaLabel()} Portal`}
       brandIcon={Sparkles}
       brandColor={getPersonaColor()}

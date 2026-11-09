@@ -30,7 +30,7 @@ export default function TeacherSidebar() {
     <BaseSidebar
       navigation={navigation}
       user={sidebarUser}
-      brandName="DigiClassroom"
+      brandName="Study Buddy"
       brandSubtitle="Teacher Portal"
       brandIcon={GraduationCap}
       brandColor="bg-green-600"

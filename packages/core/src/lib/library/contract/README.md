@@ -2,7 +2,7 @@
 
 The shared contract for the library hub's passages: the passage-id grammar, the Qdrant point id, the
 Qdrant payload and the collection's shape. PDLMS is the source of truth and the only writer;
-DigiClassroom, Book Buddy and Vidyaverse vendor this folder unchanged and read with it.
+Study Buddy, Book Buddy and Vidyaverse vendor this folder unchanged and read with it.
 
 | File | What it is |
 |---|---|

@@ -1,5 +1,5 @@
 /**
- * Canonical Citation & Source Types for DigiClassroom Pro
+ * Canonical Citation & Source Types for Study Buddy
  * 
  * This file unifies the THREE competing Citation interfaces and TWO competing
  * SourceChunk interfaces that previously existed across the codebase:

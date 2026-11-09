@@ -1,7 +1,7 @@
 /**
  * What a learner is studying (curriculum v2 goals) and their medium, in the shape every app shares
  * (docs/learning-path.md). For a learner signed in with Vidyaverse, Vidyaverse holds the path (its institutions can
- * assign a class) and DigiClassroom keeps a copy; for every other account DigiClassroom's copy is the only one.
+ * assign a class) and Study Buddy keeps a copy; for every other account Study Buddy's copy is the only one.
  * Saving a path also writes the legacy profile fields older code reads (./legacy.ts) and completes onboarding.
  *
  * Needs curriculum v2 (TAXONOMY_V2_ENABLED and the Vidyaverse curriculum service). While it is off, onboarding asks
@@ -77,7 +77,7 @@ async function remote(userId: string, method: 'GET' | 'PUT', body?: unknown): Pr
   return payload.data;
 }
 
-// ── DigiClassroom's copy ─────────────────────────────────────────────────────
+// ── Study Buddy's copy ─────────────────────────────────────────────────────
 
 async function store(userId: string, path: Pick<LearningPath, 'goals' | 'medium'>, skipped: boolean): Promise<void> {
   const legacy = dcpProfileFields(deriveLegacy(path.goals, path.medium));
@@ -153,7 +153,7 @@ export async function getLearningPath(userId: string): Promise<LearningPath> {
   } catch (err) {
     // Reading: the last copy is better than nothing while Vidyaverse is away.
     if (!(err instanceof RemoteUnavailable)) throw err;
-    console.warn(`[learning-path] ${err.message}; answering from DigiClassroom's copy for ${userId}`);
+    console.warn(`[learning-path] ${err.message}; answering from Study Buddy's copy for ${userId}`);
   }
   return local(userId);
 }

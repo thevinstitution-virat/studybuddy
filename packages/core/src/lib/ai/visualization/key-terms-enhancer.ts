@@ -1,7 +1,7 @@
 import { logger } from '@/lib/logger';
 
 /**
- * Enhanced Key Terms Extractor for DigiClassroom Pro AI Tutor
+ * Enhanced Key Terms Extractor for Study Buddy AI Tutor
  * Extracts key terms from answer and enriches them with definitions from NCERT chunks
  */
 

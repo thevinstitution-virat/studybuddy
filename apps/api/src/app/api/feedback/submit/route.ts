@@ -1,5 +1,5 @@
 /**
- * DigiClassroom Pro - Submit Feedback API Endpoint
+ * Study Buddy - Submit Feedback API Endpoint
  * POST /api/feedback/submit
  *
  * Collects user feedback on AI-generated answers and creates quality alerts

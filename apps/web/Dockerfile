@@ -1,5 +1,5 @@
 # ============================================================================
-# DigiClassroom — web (frontend). Monorepo build, run via `next start`.
+# Study Buddy — web (frontend). Monorepo build, run via `next start`.
 #
 # Why not `output: 'standalone'`? In an npm-workspace monorepo the shared deps
 # are hoisted to the repo-root node_modules, which Next's standalone tracer

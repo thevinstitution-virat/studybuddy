@@ -1,6 +1,6 @@
 /**
- * DigiClassroom's own legacy profile fields (enhanced_user_profiles: board_type, grade_level, stream, medium,
- * language_preference) from a learning path's shared `legacy` fields. Older DigiClassroom code (materials,
+ * Study Buddy's own legacy profile fields (enhanced_user_profiles: board_type, grade_level, stream, medium,
+ * language_preference) from a learning path's shared `legacy` fields. Older Study Buddy code (materials,
  * subject matrix, Practest, the tutor) reads these; they are no longer asked at onboarding.
  */
 import type { Legacy } from './rules';
@@ -13,13 +13,13 @@ export function dcpBoard(board: string | null): DcpBoard | null {
   if (!board) return null;
   if (board === 'CBSE') return 'CBSE';
   if (board === 'CISCE') return 'ICSE';
-  // NIOS, IB and Cambridge are not state boards, but DigiClassroom has no closer value; their content is CBSE-like.
+  // NIOS, IB and Cambridge are not state boards, but Study Buddy has no closer value; their content is CBSE-like.
   if (board === 'NIOS') return 'CBSE';
   return 'STATE_BOARD';
 }
 
 /**
- * A curriculum v2 stream code (`CBSE_SCI_PCM`, `UP_BOARD_BOARD_BIPC`, `KERALA_HEC`...) as DigiClassroom's stream:
+ * A curriculum v2 stream code (`CBSE_SCI_PCM`, `UP_BOARD_BOARD_BIPC`, `KERALA_HEC`...) as Study Buddy's stream:
  * mathematics streams (PCM, MPC, PCMB, PCMC, PCME), biology (PCB, BiPC), commerce (COM, COMMERCE, CEC, MEC, CEBA),
  * humanities (ARTS, HUM, HEC, HEPS, SEBA). Null when there is no stream or no close match.
  */

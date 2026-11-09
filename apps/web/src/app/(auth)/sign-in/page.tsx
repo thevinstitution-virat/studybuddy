@@ -305,7 +305,7 @@ function SignInForm() {
 
             {/* Sign-Up Link */}
             <p className="mt-5 text-center text-sm text-muted-foreground">
-                New to Digi Classroom?{' '}
+                New to Study Buddy?{' '}
                 <Link href="/sign-up" className="font-bold text-primary hover:underline">
                     Create an account
                 </Link>

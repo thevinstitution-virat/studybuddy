@@ -21,7 +21,7 @@ export default function ParentSidebar() {
     <BaseSidebar
       navigation={PARENT_NAV}
       user={sidebarUser}
-      brandName="DigiClassroom"
+      brandName="Study Buddy"
       brandSubtitle="Parent Portal"
       brandIcon={Heart}
       brandColor="bg-purple-600"

@@ -4,7 +4,7 @@ import { InstitutionBreakdownTable } from '@/components/super-admin/InstitutionB
 import { TopContentList } from '@/components/super-admin/TopContentList';
 
 export const metadata = {
-  title: 'Platform Analytics | DigiClassroom Pro',
+  title: 'Platform Analytics | Study Buddy',
   description: 'Global analytics across all institutions',
 };
 
@@ -14,7 +14,7 @@ export default function SuperAdminAnalyticsPage() {
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Platform Analytics</h1>
         <p className="text-muted-foreground mt-2">
-          Global metrics across all tenants and users on the DigiClassroom Pro platform.
+          Global metrics across all tenants and users on the Study Buddy platform.
         </p>
       </div>
 

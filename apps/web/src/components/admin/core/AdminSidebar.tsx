@@ -37,7 +37,7 @@ export default function AdminSidebar({ user, isOwner = false }: AdminSidebarProp
     <BaseSidebar
       navigation={navigation}
       user={sidebarUser}
-      brandName="DigiClassroom"
+      brandName="Study Buddy"
       brandSubtitle={isOwner ? 'Platform Owner' : 'Admin Portal'}
       brandIcon={AdminBrandIcon}
       brandColor="bg-blue-600"

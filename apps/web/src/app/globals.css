@@ -11,7 +11,7 @@
   --apple-blue: #2563eb;
   --apple-blue-dark: #1d4ed8;
 
-  /* ===== shadcn/ui tokens — DigiClassroom branded (light) ===== */
+  /* ===== shadcn/ui tokens — Study Buddy branded (light) ===== */
   --card: 0 0% 100%;
   --card-foreground: 222 32% 13%;
   --popover: 0 0% 100%;
@@ -48,8 +48,8 @@
   --chart-4: 173 80% 40%;
   --chart-5: 271 76% 53%;
 
-  /* ===== DigiClassroom brand identity (orange → indigo → blue) ===== */
-  /* DigiClassroom brand palette, re-pointed at the Indic pigments.
+  /* ===== Study Buddy brand identity (orange → indigo → blue) ===== */
+  /* Study Buddy brand palette, re-pointed at the Indic pigments.
      These names are used by 14 components and by tailwind.config.ts's
      backgroundImage tokens (bg-dc-grad-br etc.), so re-pointing the VARIABLES
      re-skins every one of them at once — far better leverage than editing

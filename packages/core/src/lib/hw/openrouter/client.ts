@@ -35,7 +35,7 @@ function key(): string {
 async function request(path: string, init: RequestInit): Promise<unknown> {
   const res = await fetch(`${BASE}${path}`, {
     ...init,
-    headers: { Authorization: `Bearer ${key()}`, 'Content-Type': 'application/json', 'X-Title': 'DigiClassroom Handwritten Assignments', ...(init.headers ?? {}) },
+    headers: { Authorization: `Bearer ${key()}`, 'Content-Type': 'application/json', 'X-Title': 'Study Buddy Handwritten Assignments', ...(init.headers ?? {}) },
   });
   const text = await res.text();
   let body: unknown = null;

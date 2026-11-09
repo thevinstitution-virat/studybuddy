@@ -5,6 +5,6 @@
  */
 export const LEGACY_INGESTION_GONE = {
   success: false,
-  error: 'Book ingestion moved to the PDLMS library hub. Upload and approve books there; DigiClassroom reads the result.',
+  error: 'Book ingestion moved to the PDLMS library hub. Upload and approve books there; Study Buddy reads the result.',
   code: 'LEGACY_INGESTION_DISABLED',
 } as const;

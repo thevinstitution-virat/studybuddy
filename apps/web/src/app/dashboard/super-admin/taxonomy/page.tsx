@@ -271,7 +271,7 @@ function TaxonomySection({
 
 /**
  * With TAXONOMY_V2_ENABLED the page shows the shared curriculum (Book Buddy's taxonomy, served by Vidyaverse) instead
- * of DigiClassroom's own domain / course / level / subject lists, which stay editable below until it is switched on.
+ * of Study Buddy's own domain / course / level / subject lists, which stay editable below until it is switched on.
  */
 export default function TaxonomyPage() {
   const v2 = api.taxonomy.curriculum.status.useQuery(undefined, { retry: false });
@@ -290,7 +290,7 @@ export default function TaxonomyPage() {
       <div className="mb-6">
         <h1 className="text-2xl font-bold tracking-tight">Curriculum Taxonomy</h1>
         <p className="text-sm text-muted-foreground mt-1">
-          The education taxonomy shared by DigiClassroom, PDLMS, Book Buddy and Vidyaverse: boards, classes,
+          The education taxonomy shared by Study Buddy, Book Buddy and Vidyaverse: boards, classes,
           programmes, exams and subjects. It changes by a new taxonomy release, not from here.
         </p>
       </div>

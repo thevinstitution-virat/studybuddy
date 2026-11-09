@@ -25,7 +25,7 @@ from typing import Literal
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="[TTS] %(levelname)s %(message)s")
 
-app = FastAPI(title="DigiClassroom TTS", version="1.0.0")
+app = FastAPI(title="Study Buddy TTS", version="1.0.0")
 
 # ─── Voice Config ─────────────────────────────────────────────────────────────
 VOICE_CONFIG = {

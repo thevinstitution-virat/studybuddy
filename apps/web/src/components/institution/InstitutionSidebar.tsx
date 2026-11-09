@@ -23,7 +23,7 @@ export default function InstitutionSidebar() {
     <BaseSidebar
       navigation={isRater ? [...INSTITUTION_NAV, EVALUATE_NAV] : INSTITUTION_NAV}
       user={sidebarUser}
-      brandName="DigiClassroom"
+      brandName="Study Buddy"
       brandSubtitle="Institution Admin"
       brandIcon={Building2}
       brandColor="bg-violet-600"

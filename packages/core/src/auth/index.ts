@@ -23,7 +23,7 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || process.env.WEB_ORIGIN || 'ht
 // it (e.g. ".vinstitution.com"). Leave unset for same-origin/local dev.
 const COOKIE_DOMAIN = process.env.COOKIE_DOMAIN;
 
-// Two-trio federation: DigiClassroom is a shared service layer for BOTH control
+// Two-trio federation: Study Buddy is a shared service layer for BOTH control
 // planes — Vidyaverse (formal institutions) and VDL (D2C coaching/library). Both
 // IdPs emit the identical OIDC contract; each provider is inert until its env
 // vars are present, so enabling one trio never disturbs the other.
@@ -149,7 +149,7 @@ export const auth = betterAuth({
     emailAndPassword: {
         enabled: true,
         // Local email/password self-signup is OPEN again (owner decision,
-        // 2026-08-16): DigiClassroom offers every login path, not federation only.
+        // 2026-08-16): Study Buddy offers every login path, not federation only.
         // This is contained -- databaseHooks.user.create forces new accounts to
         // 'student' (no self-assigned role) and requireEmailVerification below
         // blocks sign-in until the address is confirmed. The super-admin trigger
@@ -171,7 +171,7 @@ export const auth = betterAuth({
             const resetUrl = `${APP_URL.replace(/\/$/, '')}/reset-password?token=${token}`;
             await sendEmail({
                 to: user.email,
-                subject: 'Reset your DigiClassroom Pro password',
+                subject: 'Reset your Study Buddy password',
                 html: emailLayout({
                     heading: 'Reset your password',
                     body: 'We received a request to reset your password. Click below to choose a new one. This link expires shortly.',
@@ -186,10 +186,10 @@ export const auth = betterAuth({
         sendVerificationEmail: async ({ user, url }) => {
             await sendEmail({
                 to: user.email,
-                subject: 'Verify your DigiClassroom Pro email',
+                subject: 'Verify your Study Buddy email',
                 html: emailLayout({
                     heading: 'Verify your email',
-                    body: 'Welcome to DigiClassroom Pro! Confirm your email address to activate your account.',
+                    body: 'Welcome to Study Buddy! Confirm your email address to activate your account.',
                     ctaLabel: 'Verify Email',
                     ctaUrl: url,
                 }),
@@ -227,10 +227,10 @@ export const auth = betterAuth({
                 const acceptUrl = `${APP_URL}/accept-invitation/${data.invitation.id}`;
                 await sendEmail({
                     to: data.email,
-                    subject: `You're invited to join ${data.organization.name} on DigiClassroom Pro`,
+                    subject: `You're invited to join ${data.organization.name} on Study Buddy`,
                     html: emailLayout({
                         heading: `Join ${data.organization.name}`,
-                        body: `${data.inviter.user.email} invited you to join <strong>${data.organization.name}</strong> as <strong>${data.role}</strong> on DigiClassroom Pro.`,
+                        body: `${data.inviter.user.email} invited you to join <strong>${data.organization.name}</strong> as <strong>${data.role}</strong> on Study Buddy.`,
                         ctaLabel: 'Accept Invitation',
                         ctaUrl: acceptUrl,
                     }),
@@ -251,9 +251,9 @@ export const auth = betterAuth({
                 // The raw token is intentionally NOT logged (security).
                 await sendEmail({
                     to: email,
-                    subject: 'Your DigiClassroom Pro sign-in link',
+                    subject: 'Your Study Buddy sign-in link',
                     html: emailLayout({
-                        heading: 'Sign in to DigiClassroom Pro',
+                        heading: 'Sign in to Study Buddy',
                         body: "Click below to sign in. This link is single-use and expires shortly. If you didn't request it, ignore this email.",
                         ctaLabel: 'Sign In',
                         ctaUrl: url,

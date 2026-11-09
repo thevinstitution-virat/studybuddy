@@ -35,7 +35,7 @@ export function Navbar({ className = '' }: NavbarProps) {
                 <GraduationCap className="h-6 w-6 text-white" />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-orange-500 to-blue-500 bg-clip-text text-transparent">
-                DigiClassroom
+                Study Buddy
               </span>
             </Link>
           </div>

@@ -1,5 +1,5 @@
 /**
- * Query Type Detector for DigiClassroom Pro
+ * Query Type Detector for Study Buddy
  * Intelligently detects visualization type from user queries
  * Supports statistical charts, diagrams, and educational visualizations
  */

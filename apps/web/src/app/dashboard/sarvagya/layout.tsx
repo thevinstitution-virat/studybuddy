@@ -6,7 +6,7 @@ import DashboardLayout from '@/components/layout/DashboardLayout'
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "Sarvagya AI | DigiClassroom Pro"
+    title: "Sarvagya AI | Study Buddy"
 }
 
 export default function SarvagyaLayout({

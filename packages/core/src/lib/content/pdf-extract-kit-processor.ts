@@ -1,5 +1,5 @@
 /**
- * Doc Extract Engine Processor for DigiClassroom
+ * Doc Extract Engine Processor for Study Buddy
  * Node.js integration layer for doc-extract-engine Python service
  */
 

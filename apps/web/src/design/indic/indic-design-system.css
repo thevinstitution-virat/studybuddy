@@ -415,7 +415,7 @@ h3[data-heading='label'] {
 /* ----- Indic Sidebar Theme (Light — Educational) -----
    Accent-driven (--accent-primary/--accent-strong), not the raw saffron
    pigment — so the active-item highlight matches each app's own accent
-   (kumkum on Vidyaverse, turmeric on DigiClassroom) instead of always
+   (kumkum on Vidyaverse, turmeric on Study Buddy) instead of always
    rendering saffron. On PDLMS --accent-primary *is* saffron, so this is a
    no-op there. */
 .sidebar-indic {

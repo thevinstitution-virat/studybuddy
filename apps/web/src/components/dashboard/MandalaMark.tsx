@@ -1,5 +1,5 @@
 /**
- * MandalaMark — the Digi Classroom wordmark disc: a radial-gradient sphere with
+ * MandalaMark — the Study Buddy wordmark disc: a radial-gradient sphere with
  * eight slowly-rotating petals, exactly as authored in the redesign mocks. The
  * petal ring carries `spinCls` so motion can be disabled (reduced-motion is also
  * enforced globally by the scoped stylesheet's @media rule).

@@ -40,6 +40,6 @@ export const openrouter = new OpenAI({
     apiKey: (usingOpenRouter ? openrouterKey : openaiKey) || '',
     defaultHeaders: {
         "HTTP-Referer": process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
-        "X-Title": "DigiClassroom Pro",
+        "X-Title": "Study Buddy",
     }
 });

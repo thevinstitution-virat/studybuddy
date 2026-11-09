@@ -201,7 +201,7 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
                 className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-orange-500 to-blue-600 text-white rounded-2xl shadow-lg">
                 <Sparkles className="h-8 w-8" />
               </motion.div>
-              <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-blue-600">Welcome to Digi Classroom!</h3>
+              <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-blue-600">Welcome to Study Buddy!</h3>
               <p className="text-muted-foreground mt-2 text-lg">Let&apos;s start by getting to know you.</p>
             </div>
             <div className="space-y-5 max-w-sm mx-auto">
@@ -275,7 +275,7 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
                 <div className={cn('flex h-10 w-10 items-center justify-center rounded-xl', formData.institutionId === null ? 'bg-gradient-to-br from-orange-500 to-red-500 text-white' : 'bg-muted text-muted-foreground')}><User className="h-5 w-5" /></div>
                 <div className="flex-1">
                   <p className="font-semibold text-foreground">Independent learner</p>
-                  <p className="text-sm text-muted-foreground">Use Digi Classroom directly (B2C). You can join an institution later.</p>
+                  <p className="text-sm text-muted-foreground">Use Study Buddy directly (B2C). You can join an institution later.</p>
                 </div>
                 {formData.institutionId === null && <CheckCircle2 className="h-5 w-5 text-orange-500 fill-orange-500/20" />}
               </div>

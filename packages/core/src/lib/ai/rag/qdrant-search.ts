@@ -1,5 +1,5 @@
 ﻿/**
- * Qdrant Vector Database Integration for DigiClassroom
+ * Qdrant Vector Database Integration for Study Buddy
  * Advanced RAG search with hybrid capabilities and educational optimizations
  */
 

@@ -30,22 +30,22 @@ export const EnhancedLandingPage: React.FC = () => {
 
   const faqCategories = {
     students: [
-      { question: "How does Digi Classroom's AI tutoring system help me learn better?", answer: "Our advanced agentic RAG system combines multiple AI models with curriculum-specific content retrieval. It understands your learning style, adapts to your pace, and provides personalized explanations using Bloom's taxonomy classification for optimal comprehension." },
+      { question: "How does Study Buddy's AI tutoring system help me learn better?", answer: "Our advanced agentic RAG system combines multiple AI models with curriculum-specific content retrieval. It understands your learning style, adapts to your pace, and provides personalized explanations using Bloom's taxonomy classification for optimal comprehension." },
       { question: "What makes the e-Learning Practest assessment engine special?", answer: "Our Practest engine uses Computer Adaptive Testing (CAT) algorithms with T5/BART models for intelligent question generation. It maintains a comprehensive question bank with hierarchical topic organization and provides real-time performance analytics." },
-      { question: "Can I track my learning progress and performance?", answer: "Yes! Digi Classroom provides comprehensive progress tracking with visual dashboards, performance analytics, learning streaks, XP points, and detailed insights into your strengths and areas for improvement." },
+      { question: "Can I track my learning progress and performance?", answer: "Yes! Study Buddy provides comprehensive progress tracking with visual dashboards, performance analytics, learning streaks, XP points, and detailed insights into your strengths and areas for improvement." },
       { question: "Is the content aligned with my school curriculum?", answer: "Absolutely! All content is meticulously aligned with the latest CBSE curriculum for classes 9-12. Our database-driven approach ensures comprehensive coverage with metadata tagging for precise curriculum alignment across all subjects." },
       { question: "Can I access the platform offline?", answer: "Yes! Download lessons, practice materials, and assessments for offline access. Our OfflineOrbit feature ensures uninterrupted learning even without internet connectivity." }
     ],
     teachers: [
-      { question: "How can I manage my classroom and students on Digi Classroom?", answer: "Our comprehensive teacher dashboard allows you to create and manage classes, assign homework, track student progress, generate detailed reports, and customize learning paths for individual students or groups." },
+      { question: "How can I manage my classroom and students on Study Buddy?", answer: "Our comprehensive teacher dashboard allows you to create and manage classes, assign homework, track student progress, generate detailed reports, and customize learning paths for individual students or groups." },
       { question: "What analytics and insights are available for educators?", answer: "Access detailed analytics including student performance metrics, engagement levels, learning patterns, assessment results, and curriculum coverage reports. All data is presented in easy-to-understand visualizations." },
       { question: "Can I create custom content and assessments?", answer: "Yes! Teachers can create custom lessons, quizzes, and assignments using our intuitive content creation tools. You can also modify existing content to match your teaching style and curriculum requirements." },
-      { question: "How does the platform support different teaching methodologies?", answer: "Digi Classroom supports various teaching approaches including flipped classroom, blended learning, project-based learning, and traditional instruction methods with flexible content delivery options." },
+      { question: "How does the platform support different teaching methodologies?", answer: "Study Buddy supports various teaching approaches including flipped classroom, blended learning, project-based learning, and traditional instruction methods with flexible content delivery options." },
       { question: "Is there professional development support for teachers?", answer: "We provide comprehensive training resources, webinars, documentation, and dedicated support to help teachers maximize the platform's potential and integrate it effectively into their teaching practice." }
     ],
     parents: [
       { question: "How can I monitor my child's learning progress and performance?", answer: "Parents get access to detailed progress reports, learning analytics, time spent studying, achievement badges, and performance trends. You can set up notifications for important milestones and achievements." },
-      { question: "Is the platform safe and secure for my child?", answer: "Absolutely! Digi Classroom implements robust security measures including data encryption, privacy protection, content filtering, and compliance with educational data protection regulations to ensure a safe learning environment." },
+      { question: "Is the platform safe and secure for my child?", answer: "Absolutely! Study Buddy implements robust security measures including data encryption, privacy protection, content filtering, and compliance with educational data protection regulations to ensure a safe learning environment." },
       { question: "Can I set study schedules and screen time limits?", answer: "Yes! Parents can set daily study goals, screen time limits, break reminders, and create structured learning schedules. The platform includes parental controls to manage access and usage patterns." },
       { question: "How do I communicate with my child's teachers through the platform?", answer: "The platform includes secure messaging features, parent-teacher conference scheduling, progress sharing, and collaborative tools to maintain regular communication with educators about your child's learning journey." },
       { question: "What support is available if my child needs help?", answer: "We provide 24/7 technical support, AI-powered tutoring assistance, access to human tutors for complex queries, and comprehensive help resources to ensure your child gets the support they need." }
@@ -136,7 +136,7 @@ export const EnhancedLandingPage: React.FC = () => {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6">
-            <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">Digi Classroom</span>
+            <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">Study Buddy</span>
             <br />
             <span className="text-4xl md:text-5xl">Next-Gen Learning Platform</span>
           </h1>
@@ -409,7 +409,7 @@ export const EnhancedLandingPage: React.FC = () => {
               Student <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">Success Stories</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Hear from students who transformed their learning journey with Digi Classroom
+              Hear from students who transformed their learning journey with Study Buddy
             </p>
           </div>
 
@@ -463,7 +463,7 @@ export const EnhancedLandingPage: React.FC = () => {
               Frequently Asked <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">Questions</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Get answers to common questions about Digi Classroom
+              Get answers to common questions about Study Buddy
             </p>
           </div>
 
@@ -515,7 +515,7 @@ export const EnhancedLandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Stay Updated with Digi Classroom
+              Stay Updated with Study Buddy
             </h2>
             <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
               Get the latest updates on new features, educational insights, and learning tips delivered to your inbox
@@ -554,7 +554,7 @@ export const EnhancedLandingPage: React.FC = () => {
                 <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-blue-600 rounded-lg flex items-center justify-center mr-3">
                   <GraduationCap className="h-6 w-6 text-white" />
                 </div>
-                <span className="text-2xl font-bold">Digi Classroom</span>
+                <span className="text-2xl font-bold">Study Buddy</span>
               </div>
               <p className="text-muted-foreground/60 mb-6 max-w-md">
                 Revolutionizing education with AI-powered learning experiences. Join thousands of students and educators in transforming the future of learning.
@@ -604,7 +604,7 @@ export const EnhancedLandingPage: React.FC = () => {
           <div className="border-t border-gray-800 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-muted-foreground mb-4 md:mb-0">
-                © 2024 Digi Classroom. All rights reserved.
+                © 2024 Study Buddy. All rights reserved.
               </p>
               <div className="flex space-x-6">
                 <a href="#" className="text-muted-foreground hover:text-white transition-colors duration-300">Privacy Policy</a>
