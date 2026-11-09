@@ -39,7 +39,7 @@ export default function DashboardPlaceholder({
         <div style={{ position: 'relative' }}>
           <span
             className="plinth"
-            style={{ width: 64, height: 64, margin: '0 auto 20px', background: 'linear-gradient(135deg,var(--kumkum),var(--saffron))' }}
+            style={{ width: 64, height: 64, margin: '0 auto 20px', background: 'var(--bb-grad-primary)' }}
           >
             {Icon ? <Icon className="h-8 w-8" /> : <span style={{ fontSize: 24 }}>📋</span>}
           </span>

@@ -40,7 +40,7 @@ const GC = 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))'
 const GT = 'linear-gradient(135deg,var(--teal-light),var(--peacock-teal))'
 const GV = 'linear-gradient(135deg,var(--lotus-deep),var(--lotus-pink))'
 const GW = 'linear-gradient(135deg,var(--turmeric),var(--gold))'
-const GP = 'linear-gradient(135deg,var(--kumkum),var(--saffron))'
+const GP = 'var(--bb-grad-primary)'
 
 export default function PractestPage() {
   const { user, isLoaded } = useBetterAuthUser()
@@ -219,9 +219,9 @@ export default function PractestPage() {
 
         {/* Error */}
         {state.error && (
-          <div className="card" style={{ padding: 16, borderColor: 'rgb(192 57 43 / 0.3)' }}>
+          <div className="card" style={{ padding: 16, borderColor: 'rgb(229 40 58 / 0.3)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: 'linear-gradient(135deg,var(--kumkum),var(--lotus-deep))' }}>
+              <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: 'linear-gradient(135deg,#FF5468,#E5283A 55%,#B0182A)' }}>
                 <AlertTriangle className="h-5 w-5" />
               </span>
               <span style={{ color: 'var(--ink)', fontWeight: 600 }}>{state.error}</span>
@@ -391,7 +391,7 @@ function TestHistoryView({ onBackToGenerator }: { onBackToGenerator: () => void 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {history.map((session, index) => {
             const pct = Math.round(session.percentage)
-            const badgeBg = pct >= 80 ? GT : pct >= 60 ? 'linear-gradient(135deg,var(--saffron),var(--turmeric))' : 'linear-gradient(135deg,var(--kumkum),var(--lotus-deep))'
+            const badgeBg = pct >= 80 ? GT : pct >= 60 ? 'linear-gradient(135deg,var(--saffron),var(--turmeric))' : 'linear-gradient(135deg,#FF5468,#E5283A 55%,#B0182A)'
             return (
               <div key={session.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', padding: 15, borderRadius: 13, background: 'var(--panel-2)', border: '1px solid var(--line-soft)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 13 }}>

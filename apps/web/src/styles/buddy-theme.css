@@ -1,0 +1,370 @@
+/* ============================================================
+   STUDY BUDDY — navy + blaze theme (Buddy design system, shared with Book Buddy).
+
+   Loaded LAST in app/layout.tsx. It does three things, all at the token layer so
+   no component has to change to be re-skinned:
+     1. Brings in the Buddy palette (--bb-*), semantic colours, radii, motion, and
+        the shadcn HSL bridge (generated from Book Buddy's styles/bb-tokens.css + v3).
+     2. Re-points the vendored Indic pigments (--saffron, --gold, --indigo-* …) and
+        the per-app accent layer at navy / cobalt / blaze. Names are kept because
+        the landing, dashboard and student sheets and ~14 components consume them.
+     3. Re-declares the surface tokens of the scoped sheets (.dcl / .dcd / .dcs).
+
+   Rule of the system: blaze means action, cobalt means AI, navy holds the stage.
+   Regenerate: node gen-buddy-theme.js (session scratchpad) — or edit by hand now.
+   ============================================================ */
+
+/* Book Buddy design tokens — single source of truth (from the design handoff).
+   Light is default. Dark applies under [data-theme="dark"] on <html>; the `.dark`
+   class is set alongside it by next-themes so Tailwind `dark:` variants and the
+   older shadcn components keep working.
+   Fonts are loaded by next/font in app/layout.tsx, which sets --font-bricolage,
+   --font-familjen and --font-newsreader on <html>. */
+
+:root {
+  /* core palette */
+  --bb-ink: #0A0F24; --bb-navy-2: #0F1F5C; --bb-cobalt: #1E3A8A; --bb-cobalt-light: #3B5BDB; --bb-periwinkle: #5B7CFF;
+  --bb-blaze: #FF4D00; --bb-blaze-light: #FF8A3D; --bb-blaze-dark: #D93A00; --bb-amber: #FFB547; --bb-cream: #FFE3A3; --bb-cloud: #F2F4F8;
+  --bb-ink-2: #121A33; --bb-cloud-rgb: 242 244 248; --bb-blaze-rgb: 255 77 0;
+  /* artwork-only stops (3D hero, covers, player) */
+  --bb-cobalt-mid: #2B4FD0; --bb-cobalt-glow: #4C6FFF; --bb-blaze-soft: #FF9A55; --bb-blaze-deep: #C23400; --bb-peach: #FFB37A; --bb-peach-light: #FFC58A; --bb-paper-line: #DCE1EA;
+  /* semantic (light) */
+  --bb-bg: #F2F4F8; --bb-surface: #FFFFFF; --bb-surface-2: #E6EAF1; --bb-border: #DCE1EA;
+  --bb-text: #0A0F24; --bb-text-muted: #4A5470; --bb-text-faint: #5F6B8C;
+  --bb-accent: #FF4D00; --bb-accent-soft: #FFE7DC; --bb-accent-ink: #B83300;
+  --bb-info: #3B5BDB; --bb-info-soft: #DCE8FF; --bb-info-ink: #1E3A8A;
+  --bb-success: #12B85A; --bb-success-soft: #DDF8E6; --bb-success-ink: #0B7A3B;
+  --bb-warning: #F5B800; --bb-warning-soft: #FFF4C2; --bb-warning-ink: #7A5A00;
+  --bb-danger: #E5283A; --bb-danger-soft: #FFE1E4; --bb-danger-ink: #B0182A;
+  --bb-highlight: #FFE3A3;
+  --bb-hover: #FAFBFD;
+  --bb-on-accent: #FFFFFF;
+  /* gradients (glossy) */
+  --bb-grad-primary: linear-gradient(180deg, #FF8A3D 0%, #FF4D00 55%, #D93A00 100%);
+  --bb-grad-navy: linear-gradient(160deg, #1E3A8A 0%, #0F1F5C 45%, #0A0F24 100%);
+  --bb-grad-progress: linear-gradient(90deg, #FF8A3D, #FF4D00);
+  --bb-grad-waveform-played: linear-gradient(180deg, #FFC58A, #FF5A0F);
+  --bb-varta-orb: radial-gradient(circle at 32% 28%, #FFFFFF 0%, #C9D4FF 16%, #5B7CFF 45%, #1E3A8A 75%);
+  /* subject covers */
+  --bb-cover-physics: linear-gradient(150deg, #7D97FF 0%, #3B5BDB 55%, #1E3A8A 100%);
+  --bb-cover-science: linear-gradient(150deg, #FFB37A 0%, #FF4D00 48%, #9A2600 100%);
+  --bb-cover-english: linear-gradient(150deg, #FFE04A 0%, #FF9A1F 55%, #FF4D2E 100%);
+  --bb-cover-history: linear-gradient(150deg, #FF9A55 0%, #E5283A 60%, #8A0F2A 100%);
+  --bb-cover-hindi: linear-gradient(150deg, #2A3556 0%, #121A33 60%, #0A0F24 100%);
+  /* shadows */
+  --bb-shadow-e0: 0 1px 0 var(--bb-border);
+  --bb-shadow-e1: 0 1px 0 var(--bb-border), 0 18px 40px -26px rgba(6, 10, 30, .5);
+  --bb-shadow-e2: 0 40px 60px -30px rgba(6, 10, 30, .55);
+  --bb-shadow-gloss: inset 0 1px 0 rgba(255, 255, 255, .6), inset 0 -2px 0 rgba(120, 30, 0, .25), 0 10px 24px -8px rgba(255, 77, 0, .6);
+  --bb-shadow-navy: inset 0 1px 0 rgba(255, 255, 255, .2);
+  --bb-focus-ring: 0 0 0 4px rgba(255, 77, 0, .15);
+  /* glass (player, dark overlays) */
+  --bb-glass-bg: rgba(255, 255, 255, .08); --bb-glass-border: rgba(255, 255, 255, .14); --bb-glass-blur: blur(14px);
+  /* radius */
+  --bb-r-xs: 6px; --bb-r-sm: 10px; --bb-r-md: 14px; --bb-r-lg: 22px; --bb-r-xl: 28px; --bb-r-full: 999px;
+  /* spacing (4pt) */
+  --bb-s-1: 4px; --bb-s-2: 8px; --bb-s-3: 12px; --bb-s-4: 16px; --bb-s-6: 24px; --bb-s-8: 32px; --bb-s-12: 48px; --bb-s-16: 64px;
+  /* type */
+  --bb-font-display: var(--font-bricolage), 'Bricolage Grotesque', system-ui, sans-serif;
+  --bb-font-ui: var(--font-familjen), 'Familjen Grotesk', system-ui, sans-serif;
+  --bb-font-reading: var(--font-newsreader), 'Newsreader', Georgia, serif;
+  /* legacy aliases so un-migrated code (Indic/VG sheets, inline styles) follows the new faces */
+  --font-display: var(--bb-font-display);
+  --font-body: var(--bb-font-ui);
+  --font-vg-primary: var(--bb-font-ui);
+  --font-vg-cultural: var(--bb-font-display);
+  /* motion */
+  --bb-dur-micro: 120ms; --bb-dur-ui: 240ms; --bb-ease: cubic-bezier(.2, .8, .2, 1);
+  /* safe-area insets (PWA / notched phones) */
+  --bb-safe-top: env(safe-area-inset-top, 0px); --bb-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --bb-safe-left: env(safe-area-inset-left, 0px); --bb-safe-right: env(safe-area-inset-right, 0px);
+
+  /* ---- shadcn/ui bridge: HSL triplets derived from the tokens above, so every
+     existing `bg-background`, `text-muted-foreground`, `border-border`… utility
+     re-themes without touching component code. ---- */
+  --background: 220 30% 96%;
+  --foreground: 228 57% 9%;
+  --card: 0 0% 100%;
+  --card-foreground: 228 57% 9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 228 57% 9%;
+  --primary: 18 100% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 218 28% 92%;
+  --secondary-foreground: 228 57% 9%;
+  --muted: 218 28% 92%;
+  --muted-foreground: 224 20% 36%;
+  --accent: 19 100% 93%;
+  --accent-foreground: 17 100% 36%;
+  --destructive: 354 78% 53%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 219 25% 89%;
+  --input: 219 25% 89%;
+  --ring: 18 100% 50%;
+  --radius: 14px;
+  /* charts: navy/cobalt series, orange is the highlight series. No rainbow. */
+  /* series: cobalt 600, cobalt 300, navy 700; chart-4 is blaze, reserved for the highlighted series */
+  --chart-1: 228 69% 55%;
+  --chart-2: 228 100% 79%;
+  --chart-3: 224 51% 24%;
+  --chart-4: 18 100% 50%;
+  --chart-5: 223 23% 64%;
+  --sidebar-background: 0 0% 100%;
+  --sidebar-foreground: 228 57% 9%;
+  --sidebar-primary: 18 100% 50%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 218 28% 92%;
+  --sidebar-accent-foreground: 228 57% 9%;
+  --sidebar-border: 219 25% 89%;
+  --sidebar-ring: 18 100% 50%;
+}
+
+[data-theme="dark"],
+.dark {
+  color-scheme: dark;
+  --bb-bg: #0A0F24; --bb-surface: #121A33; --bb-surface-2: #18213C; --bb-border: #2A3556;
+  --bb-text: #F2F4F8; --bb-text-muted: #A9B4D0; --bb-text-faint: #8E9AB8;
+  --bb-accent: #FF5A0F; --bb-accent-soft: #3A1A0C; --bb-accent-ink: #FF8A3D;
+  --bb-info: #7D97FF; --bb-info-soft: #16224A; --bb-info-ink: #A9BCFF;
+  --bb-success: #3DDC84; --bb-success-soft: #0F2E1F; --bb-success-ink: #3DDC84;
+  --bb-warning: #FFD23F; --bb-warning-soft: #33290A; --bb-warning-ink: #FFD23F;
+  --bb-danger: #FF5468; --bb-danger-soft: #3A1520; --bb-danger-ink: #FF8A98;
+  --bb-highlight: rgba(255, 181, 71, .32);
+  --bb-hover: #151E3A;
+  --bb-shadow-e1: 0 1px 0 var(--bb-border), 0 18px 40px -26px rgba(0, 0, 0, .7);
+
+  --background: 228 57% 9%;
+  --foreground: 220 30% 96%;
+  --card: 225 48% 14%;
+  --card-foreground: 220 30% 96%;
+  --popover: 225 48% 14%;
+  --popover-foreground: 220 30% 96%;
+  --primary: 19 100% 53%;
+  --secondary: 225 43% 16%;
+  --secondary-foreground: 220 30% 96%;
+  --muted: 225 43% 16%;
+  --muted-foreground: 223 29% 74%;
+  --accent: 18 66% 14%;
+  --accent-foreground: 24 100% 62%;
+  --destructive: 353 100% 66%;
+  --border: 225 34% 25%;
+  --input: 225 34% 25%;
+  --ring: 19 100% 53%;
+  --chart-1: 228 100% 75%;
+  --chart-2: 228 69% 55%;
+  --chart-3: 223 29% 74%;
+  --chart-4: 19 100% 53%;
+  --chart-5: 223 23% 64%;
+  --sidebar-background: 225 48% 14%;
+  --sidebar-foreground: 220 30% 96%;
+  --sidebar-primary: 19 100% 53%;
+  --sidebar-accent: 225 43% 16%;
+  --sidebar-accent-foreground: 220 30% 96%;
+  --sidebar-border: 225 34% 25%;
+  --sidebar-ring: 19 100% 53%;
+}
+
+/* Book Buddy tokens v3 — ADDITIVE patch for styles/bb-tokens.css.
+   Your existing file already holds the palette, semantic colours, radii, fonts and motion.
+   Append this block after it. Nothing here renames an existing token. */
+:root{
+  /* new gradients */
+  --bb-grad-cobalt: linear-gradient(180deg,#7D97FF 0%,#3B5BDB 55%,#1E3A8A 100%);
+  --bb-grad-stage: linear-gradient(150deg,#16224A 0%,#0A0F24 70%);
+  --bb-grad-ai-card: linear-gradient(160deg,#4C6FFF 0%,#3B5BDB 45%,#1E3A8A 100%);
+  --bb-grad-ring: linear-gradient(160deg,#FF8A3D,#FF4D00 50%,#3B5BDB);           /* avatar ring */
+  --bb-glow-stage: radial-gradient(circle,rgba(255,77,0,.32),rgba(59,91,219,.24) 45%,transparent 70%);
+  --bb-sheen: linear-gradient(180deg,rgba(255,255,255,.14),transparent 45%);      /* top sheen on AI/featured cards */
+  /* new shadows */
+  --bb-shadow-card-hover: 0 1px 0 var(--bb-border), 0 30px 50px -26px rgba(6,10,30,.5);
+  --bb-shadow-glow-blaze: inset 0 1px 0 rgba(255,255,255,.55), inset 0 -2px 0 rgba(120,30,0,.25), 0 12px 24px -10px rgba(255,77,0,.8);
+  --bb-shadow-glow-cobalt: inset 0 1px 0 rgba(255,255,255,.45), 0 12px 22px -8px rgba(59,91,219,.85);
+  --bb-shadow-stage: inset 0 1px 0 rgba(255,255,255,.1), 0 30px 60px -30px rgba(10,15,36,.8);
+  --bb-shadow-navy: inset 0 1px 0 rgba(255,255,255,.2), 0 10px 22px -12px rgba(10,15,36,.7); /* was inset only */
+  /* glass for app chrome (sidebar, header, tab bar) */
+  --bb-glass-surface: rgba(255,255,255,.72);
+  --bb-glass-filter: blur(22px) saturate(1.5);
+  --bb-glass-dark: rgba(10,15,36,.86);   /* mini player, toasts */
+  /* radius */
+  --bb-r-tile: 16px; --bb-r-card: 26px;
+  /* motion */
+  --bb-dur-enter: 800ms; --bb-stagger: 60ms; --bb-spring: cubic-bezier(.3,1.5,.5,1);
+  /* icon accents read by <Icon> */
+  --ic-accent: #FF4D00; --ic-accent-b: #3B5BDB;
+  /* overlay */
+  --bb-scrim: rgba(10,15,36,.45);
+}
+[data-theme="dark"], .dark{
+  --bb-shadow-card-hover: 0 1px 0 var(--bb-border), 0 30px 50px -24px rgba(0,0,0,.9);
+  --bb-glass-surface: rgba(18,26,51,.72);
+  --ic-accent: #FF6A26; --ic-accent-b: #7D97FF;
+  --bb-scrim: rgba(3,5,14,.6);
+}
+
+/* ── 2. Indic pigments + accent layer -> navy / cobalt / blaze ───────────── */
+:root {
+  --saffron: #D93A00;
+  --saffron-rgb: 217 58 0;
+  --saffron-hsl: 16 100% 42.5%;
+  --deep-saffron: #FF8A3D;
+  --deep-saffron-rgb: 255 138 61;
+  --deep-saffron-hsl: 23.8 100% 62%;
+  --turmeric: #FF4D00;
+  --turmeric-rgb: 255 77 0;
+  --turmeric-hsl: 18.1 100% 50%;
+  --kumkum: #E5283A;
+  --kumkum-rgb: 229 40 58;
+  --kumkum-hsl: 354.3 78.4% 52.7%;
+  --gold: #FF8A3D;
+  --gold-rgb: 255 138 61;
+  --gold-hsl: 23.8 100% 62%;
+  --temple-stone: #B83300;
+  --temple-stone-rgb: 184 51 0;
+  --temple-stone-hsl: 16.6 100% 36.1%;
+  --peacock-teal: #3B5BDB;
+  --peacock-teal-rgb: 59 91 219;
+  --peacock-teal-hsl: 228 69% 54.5%;
+  --teal-light: #5B7CFF;
+  --teal-light-rgb: 91 124 255;
+  --teal-light-hsl: 227.9 100% 67.8%;
+  --indigo-deep: #0F1F5C;
+  --indigo-deep-rgb: 15 31 92;
+  --indigo-deep-hsl: 227.5 72% 21%;
+  --indigo-ink: #1E3A8A;
+  --indigo-ink-rgb: 30 58 138;
+  --indigo-ink-hsl: 224.4 64.3% 32.9%;
+  --lotus-pink: #3B5BDB;
+  --lotus-pink-rgb: 59 91 219;
+  --lotus-pink-hsl: 228 69% 54.5%;
+  --lotus-deep: #1E3A8A;
+  --lotus-deep-rgb: 30 58 138;
+  --lotus-deep-hsl: 224.4 64.3% 32.9%;
+  --night-ink: #0A0F24;
+  --night-ink-rgb: 10 15 36;
+  --night-ink-hsl: 228.5 56.5% 9%;
+  --navy-deep: #0F1F5C;
+  --navy-deep-rgb: 15 31 92;
+  --navy-deep-hsl: 227.5 72% 21%;
+  --slate-night: #121A33;
+  --slate-night-rgb: 18 26 51;
+  --slate-night-hsl: 225.5 47.8% 13.5%;
+  --slate-blue: #18213C;
+  --slate-blue-rgb: 24 33 60;
+  --slate-blue-hsl: 225 42.9% 16.5%;
+  --ocean-deep: #1E3A8A;
+  --ocean-deep-rgb: 30 58 138;
+  --ocean-deep-hsl: 224.4 64.3% 32.9%;
+  --ivory-cream: #F2F4F8;
+  --ivory-cream-rgb: 242 244 248;
+  --ivory-cream-hsl: 220 30% 96.1%;
+  --parchment: #FFFFFF;
+  --parchment-rgb: 255 255 255;
+  --parchment-hsl: 0 0% 100%;
+  --sand-light: #E6EAF1;
+  --sand-light-rgb: 230 234 241;
+  --sand-light-hsl: 218.2 28.2% 92.4%;
+  --clay-soft: #FF8A3D;
+  --clay-soft-rgb: 255 138 61;
+  --clay-soft-hsl: 23.8 100% 62%;
+  --clay-mid: #D93A00;
+  --clay-mid-rgb: 217 58 0;
+  --clay-mid-hsl: 16 100% 42.5%;
+  --bark: #4A5470;
+  --bark-rgb: 74 84 112;
+  --bark-hsl: 224.2 20.4% 36.5%;
+
+  --accent-primary: #FF4D00;
+  --accent-primary-rgb: 255 77 0;
+  --accent-primary-hsl: 18.1 100% 50%;
+  --accent-strong: #D93A00;
+  --accent-strong-rgb: 217 58 0;
+  --accent-strong-hsl: 16 100% 42.5%;
+  --accent-soft: #FFE7DC;
+  --accent-soft-rgb: 255 231 220;
+  --accent-soft-hsl: 18.9 100% 93.1%;
+  --accent-contrast: #B83300;
+  --accent-contrast-rgb: 184 51 0;
+  --accent-contrast-hsl: 16.6 100% 36.1%;
+  --accent-primary-dark: #FF6A26;
+  --accent-primary-dark-rgb: 255 106 38;
+  --accent-primary-dark-hsl: 18.8 100% 57.5%;
+
+  /* Typography: Bricolage (display) / Familjen (UI) / Newsreader (reading).
+     Devanagari falls through to Noto so Hindi copy keeps a real face. */
+  --bb-font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', 'Noto Sans Devanagari', system-ui, sans-serif;
+  --bb-font-ui: 'Familjen Grotesk Variable', 'Familjen Grotesk', 'Noto Sans Devanagari', system-ui, sans-serif;
+  --bb-font-reading: 'Newsreader Variable', 'Newsreader', 'Noto Sans Devanagari', Georgia, serif;
+  --font-display: var(--bb-font-display);
+  --font-body: var(--bb-font-ui);
+  --font-deva: var(--bb-font-display);
+  --font-vg-primary: var(--bb-font-ui);
+  --font-vg-cultural: var(--bb-font-display);
+}
+
+/* ── 3. Scoped sheets: surface tokens (light) ────────────────────────────── */
+.dcl, .dcd, .dcs {
+  --bg: #F2F4F8;
+  --bg-2: #E6EAF1;
+  --panel: #FFFFFF;
+  --panel-2: #EEF1F6;
+  --sidebar: #FFFFFF;
+  --ink: #0A0F24;
+  --muted: #4A5470;
+  --line: #DCE1EA;
+  --line-soft: #E6EAF1;
+  --accent-text: #B83300;
+  --chip-bg: #FFE7DC;
+  --nav-bg: rgb(255 255 255 / 0.82);
+  --track: #DCE1EA;
+  --field: #FFFFFF;
+  --card-shadow: 0 18px 40px -26px rgba(6, 10, 30, .5);
+  --shadow: 0 18px 40px -26px rgba(6, 10, 30, .5);
+  --shadow-sm: 0 8px 20px -14px rgba(6, 10, 30, .45);
+  --emerald: #12B85A;
+}
+.dcl { --radius: 22px; }
+.dcd, .dcs { --radius: 22px; }
+
+/* dark */
+.dark .dcl, .dark .dcd, .dark .dcs {
+  --bg: #0A0F24;
+  --bg-2: #0C1330;
+  --panel: #121A33;
+  --panel-2: #0E1530;
+  --sidebar: #0C1330;
+  --ink: #F2F4F8;
+  --muted: #A9B4D0;
+  --line: #2A3556;
+  --line-soft: #1A2340;
+  --accent-text: #FF8A3D;
+  --chip-bg: #3A1A0C;
+  --nav-bg: rgb(10 15 36 / 0.72);
+  --track: rgb(255 255 255 / 0.10);
+  --field: #0E1730;
+  --card-shadow: 0 22px 50px -26px rgba(0, 0, 0, .75);
+  --shadow: 0 22px 50px -26px rgba(0, 0, 0, .75);
+  --shadow-sm: 0 10px 26px -18px rgba(0, 0, 0, .75);
+  --emerald: #3DDC84;
+}
+
+/* Hairline scrollbars that were hard-coded to gold. */
+.dcd ::-webkit-scrollbar-thumb { background: rgb(95 107 140 / .4); }
+
+/* Headings: Bricolage, tight and heavy, per the system's type scale. */
+h1, h2, h3, .dcl .deva { font-family: var(--bb-font-display); letter-spacing: -0.02em; }
+.dcl h1, .dcl h2, .dcl h3, .dcd h1, .dcd h2, .dcd h3, .dcd h4 { font-family: var(--bb-font-display); }
+body { font-family: var(--bb-font-ui); }
+
+/* Primary action = blaze gloss (one per view); AI surfaces use cobalt. */
+.dcl .btn-primary, .dcd .btn-primary, .dcs .btn-primary {
+  background: var(--bb-grad-primary);
+  box-shadow: var(--bb-shadow-glow-blaze);
+}
+.dcl .btn-primary:hover, .dcd .btn-primary:hover, .dcs .btn-primary:hover:not(:disabled) {
+  box-shadow: var(--bb-shadow-glow-blaze), 0 18px 30px -12px rgba(255, 77, 0, .55);
+}
+.dcl .grad, .dcd .grad { background-image: linear-gradient(110deg, var(--bb-blaze-dark), var(--bb-blaze) 55%, var(--bb-blaze-light)); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

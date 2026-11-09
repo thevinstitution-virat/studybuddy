@@ -14,17 +14,17 @@
 .dcl {
   --radius: 20px;
   /* light theme (default) */
-  --bg: #FFFBF3;
-  --bg-2: #FFF4E6;
-  --panel: #FFFDF9;
-  --panel-2: #FFF6EA;
-  --ink: #241704;
-  --muted: #6E5D45;
-  --line: rgb(184 134 11 / 0.20);
-  --accent-text: #A06504;
-  --chip-bg: #FFF4DC;
+  --bg: #F2F4F8;
+  --bg-2: #E6EAF1;
+  --panel: #FFFFFF;
+  --panel-2: #EEF1F6;
+  --ink: #0A0F24;
+  --muted: #4A5470;
+  --line: rgb(95 107 140 / 0.20);
+  --accent-text: #B83300;
+  --chip-bg: #FFE7DC;
   --nav-bg: rgb(255 252 247 / 0.82);
-  --card-shadow: 0 24px 48px -30px rgba(120, 74, 10, .45);
+  --card-shadow: 0 24px 48px -30px rgba(6, 10, 30, .45);
 
   background: var(--bg);
   color: var(--ink);
@@ -33,15 +33,15 @@
 }
 
 .dark .dcl {
-  --bg: #0A0F1E;
-  --bg-2: #0C1224;
-  --panel: #121A31;
-  --panel-2: #0E1426;
-  --ink: #FFF8F0;
-  --muted: rgb(255 248 240 / 0.66);
-  --line: rgb(255 215 0 / 0.14);
+  --bg: #0A0F24;
+  --bg-2: #0C1330;
+  --panel: #121A33;
+  --panel-2: #0E1530;
+  --ink: #F2F4F8;
+  --muted: rgb(242 244 248 / 0.66);
+  --line: rgb(169 180 208 / 0.14);
   --accent-text: var(--accent-primary-dark);
-  --chip-bg: rgb(255 215 0 / 0.09);
+  --chip-bg: rgb(169 180 208 / 0.09);
   --nav-bg: rgb(10 15 30 / 0.72);
   --card-shadow: 0 24px 54px -28px rgba(0, 0, 0, .72);
 }
@@ -69,7 +69,7 @@
   border-radius: 16px;
   background: linear-gradient(135deg, var(--saffron), var(--turmeric));
   color: #fff;
-  box-shadow: 0 12px 26px -10px rgba(255, 107, 53, .65);
+  box-shadow: 0 12px 26px -10px rgba(255,77,0, .65);
 }
 
 .dcl .eyebrow {
@@ -91,7 +91,7 @@
 .dcl .card.lift:hover {
   transform: translateY(-8px);
   border-color: rgb(var(--accent-primary-rgb) / 0.45);
-  box-shadow: 0 34px 60px -30px rgba(120, 74, 10, .5);
+  box-shadow: 0 34px 60px -30px rgba(6, 10, 30, .5);
 }
 
 .dcl .btn {
@@ -103,12 +103,12 @@
   text-decoration: none;
 }
 .dcl .btn-primary {
-  background: linear-gradient(135deg, var(--kumkum), var(--saffron)); color: #fff;
-  box-shadow: 0 14px 30px -12px rgba(192, 57, 43, .6), inset 0 1px 0 rgba(255, 255, 255, .25);
+  background: var(--bb-grad-primary); color: #fff;
+  box-shadow: 0 14px 30px -12px rgba(255, 77, 0, .6), inset 0 1px 0 rgba(255, 255, 255, .25);
 }
 .dcl .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 20px 38px -12px rgba(192, 57, 43, .7), inset 0 1px 0 rgba(255, 255, 255, .3);
+  box-shadow: 0 20px 38px -12px rgba(255, 77, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .3);
   color: #fff;
 }
 .dcl .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }

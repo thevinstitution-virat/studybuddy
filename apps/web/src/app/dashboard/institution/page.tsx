@@ -12,7 +12,7 @@ import { AnalyticsDashboard } from '@/components/institution/AnalyticsDashboard'
 const GRADS = [
   'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))',
   'linear-gradient(135deg,var(--teal-light),var(--peacock-teal))',
-  'linear-gradient(135deg,var(--kumkum),var(--saffron))',
+  'var(--bb-grad-primary)',
   'linear-gradient(135deg,var(--turmeric),var(--gold))',
   'linear-gradient(135deg,var(--lotus-deep),var(--lotus-pink))',
 ]

@@ -291,7 +291,7 @@ export default function SarvagyaDashboard() {
                                         </div>
                                         <span className="text-sm font-medium text-muted-foreground">{stat.label}</span>
                                     </div>
-                                    <p className="text-3xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#F5A623] to-[#FFD700] bg-clip-text text-transparent">
+                                    <p className="text-3xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
                                         {stat.value}
                                     </p>
                                 </div>

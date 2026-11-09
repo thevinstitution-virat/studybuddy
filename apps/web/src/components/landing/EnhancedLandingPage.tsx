@@ -11,54 +11,34 @@ import {
   ChevronLeft, ChevronRight, HelpCircle, Send, Menu, Sun, Moon,
 } from 'lucide-react'
 import { LandingFooter } from '@/components/landing/LandingFooter'
+import MandalaMark from '@/components/dashboard/MandalaMark'
 
-/* ── Reusable inline SVG mandalas (ported from the mock) ─────────────────── */
+/* ── Brand mark + orbit artwork (Buddy design system) ─────────────────────── */
 
-function NavMandala({ id, spin }: { id: string; spin: string }) {
-  const petals = [0, 45, 90, 135, 180, 225, 270, 315]
-  return (
-    <svg viewBox="0 0 120 120" width={38} height={38} aria-hidden="true">
-      <defs>
-        <radialGradient id={id} cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="var(--gold)" />
-          <stop offset="70%" stopColor="var(--accent-primary)" />
-          <stop offset="100%" stopColor="var(--saffron)" />
-        </radialGradient>
-      </defs>
-      <circle cx="60" cy="60" r="58" fill={`url(#${id})`} />
-      <circle cx="60" cy="60" r="58" fill="none" stroke="var(--gold)" strokeOpacity="0.55" strokeWidth="1.5" />
-      <g className={spin} style={{ transformOrigin: 'center', transformBox: 'fill-box' }}>
-        {petals.map((r) => (
-          <ellipse key={r} cx="60" cy="26" rx="8" ry="20" fill="#fff" fillOpacity="0.34" transform={`rotate(${r} 60 60)`} />
-        ))}
-      </g>
-      <circle cx="60" cy="60" r="15" fill="#fff" fillOpacity="0.95" />
-      <circle cx="60" cy="60" r="6.5" fill="var(--saffron)" />
-    </svg>
-  )
+/** Nav logo: the Study Buddy mark (navy tile, open book, blaze spark). */
+function NavMandala({ id }: { id: string; spin: string }) {
+  void id
+  return <MandalaMark size={38} spinCls="" />
 }
 
+/** Hero backdrop: concentric orbit rings with a few nodes — blaze for action, cobalt for AI. */
 function HeroMandala({ spinA, spinB }: { spinA: string; spinB: string }) {
-  const outer = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330]
-  const inner = [0, 45, 90, 135, 180, 225, 270, 315]
+  const nodes = [[200, 18, 6], [382, 200, 5], [74, 329, 5], [330, 330, 4]]
   return (
-    <svg viewBox="0 0 400 400" width="100%" xmlns="http://www.w3.org/2000/svg">
-      <g className={spinA} style={{ transformOrigin: 'center', transformBox: 'fill-box' }}>
-        <circle cx="200" cy="200" r="182" fill="none" stroke="rgb(255 153 51 / 0.20)" strokeWidth="1" />
-        <circle cx="200" cy="200" r="162" fill="none" stroke="rgb(255 107 53 / 0.22)" strokeWidth="0.8" />
-        {outer.map((r) => (
-          <path key={r} d="M200,42 Q222,72 200,104 Q178,72 200,42Z" fill="rgb(255 107 53 / 0.18)" stroke="rgb(255 153 51 / 0.4)" strokeWidth="0.6" transform={`rotate(${r} 200 200)`} />
-        ))}
+    <svg viewBox="0 0 400 400" width="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g className={spinA} style={{ transformOrigin: "center", transformBox: "fill-box" }}>
+        <circle cx="200" cy="200" r="182" fill="none" stroke="rgb(59 91 219 / 0.22)" strokeWidth="1" />
+        <circle cx="200" cy="200" r="150" fill="none" stroke="rgb(255 77 0 / 0.20)" strokeWidth="1" strokeDasharray="3 8" />
+        {nodes.map(([x, y, r]) => (<circle key={x + "-" + y} cx={x} cy={y} r={r} fill="rgb(255 77 0 / 0.55)" />))}
       </g>
-      <g className={spinB} style={{ transformOrigin: 'center', transformBox: 'fill-box' }}>
-        <circle cx="200" cy="200" r="104" fill="none" stroke="rgb(0 106 110 / 0.3)" strokeWidth="1" />
-        {inner.map((r) => (
-          <path key={r} d="M200,108 Q216,134 200,158 Q184,134 200,108Z" fill="rgb(0 106 110 / 0.22)" stroke="rgb(0 106 110 / 0.5)" strokeWidth="0.7" transform={`rotate(${r} 200 200)`} />
-        ))}
+      <g className={spinB} style={{ transformOrigin: "center", transformBox: "fill-box" }}>
+        <circle cx="200" cy="200" r="112" fill="none" stroke="rgb(59 91 219 / 0.30)" strokeWidth="1" />
+        <circle cx="200" cy="200" r="78" fill="none" stroke="rgb(59 91 219 / 0.20)" strokeWidth="1" strokeDasharray="2 6" />
+        <circle cx="312" cy="200" r="5" fill="rgb(59 91 219 / 0.7)" />
+        <circle cx="122" cy="200" r="4" fill="rgb(59 91 219 / 0.5)" />
       </g>
-      <circle cx="200" cy="200" r="40" fill="rgb(255 215 0 / 0.08)" stroke="rgb(255 215 0 / 0.4)" strokeWidth="1" />
-      <circle cx="200" cy="200" r="20" fill="rgb(255 215 0 / 0.16)" stroke="rgb(255 153 51 / 0.6)" strokeWidth="1.2" />
-      <circle cx="200" cy="200" r="7" fill="rgb(255 215 0 / 0.7)" />
+      <circle cx="200" cy="200" r="38" fill="rgb(59 91 219 / 0.08)" stroke="rgb(59 91 219 / 0.4)" strokeWidth="1" />
+      <circle cx="200" cy="200" r="7" fill="rgb(255 77 0 / 0.7)" />
     </svg>
   )
 }
@@ -76,11 +56,11 @@ function ChakraWheel({ spin }: { spin: string }) {
   )
 }
 
-function RingMandala({ spin, stroke = '#FFD700' }: { spin: string; stroke?: string }) {
+function RingMandala({ spin, stroke = '#3B5BDB' }: { spin: string; stroke?: string }) {
   return (
     <svg viewBox="0 0 200 200" width="100%" className={spin} aria-hidden="true" style={{ transformOrigin: 'center', transformBox: 'fill-box' }}>
       <circle cx="100" cy="100" r="92" fill="none" stroke={stroke} strokeWidth="1" strokeDasharray="3 7" />
-      <circle cx="100" cy="100" r="66" fill="none" stroke="#FF9933" strokeWidth="1" />
+      <circle cx="100" cy="100" r="66" fill="none" stroke="#FF4D00" strokeWidth="1" />
       <circle cx="100" cy="100" r="40" fill="none" stroke={stroke} strokeWidth="1" strokeDasharray="2 5" />
       <circle cx="100" cy="100" r="14" fill={stroke} fillOpacity="0.4" />
     </svg>
@@ -253,8 +233,8 @@ export const EnhancedLandingPage: React.FC = () => {
         <main id="top">
           {/* ───────── HERO ───────── */}
           <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(56px,8vw,96px) 24px clamp(64px,9vw,110px)' }}>
-            <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'radial-gradient(58rem 42rem at 82% -6%,rgb(var(--accent-primary-rgb) / 0.16),transparent 60%),radial-gradient(52rem 44rem at 6% 8%,rgb(0 106 110 / 0.14),transparent 58%)' }} />
-            <div className="floaty" style={{ position: 'absolute', top: '8%', right: -60, width: 320, height: 320, borderRadius: '50%', background: 'radial-gradient(circle,rgba(255,107,53,.22),transparent 68%)', filter: 'blur(20px)', pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'radial-gradient(58rem 42rem at 82% -6%,rgb(var(--accent-primary-rgb) / 0.16),transparent 60%),radial-gradient(52rem 44rem at 6% 8%,rgb(59 91 219 / 0.14),transparent 58%)' }} />
+            <div className="floaty" style={{ position: 'absolute', top: '8%', right: -60, width: 320, height: 320, borderRadius: '50%', background: 'radial-gradient(circle,rgba(255,77,0,.22),transparent 68%)', filter: 'blur(20px)', pointerEvents: 'none' }} />
 
             <div className="breathe" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 'min(120vw,1100px)', opacity: 0.5, pointerEvents: 'none' }}>
               <HeroMandala spinA="spin-slow" spinB="spin-rev" />
@@ -285,40 +265,40 @@ export const EnhancedLandingPage: React.FC = () => {
             {/* product mockup */}
             <div style={{ position: 'relative', zIndex: 2, maxWidth: 820, margin: '52px auto 0' }}>
               <div style={{ position: 'absolute', inset: -16, borderRadius: 28, background: 'linear-gradient(135deg,var(--gold),var(--saffron),var(--lotus-pink))', filter: 'blur(34px)', opacity: 0.24 }} />
-              <div style={{ position: 'relative', borderRadius: 22, overflow: 'hidden', border: '1px solid rgb(255 215 0 / 0.3)', boxShadow: '0 40px 80px -34px rgba(0,0,0,.55)', background: '#FFFCF7' }}>
-                <div style={{ height: 40, display: 'flex', alignItems: 'center', gap: 8, padding: '0 16px', background: '#FFF8F0', borderBottom: '1px solid rgb(184 134 11 / 0.2)' }}>
-                  <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#C0392B', opacity: 0.75 }} />
-                  <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#F5A623' }} />
-                  <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#00897B' }} />
-                  <span style={{ marginLeft: 10, fontSize: 12, fontWeight: 700, color: '#5A4E3C' }}>Study Buddy · Class 9 Science</span>
+              <div style={{ position: 'relative', borderRadius: 22, overflow: 'hidden', border: '1px solid rgb(255 138 61 / 0.3)', boxShadow: '0 40px 80px -34px rgba(0,0,0,.55)', background: '#FFFFFF' }}>
+                <div style={{ height: 40, display: 'flex', alignItems: 'center', gap: 8, padding: '0 16px', background: '#F2F4F8', borderBottom: '1px solid rgb(95 107 140 / 0.2)' }}>
+                  <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#E5283A', opacity: 0.75 }} />
+                  <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#FF4D00' }} />
+                  <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#3B5BDB' }} />
+                  <span style={{ marginLeft: 10, fontSize: 12, fontWeight: 700, color: '#4A5470' }}>Study Buddy · Class 9 Science</span>
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr' }}>
-                  <div style={{ padding: 20, borderRight: '1px solid rgb(184 134 11 / 0.16)', textAlign: 'left' }}>
+                  <div style={{ padding: 20, borderRight: '1px solid rgb(95 107 140 / 0.16)', textAlign: 'left' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                       <span className="plinth" style={{ width: 30, height: 30, borderRadius: 9 }}><Bot size={17} /></span>
-                      <span style={{ fontSize: 14, fontWeight: 800, color: '#0A0F1E' }}>Digi Tutor</span>
-                      <span style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, fontWeight: 700, color: '#00897B' }}><BadgeCheck size={14} /> grounded in NCERT</span>
+                      <span style={{ fontSize: 14, fontWeight: 800, color: '#0A0F24' }}>Buddy Tutor</span>
+                      <span style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, fontWeight: 700, color: '#3B5BDB' }}><BadgeCheck size={14} /> grounded in NCERT</span>
                     </div>
-                    <div style={{ marginLeft: 'auto', width: 'fit-content', maxWidth: '86%', fontSize: 13, padding: '10px 13px', borderRadius: '16px 16px 4px 16px', background: '#006A6E', color: '#fff' }}>Explain photosynthesis simply 🌱</div>
-                    <div style={{ marginTop: 10, maxWidth: '94%', fontSize: 13, padding: '11px 13px', borderRadius: '16px 16px 16px 4px', background: '#FFF8F0', border: '1px solid rgb(184 134 11 / 0.22)', color: '#0A0F1E', lineHeight: 1.55 }}>
+                    <div style={{ marginLeft: 'auto', width: 'fit-content', maxWidth: '86%', fontSize: 13, padding: '10px 13px', borderRadius: '16px 16px 4px 16px', background: '#1E3A8A', color: '#fff' }}>Explain photosynthesis simply 🌱</div>
+                    <div style={{ marginTop: 10, maxWidth: '94%', fontSize: 13, padding: '11px 13px', borderRadius: '16px 16px 16px 4px', background: '#F2F4F8', border: '1px solid rgb(95 107 140 / 0.22)', color: '#0A0F24', lineHeight: 1.55 }}>
                       Plants make food from sunlight, water and CO₂ — turning light energy into glucose and releasing oxygen.
                       <div style={{ marginTop: 9, display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 10.5, fontWeight: 700, padding: '3px 8px', borderRadius: 6, background: '#FFF6E3', color: '#7A4A00' }}><Quote size={12} /> NCERT Sci 9 · p.96</span>
-                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 10.5, fontWeight: 700, padding: '3px 8px', borderRadius: 6, background: 'rgb(0 106 110 / 0.12)', color: '#006A6E' }}><Layers size={12} /> Bloom: Understand</span>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 10.5, fontWeight: 700, padding: '3px 8px', borderRadius: 6, background: '#FFE7DC', color: '#B83300' }}><Quote size={12} /> NCERT Sci 9 · p.96</span>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 10.5, fontWeight: 700, padding: '3px 8px', borderRadius: 6, background: 'rgb(59 91 219 / 0.12)', color: '#1E3A8A' }}><Layers size={12} /> Bloom: Understand</span>
                       </div>
                     </div>
                   </div>
-                  <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 12, background: 'linear-gradient(135deg,#FFF3E6,#FFF8F0)', textAlign: 'left' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}><Zap size={17} style={{ color: '#A06504' }} /><span style={{ fontSize: 12, fontWeight: 800, color: '#0A0F1E' }}>FlashBharat</span></div>
-                    <div style={{ borderRadius: 12, padding: 11, background: '#FFFCF7', border: '1px solid rgb(184 134 11 / 0.22)' }}>
-                      <div style={{ fontSize: 11, color: '#5A4E3C', marginBottom: 3 }}>Q · Site of photosynthesis?</div>
-                      <div style={{ fontSize: 14, fontWeight: 800, color: '#0A0F1E' }}>Chloroplast</div>
+                  <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 12, background: 'linear-gradient(135deg,#E6EAF1,#F2F4F8)', textAlign: 'left' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}><Zap size={17} style={{ color: '#B83300' }} /><span style={{ fontSize: 12, fontWeight: 800, color: '#0A0F24' }}>FlashBharat</span></div>
+                    <div style={{ borderRadius: 12, padding: 11, background: '#FFFFFF', border: '1px solid rgb(95 107 140 / 0.22)' }}>
+                      <div style={{ fontSize: 11, color: '#4A5470', marginBottom: 3 }}>Q · Site of photosynthesis?</div>
+                      <div style={{ fontSize: 14, fontWeight: 800, color: '#0A0F24' }}>Chloroplast</div>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderRadius: 12, padding: 11, background: '#FFFCF7', border: '1px solid rgb(184 134 11 / 0.22)' }}>
-                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontWeight: 800, fontSize: 14, color: '#C0392B' }}><Flame size={17} /> 12</span>
-                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontWeight: 800, fontSize: 14, color: '#006A6E' }}><Trophy size={17} /> Lv 7</span>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderRadius: 12, padding: 11, background: '#FFFFFF', border: '1px solid rgb(95 107 140 / 0.22)' }}>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontWeight: 800, fontSize: 14, color: '#E5283A' }}><Flame size={17} /> 12</span>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontWeight: 800, fontSize: 14, color: '#1E3A8A' }}><Trophy size={17} /> Lv 7</span>
                     </div>
-                    <div style={{ fontSize: 10.5, textAlign: 'center', color: '#5A4E3C' }}>day streak · keep it alive!</div>
+                    <div style={{ fontSize: 10.5, textAlign: 'center', color: '#4A5470' }}>day streak · keep it alive!</div>
                   </div>
                 </div>
               </div>
@@ -364,9 +344,9 @@ export const EnhancedLandingPage: React.FC = () => {
 
           {/* chakra divider */}
           <div aria-hidden="true" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 18, padding: '8px 24px', background: 'var(--bg)' }}>
-            <span style={{ height: 1.5, flex: 1, maxWidth: 200, background: 'linear-gradient(90deg,transparent,rgb(184 134 11 / 0.5))' }} />
+            <span style={{ height: 1.5, flex: 1, maxWidth: 200, background: 'linear-gradient(90deg,transparent,rgb(95 107 140 / 0.5))' }} />
             <ChakraWheel spin="spin-slow" />
-            <span style={{ height: 1.5, flex: 1, maxWidth: 200, background: 'linear-gradient(270deg,transparent,rgb(184 134 11 / 0.5))' }} />
+            <span style={{ height: 1.5, flex: 1, maxWidth: 200, background: 'linear-gradient(270deg,transparent,rgb(95 107 140 / 0.5))' }} />
           </div>
 
           {/* ───────── AI TUTOR DEEP DIVE ───────── */}
@@ -379,50 +359,50 @@ export const EnhancedLandingPage: React.FC = () => {
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))', gap: 26, alignItems: 'stretch' }}>
                 {/* tutor mockup */}
-                <div style={{ borderRadius: 'var(--radius)', overflow: 'hidden', display: 'flex', flexDirection: 'column', background: '#FFFCF7', border: '1px solid rgb(255 215 0 / 0.3)', boxShadow: 'var(--card-shadow)' }}>
-                  <div style={{ padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 9, background: '#FFF8F0', borderBottom: '1px solid rgb(184 134 11 / 0.2)' }}>
+                <div style={{ borderRadius: 'var(--radius)', overflow: 'hidden', display: 'flex', flexDirection: 'column', background: '#FFFFFF', border: '1px solid rgb(255 138 61 / 0.3)', boxShadow: 'var(--card-shadow)' }}>
+                  <div style={{ padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 9, background: '#F2F4F8', borderBottom: '1px solid rgb(95 107 140 / 0.2)' }}>
                     <span className="plinth" style={{ width: 32, height: 32, borderRadius: 9 }}><Bot size={18} /></span>
-                    <span style={{ fontWeight: 800, fontSize: 14, color: '#0A0F1E' }}>Digi Tutor</span>
-                    <span style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11.5, fontWeight: 700, color: '#00897B' }}><BadgeCheck size={15} /> grounded in NCERT</span>
+                    <span style={{ fontWeight: 800, fontSize: 14, color: '#0A0F24' }}>Buddy Tutor</span>
+                    <span style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11.5, fontWeight: 700, color: '#3B5BDB' }}><BadgeCheck size={15} /> grounded in NCERT</span>
                   </div>
                   <div style={{ padding: 18, display: 'flex', flexDirection: 'column', gap: 11, flex: 1 }}>
-                    <div style={{ marginLeft: 'auto', width: 'fit-content', maxWidth: '85%', fontSize: 13.5, padding: '11px 14px', borderRadius: '16px 16px 4px 16px', background: '#006A6E', color: '#fff' }}>Why does ice float on water? (Class 9)</div>
-                    <div style={{ maxWidth: '92%', fontSize: 13.5, padding: '12px 14px', borderRadius: '16px 16px 16px 4px', background: '#FFF8F0', border: '1px solid rgb(184 134 11 / 0.2)', color: '#0A0F1E', lineHeight: 1.6 }}>
+                    <div style={{ marginLeft: 'auto', width: 'fit-content', maxWidth: '85%', fontSize: 13.5, padding: '11px 14px', borderRadius: '16px 16px 4px 16px', background: '#1E3A8A', color: '#fff' }}>Why does ice float on water? (Class 9)</div>
+                    <div style={{ maxWidth: '92%', fontSize: 13.5, padding: '12px 14px', borderRadius: '16px 16px 16px 4px', background: '#F2F4F8', border: '1px solid rgb(95 107 140 / 0.2)', color: '#0A0F24', lineHeight: 1.6 }}>
                       Ice floats because water expands when it freezes — the molecules form an open hexagonal lattice, making ice <em>less dense</em> than liquid water.
                       <div style={{ marginTop: 10, display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, fontWeight: 700, padding: '3px 8px', borderRadius: 6, background: '#FFF6E3', color: '#7A4A00' }}><Quote size={13} /> NCERT Sci 9 · Ch 10, p.132</span>
-                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, fontWeight: 700, padding: '3px 8px', borderRadius: 6, background: 'rgb(0 106 110 / 0.12)', color: '#006A6E' }}><Layers size={13} /> Bloom: Understand</span>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, fontWeight: 700, padding: '3px 8px', borderRadius: 6, background: '#FFE7DC', color: '#B83300' }}><Quote size={13} /> NCERT Sci 9 · Ch 10, p.132</span>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, fontWeight: 700, padding: '3px 8px', borderRadius: 6, background: 'rgb(59 91 219 / 0.12)', color: '#1E3A8A' }}><Layers size={13} /> Bloom: Understand</span>
                       </div>
                     </div>
                     <div style={{ display: 'flex', gap: 8, marginTop: 2 }}>
-                      <span style={{ flex: 1, textAlign: 'center', padding: 9, borderRadius: 9, fontSize: 11.5, fontWeight: 700, color: '#7A4A00', background: '#FFF6E3', border: '1px solid rgb(160 101 4 / 0.15)' }}>Explain simpler</span>
-                      <span style={{ flex: 1, textAlign: 'center', padding: 9, borderRadius: 9, fontSize: 11.5, fontWeight: 700, color: '#006A6E', background: 'rgb(0 106 110 / 0.1)', border: '1px solid rgb(0 106 110 / 0.15)' }}>Give an example</span>
-                      <span style={{ flex: 1, textAlign: 'center', padding: 9, borderRadius: 9, fontSize: 11.5, fontWeight: 700, color: '#1A237E', background: 'rgb(26 35 126 / 0.09)', border: '1px solid rgb(26 35 126 / 0.15)' }}>Test me</span>
+                      <span style={{ flex: 1, textAlign: 'center', padding: 9, borderRadius: 9, fontSize: 11.5, fontWeight: 700, color: '#B83300', background: '#FFE7DC', border: '1px solid rgb(160 101 4 / 0.15)' }}>Explain simpler</span>
+                      <span style={{ flex: 1, textAlign: 'center', padding: 9, borderRadius: 9, fontSize: 11.5, fontWeight: 700, color: '#1E3A8A', background: 'rgb(59 91 219 / 0.1)', border: '1px solid rgb(59 91 219 / 0.15)' }}>Give an example</span>
+                      <span style={{ flex: 1, textAlign: 'center', padding: 9, borderRadius: 9, fontSize: 11.5, fontWeight: 700, color: '#1E3A8A', background: 'rgb(26 35 126 / 0.09)', border: '1px solid rgb(26 35 126 / 0.15)' }}>Test me</span>
                     </div>
                   </div>
                 </div>
                 {/* practest mockup */}
-                <div style={{ borderRadius: 'var(--radius)', overflow: 'hidden', display: 'flex', flexDirection: 'column', background: '#FFFCF7', border: '1px solid rgb(255 215 0 / 0.3)', boxShadow: 'var(--card-shadow)' }}>
-                  <div style={{ padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 9, background: '#FFF8F0', borderBottom: '1px solid rgb(184 134 11 / 0.2)' }}>
-                    <span style={{ width: 32, height: 32, borderRadius: 9, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#fff', background: 'linear-gradient(135deg,#1A237E,#0D1B6E)' }}><BarChart3 size={18} /></span>
-                    <span style={{ fontWeight: 800, fontSize: 14, color: '#0A0F1E' }}>Practest · Adaptive</span>
-                    <span style={{ marginLeft: 'auto', fontSize: 11.5, fontWeight: 700, color: '#5A4E3C' }}>CAT engine</span>
+                <div style={{ borderRadius: 'var(--radius)', overflow: 'hidden', display: 'flex', flexDirection: 'column', background: '#FFFFFF', border: '1px solid rgb(255 138 61 / 0.3)', boxShadow: 'var(--card-shadow)' }}>
+                  <div style={{ padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 9, background: '#F2F4F8', borderBottom: '1px solid rgb(95 107 140 / 0.2)' }}>
+                    <span style={{ width: 32, height: 32, borderRadius: 9, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#fff', background: 'linear-gradient(135deg,#1E3A8A,#0F1F5C)' }}><BarChart3 size={18} /></span>
+                    <span style={{ fontWeight: 800, fontSize: 14, color: '#0A0F24' }}>Practest · Adaptive</span>
+                    <span style={{ marginLeft: 'auto', fontSize: 11.5, fontWeight: 700, color: '#4A5470' }}>CAT engine</span>
                   </div>
                   <div style={{ padding: 18, display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: '#0A0F1E' }}>Q4 · Thermodynamics</div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: '#0A0F24' }}>Q4 · Thermodynamics</div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                      <div style={{ fontSize: 12.5, padding: '10px 12px', borderRadius: 9, background: 'rgb(0 137 123 / 0.12)', border: '1px solid #00897B', color: '#00695f', fontWeight: 700 }}>Heat flows hot → cold ✓</div>
-                      <div style={{ fontSize: 12.5, padding: '10px 12px', borderRadius: 9, background: '#FFF8F0', border: '1px solid rgb(184 134 11 / 0.2)', color: '#5A4E3C' }}>Cold flows into hot bodies</div>
-                      <div style={{ fontSize: 12.5, padding: '10px 12px', borderRadius: 9, background: '#FFF8F0', border: '1px solid rgb(184 134 11 / 0.2)', color: '#5A4E3C' }}>Temperature never equalizes</div>
+                      <div style={{ fontSize: 12.5, padding: '10px 12px', borderRadius: 9, background: 'rgb(91 124 255 / 0.12)', border: '1px solid #3B5BDB', color: '#1E3A8A', fontWeight: 700 }}>Heat flows hot → cold ✓</div>
+                      <div style={{ fontSize: 12.5, padding: '10px 12px', borderRadius: 9, background: '#F2F4F8', border: '1px solid rgb(95 107 140 / 0.2)', color: '#4A5470' }}>Cold flows into hot bodies</div>
+                      <div style={{ fontSize: 12.5, padding: '10px 12px', borderRadius: 9, background: '#F2F4F8', border: '1px solid rgb(95 107 140 / 0.2)', color: '#4A5470' }}>Temperature never equalizes</div>
                     </div>
                     <div style={{ marginTop: 'auto' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 11.5, fontWeight: 700, color: '#5A4E3C', marginBottom: 6 }}><span>Difficulty adapting to you</span><span style={{ color: '#A06504' }}>Level 7 / 10</span></div>
-                      <div style={{ height: 9, borderRadius: 999, overflow: 'hidden', background: 'rgb(184 134 11 / 0.18)' }}><div style={{ height: '100%', width: '70%', borderRadius: 999, background: 'linear-gradient(90deg,#A06504,#FFD700)' }} /></div>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 11.5, fontWeight: 700, color: '#4A5470', marginBottom: 6 }}><span>Difficulty adapting to you</span><span style={{ color: '#B83300' }}>Level 7 / 10</span></div>
+                      <div style={{ height: 9, borderRadius: 999, overflow: 'hidden', background: 'rgb(95 107 140 / 0.18)' }}><div style={{ height: '100%', width: '70%', borderRadius: 999, background: 'linear-gradient(90deg,#B83300,#FF8A3D)' }} /></div>
                       <div style={{ marginTop: 12, display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 8 }}>
                         {[['84%', 'Accuracy'], ['6🔥', 'Streak'], ['Apply', 'Bloom']].map(([v, l]) => (
-                          <div key={l} style={{ borderRadius: 9, padding: 9, textAlign: 'center', background: '#FFF8F0', border: '1px solid rgb(184 134 11 / 0.2)' }}>
-                            <div style={{ fontSize: 14, fontWeight: 800, color: '#0A0F1E' }}>{v}</div>
-                            <div style={{ fontSize: 9.5, textTransform: 'uppercase', letterSpacing: '.06em', color: '#5A4E3C' }}>{l}</div>
+                          <div key={l} style={{ borderRadius: 9, padding: 9, textAlign: 'center', background: '#F2F4F8', border: '1px solid rgb(95 107 140 / 0.2)' }}>
+                            <div style={{ fontSize: 14, fontWeight: 800, color: '#0A0F24' }}>{v}</div>
+                            <div style={{ fontSize: 9.5, textTransform: 'uppercase', letterSpacing: '.06em', color: '#4A5470' }}>{l}</div>
                           </div>
                         ))}
                       </div>
@@ -524,16 +504,16 @@ export const EnhancedLandingPage: React.FC = () => {
             </div>
             <div style={{ position: 'relative', zIndex: 1, maxWidth: 1100, margin: '0 auto' }}>
               <div style={{ textAlign: 'center', marginBottom: 46 }}>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 999, background: 'rgb(255 215 0 / 0.12)', color: 'var(--gold)', fontWeight: 700, fontSize: 13, border: '1px solid rgb(255 215 0 / 0.28)' }}><Sparkles size={17} /> Launching 2026 · Founding learners onboarding</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 999, background: 'rgb(169 180 208 / 0.12)', color: 'var(--gold)', fontWeight: 700, fontSize: 13, border: '1px solid rgb(255 138 61 / 0.28)' }}><Sparkles size={17} /> Launching 2026 · Founding learners onboarding</span>
                 <h2 className="h2" style={{ marginTop: 18, color: 'var(--ivory-cream)' }}>Built for every CBSE &amp; ICSE learner.</h2>
-                <p className="sub" style={{ color: 'rgb(255 248 240 / 0.72)' }}>Not vanity metrics — the real capabilities students get from day one.</p>
+                <p className="sub" style={{ color: 'rgb(242 244 248 / 0.72)' }}>Not vanity metrics — the real capabilities students get from day one.</p>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(160px,1fr))', gap: 18 }}>
                 {COUNTERS.map((c) => (
-                  <div key={c.label} style={{ textAlign: 'center', padding: '26px 16px', borderRadius: 'var(--radius)', background: 'rgb(255 248 240 / 0.06)', border: '1px solid rgb(255 215 0 / 0.22)', backdropFilter: 'blur(6px)' }}>
+                  <div key={c.label} style={{ textAlign: 'center', padding: '26px 16px', borderRadius: 'var(--radius)', background: 'rgb(242 244 248 / 0.06)', border: '1px solid rgb(169 180 208 / 0.22)', backdropFilter: 'blur(6px)' }}>
                     <c.Icon size={40} style={{ color: 'var(--gold)' }} />
                     <div style={{ fontSize: 'clamp(34px,4vw,46px)', fontWeight: 800, margin: '8px 0 2px', color: 'var(--ivory-cream)' }}>{c.value}</div>
-                    <div style={{ color: 'rgb(255 248 240 / 0.72)', fontWeight: 700, fontSize: 14 }}>{c.label}</div>
+                    <div style={{ color: 'rgb(242 244 248 / 0.72)', fontWeight: 700, fontSize: 14 }}>{c.label}</div>
                   </div>
                 ))}
               </div>
@@ -594,7 +574,7 @@ export const EnhancedLandingPage: React.FC = () => {
                     onClick={() => { setFaqTab(tab); setOpenFaq(0) }}
                     className={chipBase}
                     style={faqTab === tab
-                      ? { padding: '10px 22px', fontSize: 15, textTransform: 'capitalize', border: '1px solid transparent', background: 'linear-gradient(135deg,var(--kumkum),var(--saffron))', color: '#fff', boxShadow: '0 8px 18px -8px rgba(192,57,43,.6)' }
+                      ? { padding: '10px 22px', fontSize: 15, textTransform: 'capitalize', border: '1px solid transparent', background: 'var(--bb-grad-primary)', color: '#fff', boxShadow: '0 8px 18px -8px rgba(192,57,43,.6)' }
                       : { padding: '10px 22px', fontSize: 15, textTransform: 'capitalize', border: '1px solid transparent', color: 'var(--muted)' }}
                   >
                     {tab}
@@ -631,7 +611,7 @@ export const EnhancedLandingPage: React.FC = () => {
                     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                       <span className="plinth" style={{ width: 50, height: 50 }}><app.Icon size={25} /></span>
                       {app.here && (
-                        <span style={{ marginLeft: 'auto', fontSize: 10.5, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', color: '#fff', padding: '4px 10px', borderRadius: 999, background: 'linear-gradient(135deg,var(--kumkum),var(--saffron))' }}>You’re here</span>
+                        <span style={{ marginLeft: 'auto', fontSize: 10.5, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', color: '#fff', padding: '4px 10px', borderRadius: 999, background: 'var(--bb-grad-primary)' }}>You’re here</span>
                       )}
                     </div>
                     <h3 style={{ margin: '18px 0 3px', fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>{app.name}</h3>
@@ -644,7 +624,7 @@ export const EnhancedLandingPage: React.FC = () => {
           </section>
 
           {/* ───────── CTA + NEWSLETTER ───────── */}
-          <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(64px,9vw,120px) 24px', background: 'linear-gradient(135deg,var(--kumkum),var(--saffron) 70%,var(--turmeric))', color: '#fff', textAlign: 'center' }}>
+          <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(64px,9vw,120px) 24px', background: 'var(--bb-grad-stage)', color: '#fff', textAlign: 'center' }}>
             <div className="breathe" style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 'min(120vw,900px)', opacity: 0.16, pointerEvents: 'none' }}>
               <svg viewBox="0 0 200 200" width="100%" className="spin-slow" aria-hidden="true" style={{ transformOrigin: 'center', transformBox: 'fill-box' }}>
                 <circle cx="100" cy="100" r="94" fill="none" stroke="#fff" strokeWidth="1" strokeDasharray="4 9" />
@@ -657,11 +637,11 @@ export const EnhancedLandingPage: React.FC = () => {
               <h2 style={{ fontFamily: 'var(--font-body)', fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.1, margin: 0, fontSize: 'clamp(32px,5vw,56px)' }}>Start learning the way you think.</h2>
               <p style={{ fontSize: 'clamp(16px,1.8vw,20px)', lineHeight: 1.55, margin: '18px auto 0', maxWidth: '52ch', color: 'rgba(255,255,255,.92)' }}>Join the founding cohort shaping the future of CBSE &amp; ICSE study. Get updates on new features and launch access.</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'center', margin: '32px auto 0', maxWidth: 520 }}>
-                <input type="email" placeholder="Enter your email address" aria-label="Email address" style={{ flex: 1, minWidth: 220, padding: '15px 20px', borderRadius: 999, border: 'none', fontFamily: 'var(--font-body)', fontSize: 15, background: 'rgba(255,255,255,.92)', color: '#241704', outline: 'none' }} />
-                <button className="btn" style={{ background: 'var(--night-ink)', color: '#fff', padding: '15px 28px' }}><Send size={20} /> Notify me</button>
+                <input type="email" placeholder="Enter your email address" aria-label="Email address" style={{ flex: 1, minWidth: 220, padding: '15px 20px', borderRadius: 999, border: 'none', fontFamily: 'var(--font-body)', fontSize: 15, background: 'rgba(255,255,255,.92)', color: '#0A0F24', outline: 'none' }} />
+                <button className="btn btn-primary" style={{ padding: '15px 28px' }}><Send size={20} /> Notify me</button>
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 22 }}>
-                <button onClick={goSignup} className="btn" style={{ background: '#fff', color: 'var(--kumkum)' }}>Start free <Rocket size={20} /></button>
+                <button onClick={goSignup} className="btn" style={{ background: '#fff', color: 'var(--night-ink)' }}>Start free <Rocket size={20} /></button>
               </div>
             </div>
           </section>

@@ -45,7 +45,7 @@ export function TutorHeader({
         >
             <span
                 className="plinth"
-                style={{ width: 48, height: 48, flex: 'none', background: 'linear-gradient(135deg,var(--kumkum),var(--indigo-ink))' }}
+                style={{ width: 48, height: 48, flex: 'none', background: 'var(--bb-grad-cobalt)' }}
             >
                 <Brain className="h-[25px] w-[25px]" />
             </span>

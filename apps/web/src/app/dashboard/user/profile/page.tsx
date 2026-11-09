@@ -31,7 +31,7 @@ import {
 // All profile data, edit/validation/save logic and the JoinInstitution flow are
 // unchanged — only the presentation layer moved onto the warm-Indic tokens.
 
-const GP = 'linear-gradient(135deg,var(--kumkum),var(--saffron))'
+const GP = 'var(--bb-grad-primary)'
 const GC = 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))'
 const GW = 'linear-gradient(135deg,var(--turmeric),var(--gold))'
 const GT = 'linear-gradient(135deg,var(--teal-light),var(--peacock-teal))'
@@ -350,9 +350,9 @@ export default function ProfilePage() {
         )}
 
         {error && (
-          <div className="card" style={{ padding: 16, borderColor: 'rgb(192 57 43 / 0.4)' }}>
+          <div className="card" style={{ padding: 16, borderColor: 'rgb(229 40 58 / 0.4)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: 'linear-gradient(135deg,var(--kumkum),var(--lotus-deep))' }}><AlertTriangle className="h-5 w-5" /></span>
+              <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: 'linear-gradient(135deg,#FF5468,#E5283A 55%,#B0182A)' }}><AlertTriangle className="h-5 w-5" /></span>
               <div>
                 <h4 style={{ margin: 0, fontWeight: 800, color: 'var(--kumkum)' }}>Error</h4>
                 <p style={{ margin: '2px 0 0', fontSize: 13.5, color: 'var(--muted)' }}>{error}</p>
@@ -506,7 +506,7 @@ function EducationalSettingsSection({ userProfile }: { userProfile: EnhancedUser
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
           <Field label="Class level">
-            <span className="tag" style={{ background: 'rgb(0 106 110 / 0.12)', color: '#006A6E', fontSize: 14, padding: '5px 12px' }}>Class {userProfile.class}</span>
+            <span className="tag" style={{ background: 'rgb(59 91 219 / 0.12)', color: '#1E3A8A', fontSize: 14, padding: '5px 12px' }}>Class {userProfile.class}</span>
             <LockedNote text="Managed through subscription settings" />
           </Field>
           {userProfile.stream && (
@@ -527,7 +527,7 @@ function EducationalSettingsSection({ userProfile }: { userProfile: EnhancedUser
           </Field>
         )}
 
-        <div style={{ display: 'flex', gap: 12, padding: 16, borderRadius: 14, background: 'rgb(0 106 110 / 0.08)', border: '1px solid rgb(0 106 110 / 0.18)' }}>
+        <div style={{ display: 'flex', gap: 12, padding: 16, borderRadius: 14, background: 'rgb(59 91 219 / 0.08)', border: '1px solid rgb(59 91 219 / 0.18)' }}>
           <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: GC }}><Shield className="h-5 w-5" /></span>
           <div>
             <h4 style={{ margin: 0, fontWeight: 800, fontSize: 15, color: 'var(--ink)' }}>Educational settings protected</h4>
@@ -640,8 +640,8 @@ function SubscriptionCard({ userProfile, getSubscriptionStatusGrad }: { userProf
         </div>
 
         {(isExpired(expiresAt) || isExpiringSoon(expiresAt)) && (
-          <div style={{ display: 'flex', gap: 12, padding: 14, borderRadius: 12, background: isExpired(expiresAt) ? 'rgb(192 57 43 / 0.08)' : 'rgb(245 166 35 / 0.1)', border: `1px solid ${isExpired(expiresAt) ? 'rgb(192 57 43 / 0.3)' : 'rgb(245 166 35 / 0.3)'}` }}>
-            <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: isExpired(expiresAt) ? 'linear-gradient(135deg,var(--kumkum),var(--lotus-deep))' : GW }}><AlertTriangle className="h-5 w-5" /></span>
+          <div style={{ display: 'flex', gap: 12, padding: 14, borderRadius: 12, background: isExpired(expiresAt) ? 'rgb(229 40 58 / 0.08)' : 'rgb(245 166 35 / 0.1)', border: `1px solid ${isExpired(expiresAt) ? 'rgb(229 40 58 / 0.3)' : 'rgb(245 166 35 / 0.3)'}` }}>
+            <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: isExpired(expiresAt) ? 'linear-gradient(135deg,#FF5468,#E5283A 55%,#B0182A)' : GW }}><AlertTriangle className="h-5 w-5" /></span>
             <div>
               <h4 style={{ margin: 0, fontWeight: 800, fontSize: 14, color: isExpired(expiresAt) ? 'var(--kumkum)' : 'var(--turmeric)' }}>
                 {isExpired(expiresAt) ? 'Subscription expired' : 'Expiring soon'}

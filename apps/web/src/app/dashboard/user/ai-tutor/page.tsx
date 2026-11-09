@@ -139,9 +139,9 @@ export default function AITutorPage() {
         )}
 
         {subscriptionError && subscriptionError !== 'NO_SUBSCRIPTION' && (
-          <div className="card" style={{ padding: 16, borderColor: 'rgb(192 57 43 / 0.3)' }}>
+          <div className="card" style={{ padding: 16, borderColor: 'rgb(229 40 58 / 0.3)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: 'linear-gradient(135deg,var(--kumkum),var(--lotus-deep))' }}>
+              <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: 'linear-gradient(135deg,#FF5468,#E5283A 55%,#B0182A)' }}>
                 <span style={{ fontSize: 20 }}>⚠️</span>
               </span>
               <div>
@@ -171,7 +171,7 @@ export default function AITutorPage() {
                       {message.role === 'assistant' && (
                         <span
                           className="plinth"
-                          style={{ width: 32, height: 32, flex: 'none', background: 'linear-gradient(135deg,var(--kumkum),var(--indigo-ink))' }}
+                          style={{ width: 32, height: 32, flex: 'none', background: 'var(--bb-grad-cobalt)' }}
                         >
                           <Bot className="h-[17px] w-[17px]" />
                         </span>

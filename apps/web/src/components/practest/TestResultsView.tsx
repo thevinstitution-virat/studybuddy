@@ -64,7 +64,7 @@ const accuracyColor = (a: number): string =>
 const barGrad = (key: string): string => {
   const k = key.toUpperCase()
   if (k === 'EASY') return 'linear-gradient(90deg,var(--teal-light),var(--peacock-teal))'
-  if (k === 'HARD') return 'linear-gradient(90deg,var(--kumkum),var(--saffron))'
+  if (k === 'HARD') return 'var(--bb-grad-primary)'
   return 'linear-gradient(90deg,var(--saffron),var(--turmeric))'
 }
 
@@ -139,7 +139,7 @@ export default function TestResultsView({ results, batchResult, onBackToGenerato
     <div className="dcs">
       <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
         {/* Header */}
-        <div className="card" style={{ padding: 24, background: 'linear-gradient(135deg,rgb(var(--accent-primary-rgb) / 0.1),rgb(0 106 110 / 0.06))' }}>
+        <div className="card" style={{ padding: 24, background: 'linear-gradient(135deg,rgb(var(--accent-primary-rgb) / 0.1),rgb(59 91 219 / 0.06))' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               <span className="plinth" style={{ width: 54, height: 54, background: GT }}>

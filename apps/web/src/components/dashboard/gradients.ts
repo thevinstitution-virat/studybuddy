@@ -4,7 +4,7 @@
  * Kept as CSS strings referencing the global pigment tokens so light/dark and
  * any accent retint follow automatically.
  */
-export const GP = 'linear-gradient(135deg,var(--kumkum),var(--saffron))'
+export const GP = 'var(--bb-grad-primary)'
 export const GC = 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))'
 export const GW = 'linear-gradient(135deg,var(--turmeric),var(--gold))'
 export const GT = 'linear-gradient(135deg,var(--teal-light),var(--peacock-teal))'

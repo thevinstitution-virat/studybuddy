@@ -42,8 +42,8 @@ export function IndicConfirmDialog({
 }) {
   const gradient =
     variant === 'destructive'
-      ? 'linear-gradient(135deg,var(--kumkum),var(--lotus-deep))'
-      : 'linear-gradient(135deg,var(--kumkum),var(--saffron))'
+      ? 'linear-gradient(135deg,#FF5468,#E5283A 55%,#B0182A)'
+      : 'var(--bb-grad-primary)'
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
@@ -52,7 +52,7 @@ export function IndicConfirmDialog({
         <DialogPrimitive.Content className="fixed left-1/2 top-1/2 z-[81] w-[calc(100vw-44px)] max-w-[400px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[22px] border border-border bg-card shadow-[0_40px_90px_-40px_rgba(0,0,0,0.6)] duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95">
           <div className="px-7 pb-5 pt-7 text-center">
             <span
-              className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-[14px] text-white shadow-[0_10px_22px_-10px_rgba(255,107,53,0.6)]"
+              className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-[14px] text-white shadow-[0_10px_22px_-10px_rgba(255,77,0,0.6)]"
               style={{ background: gradient }}
             >
               {icon}

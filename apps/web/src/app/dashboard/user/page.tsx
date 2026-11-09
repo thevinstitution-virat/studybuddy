@@ -192,7 +192,7 @@ export default function UserDashboard() {
               ))}
             </div>
           </div>
-          <div className="card" style={{ padding: 22, color: '#fff', background: 'linear-gradient(135deg,var(--kumkum),var(--saffron))', border: 'none' }}>
+          <div className="card" style={{ padding: 22, color: '#fff', background: 'var(--bb-grad-primary)', border: 'none' }}>
             <h3 style={{ margin: 0, fontSize: 18, fontWeight: 800, color: '#fff' }}>Ready to learn?</h3>
             <p style={{ margin: '6px 0 0', fontSize: 13.5, color: 'rgba(255,255,255,.9)', lineHeight: 1.5 }}>
               Jump back in with your AI tutor and keep the streak alive.
