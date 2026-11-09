@@ -13,6 +13,30 @@
  */
 
 import type { BaseChatModel } from '@langchain/core/language_models/chat_models';
+import { BaseCallbackHandler } from '@langchain/core/callbacks/base';
+import { addTutorTokens, tutorModelOverride } from '../ai/tutor-tiers';
+import { reportAiFailure } from '../ai/ai-alert';
+
+/**
+ * Adds each OpenAI call's tokens to the current tutor request (its token window counts every agent call), and reports
+ * a failed call to GlitchTip. Awaited, so the count is complete before the route records it.
+ */
+class TutorUsageHandler extends BaseCallbackHandler {
+    name = 'tutor-usage';
+    awaitHandlers = true;
+
+    handleLLMEnd(output: any): void {
+        const lo = output?.llmOutput?.tokenUsage ?? output?.llmOutput?.estimatedTokenUsage;
+        if (lo) return addTutorTokens(lo.promptTokens ?? 0, lo.completionTokens ?? 0);
+        const m = output?.generations?.[0]?.[0]?.message?.usage_metadata;
+        if (m) addTutorTokens(m.input_tokens ?? 0, m.output_tokens ?? 0);
+    }
+
+    handleLLMError(err: unknown): void {
+        reportAiFailure('tutor-agent', err);
+    }
+}
+const tutorUsage = new TutorUsageHandler();
 
 export interface LangChainModelConfig {
     temperature?: number;
@@ -27,7 +51,10 @@ const modelCache = new Map<string, BaseChatModel>();
 
 export function getLangChainModel(config: LangChainModelConfig = {}): BaseChatModel {
     const provider = config.providerOverride || getActiveProviderName();
-    const cacheKey = `${provider}:${config.temperature ?? 0.3}:${config.streaming ?? false}`;
+    // A Basic/Prime tier chosen for this request picks the OpenAI model; it is part of the cache key, so each tier
+    // keeps its own model object.
+    const tierModel = provider === 'openai' ? tutorModelOverride() : undefined;
+    const cacheKey = `${provider}:${config.temperature ?? 0.3}:${config.streaming ?? false}${tierModel ? `:${tierModel}` : ''}`;
 
     if (modelCache.has(cacheKey)) {
         return modelCache.get(cacheKey)!;
@@ -91,9 +118,12 @@ function createLangChainModel(
         default: {
             const { ChatOpenAI } = require('@langchain/openai');
             return new ChatOpenAI({
-                model: process.env.OPENAI_MODEL ?? 'gpt-4o-mini',
+                model: tutorModelOverride() ?? process.env.OPENAI_MODEL ?? 'gpt-4o-mini',
                 apiKey: process.env.OPENAI_API_KEY,
                 ...baseConfig,
+                // Usage on streamed calls too, for the tutor's token window.
+                streamUsage: true,
+                callbacks: [tutorUsage],
             });
         }
     }

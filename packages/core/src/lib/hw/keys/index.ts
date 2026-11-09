@@ -1,0 +1,40 @@
+// Answer keys: public entry points. See service.ts for the resolution order.
+
+import { generateWith } from '../ai';
+import { getHwConfig } from '../config';
+import type { KeyCache } from './cache';
+import { EMBED_MODEL, LIBRARY_V2_COLLECTION } from '../../library/contract/src';
+import { libraryHubEnabled, searchLibrary } from '../../library/search';
+import { gyankoshRetriever, type Retriever } from './retriever';
+import type { KeyDeps } from './service';
+import { trioReader, type TrioReader } from './trio';
+
+export { buildKey, currentKeyServiceVersion, keyConfigHash, keySettingsFromEnv, KEY_RETRIEVAL_VERSION, type KeyDeps, type KeySettings, type OfficialScheme } from './service';
+export { fileKeyCache, memoryKeyCache, type KeyCache } from './cache';
+export { memorySharedKeyStore, isPublicOrigin, type SharedKeyStore } from './shared';
+export type * from './types';
+
+/** Real dependencies: Gyankosh Qdrant (read), trio content tables (read-only transaction), AI providers. */
+export function defaultKeyDeps(opts: { cache?: KeyCache; official?: KeyDeps['official'] } = {}): KeyDeps {
+  // Gyankosh and the trio database are connected on first use, so official and given-passage
+  // keys work without them configured.
+  let retriever: Retriever | null = null;
+  let trio: TrioReader | null = null;
+  const r = () => (retriever ??= gyankoshRetriever());
+  const t = () => (trio ??= trioReader());
+  return {
+    // Hub mode: textbook retrieval is the library hub's. No direct-read fallback (it cannot apply the scope), so an
+    // outage is an error, not a key built from whatever was reachable.
+    hub: libraryHubEnabled()
+      ? { indexId: `hub|${LIBRARY_V2_COLLECTION}|${EMBED_MODEL}`, search: (req) => searchLibrary(req, { direct: null }) }
+      : undefined,
+    retriever: {
+      // Same value gyankoshRetriever() reports, from settings alone (it goes into the config hash).
+      get indexId() { const c = getHwConfig(); return `${c.QDRANT_COLLECTION_NAME ?? 'unset'}|${c.HW_KEY_EMBED_MODEL}`; },
+      embed: (text) => r().embed(text),
+      search: (v, f, l) => r().search(v, f, l),
+    },
+    trio: { practiceRows: (ids) => t().practiceRows(ids), chunks: (ids) => t().chunks(ids) },
+    generate: generateWith, cache: opts.cache, official: opts.official,
+  };
+}

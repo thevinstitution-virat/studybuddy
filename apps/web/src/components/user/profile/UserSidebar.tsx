@@ -19,8 +19,12 @@ import {
   Award,
   TrendingUp,
   LineChart,
-  CreditCard
+  CreditCard,
+  PenLine,
 } from 'lucide-react'
+import { useHwStatus } from '@/components/hw/HwShell'
+import { api } from '@/lib/trpc/client'
+import { EVALUATE_NAV, useIsRater } from '@/components/hw-eval/useEvaluateNav'
 
 interface UserSidebarProps {
   user?: {
@@ -33,6 +37,10 @@ interface UserSidebarProps {
 
 export default function UserSidebar({ user }: UserSidebarProps) {
   const persona = user?.persona || 'student'
+  const hw = useHwStatus()
+  // Independent learners (no institution): the self-practice tab, while the feature is on for them.
+  const practice = api.hw.practice.status.useQuery(undefined, { staleTime: 60_000, retry: false })
+  const isRater = useIsRater()
 
   // Grouped by use case (mirrors the section pattern already shipped on PDLMS's
   // super-admin sidebar). BaseSidebar renders a header above the first item of
@@ -50,6 +58,15 @@ export default function UserSidebar({ user }: UserSidebarProps) {
       featured: true,
       section: 'Learn',
     }),
+    // Only for students of an institution with Handwritten Assignments switched on.
+    // (A self-practice learner's questions live under InkBuddy below, not here.)
+    ...(hw.data?.enabled && hw.data.role === 'student' && !hw.data.practice
+      ? [createNavigationItem('Assignments', '/dashboard/student/assignments', PenLine, {
+          description: 'Written answers for your teacher',
+          featured: true,
+          section: 'Learn',
+        })]
+      : []),
     createNavigationItem('Study Materials', '/dashboard/user/materials', BookOpen, {
       description: 'Access course content',
       featured: true,
@@ -76,6 +93,14 @@ export default function UserSidebar({ user }: UserSidebarProps) {
       primary: true,
       shortName: 'Tutor',
     }),
+    ...(practice.data?.enabled && practice.data.eligible
+      ? [createNavigationItem('InkBuddy', '/dashboard/user/inkbuddy', PenLine, {
+          description: 'Practise textbook questions by hand',
+          featured: true,
+          section: 'AI & Research',
+          shortName: 'Ink',
+        })]
+      : []),
     createNavigationItem('Sarvagya', '/dashboard/sarvagya', Search, {
       description: 'AI Research Assistant',
       featured: true,
@@ -169,7 +194,7 @@ export default function UserSidebar({ user }: UserSidebarProps) {
 
   return (
     <BaseSidebar
-      navigation={navigation}
+      navigation={isRater ? [...navigation, createNavigationItem(EVALUATE_NAV.name, EVALUATE_NAV.href, EVALUATE_NAV.icon, { description: EVALUATE_NAV.description, section: EVALUATE_NAV.section })] : navigation}
       user={sidebarUser}
       brandName="Digi Classroom"
       brandSubtitle={`${getPersonaLabel()} Portal`}
