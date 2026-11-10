@@ -160,3 +160,27 @@
 .sbshell main { overscroll-behavior: contain; }
 /* tap feedback on interactive cards and buttons instead of hover-only states */
 .sbshell main button:not(:disabled):active, .sbshell main a.card:active { transform: scale(.98); }
+
+/* ---- Book Buddy-grade chrome: glass bars, glowing navy sidebar, glossy active states ---- */
+.sbshell .sidebar { background: var(--sb-grad-stage); }
+.sbshell .sidebar::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 280px; background: radial-gradient(120% 100% at 0% 0%, rgba(255,153,51,.20), transparent 65%); pointer-events: none; }
+.sbshell .sidebar > * { position: relative; }
+.sbshell .navitem.active { background: var(--sb-grad-primary); color: #0A0F24; box-shadow: var(--sb-shadow-gloss); }
+.sbshell .navitem.active:hover { filter: brightness(1.06); color: #0A0F24; }
+.sb-topbar { background: var(--sb-glass); backdrop-filter: blur(22px) saturate(1.5); -webkit-backdrop-filter: blur(22px) saturate(1.5); }
+.sb-bottomnav, .sb-rail { background: var(--sb-grad-stage); box-shadow: 0 -18px 40px -22px rgba(10,15,36,.7); }
+.sb-tab-pill-bg { background: var(--sb-grad-primary); box-shadow: var(--sb-shadow-gloss); }
+.sb-fab { background: var(--sb-grad-primary); box-shadow: var(--sb-shadow-gloss), var(--sb-shadow-fab); }
+.sb-more-profile { background: var(--sb-grad-stage); box-shadow: var(--sb-shadow-stage); }
+.sb-more-tile { box-shadow: var(--sb-shadow-card); }
+.sb-more-tile:hover { box-shadow: var(--sb-shadow-card-hover); transform: translateY(-2px); }
+.sb-dial-label, .sb-dial-tile { box-shadow: 0 18px 40px -16px rgba(10,15,36,.7); }
+.sbshell main > div > * { animation-fill-mode: both; }
+
+.sb-dash-card:hover { transform: translateY(-3px); box-shadow: var(--sb-shadow-card-hover); }
+@media (max-width: 639px) { .sb-dash-card { grid-column: auto !important; } }
+
+/* exactly 1024px: the legacy sheet's max-width:1024 off-canvas rule also matches, so pin the desktop sidebar */
+@media (min-width: 1024px) {
+  .sbshell .sidebar { position: sticky; top: 0; transform: none; width: auto; box-shadow: none; display: flex; }
+}

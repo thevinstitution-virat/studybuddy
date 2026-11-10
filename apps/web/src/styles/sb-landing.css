@@ -5,12 +5,12 @@
 .sbl button { font: inherit; color: inherit; }
 .sbl h1, .sbl h2, .sbl h3 { margin: 0; font-family: var(--sb-font-display); }
 .sbl-link:hover { color: var(--sb-saffron-deep); }
-.sbl-btn-primary { background: var(--sb-primary); color: var(--sb-primary-fg) !important; transition: background .2s, transform .15s; }
-.sbl-btn-primary:hover { background: var(--sb-primary-hover); }
+.sbl-btn-primary { background: var(--sb-grad-primary); color: #0A0F24 !important; box-shadow: var(--sb-shadow-gloss); transition: transform .18s, box-shadow .18s, filter .18s; }
+.sbl-btn-primary:hover { transform: translateY(-2px); filter: brightness(1.05); box-shadow: var(--sb-shadow-gloss), 0 22px 36px -14px rgba(255,153,51,.6); }
 .sbl-btn-primary:active, .sbl-press:active { transform: scale(.97); }
 .sbl-btn-ghost:hover { background: color-mix(in srgb, var(--sb-ink) 6%, transparent); }
-.sbl-btn-saffron { background: var(--sb-saffron); color: #0A0F24 !important; transition: background .2s, transform .15s; }
-.sbl-btn-saffron:hover { background: #FFA94D; }
+.sbl-btn-saffron { background: var(--sb-grad-primary); color: #0A0F24 !important; box-shadow: var(--sb-shadow-gloss); transition: transform .18s, filter .18s; }
+.sbl-btn-saffron:hover { transform: translateY(-2px); filter: brightness(1.05); }
 
 /* desktop / phone switches (CSS, not JS, so there is no layout flash on first paint) */
 .sbl-desk { display: flex; }
@@ -39,3 +39,19 @@
   .sbl-navrow { gap: 10px !important; padding: 0 14px !important; }
   .sbl-nav-cta { display: none !important; }
 }
+
+/* Book Buddy-grade surfaces */
+.sb-gradtext { background: linear-gradient(180deg, #FFD9A8 0%, #FF9933 58%, #EE7A0C 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; white-space: nowrap; }
+.sbl-nav-link { color: #C9CCDD; transition: color .2s; }
+.sbl-nav-link:hover { color: #FFB45C; }
+.sbl-btn-glass { color: #F2F3F8 !important; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.05); backdrop-filter: blur(12px); transition: background .2s, transform .18s; }
+.sbl-btn-glass:hover { background: rgba(255,255,255,.12); transform: translateY(-2px); }
+.sbl-lift { transition: transform .3s var(--sb-ease), box-shadow .3s; }
+.sbl-lift:hover { transform: translateY(-4px); box-shadow: var(--sb-shadow-card-hover); }
+
+/* card depth for every rounded panel in the content sections */
+#proof [style*="border-radius: 30px"], #features [style*="border-radius: 30px"], #how [style*="border-radius: 28px"], #pricing [style*="border-radius: 28px"], #for [style*="border-radius: 30px"], #inkbuddy [style*="border-radius: 20px"] { box-shadow: var(--sb-shadow-card); transition: transform .3s var(--sb-ease), box-shadow .3s; }
+#proof [style*="border-radius: 30px"]:hover, #features [style*="border-radius: 30px"]:hover, #how [style*="border-radius: 28px"]:hover, #pricing [style*="border-radius: 28px"]:hover { transform: translateY(-4px); box-shadow: var(--sb-shadow-card-hover); }
+#features [style*="border-radius: 30px"] { background-image: linear-gradient(160deg, rgba(255,255,255,.55), transparent 55%); }
+.dark #features [style*="border-radius: 30px"] { background-image: linear-gradient(160deg, rgba(255,255,255,.08), transparent 55%); }
+#pricing [style*="2px solid"] { box-shadow: var(--sb-shadow-stage), 0 0 80px -20px rgba(255,153,51,.45); }

@@ -6,15 +6,15 @@ const cardVariants = cva("text-card-foreground", {
   variants: {
     variant: {
       // Default premium surface: soft hairline border + layered shadow w/ inset highlight
-      default: "rounded-3xl border border-border bg-card",
-      elevated: "rounded-3xl border border-border bg-card",
-      glass: "rounded-3xl border border-border bg-card",
-      gradient: "rounded-3xl border border-border bg-card",
+      default: "rounded-[28px] border border-border bg-card shadow-[var(--sb-shadow-card)]",
+      elevated: "rounded-[28px] border border-border bg-card shadow-[var(--sb-shadow-card-hover)]",
+      glass: "rounded-[28px] border border-border bg-card/80 backdrop-blur-xl shadow-[var(--sb-shadow-card)]",
+      gradient: "rounded-[28px] border-0 bg-[image:var(--sb-grad-stage)] text-white shadow-[var(--sb-shadow-stage)]",
       plain: "rounded-3xl bg-card",
       outline: "rounded-3xl border border-border bg-transparent",
     },
     interactive: {
-      true: "cursor-pointer transition-transform duration-200 active:scale-[0.98]",
+      true: "cursor-pointer transition-all duration-300 hover:-translate-y-[3px] hover:shadow-[var(--sb-shadow-card-hover)] active:scale-[0.98]",
       false: "",
     },
   },

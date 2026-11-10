@@ -28,7 +28,7 @@ const DISPLAY = 'var(--sb-font-display)'
 
 /* ── Card ── */
 export function Card({ children, style, className, onClick, href }: { children: ReactNode; style?: CSSProperties; className?: string; onClick?: () => void; href?: string }) {
-  const base: CSSProperties = { background: 'var(--sb-surface)', border: '1px solid var(--sb-line)', borderRadius: 24, padding: 20, color: 'var(--sb-ink)', ...style }
+  const base: CSSProperties = { background: 'var(--sb-surface)', border: '1px solid var(--sb-line)', borderRadius: 28, padding: 22, color: 'var(--sb-ink)', boxShadow: 'var(--sb-shadow-card)', ...style }
   if (href) return <motion.div whileTap={{ scale: 0.97 }}><Link href={href} className={className} style={{ display: 'block', textDecoration: 'none', ...base }}>{children}</Link></motion.div>
   return <motion.div whileTap={onClick ? { scale: 0.97 } : undefined} onClick={onClick} className={className} style={{ ...base, cursor: onClick ? 'pointer' : undefined }}>{children}</motion.div>
 }
@@ -36,7 +36,9 @@ export function Card({ children, style, className, onClick, href }: { children: 
 /* ── HeroCard (navy) ── */
 export function HeroCard({ children, style, orbit = true }: { children: ReactNode; style?: CSSProperties; orbit?: boolean }) {
   return (
-    <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--sb-navy)', color: '#fff', borderRadius: 28, padding: 'clamp(20px,3vw,28px)', border: '1px solid var(--sb-line)', ...style }}>
+    <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--sb-grad-stage)', color: '#fff', borderRadius: 28, padding: 'clamp(20px,3vw,28px)', boxShadow: 'var(--sb-shadow-stage)', ...style }}>
+      <span aria-hidden style={{ position: 'absolute', right: -90, top: -90, width: 340, height: 340, borderRadius: '50%', background: 'var(--sb-glow-stage)', pointerEvents: 'none' }} />
+      <span aria-hidden style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px)', backgroundSize: '40px 40px', pointerEvents: 'none' }} />
       {orbit && <span aria-hidden style={{ position: 'absolute', right: -70, top: -70, width: 220, height: 220, borderRadius: '50%', border: '1.5px dashed #FF993355', animation: 'sbSpin 50s linear infinite' }} />}
       <div style={{ position: 'relative' }}>{children}</div>
     </div>
@@ -49,7 +51,7 @@ export function IconTile({ icon, tone = 'stone', size = 48, active = false }: { 
   return (
     <motion.span
       initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: [0.6, 1.06, 1], opacity: 1 }} transition={{ duration: 0.45 }}
-      style={{ width: size, height: size, borderRadius: Math.round(size / 3.2), background: t.bg, color: t.ink, display: 'grid', placeItems: 'center', flex: 'none' }}
+      style={{ width: size, height: size, borderRadius: Math.round(size / 3.2), background: t.bg, color: t.ink, display: 'grid', placeItems: 'center', flex: 'none', boxShadow: `inset 0 1px 0 rgba(255,255,255,.55), inset 0 -2px 0 color-mix(in srgb, ${t.ink} 14%, transparent)` }}
     >
       <Icon name={icon} size={Math.round(size * 0.52)} weight={active ? 'fill' : 'duotone'} />
     </motion.span>
@@ -195,8 +197,8 @@ export function PageHeader({ kicker, title, highlight, tail, action, icon, tone 
 type BtnKind = 'primary' | 'accent' | 'secondary' | 'danger'
 export function Btn({ kind = 'primary', children, href, onClick, icon, style, type = 'button' }: { kind?: BtnKind; children: ReactNode; href?: string; onClick?: () => void; icon?: string; style?: CSSProperties; type?: 'button' | 'submit' }) {
   const k: Record<BtnKind, CSSProperties> = {
-    primary: { background: 'var(--sb-primary)', color: 'var(--sb-primary-fg)', border: 'none' },
-    accent: { background: '#FF9933', color: '#0A0F24', border: 'none' },
+    primary: { background: 'var(--sb-grad-primary)', color: '#0A0F24', border: 'none', boxShadow: 'var(--sb-shadow-gloss)' },
+    accent: { background: 'var(--sb-grad-primary)', color: '#0A0F24', border: 'none', boxShadow: 'var(--sb-shadow-gloss)' },
     secondary: { background: 'transparent', color: 'inherit', border: '1.5px solid currentColor' },
     danger: { background: 'transparent', color: 'var(--sb-danger-ink)', border: '1.5px solid var(--sb-danger)' },
   }

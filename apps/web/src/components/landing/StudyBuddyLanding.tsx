@@ -18,6 +18,7 @@ import { Icon } from '@/components/ui/Icon'
 import { Brand } from '@/components/sb/Brand'
 import { ThemeToggle } from '@/components/sb/ThemeToggle'
 import { LandingFooter } from '@/components/landing/LandingFooter'
+import { HeroSection } from '@/components/landing/HeroSection'
 
 const D = 'var(--sb-font-display)'
 const HAND = 'var(--sb-font-hand)'
@@ -49,7 +50,7 @@ function Highlight({ children, second = false }: { children: ReactNode; second?:
   return <span className={`sb-hi${second ? ' sb-hi-2' : ''}`}>{children}</span>
 }
 
-const bubbleUser: CSSProperties = { alignSelf: 'flex-end', background: 'var(--sb-navy)', color: '#F2F3F8', padding: '10px 14px', borderRadius: '18px 18px 5px 18px', fontSize: 13.5, lineHeight: 1.45 }
+const bubbleUser: CSSProperties = { alignSelf: 'flex-end', background: 'var(--sb-grad-stage)', color: '#F2F3F8', padding: '10px 14px', borderRadius: '18px 18px 5px 18px', fontSize: 13.5, lineHeight: 1.45 }
 
 /* ---------- data ---------- */
 
@@ -76,6 +77,11 @@ const DAY: DayStep[] = [
   { time: '22:45', h: 22, m: 45, phase: 'LIGHTS OUT', icon: 'moon-stars', ti: 'users-four', where: 'At home', tool: 'ParentPulse', t: 'Her mother sees the day, without asking.', d: 'A short summary for parents: time studied, scores, and what needs work tomorrow.',
     light: { bg: '#0A0F24', fg: '#FFFFFF', sub: '#A9AEC6', kick: '#FF9933' }, dark: { bg: '#070B1A', fg: '#FFFFFF', sub: '#A9AEC6', kick: '#FF9933' } },
 ]
+
+const SKY_TOP = ['#FF9A6B', '#A9C8FF', '#8EB6FF', '#3B5BDB', '#0A0F24', '#050817']
+const SKY_BOT = ['#FFE2B8', '#FFF1D6', '#F4F7FF', '#FF9A6B', '#1E3A8A', '#121A33']
+const SUN_X = [14, 30, 50, 76, 36, 64]
+const SUN_Y = [60, 36, 24, 52, 30, 24]
 
 const AUD = [
   { title: 'Clear a doubt in under a minute, and remember it next week', cta: 'Start free', href: '/sign-up', points: [
@@ -140,18 +146,11 @@ export function StudyBuddyLanding() {
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [day, setDay] = useState(0)
-  const [heroTab, setHeroTab] = useState(0)
-  const [picked, setPicked] = useState(false)
-  const [demo, setDemo] = useState(0)
   const [aud, setAud] = useState(0)
   const [faqTab, setFaqTab] = useState(0)
   const [open, setOpen] = useState(0)
   const [menu, setMenu] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const pickedRef = useRef(false)
-  const heroTabRef = useRef(0)
-  pickedRef.current = picked
-  heroTabRef.current = heroTab
 
   useEffect(() => setMounted(true), [])
 
@@ -166,20 +165,13 @@ export function StudyBuddyLanding() {
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
-    // Hero: without a tap, alternate Gyankosh / InkBuddy every 7s; after a tap, stop switching.
-    const t = setInterval(() => {
-      if (pickedRef.current) { if (heroTabRef.current === 0) setDemo((d) => (d + 1) % 3); return }
-      if (heroTabRef.current === 0) setHeroTab(1)
-      else { setHeroTab(0); setDemo((d) => (d + 1) % 3) }
-    }, 7000)
-    return () => { window.removeEventListener('scroll', onScroll); clearInterval(t) }
+    return () => { window.removeEventListener('scroll', onScroll) }
   }, [])
 
   const dark = mounted && resolvedTheme === 'dark'
   const dd = DAY[day]
   const tone = dark ? dd.dark : dd.light
   const onDark = tone.fg === '#FFFFFF' || tone.fg === '#F2F3F8'
-  const demoData = DEMOS[demo]
   const A = AUD[aud]
 
   const goDay = (i: number) => {
@@ -190,7 +182,7 @@ export function StudyBuddyLanding() {
   return (
     <div className="sbl" id="top">
       {/* ───────── nav ───────── */}
-      <nav style={{ position: 'sticky', top: 0, zIndex: 50, background: 'color-mix(in srgb, var(--sb-paper) 90%, transparent)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', borderBottom: '1px solid var(--sb-line)' }}>
+      <nav style={{ position: 'sticky', top: 0, zIndex: 50, background: 'var(--sb-glass)', backdropFilter: 'blur(22px) saturate(1.5)', WebkitBackdropFilter: 'blur(22px) saturate(1.5)', borderBottom: '1px solid var(--sb-line)' }}>
         <div className="sbl-navrow" style={{ maxWidth: 1200, margin: '0 auto', height: 68, padding: '0 20px', display: 'flex', alignItems: 'center', gap: 24 }}>
           <Brand href="#top" />
           <div className="sbl-desk" style={{ gap: 28, marginLeft: 12, fontWeight: 600, fontSize: 15, whiteSpace: 'nowrap' }}>
@@ -200,8 +192,8 @@ export function StudyBuddyLanding() {
           <span style={{ flex: 1 }} />
           <ThemeToggle />
           <Link className="sbl-desk sbl-link" href="/sign-in" style={{ fontWeight: 700, fontSize: 15, whiteSpace: 'nowrap' }}>Sign in</Link>
-          <Link className="sbl-btn-primary sbl-nav-cta" href="/sign-up" style={{ display: 'flex', alignItems: 'center', gap: 6, height: 44, padding: '0 18px', borderRadius: 14, fontWeight: 800, fontSize: 14.5, whiteSpace: 'nowrap' }}>
-            Start free<Icon name="arrow" size={16} weight="bold" color="var(--sb-saffron)" />
+          <Link className="sbl-nav-cta" href="/sign-up" style={{ display: 'flex', alignItems: 'center', gap: 6, height: 44, padding: '0 18px', borderRadius: 14, background: 'var(--sb-grad-stage)', color: '#fff', boxShadow: 'var(--sb-shadow-stage)', fontWeight: 800, fontSize: 14.5, whiteSpace: 'nowrap' }}>
+            Start free<Icon name="arrow" size={16} weight="bold" color="#FF9933" />
           </Link>
           <span className="sbl-mob">
             <button onClick={() => setMenu((m) => !m)} aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu}
@@ -223,147 +215,7 @@ export function StudyBuddyLanding() {
       </nav>
 
       <main>
-        {/* ───────── hero ───────── */}
-        <section style={{ position: 'relative', maxWidth: 1200, margin: '0 auto', padding: 'clamp(40px,7vw,88px) 20px clamp(48px,7vw,96px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,480px),1fr))', gap: 'clamp(40px,6vw,72px)', alignItems: 'center' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 22, animation: 'sbIn .6s both' }}>
-            <span style={{ alignSelf: 'flex-start', display: 'flex', alignItems: 'center', gap: 8, padding: '7px 14px 7px 8px', borderRadius: 999, background: 'var(--sb-surface)', border: '1px solid var(--sb-line)', fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap' }}>
-              <span style={{ padding: '3px 8px', borderRadius: 999, background: '#0A0F24', color: '#FF9933', fontSize: 11.5, fontWeight: 800 }}>2026</span>Founding students onboarding now
-            </span>
-            <h1 style={{ fontWeight: 700, fontSize: 'clamp(40px,6.4vw,76px)', lineHeight: 1, letterSpacing: '-.045em' }}>
-              Learn it with <Highlight>Gyankosh.</Highlight><br />Prove it with <Highlight second>InkBuddy.</Highlight>
-            </h1>
-            <p style={{ margin: 0, maxWidth: 540, fontSize: 'clamp(17px,1.8vw,19px)', lineHeight: 1.6, color: 'var(--sb-text-2)', textWrap: 'pretty' as CSSProperties['textWrap'] }}>
-              <b style={{ color: 'var(--sb-ink)' }}>Virat Gyankosh</b> answers your doubts from your NCERT textbook and shows the page. <b style={{ color: 'var(--sb-ink)' }}>InkBuddy</b> checks the answers you write by hand and gives marks and feedback, like a board examiner. CBSE and ICSE, Classes 6–12.
-            </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,240px),1fr))', gap: 10, maxWidth: 560 }}>
-              {[{ name: 'Virat Gyankosh', line: 'Ask any doubt. See the page.', icon: 'sparkle', t: ['var(--sb-lav)', 'var(--sb-lav-ink)'] }, { name: 'InkBuddy', line: 'Write by hand. Get marked.', icon: 'pen-nib', t: ['var(--sb-sky)', 'var(--sb-sky-ink)'] }].map((p, i) => {
-                const on = i === heroTab
-                return (
-                  <button key={p.name} className="sbl-press" onClick={() => { setHeroTab(i); setPicked(true) }} aria-pressed={on}
-                    style={{ position: 'relative', overflow: 'hidden', textAlign: 'left', display: 'flex', gap: 12, alignItems: 'center', padding: '12px 14px', borderRadius: 20, border: `1.5px solid ${on ? 'var(--sb-navy)' : 'var(--sb-line)'}`, background: on ? 'var(--sb-navy)' : 'var(--sb-surface)', cursor: 'pointer', transition: 'background .3s,border-color .3s,transform .15s' }}>
-                    <span style={{ width: 46, height: 46, borderRadius: 15, background: on ? '#FF9933' : p.t[0], color: on ? '#0A0F24' : p.t[1], display: 'grid', placeItems: 'center', flex: 'none', transition: 'all .3s' }}><Icon name={p.icon} size={25} weight="duotone" /></span>
-                    <span style={{ minWidth: 0, flex: 1 }}>
-                      <span style={{ display: 'block', fontWeight: 800, fontSize: 15.5, color: on ? '#fff' : 'var(--sb-ink)', transition: 'color .3s' }}>{p.name}</span>
-                      <span style={{ display: 'block', fontSize: 13, color: on ? '#A9AEC6' : 'var(--sb-muted)', marginTop: 1, transition: 'color .3s' }}>{p.line}</span>
-                    </span>
-                    <Icon name="arrow" size={16} weight="bold" color={on ? '#FF9933' : 'var(--sb-line)'} />
-                    <span style={{ position: 'absolute', left: 0, bottom: 0, height: 3, width: on ? '100%' : '0%', background: '#FF9933', transition: 'width 7s linear' }} />
-                  </button>
-                )
-              })}
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-              <Link className="sbl-btn-primary" href="/sign-up" style={{ display: 'flex', alignItems: 'center', gap: 10, height: 56, padding: '0 26px', borderRadius: 18, fontWeight: 800, fontSize: 16, whiteSpace: 'nowrap', boxShadow: 'var(--sb-shadow-fab)' }}>
-                Start 7-day free trial<Icon name="arrow" size={18} weight="bold" color="var(--sb-saffron)" />
-              </Link>
-              <a className="sbl-btn-ghost" href="#proof" style={{ display: 'flex', alignItems: 'center', gap: 10, height: 56, padding: '0 22px', borderRadius: 18, border: '1.5px solid var(--sb-ink)', fontWeight: 700, fontSize: 16, whiteSpace: 'nowrap' }}>
-                <Icon name="play" size={22} weight="fill" color="var(--sb-saffron-deep)" />See a real answer
-              </a>
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 18px', fontSize: 13.5, fontWeight: 600, color: 'var(--sb-muted)' }}>
-              {['No credit card', '15 free questions', 'Works on any phone'].map((t) => (
-                <span key={t} style={{ display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}><Icon name="check" size={16} weight="bold" color="var(--sb-saffron-deep)" />{t}</span>
-              ))}
-            </div>
-          </div>
-
-          {/* phone */}
-          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', padding: '20px 0' }}>
-            <span aria-hidden style={{ position: 'absolute', left: '50%', top: '50%', width: 'min(110%,560px)', aspectRatio: '1', transform: 'translate(-50%,-50%)', borderRadius: '50%', border: '1.5px solid #FF99332E' }} />
-            <span aria-hidden style={{ position: 'absolute', left: '50%', top: '50%', width: 'min(84%,430px)', aspectRatio: '1', margin: 'calc(min(84%,430px) / -2) 0 0 calc(min(84%,430px) / -2)', borderRadius: '50%', border: '1.5px dashed #FF993366', animation: 'sbSpin 60s linear infinite' }} />
-            <div style={{ position: 'relative', width: 320, maxWidth: '100%', height: 640, borderRadius: 44, border: '9px solid var(--sb-frame)', background: 'var(--sb-paper)', overflow: 'hidden', boxShadow: '0 50px 90px -40px #0A0F2488' }}>
-              <div style={{ height: 38, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 22px', fontSize: 12.5, fontWeight: 700 }}>
-                <span>9:41</span><span style={{ display: 'flex', gap: 5 }}><Icon name="signal" size={14} weight="fill" /><Icon name="wifi-high" size={14} weight="fill" /><Icon name="battery" size={14} weight="fill" /></span>
-              </div>
-              <div style={{ height: 48, display: 'flex', alignItems: 'center', gap: 8, padding: '0 14px', borderBottom: '1px solid var(--sb-line)' }}>
-                <span style={{ width: 30, height: 30, borderRadius: 10, background: '#0A0F24', color: '#FF9933', display: 'grid', placeItems: 'center' }}><Icon name={heroTab === 0 ? 'sparkle' : 'pen-nib'} size={16} weight="fill" /></span>
-                <span style={{ flex: 1, fontFamily: D, fontWeight: 700, fontSize: 16 }}>{heroTab === 0 ? 'Virat Gyankosh' : 'InkBuddy'}</span>
-                <span style={{ padding: '4px 9px', borderRadius: 999, background: 'var(--sb-saffron-tint)', color: 'var(--sb-saffron-deep)', fontSize: 11, fontWeight: 800 }}>{heroTab === 0 ? demoData.lang : '3 marks'}</span>
-              </div>
-
-              {heroTab === 0 ? (
-                <>
-                  <div key={'d' + demo} style={{ padding: '14px 12px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-                    <div style={{ ...bubbleUser, maxWidth: '84%', animation: 'sbPop .35s both', transformOrigin: 'bottom right' }}>{demoData.q}</div>
-                    <div style={{ display: 'flex', gap: 8, alignItems: 'center', animation: 'sbIn .3s .4s both' }}>
-                      <span style={{ width: 26, height: 26, borderRadius: 9, background: '#0A0F24', color: '#FF9933', display: 'grid', placeItems: 'center' }}><Icon name="sparkle" size={14} weight="fill" /></span>
-                      <span style={{ display: 'flex', gap: 4 }}>{[0, 0.15, 0.3].map((d) => <span key={d} style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--sb-ink)', animation: `sbDot 1.1s ${d}s infinite` }} />)}</span>
-                      <span style={{ fontSize: 11.5, color: 'var(--sb-muted)' }}>Searching your textbooks…</span>
-                    </div>
-                    <div style={{ background: 'var(--sb-surface)', border: '1px solid var(--sb-line)', borderRadius: '5px 18px 18px 18px', padding: '12px 13px', fontSize: 13.5, lineHeight: 1.55, animation: 'sbIn .45s 1.5s both' }}>
-                      {demoData.a}
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginTop: 10 }}>
-                        <Chip bg="var(--sb-lav)" fg="var(--sb-lav-ink)" icon="book-open-text">{demoData.cite}</Chip>
-                        <Chip bg="var(--sb-stone)" fg="var(--sb-stone-ink)" icon="stack">{demoData.bloom}</Chip>
-                      </div>
-                    </div>
-                    <div style={{ display: 'flex', gap: 6, animation: 'sbIn .4s 2s both' }}>
-                      <span style={{ padding: '8px 11px', borderRadius: 999, border: '1px solid var(--sb-line)', background: 'var(--sb-surface)', fontSize: 11.5, fontWeight: 700 }}>Explain simpler</span>
-                      <span style={{ padding: '8px 11px', borderRadius: 999, background: 'var(--sb-saffron-tint)', color: 'var(--sb-saffron-deep)', fontSize: 11.5, fontWeight: 800 }}>Quiz me</span>
-                    </div>
-                  </div>
-                  <div style={{ position: 'absolute', left: 10, right: 10, bottom: 76, display: 'flex', alignItems: 'center', gap: 4, background: 'var(--sb-surface)', border: '1.5px solid var(--sb-ink)', borderRadius: 24, padding: '4px 4px 4px 14px' }}>
-                    <span style={{ flex: 1, color: 'var(--sb-muted)', fontSize: 13 }}>Ask about any chapter…</span>
-                    <span style={{ padding: '0 8px', display: 'grid', placeItems: 'center' }}><Icon name="mic" size={19} /></span>
-                    <span style={{ width: 36, height: 36, borderRadius: '50%', background: '#FF9933', color: '#0A0F24', display: 'grid', placeItems: 'center' }}><Icon name="send" size={16} weight="bold" /></span>
-                  </div>
-                </>
-              ) : (
-                <div key="ink" style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 10, animation: 'sbIn .4s both' }}>
-                  <div style={{ background: 'var(--sb-surface)', border: '1px solid var(--sb-line)', borderRadius: 16, padding: '10px 12px' }}>
-                    <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: '.06em', color: 'var(--sb-muted)' }}>SCIENCE IX · CH 10 · 3 MARKS</div>
-                    <div style={{ fontWeight: 800, fontSize: 14, marginTop: 3 }}>Why does ice float on water?</div>
-                  </div>
-                  <div className="sbl-notebook" style={{ position: 'relative', overflow: 'hidden', transform: 'rotate(-1.2deg)', backgroundImage: 'linear-gradient(#1F3A8A1A 1px,transparent 1px)', backgroundSize: '100% 24px', backgroundPosition: '0 6px', borderRadius: 6, padding: '8px 12px 10px 30px', boxShadow: '0 10px 22px -16px #0A0F24' }}>
-                    <span style={{ position: 'absolute', left: 20, top: 0, bottom: 0, width: 1, background: '#FF993399' }} />
-                    <div style={{ fontFamily: HAND, fontSize: 15, lineHeight: '24px' }}>Ice floats because when water freezes it expands, so its density decreases. Ice is lighter than water.</div>
-                    <span style={{ position: 'absolute', left: 4, top: 8, fontFamily: HAND, fontWeight: 700, fontSize: 15, color: '#B45309', animation: 'sbPop .3s 1.6s both' }}>✓</span>
-                    <span style={{ position: 'absolute', left: 4, top: 32, fontFamily: HAND, fontWeight: 700, fontSize: 15, color: '#B45309', animation: 'sbPop .3s 1.9s both' }}>✓</span>
-                    <span style={{ position: 'absolute', left: 0, right: 0, height: 2, background: '#FF9933', boxShadow: '0 0 12px 3px #FF993388', animation: 'sbScan 1.4s .2s ease-in-out both' }} />
-                  </div>
-                  <div style={{ background: 'var(--sb-navy)', color: '#fff', borderRadius: 18, padding: '12px 13px', display: 'flex', flexDirection: 'column', gap: 8, animation: 'sbIn .4s 1.7s both' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.06em', color: '#FF9933' }}>INKBUDDY MARKS</span>
-                      <span style={{ fontFamily: D, fontWeight: 700, fontSize: 24 }}>2.5<span style={{ fontSize: 14, color: '#A9AEC6' }}> / 3</span></span>
-                    </div>
-                    {['Water expands on freezing', 'Density decreases'].map((t) => (
-                      <span key={t} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12.5 }}><Icon name="check" size={14} weight="bold" color="#FF9933" />{t}</span>
-                    ))}
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12.5, color: '#FFB4AE' }}><Icon name="minus" size={14} weight="bold" />Why? Open hexagonal lattice (−0.5)</span>
-                  </div>
-                  <div style={{ display: 'flex', gap: 6, animation: 'sbIn .4s 2.1s both' }}>
-                    <Chip bg="var(--sb-lav)" fg="var(--sb-lav-ink)" icon="book-open-text" style={{ padding: '6px 10px' }}>Revise p.132</Chip>
-                    <Chip bg="var(--sb-saffron-tint)" fg="var(--sb-saffron-deep)" style={{ padding: '6px 10px', fontWeight: 800 }}>Try again</Chip>
-                  </div>
-                </div>
-              )}
-
-              {/* Android bottom bar */}
-              <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, background: '#0A0F24', borderRadius: '22px 22px 0 0', padding: '7px 4px 16px', display: 'flex' }}>
-                {[['home', 'Home'], ['learn', 'Learn'], ['tutor', 'Tutor'], ['progress', 'Progress'], ['more', 'More']].map(([ic, lb]) => {
-                  const on = lb === 'Tutor'
-                  return (
-                    <span key={lb} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, color: on ? '#fff' : '#9AA0BC' }}>
-                      <span style={{ width: 48, height: 28, borderRadius: 14, background: on ? '#FF9933' : 'transparent', color: on ? '#0A0F24' : 'inherit', display: 'grid', placeItems: 'center' }}><Icon name={ic} size={20} active={on} /></span>
-                      <span style={{ fontSize: 10, fontWeight: 700 }}>{lb}</span>
-                    </span>
-                  )
-                })}
-              </div>
-            </div>
-            <div className="sbl-desk-block">
-              <div style={{ position: 'absolute', left: 0, top: '18%', display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px 10px 10px', borderRadius: 18, background: 'var(--sb-surface)', border: '1px solid var(--sb-line)', boxShadow: 'var(--sb-shadow-float)', animation: 'sbFloat 5s ease-in-out infinite' }}>
-                <span style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--sb-saffron-tint)', color: 'var(--sb-saffron-deep)', display: 'grid', placeItems: 'center' }}><Icon name="fire" size={22} weight="fill" /></span>
-                <span><span style={{ display: 'block', fontWeight: 800, fontSize: 16 }}>12 days</span><span style={{ fontSize: 12, color: 'var(--sb-muted)' }}>study streak</span></span>
-              </div>
-              <div style={{ position: 'absolute', right: 0, bottom: '20%', display: 'flex', flexDirection: 'column', gap: 8, padding: '14px 16px', borderRadius: 20, background: 'var(--sb-navy)', color: '#fff', boxShadow: '0 20px 40px -20px #0A0F24AA', animation: 'sbFloat 6s 1s ease-in-out infinite' }}>
-                <span style={{ fontSize: 11.5, fontWeight: 800, color: '#FF9933', letterSpacing: '.06em', whiteSpace: 'nowrap' }}>PRACTEST · PHYSICS</span>
-                <span style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}><span style={{ fontFamily: D, fontWeight: 700, fontSize: 30 }}>4/5</span><span style={{ fontSize: 12.5, color: '#A9AEC6' }}>+1 level</span></span>
-                <span style={{ display: 'flex', gap: 4 }}>{[1, 1, 1, 1, 0].map((on, i) => <span key={i} style={{ width: 22, height: 6, borderRadius: 6, background: on ? '#FF9933' : '#FFFFFF33' }} />)}</span>
-              </div>
-            </div>
-          </div>
-        </section>
+        <HeroSection />
 
         {/* ───────── trust strip ───────── */}
         <div style={{ borderTop: '1px solid var(--sb-line)', borderBottom: '1px solid var(--sb-line)', background: 'var(--sb-surface)', overflow: 'hidden' }}>
@@ -388,18 +240,14 @@ export function StudyBuddyLanding() {
             {/* desktop: the fixed clock (column stretches the full section; child is sticky) */}
             <div className="sbl-desk-block" style={{ alignSelf: 'stretch', height: '100%' }}>
               <div style={{ position: 'sticky', top: 76, height: 'calc(100vh - 76px)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 20 }}>
-                <div style={{ position: 'relative', width: 'min(100%,340px,50vh)', aspectRatio: '1', borderRadius: '50%', background: 'var(--sb-surface)', boxShadow: '0 40px 80px -40px #0A0F2488, inset 0 0 0 10px var(--sb-frame)' }}>
-                  {Array.from({ length: 12 }).map((_, i) => {
-                    const big = i % 3 === 0
-                    return <span key={i} style={{ position: 'absolute', left: '50%', top: '50%', width: big ? 6 : 3, height: big ? 18 : 10, marginLeft: big ? -3 : -1.5, background: big ? 'var(--sb-ink)' : 'var(--sb-line)', borderRadius: 3, transform: `rotate(${i * 30}deg) translateY(calc((min(170px,25vh) - 26px) * -1))`, transformOrigin: '50% 0' }} />
-                  })}
-                  <div style={{ position: 'absolute', left: '50%', top: '30%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, color: 'var(--sb-ink)' }}>
-                    <Icon name={dd.icon} size={30} weight="duotone" color="var(--sb-saffron-deep)" />
-                    <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.14em', color: 'var(--sb-muted)' }}>{dd.phase}</span>
+                <div style={{ position: 'relative', width: 'min(100%,340px,50vh)', aspectRatio: '1', borderRadius: '50%', overflow: 'hidden', background: `linear-gradient(180deg, ${SKY_TOP[day]} 0%, ${SKY_BOT[day]} 62%)`, transition: 'background 1s ease', boxShadow: '0 40px 80px -40px #0A0F2488, 0 0 0 10px var(--sb-frame), 0 0 60px -10px rgba(255,153,51,.35)' }}>
+                  <div style={{ position: 'absolute', inset: '62% 0 0 0', background: 'linear-gradient(180deg, rgba(10,15,36,.22), rgba(10,15,36,.5))' }} />
+                  {day >= 4 && Array.from({ length: 14 }).map((_, i) => <span key={i} style={{ position: 'absolute', left: `${(i * 37) % 92 + 4}%`, top: `${(i * 23) % 52 + 4}%`, width: 3, height: 3, borderRadius: '50%', background: '#fff', opacity: 0.7, animation: `sbDot ${1.6 + (i % 4) * 0.4}s infinite` }} />)}
+                  <span style={{ position: 'absolute', left: `${SUN_X[day]}%`, top: `${SUN_Y[day]}%`, width: 62, height: 62, marginLeft: -31, marginTop: -31, borderRadius: '50%', background: day >= 4 ? 'radial-gradient(circle at 35% 30%,#FFFFFF,#C9D4FF 55%,#7D97FF)' : 'radial-gradient(circle at 35% 30%,#FFF4D6,#FFC067 40%,#FF8A1F 80%)', boxShadow: day >= 4 ? '0 0 36px 8px rgba(125,151,255,.55)' : '0 0 40px 10px rgba(255,140,40,.6)', transition: 'left 1s cubic-bezier(.3,1.3,.5,1), top 1s cubic-bezier(.3,1.3,.5,1)' }} />
+                  <div style={{ position: 'absolute', left: 0, right: 0, bottom: '14%', textAlign: 'center', color: '#fff', textShadow: '0 2px 12px rgba(0,0,0,.4)' }}>
+                    <Icon name={dd.icon} size={26} weight="duotone" color="#fff" />
+                    <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.18em', marginTop: 2 }}>{dd.phase}</div>
                   </div>
-                  <div style={{ position: 'absolute', inset: 0, transform: `rotate(${(dd.h % 12) * 30 + dd.m * 0.5}deg)`, transition: 'transform 1s cubic-bezier(.3,1.3,.5,1)' }}><span style={{ position: 'absolute', left: '50%', bottom: '50%', width: 8, height: '26%', marginLeft: -4, borderRadius: 8, background: 'var(--sb-ink)' }} /></div>
-                  <div style={{ position: 'absolute', inset: 0, transform: `rotate(${dd.m * 6}deg)`, transition: 'transform 1s cubic-bezier(.3,1.3,.5,1)' }}><span style={{ position: 'absolute', left: '50%', bottom: '50%', width: 5, height: '38%', marginLeft: -2.5, borderRadius: 5, background: '#FF9933' }} /></div>
-                  <span style={{ position: 'absolute', left: '50%', top: '50%', width: 18, height: 18, margin: '-9px 0 0 -9px', borderRadius: '50%', background: 'var(--sb-ink)', border: '4px solid #FF9933' }} />
                 </div>
                 <div key={'t' + day} style={{ fontFamily: D, fontWeight: 700, fontSize: 64, letterSpacing: '-.04em', lineHeight: 1, animation: 'sbPop .45s both' }}>{dd.time}</div>
                 <div style={{ display: 'flex', gap: 8 }}>
@@ -457,7 +305,7 @@ export function StudyBuddyLanding() {
                 ))}
               </div>
             </div>
-            <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--sb-navy)', color: '#F2F3F8', borderRadius: 30, padding: 'clamp(22px,3.5vw,34px)', display: 'flex', flexDirection: 'column', gap: 18 }}>
+            <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--sb-grad-stage)', color: '#F2F3F8', borderRadius: 30, padding: 'clamp(22px,3.5vw,34px)', display: 'flex', flexDirection: 'column', gap: 18 }}>
               <span aria-hidden style={{ position: 'absolute', right: -60, top: -60, width: 200, height: 200, borderRadius: '50%', border: '1.5px dashed #FF993355', animation: 'sbSpin 50s linear infinite' }} />
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}><Tile size={42} bg="#FF9933" fg="#0A0F24" icon="sparkle" weight="fill" /><span style={{ fontWeight: 800, fontSize: 16 }}>Study Buddy</span></div>
               <div style={{ alignSelf: 'flex-end', background: '#FFFFFF1A', padding: '11px 15px', borderRadius: '18px 18px 5px 18px', fontSize: 15, fontWeight: 600 }}>Why does ice float on water?</div>
@@ -593,7 +441,7 @@ export function StudyBuddyLanding() {
             </div>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-            {[{ icon: 'magnifying-glass-plus', t: 'Sarvagya', d: 'research assistant' }, { icon: 'brain', t: 'Mitram', d: 'aptitude & focus checks' }, { icon: 'shield', t: 'FocusShield', d: 'blocks distractions' }, { icon: 'wifi-slash', t: 'OfflineOrbit', d: 'study without internet' }, { icon: 'certificate', t: 'Certificates', d: 'for every course' }].map((x) => (
+            {[{ icon: 'shield', t: 'FocusShield', d: 'blocks distractions' }, { icon: 'wifi-slash', t: 'OfflineOrbit', d: 'study without internet' }, { icon: 'certificate', t: 'Certificates', d: 'for every course' }].map((x) => (
               <span key={x.t} style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: 999, background: 'var(--sb-surface)', border: '1px solid var(--sb-line)', fontWeight: 700, fontSize: 14 }}>
                 <Icon name={x.icon} size={20} weight="duotone" color="var(--sb-saffron-deep)" />{x.t}<span style={{ color: 'var(--sb-muted)', fontWeight: 600 }}>· {x.d}</span>
               </span>
@@ -602,7 +450,7 @@ export function StudyBuddyLanding() {
         </section>
 
         {/* ───────── for the whole house ───────── */}
-        <section id="for" style={{ background: 'var(--sb-navy)', color: '#F2F3F8' }}>
+        <section id="for" style={{ background: 'var(--sb-grad-stage)', color: '#F2F3F8' }}>
           <div style={{ ...section, display: 'flex', flexDirection: 'column', gap: 36 }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', gap: 22 }}>
               <div><div style={{ ...kick, color: '#FF9933' }}>Made for the whole house</div><h2 style={h2}>One app. Three views.</h2></div>
@@ -646,7 +494,7 @@ export function StudyBuddyLanding() {
               const hot = p.hot
               const mute = hot ? '#A9AEC6' : 'var(--sb-muted)'
               return (
-                <div key={p.name} style={{ position: 'relative', background: hot ? 'var(--sb-navy)' : 'var(--sb-surface)', color: hot ? '#fff' : 'var(--sb-ink)', border: hot ? '2px solid var(--sb-navy)' : '1px solid var(--sb-line)', borderRadius: 28, padding: 24, display: 'flex', flexDirection: 'column', gap: 18, outline: hot ? '1px solid var(--sb-line)' : undefined }}>
+                <div key={p.name} style={{ position: 'relative', background: hot ? 'var(--sb-grad-stage)' : 'var(--sb-surface)', color: hot ? '#fff' : 'var(--sb-ink)', border: hot ? '2px solid var(--sb-navy)' : '1px solid var(--sb-line)', borderRadius: 28, padding: 24, display: 'flex', flexDirection: 'column', gap: 18, outline: hot ? '1px solid var(--sb-line)' : undefined }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontWeight: 800, fontSize: 18 }}>{p.name}</span>
                     {p.badge && <span style={{ padding: '5px 11px', borderRadius: 999, background: hot ? '#FF9933' : 'var(--sb-saffron-tint)', color: hot ? '#0A0F24' : 'var(--sb-saffron-deep)', fontSize: 12, fontWeight: 800 }}>{p.badge}</span>}
@@ -704,7 +552,7 @@ export function StudyBuddyLanding() {
 
         {/* ───────── final CTA ───────── */}
         <section style={{ padding: '0 20px clamp(48px,6vw,80px)', background: 'var(--sb-surface)' }}>
-          <div style={{ position: 'relative', overflow: 'hidden', maxWidth: 1200, margin: '0 auto', background: 'var(--sb-navy)', color: '#fff', borderRadius: 'clamp(28px,4vw,44px)', padding: 'clamp(36px,6vw,72px)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 22 }}>
+          <div style={{ position: 'relative', overflow: 'hidden', maxWidth: 1200, margin: '0 auto', background: 'var(--sb-grad-stage)', color: '#fff', borderRadius: 'clamp(28px,4vw,44px)', padding: 'clamp(36px,6vw,72px)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 22 }}>
             <span aria-hidden style={{ position: 'absolute', right: -120, bottom: -120, width: 420, height: 420, borderRadius: '50%', border: '1.5px solid #FF99332E' }} />
             <span aria-hidden style={{ position: 'absolute', right: -50, bottom: -50, width: 280, height: 280, borderRadius: '50%', border: '1.5px dashed #FF993366', animation: 'sbSpin 50s linear infinite' }} />
             <span aria-hidden style={{ position: 'absolute', right: 110, bottom: 110, width: 32, height: 32, borderRadius: '50%', background: '#FF9933', animation: 'sbFloat 3s ease-in-out infinite' }} />
@@ -751,7 +599,7 @@ function DayCard({ i }: { i: number }) {
   )
   if (i === 1) return (
     <div style={{ ...card, padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
-      <span style={{ alignSelf: 'flex-end', background: 'var(--sb-navy)', color: '#fff', padding: '10px 14px', borderRadius: '16px 16px 4px 16px', fontSize: 14, fontWeight: 600 }}>What&apos;s the difference between speed and velocity?</span>
+      <span style={{ alignSelf: 'flex-end', background: 'var(--sb-grad-stage)', color: '#fff', padding: '10px 14px', borderRadius: '16px 16px 4px 16px', fontSize: 14, fontWeight: 600 }}>What&apos;s the difference between speed and velocity?</span>
       <span style={{ background: 'var(--sb-paper)', padding: '12px 14px', borderRadius: '4px 16px 16px 16px', fontSize: 14, lineHeight: 1.55 }}>Speed is how fast. Velocity is how fast <b>and in which direction</b>, so it can be negative.<br /><Chip bg="var(--sb-lav)" fg="var(--sb-lav-ink)" icon="book-open-text" style={{ marginTop: 8 }}>NCERT Science IX · Ch 8</Chip></span>
     </div>
   )
@@ -760,7 +608,7 @@ function DayCard({ i }: { i: number }) {
       <div style={{ display: 'flex', gap: 5 }}>{['var(--sb-navy)', '#FF9933', 'var(--sb-heat-0)'].map((c, k) => <span key={k} style={{ flex: 1, height: 6, borderRadius: 6, background: c }} />)}</div>
       <div style={{ fontWeight: 800, fontSize: 15.5, margin: '4px 0 2px' }}>The SI unit of force is:</div>
       <span style={{ padding: '10px 12px', borderRadius: 13, border: '1.5px solid var(--sb-line)', fontSize: 14, fontWeight: 600, color: 'var(--sb-muted)' }}>Joule</span>
-      <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px', borderRadius: 13, background: 'var(--sb-navy)', color: '#fff', fontSize: 14, fontWeight: 700 }}>Newton<Icon name="check-circle" size={18} weight="fill" color="#FF9933" /></span>
+      <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px', borderRadius: 13, background: 'var(--sb-grad-stage)', color: '#fff', fontSize: 14, fontWeight: 700 }}>Newton<Icon name="check-circle" size={18} weight="fill" color="#FF9933" /></span>
       <span style={{ padding: '10px 12px', borderRadius: 13, border: '1.5px solid var(--sb-line)', fontSize: 14, fontWeight: 600, color: 'var(--sb-muted)' }}>Watt</span>
     </div>
   )
