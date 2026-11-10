@@ -54,18 +54,18 @@ interface TestResultsViewProps {
   onViewHistory: () => void
 }
 
-const GC = 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))'
-const GT = 'linear-gradient(135deg,var(--teal-light),var(--peacock-teal))'
-const GW = 'linear-gradient(135deg,var(--turmeric),var(--gold))'
+const GC = 'var(--sb-navy)'
+const GT = 'var(--sb-navy)'
+const GW = 'var(--sb-navy)'
 
 const accuracyColor = (a: number): string =>
   a >= 80 ? 'var(--emerald)' : a >= 60 ? 'var(--turmeric)' : 'var(--kumkum)'
 
 const barGrad = (key: string): string => {
   const k = key.toUpperCase()
-  if (k === 'EASY') return 'linear-gradient(90deg,var(--teal-light),var(--peacock-teal))'
+  if (k === 'EASY') return 'var(--sb-navy)'
   if (k === 'HARD') return 'var(--bb-grad-primary)'
-  return 'linear-gradient(90deg,var(--saffron),var(--turmeric))'
+  return 'var(--sb-navy)'
 }
 
 export default function TestResultsView({ results, batchResult, onBackToGenerator, onViewHistory }: TestResultsViewProps) {
@@ -139,7 +139,7 @@ export default function TestResultsView({ results, batchResult, onBackToGenerato
     <div className="dcs">
       <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
         {/* Header */}
-        <div className="card" style={{ padding: 24, background: 'linear-gradient(135deg,rgb(var(--accent-primary-rgb) / 0.1),rgb(59 91 219 / 0.06))' }}>
+        <div className="card" style={{ padding: 24, background: 'var(--sb-navy)' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               <span className="plinth" style={{ width: 54, height: 54, background: GT }}>

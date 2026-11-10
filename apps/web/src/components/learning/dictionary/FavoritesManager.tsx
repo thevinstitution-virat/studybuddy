@@ -71,9 +71,9 @@ export default function FavoritesManager({ className = '' }: FavoritesManagerPro
 
   const getMasteryColor = (level: FavoriteWord['masteryLevel']) => {
     switch (level) {
-      case 'learning': return 'bg-yellow-100 text-yellow-800 border-yellow-300'
-      case 'familiar': return 'bg-blue-100 text-blue-800 border-blue-300'
-      case 'mastered': return 'bg-green-100 text-green-800 border-green-300'
+      case 'learning': return 'bg-sb-butter text-sb-butter-ink border-sb-butter'
+      case 'familiar': return 'bg-sb-sky text-sb-sky-ink border-sb-sky'
+      case 'mastered': return 'bg-sb-saffron-tint text-sb-saffron-deep border-sb-saffron'
       default: return 'bg-muted text-foreground border-input'
     }
   }
@@ -132,7 +132,7 @@ export default function FavoritesManager({ className = '' }: FavoritesManagerPro
       <Card className={`bg-white/80 backdrop-blur-xl border-border/50 ${className}`}>
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
-            <Heart className="h-5 w-5 animate-pulse text-red-500" />
+            <Heart className="h-5 w-5 animate-pulse text-sb-rose-ink" />
             <span>Loading Favorites...</span>
           </CardTitle>
         </CardHeader>
@@ -150,11 +150,11 @@ export default function FavoritesManager({ className = '' }: FavoritesManagerPro
   return (
     <div className={`space-y-6 ${className}`}>
       {/* Learning Progress Overview */}
-      <Card className="bg-gradient-to-r from-orange-50 to-blue-50 dark:from-orange-900/20 dark:to-blue-900/20 border-orange-200/50 dark:border-orange-700/50">
+      <Card className="bg-sb-surface-2     border-sb-saffron ">
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
-            <Target className="h-5 w-5 text-orange-500" />
-            <span className="bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">
+            <Target className="h-5 w-5 text-sb-saffron-deep" />
+            <span className="text-sb-saffron-deep    ">
               Learning Progress
             </span>
           </CardTitle>
@@ -165,25 +165,25 @@ export default function FavoritesManager({ className = '' }: FavoritesManagerPro
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             <div className="text-center">
-              <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+              <div className="text-2xl font-bold text-sb-saffron-deep ">
                 {learningProgress.totalWords}
               </div>
               <div className="text-sm text-muted-foreground">Total Words</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+              <div className="text-2xl font-bold text-sb-saffron-deep ">
                 {learningProgress.masteredWords}
               </div>
               <div className="text-sm text-muted-foreground">Mastered</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <div className="text-2xl font-bold text-sb-sky-ink ">
                 {learningProgress.streakDays}
               </div>
               <div className="text-sm text-muted-foreground">Day Streak</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+              <div className="text-2xl font-bold text-sb-lav-ink ">
                 {learningProgress.weeklyProgress}/{learningProgress.weeklyGoal}
               </div>
               <div className="text-sm text-muted-foreground">Weekly Goal</div>
@@ -212,7 +212,7 @@ export default function FavoritesManager({ className = '' }: FavoritesManagerPro
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="flex items-center space-x-2">
-                <Heart className="h-5 w-5 text-red-500" />
+                <Heart className="h-5 w-5 text-sb-rose-ink" />
                 <span>Favorite Words</span>
                 <Badge variant="secondary" className="ml-2">
                   {favoriteWords.length}
@@ -240,7 +240,7 @@ export default function FavoritesManager({ className = '' }: FavoritesManagerPro
                     clearAllFavorites()
                   }
                 }}
-                className="h-8 w-8 p-0 text-red-600 hover:text-red-700"
+                className="h-8 w-8 p-0 text-sb-rose-ink hover:text-sb-rose-ink"
                 title="Clear all favorites"
               >
                 <Trash2 className="h-4 w-4" />
@@ -321,7 +321,7 @@ export default function FavoritesManager({ className = '' }: FavoritesManagerPro
                             )}
                           </div>
 
-                          <p className="text-lg font-semibold bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent mb-2">
+                          <p className="text-lg font-semibold text-sb-saffron-deep     mb-2">
                             {word.hindiTranslation}
                           </p>
                           <p className="text-muted-foreground mb-3">
@@ -335,12 +335,12 @@ export default function FavoritesManager({ className = '' }: FavoritesManagerPro
                                 <Badge
                                   key={tag}
                                   variant="outline"
-                                  className="text-xs bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300"
+                                  className="text-xs bg-sb-sky  text-sb-sky-ink "
                                 >
                                   {tag}
                                   <button
                                     onClick={() => removeWordTag(word.id, tag)}
-                                    className="ml-1 hover:text-red-600"
+                                    className="ml-1 hover:text-sb-rose-ink"
                                   >
                                     <X className="h-3 w-3" />
                                   </button>
@@ -351,10 +351,10 @@ export default function FavoritesManager({ className = '' }: FavoritesManagerPro
 
                           {/* Personal Notes */}
                           {word.personalNotes && (
-                            <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded-lg p-3 mb-3">
+                            <div className="bg-sb-butter  border border-sb-butter  rounded-lg p-3 mb-3">
                               <div className="flex items-start space-x-2">
-                                <Edit3 className="h-4 w-4 text-yellow-600 mt-0.5" />
-                                <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                                <Edit3 className="h-4 w-4 text-sb-butter-ink mt-0.5" />
+                                <p className="text-sm text-sb-butter-ink ">
                                   {word.personalNotes}
                                 </p>
                               </div>
@@ -386,7 +386,7 @@ export default function FavoritesManager({ className = '' }: FavoritesManagerPro
                             variant="outline"
                             size="sm"
                             onClick={() => removeFromFavorites(word.id)}
-                            className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                            className="text-sb-rose-ink hover:text-sb-rose-ink hover:bg-sb-rose"
                           >
                             <Heart className="h-4 w-4 mr-1 fill-current" />
                             Remove
@@ -402,7 +402,7 @@ export default function FavoritesManager({ className = '' }: FavoritesManagerPro
                                 onClick={() => updateWordProgress(word.id, level)}
                                 className={`text-xs ${
                                   word.masteryLevel === level
-                                    ? 'bg-gradient-to-r from-orange-500 to-blue-500 text-white'
+                                    ? 'bg-sb-navy   text-white'
                                     : ''
                                 }`}
                               >

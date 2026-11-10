@@ -73,7 +73,7 @@ export function TranscribeForm({ view, initial, busy, submitLabel, onSubmit }: F
   }
   return (
     <div className="space-y-4">
-      {view.image ? <TaskImage src={view.image} alt={t('ev.tr.alt')} /> : <p className="text-sm text-red-600">{t('ev.f.noImage')}</p>}
+      {view.image ? <TaskImage src={view.image} alt={t('ev.tr.alt')} /> : <p className="text-sm text-sb-rose-ink">{t('ev.f.noImage')}</p>}
       <div className="rounded-md border bg-muted/40 p-3 text-sm">
         {t('ev.tr.help', { lang: view.language === 'hi' ? t('ev.lang.hi') : view.language === 'mixed' ? t('ev.lang.mixed') : t('ev.lang.en') })}
       </div>
@@ -207,7 +207,7 @@ export function DeidentifyForm({ view, initial, busy, submitLabel, onSubmit }: F
     return { x: Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), y: Math.min(1, Math.max(0, (e.clientY - r.top) / r.height)) }
   }
   const rect = (a: { x: number; y: number }, b: { x: number; y: number }): Region => ({ x: Math.min(a.x, b.x), y: Math.min(a.y, b.y), w: Math.abs(a.x - b.x), h: Math.abs(a.y - b.y) })
-  if (!view.image) return <p className="text-sm text-red-600">{t('ev.f.noImage')}</p>
+  if (!view.image) return <p className="text-sm text-sb-rose-ink">{t('ev.f.noImage')}</p>
   return (
     <div className="space-y-4">
       <div className="rounded-md border bg-muted/40 p-3 text-sm">
@@ -225,7 +225,7 @@ export function DeidentifyForm({ view, initial, busy, submitLabel, onSubmit }: F
         {/* eslint-disable-next-line @next/next/no-img-element -- private, per-request image from our API */}
         <img src={view.image} alt={t('ev.de.alt')} className="block w-full" draggable={false} />
         {[...regions, ...(draft ? [draft] : [])].map((g, i) => (
-          <div key={i} className="absolute border-2 border-red-600 bg-red-600/30" style={{ left: `${g.x * 100}%`, top: `${g.y * 100}%`, width: `${g.w * 100}%`, height: `${g.h * 100}%` }} />
+          <div key={i} className="absolute border-2 border-sb-danger bg-sb-danger" style={{ left: `${g.x * 100}%`, top: `${g.y * 100}%`, width: `${g.w * 100}%`, height: `${g.h * 100}%` }} />
         ))}
       </div>
       {regions.length > 0 && (

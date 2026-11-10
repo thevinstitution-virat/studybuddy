@@ -176,7 +176,7 @@ export default function WatchPage() {
           {data?.batch.batchName}
         </Button>
         {localCompleted && (
-          <span className="flex items-center text-green-600 dark:text-green-500 text-sm font-medium">
+          <span className="flex items-center text-sb-saffron-deep  text-sm font-medium">
             <CheckCircle2 className="w-4 h-4 mr-1.5" />
             Completed
           </span>
@@ -184,16 +184,16 @@ export default function WatchPage() {
       </div>
 
       {isBatchCompletedLocally && (
-        <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center text-amber-800 dark:text-amber-200">
-            <Award className="w-8 h-8 mr-3 text-amber-500" />
+        <div className="bg-sb-butter  border border-sb-butter  rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center text-sb-butter-ink ">
+            <Award className="w-8 h-8 mr-3 text-sb-butter-ink" />
             <div>
               <h3 className="font-bold">Congratulations!</h3>
               <p className="text-sm">You have completed all videos in this batch.</p>
             </div>
           </div>
           <Button 
-            className="bg-amber-600 hover:bg-amber-700 text-white whitespace-nowrap"
+            className="bg-sb-navy hover:bg-sb-navy text-white whitespace-nowrap"
             onClick={() => claimCertificateMutation.mutate({ batchId: batchId! })}
             disabled={claimCertificateMutation.isPending}
           >

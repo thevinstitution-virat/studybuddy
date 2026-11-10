@@ -167,7 +167,7 @@ export function TaxonomyPicker({ pickedIds, onPick, selectableTypes, disabled, m
       <div className={`${maxHeightClass} overflow-y-auto`}>
         {error ? (
           <div className="flex items-center gap-2 px-3 py-4 text-sm text-muted-foreground">
-            <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0" />
+            <AlertTriangle className="w-4 h-4 text-sb-butter-ink shrink-0" />
             <span className="flex-1">The taxonomy could not be loaded. {error}</span>
             <button type="button" onClick={() => void load()} className="text-xs font-medium text-primary hover:underline">
               Try again

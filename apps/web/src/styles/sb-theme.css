@@ -112,12 +112,12 @@
   --bb-hover: var(--sb-surface-2);
   --bb-on-accent: #0A0F24;
   /* gradients are retired (brief: no gradients except the highlighter) — flat fills */
-  --bb-grad-primary: var(--sb-primary);
-  --bb-grad-stage: var(--sb-navy);
-  --bb-grad-navy: var(--sb-navy);
-  --bb-grad-cobalt: var(--sb-sky-ink);
-  --bb-grad-ai-card: var(--sb-lav-ink);
-  --bb-grad-progress: var(--sb-saffron);
+  --bb-grad-primary: linear-gradient(var(--sb-primary), var(--sb-primary));
+  --bb-grad-stage: linear-gradient(var(--sb-navy), var(--sb-navy));
+  --bb-grad-navy: linear-gradient(var(--sb-navy), var(--sb-navy));
+  --bb-grad-cobalt: linear-gradient(var(--sb-sky-ink), var(--sb-sky-ink));
+  --bb-grad-ai-card: linear-gradient(var(--sb-lav-ink), var(--sb-lav-ink));
+  --bb-grad-progress: linear-gradient(var(--sb-saffron), var(--sb-saffron));
   --bb-glow-stage: radial-gradient(circle, #FF99332E, transparent 70%);
   --bb-sheen: none;
   --bb-shadow-glow-blaze: none;
@@ -355,3 +355,49 @@ h1, h2, h3, h4 { font-family: var(--sb-font-display); letter-spacing: -0.02em; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* ---- legacy utilities: flatten the gradient / glass / lift helpers that older pages still use ---- */
+:root, .dark { --dc-grad: linear-gradient(var(--sb-primary), var(--sb-primary)); --dc-grad-br: linear-gradient(var(--sb-primary), var(--sb-primary)); --dc-grad-cool: linear-gradient(var(--sb-navy), var(--sb-navy)); --dc-grad-warm: linear-gradient(var(--sb-saffron), var(--sb-saffron)); }
+/* primary CTAs written as bg-[image:var(--bb-grad-primary)] + text-white: saffron in night mode needs navy text */
+.dark [class*='--bb-grad-primary'], .dark [class*='--dc-grad'] { color: #0A0F24 !important; }
+.dc-gradient-text, .dc-gradient-text-cool, .dc-gradient-text-warm {
+  background: none !important; background-image: none !important; -webkit-text-fill-color: currentColor !important; color: var(--sb-saffron-deep) !important;
+}
+.dc-glass-card { background: var(--sb-surface) !important; backdrop-filter: none !important; border: 1px solid var(--sb-line) !important; box-shadow: none !important; }
+.dc-gradient-border::before { display: none !important; }
+.dc-gradient-border { border: 1px solid var(--sb-line) !important; background: var(--sb-surface) !important; }
+.dc-hover-lift:hover { transform: none !important; box-shadow: none !important; }
+
+/* scoped dashboard / student sheets: flat cards, 16px buttons, saffron chips, navy active pills */
+.dcd .card, .dcs .card { box-shadow: none; border-radius: 24px; border-color: var(--sb-line); }
+.dcd .card.lift:hover, .dcs .card.lift:hover { transform: none; box-shadow: none; border-color: var(--sb-ink); }
+.dcd .btn, .dcs .btn { border-radius: 16px; font-weight: 800; min-height: 44px; }
+.dcd .btn-primary, .dcs .btn-primary { transform: none !important; }
+.dcd .btn-ghost, .dcs .btn-ghost { border: 1.5px solid var(--sb-ink); color: var(--sb-ink); background: transparent; }
+.dcd .btn-ghost:hover, .dcs .btn-ghost:hover { background: color-mix(in srgb, var(--sb-ink) 6%, transparent); color: var(--sb-ink); border-color: var(--sb-ink); }
+.dcd .pill.on, .dcs .pill.on { background: var(--sb-navy); color: #fff; border-color: transparent; box-shadow: none; }
+.dcd .pill, .dcs .pill { border-radius: 999px; font-weight: 700; }
+.dcd .pill:hover, .dcs .pill:hover { border-color: var(--sb-ink); color: var(--sb-ink); }
+.dcd .eyebrow, .dcs .eyebrow { background: var(--sb-saffron-tint); color: var(--sb-saffron-deep); border: none; }
+.dcd .iconbtn, .dcs .iconbtn { border-radius: 999px; border: none; background: transparent; }
+.dcd .iconbtn:hover, .dcs .iconbtn:hover { background: color-mix(in srgb, var(--sb-ink) 6%, transparent); color: var(--sb-ink); }
+.dcd a, .dcs a { color: var(--sb-saffron-deep); }
+.dcd a:hover, .dcs a:hover { color: var(--sb-ink); }
+.dcd .tag, .dcs .tag { font-weight: 800; }
+/* tables go sticky-header on desktop; on phones the table scrolls inside its card */
+.dcd table th, .dcs table th { position: sticky; top: 0; background: var(--sb-surface); }
+@media (max-width: 639px) { .dcd main table, .dcs main table { display: block; overflow-x: auto; } }
+/* inputs everywhere: 16px, 1.5px line, saffron focus */
+.dcd input:not([type='checkbox']):not([type='radio']), .dcd select, .dcd textarea,
+.dcs input:not([type='checkbox']):not([type='radio']), .dcs select, .dcs textarea { border-radius: 16px; border-width: 1.5px; }
+.dcd input:focus-visible, .dcd select:focus-visible, .dcd textarea:focus-visible,
+.dcs input:focus-visible, .dcs select:focus-visible, .dcs textarea:focus-visible { outline: 2px solid var(--sb-saffron); outline-offset: 2px; }
+
+/* ---- night-mode safety net: pages written before dark mode hard-code light utilities ---- */
+.dark .bg-white, .dark .bg-white\/95, .dark .bg-white\/90, .dark .bg-white\/80, .dark .bg-white\/70, .dark .bg-white\/60 { background-color: hsl(var(--card)); }
+.dark .bg-gray-50, .dark .bg-gray-100, .dark .bg-slate-50, .dark .bg-slate-100, .dark .bg-zinc-50, .dark .bg-zinc-100, .dark .bg-neutral-50, .dark .bg-neutral-100 { background-color: hsl(var(--secondary)); }
+.dark .text-gray-900, .dark .text-gray-800, .dark .text-slate-900, .dark .text-slate-800, .dark .text-zinc-900, .dark .text-neutral-900 { color: hsl(var(--foreground)); }
+.dark .text-gray-700, .dark .text-gray-600, .dark .text-gray-500, .dark .text-slate-700, .dark .text-slate-600, .dark .text-slate-500 { color: hsl(var(--muted-foreground)); }
+.dark .border-gray-100, .dark .border-gray-200, .dark .border-gray-300, .dark .border-slate-200, .dark .border-slate-300 { border-color: hsl(var(--border)); }
+.dark .divide-gray-100 > * + *, .dark .divide-gray-200 > * + * { border-color: hsl(var(--border)); }
+.dark .shadow-lg, .dark .shadow-xl, .dark .shadow-2xl { --tw-shadow-color: #000; }

@@ -74,7 +74,7 @@ export default function InstitutionFeaturesPage() {
       </div>
 
       {error && (
-        <div className="mt-4 rounded-lg bg-red-50 px-4 py-2 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-300">
+        <div className="mt-4 rounded-lg bg-sb-rose px-4 py-2 text-sm text-sb-rose-ink  ">
           {error}
         </div>
       )}
@@ -89,7 +89,7 @@ export default function InstitutionFeaturesPage() {
                 <p className="font-semibold text-foreground">{f.name}</p>
                 <p className="text-sm text-muted-foreground">
                   {f.description}
-                  {!isAllowed && <span className="ml-2 text-amber-600">· not in your plan</span>}
+                  {!isAllowed && <span className="ml-2 text-sb-butter-ink">· not in your plan</span>}
                 </p>
               </div>
               <button

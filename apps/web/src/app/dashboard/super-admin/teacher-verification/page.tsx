@@ -203,11 +203,11 @@ export default function TeacherVerificationPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'pending':
-        return <Badge className="bg-yellow-100 text-yellow-800 border-yellow-300">Pending</Badge>
+        return <Badge className="bg-sb-butter text-sb-butter-ink border-sb-butter">Pending</Badge>
       case 'approved':
-        return <Badge className="bg-green-100 text-green-800 border-green-300">Approved</Badge>
+        return <Badge className="bg-sb-saffron-tint text-sb-saffron-deep border-sb-saffron">Approved</Badge>
       case 'rejected':
-        return <Badge className="bg-red-100 text-red-800 border-red-300">Rejected</Badge>
+        return <Badge className="bg-sb-rose text-sb-rose-ink border-sb-danger">Rejected</Badge>
       default:
         return <Badge>{status}</Badge>
     }
@@ -221,7 +221,7 @@ export default function TeacherVerificationPage() {
       case 'verified_email':
         return <Badge className="bg-primary/15 text-primary border-primary/40">Email Verified</Badge>
       case 'verified_document':
-        return <Badge className="bg-green-100 text-green-800 border-green-300">Document Verified</Badge>
+        return <Badge className="bg-sb-saffron-tint text-sb-saffron-deep border-sb-saffron">Document Verified</Badge>
       case 'verified_manual':
         return <Badge className="bg-primary/15 text-primary border-primary/40">Manually Verified</Badge>
       default:
@@ -313,9 +313,9 @@ export default function TeacherVerificationPage() {
 
       {/* Error Alert */}
       {state.error && (
-        <Card className="mb-6 border-red-200 bg-red-50">
+        <Card className="mb-6 border-sb-danger bg-sb-rose">
           <CardContent className="pt-6">
-            <div className="flex items-center gap-2 text-red-800">
+            <div className="flex items-center gap-2 text-sb-rose-ink">
               <AlertTriangle className="h-5 w-5" />
               <span>{state.error}</span>
             </div>
@@ -408,7 +408,7 @@ export default function TeacherVerificationPage() {
                               <Button
                                 onClick={() => handleReviewClick(doc, 'approve')}
                                 size="sm"
-                                className="bg-green-600 hover:bg-green-700 flex items-center gap-1"
+                                className="bg-sb-navy hover:bg-sb-navy flex items-center gap-1"
                               >
                                 <CheckCircle className="h-3 w-3" />
                                 Approve
@@ -417,7 +417,7 @@ export default function TeacherVerificationPage() {
                                 onClick={() => handleReviewClick(doc, 'reject')}
                                 size="sm"
                                 variant="outline"
-                                className="text-red-600 border-red-300 hover:bg-red-50 flex items-center gap-1"
+                                className="text-sb-rose-ink border-sb-danger hover:bg-sb-rose flex items-center gap-1"
                               >
                                 <XCircle className="h-3 w-3" />
                                 Reject
@@ -512,7 +512,7 @@ export default function TeacherVerificationPage() {
             <Button
               onClick={handleReviewSubmit}
               disabled={state.submitting}
-              className={state.reviewAction === 'approve' ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700'}
+              className={state.reviewAction === 'approve' ? 'bg-sb-navy hover:bg-sb-navy' : 'bg-sb-danger hover:bg-sb-danger'}
             >
               {state.submitting ? (
                 <>

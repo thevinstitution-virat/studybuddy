@@ -59,7 +59,7 @@ function TaxonomyRow({ item, isSelected, onSelect, onUpdate, onDelete }: RowProp
         <Button
           size="icon"
           variant="ghost"
-          className="h-7 w-7 shrink-0 text-green-600 hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-950"
+          className="h-7 w-7 shrink-0 text-sb-saffron-deep hover:text-sb-saffron-deep hover:bg-sb-saffron-tint "
           onClick={handleSave}
           disabled={saving}
         >

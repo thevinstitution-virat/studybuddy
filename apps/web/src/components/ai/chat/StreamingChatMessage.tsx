@@ -84,7 +84,7 @@ const TypingDots: React.FC = () => (
 const DefaultBotAvatar: React.FC = () => (
   <div
     className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center"
-    style={{ background: "linear-gradient(135deg, #534AB7 0%, #EF9F27 100%)" }}
+    style={{ background: "var(--sb-navy)" }}
     aria-hidden="true"
   >
     {/* Inline SVG robot — avoids extra icon import */}
@@ -142,7 +142,7 @@ const StreamingChatMessage: React.FC<StreamingChatMessageProps> = ({
                 {text}
               </p>
               {status === "error" && (
-                <p className="text-xs text-red-500 mt-1.5">
+                <p className="text-xs text-sb-rose-ink mt-1.5">
                   Something went wrong — please try again.
                 </p>
               )}
@@ -156,7 +156,7 @@ const StreamingChatMessage: React.FC<StreamingChatMessageProps> = ({
           <button
             type="button"
             onClick={onStop}
-            className="flex items-center gap-1.5 self-start px-3 py-1 rounded-full border border-border bg-white text-xs text-muted-foreground hover:text-red-500 hover:border-red-300 transition-all duration-150"
+            className="flex items-center gap-1.5 self-start px-3 py-1 rounded-full border border-border bg-white text-xs text-muted-foreground hover:text-sb-rose-ink hover:border-sb-danger transition-all duration-150"
           >
             <Square size={9} className="fill-current" aria-hidden="true" />
             Stop generating

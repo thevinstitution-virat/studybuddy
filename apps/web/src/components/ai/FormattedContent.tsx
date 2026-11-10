@@ -272,7 +272,7 @@ export default function FormattedContent({
     return (
       <div className="space-y-2">
         {error && (
-          <div className="text-sm text-amber-600 bg-amber-50 border border-amber-200 rounded px-3 py-2 mb-2">
+          <div className="text-sm text-sb-butter-ink bg-sb-butter border border-sb-butter rounded px-3 py-2 mb-2">
             ⚠️ Formatting error: {error}. Displaying with basic formatting.
           </div>
         )}
@@ -310,7 +310,7 @@ export default function FormattedContent({
           <div className="flex items-center space-x-2">
             <ContentTypeBadge contentType={contentAnalysis.contentType} />
             {contentAnalysis.confidence > 0.8 && (
-              <Badge variant="outline" className="text-green-600 border-green-300">
+              <Badge variant="outline" className="text-sb-saffron-deep border-sb-saffron">
                 <CheckCircle className="h-3 w-3 mr-1" />
                 High Confidence
               </Badge>
@@ -363,9 +363,9 @@ export default function FormattedContent({
 
       {/* Metadata Panel - Only in development */}
       {isDevelopment && showMetadata && (
-        <Card className="bg-blue-50 border-blue-200">
+        <Card className="bg-sb-sky border-sb-sky">
           <CardContent className="p-4">
-            <h4 className="font-medium mb-3 text-blue-800">Formatting Metadata</h4>
+            <h4 className="font-medium mb-3 text-sb-sky-ink">Formatting Metadata</h4>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               {/* Applied Formatters */}
@@ -398,9 +398,9 @@ export default function FormattedContent({
 
                   {qualityAssurance.errors.length > 0 && (
                     <div className="mb-2">
-                      <h6 className="text-red-600 font-medium text-xs mb-1">Errors:</h6>
+                      <h6 className="text-sb-rose-ink font-medium text-xs mb-1">Errors:</h6>
                       {qualityAssurance.errors.map((error, index) => (
-                        <div key={index} className="text-xs text-red-600 mb-1">
+                        <div key={index} className="text-xs text-sb-rose-ink mb-1">
                           • {error}
                         </div>
                       ))}
@@ -409,9 +409,9 @@ export default function FormattedContent({
 
                   {qualityAssurance.warnings.length > 0 && (
                     <div>
-                      <h6 className="text-yellow-600 font-medium text-xs mb-1">Warnings:</h6>
+                      <h6 className="text-sb-butter-ink font-medium text-xs mb-1">Warnings:</h6>
                       {qualityAssurance.warnings.slice(0, 3).map((warning, index) => (
-                        <div key={index} className="text-xs text-yellow-600 mb-1">
+                        <div key={index} className="text-xs text-sb-butter-ink mb-1">
                           • {warning}
                         </div>
                       ))}
@@ -445,9 +445,9 @@ function ContentTypeBadge({ contentType }: { contentType: string }) {
   }
 
   const configs = {
-    mathematical: { icon: Calculator, color: 'bg-blue-100 text-blue-800', label: 'Mathematical' },
-    chemical: { icon: Beaker, color: 'bg-green-100 text-green-800', label: 'Chemical' },
-    mixed: { icon: Code, color: 'bg-purple-100 text-purple-800', label: 'Mixed Content' },
+    mathematical: { icon: Calculator, color: 'bg-sb-sky text-sb-sky-ink', label: 'Mathematical' },
+    chemical: { icon: Beaker, color: 'bg-sb-saffron-tint text-sb-saffron-deep', label: 'Chemical' },
+    mixed: { icon: Code, color: 'bg-sb-lav text-sb-lav-ink', label: 'Mixed Content' },
     plain: { icon: FileText, color: 'bg-muted text-foreground', label: 'Plain Text' }
   }
 
@@ -487,7 +487,7 @@ function FormattedContentRenderer({
         .key-terms-section {
           margin-top: 2rem;
           padding-top: 1.5rem;
-          background: linear-gradient(to bottom, #f8fafc 0%, #f1f5f9 100%);
+          background: var(--sb-surface-2);
           border-radius: 0.75rem;
           padding: 1.5rem;
           border: 1px solid #e2e8f0;
@@ -519,7 +519,7 @@ function FormattedContentRenderer({
         /* Term names (bold text) - styled as prominent boxes */
         .key-terms-section strong {
           display: block !important;
-          background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+          background: var(--sb-surface-2);
           color: #1e3a8a !important;
           font-weight: 700 !important;
           font-size: 1.05rem !important;
@@ -597,7 +597,7 @@ function FormattedContentRenderer({
           ),
           // Enhanced blockquote formatting
           blockquote: ({node, ...props}) => (
-            <blockquote className="border-l-4 border-blue-400 pl-4 py-2 my-4 bg-blue-50 rounded-r-lg italic text-foreground" {...props} />
+            <blockquote className="border-l-4 border-sb-sky pl-4 py-2 my-4 bg-sb-sky rounded-r-lg italic text-foreground" {...props} />
           ),
           // Enhanced strong (bold) text
           strong: ({node, ...props}) => (
@@ -609,19 +609,19 @@ function FormattedContentRenderer({
           ),
           // Prevent code blocks from causing horizontal overflow
           pre: ({node, ...props}) => (
-            <pre className="overflow-x-auto whitespace-pre-wrap break-words bg-gray-900 text-green-400 p-4 rounded-lg my-4" {...props} />
+            <pre className="overflow-x-auto whitespace-pre-wrap break-words bg-gray-900 text-sb-saffron-deep p-4 rounded-lg my-4" {...props} />
           ),
           // Enhanced code formatting (inline and block)
           code: ({node, inline, className, children, ...props}: any) => {
             if (inline) {
               return (
-                <code className="bg-blue-50 px-2 py-0.5 rounded text-sm font-mono text-blue-700 border border-blue-200" {...props}>
+                <code className="bg-sb-sky px-2 py-0.5 rounded text-sm font-mono text-sb-sky-ink border border-sb-sky" {...props}>
                   {children}
                 </code>
               )
             }
             return (
-              <code className="block bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm font-mono" {...props}>
+              <code className="block bg-gray-900 text-sb-saffron-deep p-4 rounded-lg overflow-x-auto text-sm font-mono" {...props}>
                 {children}
               </code>
             )

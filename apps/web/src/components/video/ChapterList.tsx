@@ -65,7 +65,7 @@ export function ChapterList({ chapters, currentTimeSeconds, onChapterClick }: Pr
                   'flex w-full items-start gap-2 px-3 py-2.5 text-left text-sm',
                   'transition-colors hover:bg-vg-surface-2',
                   isActive
-                    ? 'bg-blue-500/10 text-blue-500'
+                    ? 'bg-sb-navy text-sb-sky-ink'
                     : 'text-vg-text-primary',
                 ].join(' ')}
               >

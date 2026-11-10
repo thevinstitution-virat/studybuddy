@@ -266,7 +266,7 @@ export function BunnyHLSPlayer({
 
   if (playerError) {
     return (
-      <div className="flex aspect-video w-full flex-col items-center justify-center gap-4 bg-slate-950 p-6 text-center text-red-500">
+      <div className="flex aspect-video w-full flex-col items-center justify-center gap-4 bg-slate-950 p-6 text-center text-sb-rose-ink">
         <AlertTriangle className="h-10 w-10" />
         <p className="max-w-md text-sm">{playerError}</p>
       </div>
@@ -309,7 +309,7 @@ export function BunnyHLSPlayer({
       </div>
 
       {/* ── Custom control bar ── */}
-      <div className="absolute bottom-0 left-0 right-0 lg:right-72 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-4 pb-4 pt-12 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+      <div className="absolute bottom-0 left-0 right-0 lg:right-72 bg-sb-surface-2 from-black/90 via-black/60 to-transparent px-4 pb-4 pt-12 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
 
         {/* Progress bar with chapter ticks */}
         <div
@@ -319,7 +319,7 @@ export function BunnyHLSPlayer({
         >
           {/* Playback fill */}
           <div
-            className="absolute left-0 top-0 h-full rounded-full bg-indigo-500"
+            className="absolute left-0 top-0 h-full rounded-full bg-sb-navy"
             style={{ width: `${playbackPct}%` }}
           />
 
@@ -338,7 +338,7 @@ export function BunnyHLSPlayer({
 
           {/* Scrub thumb */}
           <div
-            className="absolute top-1/2 -ml-2 h-4 w-4 -translate-y-1/2 rounded-full bg-indigo-500 shadow scale-0 transition-transform group-hover:scale-100"
+            className="absolute top-1/2 -ml-2 h-4 w-4 -translate-y-1/2 rounded-full bg-sb-navy shadow scale-0 transition-transform group-hover:scale-100"
             style={{ left: `${playbackPct}%` }}
           />
         </div>
@@ -347,7 +347,7 @@ export function BunnyHLSPlayer({
         <div className="flex items-center gap-4 text-white">
 
           {/* Play / Pause */}
-          <button type="button" onClick={togglePlay} className="hover:text-indigo-400">
+          <button type="button" onClick={togglePlay} className="hover:text-sb-lav-ink">
             {isPlaying
               ? <Pause className="h-6 w-6" fill="currentColor" />
               : <Play className="h-6 w-6" fill="currentColor" />}
@@ -362,7 +362,7 @@ export function BunnyHLSPlayer({
 
           {/* Volume */}
           <div className="group/vol relative flex items-center gap-2">
-            <button type="button" onClick={toggleMute} className="hover:text-indigo-400">
+            <button type="button" onClick={toggleMute} className="hover:text-sb-lav-ink">
               {isMuted || volume === 0
                 ? <VolumeX className="h-5 w-5" />
                 : <Volume2 className="h-5 w-5" />}
@@ -372,12 +372,12 @@ export function BunnyHLSPlayer({
               min="0" max="1" step="0.05"
               value={isMuted ? 0 : volume}
               onChange={handleVolumeChange}
-              className="w-20 accent-indigo-500 opacity-0 transition-opacity group-hover/vol:opacity-100"
+              className="w-20 accent-sb-lav opacity-0 transition-opacity group-hover/vol:opacity-100"
             />
           </div>
 
           {/* Fullscreen */}
-          <button type="button" onClick={toggleFullscreen} className="hover:text-indigo-400">
+          <button type="button" onClick={toggleFullscreen} className="hover:text-sb-lav-ink">
             {isFullscreen
               ? <Minimize2 className="h-5 w-5" />
               : <Maximize2 className="h-5 w-5" />}

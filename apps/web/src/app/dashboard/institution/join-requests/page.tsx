@@ -107,9 +107,9 @@ export default function JoinRequestsPage() {
       </div>
 
       {error && (
-        <Alert className="border-rose-200 bg-rose-50 dark:border-rose-900/40 dark:bg-rose-950/30">
-          <X className="h-4 w-4 text-rose-600" />
-          <AlertDescription className="text-rose-800 dark:text-rose-300">{error}</AlertDescription>
+        <Alert className="border-sb-rose bg-sb-rose  ">
+          <X className="h-4 w-4 text-sb-rose-ink" />
+          <AlertDescription className="text-sb-rose-ink ">{error}</AlertDescription>
         </Alert>
       )}
 
@@ -130,13 +130,13 @@ export default function JoinRequestsPage() {
             </Button>
           </div>
           {inviteMsg && (
-            <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm dark:border-emerald-900/40 dark:bg-emerald-950/30">
-              <p className="text-emerald-800 dark:text-emerald-300">{inviteMsg}</p>
+            <div className="rounded-xl border border-sb-saffron bg-sb-saffron-tint p-3 text-sm  ">
+              <p className="text-sb-saffron-deep ">{inviteMsg}</p>
               {inviteLink && (
                 <div className="mt-2 flex items-center gap-2">
                   <code className="flex-1 truncate rounded-lg bg-background/70 px-2 py-1.5 text-xs text-foreground">{inviteLink}</code>
                   <Button variant="outline" size="sm" onClick={copyLink}>
-                    {copied ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />} {copied ? 'Copied' : 'Copy'}
+                    {copied ? <CheckCircle2 className="h-4 w-4 text-sb-saffron-deep" /> : <Copy className="h-4 w-4" />} {copied ? 'Copied' : 'Copy'}
                   </Button>
                 </div>
               )}
@@ -165,7 +165,7 @@ export default function JoinRequestsPage() {
               {requests.map((r) => (
                 <div key={r.id} className="flex flex-col gap-3 rounded-xl border border-border/70 bg-background/50 p-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/70 text-sm font-bold text-primary-foreground">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sb-surface-2 from-primary to-primary/70 text-sm font-bold text-primary-foreground">
                       {(r.userName || r.userEmail || 'S').charAt(0).toUpperCase()}
                     </div>
                     <div className="min-w-0">
@@ -179,7 +179,7 @@ export default function JoinRequestsPage() {
                   </div>
                   <div className="flex shrink-0 gap-2">
                     <Button variant="outline" size="sm" onClick={() => review(r.id, 'reject')} disabled={busyId === r.id}>
-                      <X className="h-4 w-4 text-rose-600" /> Reject
+                      <X className="h-4 w-4 text-sb-rose-ink" /> Reject
                     </Button>
                     <Button variant="gradient" size="sm" onClick={() => review(r.id, 'approve')} disabled={busyId === r.id}>
                       {busyId === r.id ? <Loader2 className="h-4 w-4 animate-spin" /> : <Check className="h-4 w-4" />} Approve

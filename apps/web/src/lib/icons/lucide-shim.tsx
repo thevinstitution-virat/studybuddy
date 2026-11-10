@@ -8,6 +8,8 @@
  */
 import { forwardRef, type ComponentType, type SVGProps } from 'react'
 import {
+  Archive as PhArchive,
+  ArrowBendUpLeft as PhArrowBendUpLeft,
   ArrowCounterClockwise as PhArrowCounterClockwise,
   ArrowDown as PhArrowDown,
   ArrowLeft as PhArrowLeft,
@@ -20,12 +22,19 @@ import {
   ArrowsDownUp as PhArrowsDownUp,
   ArrowsIn as PhArrowsIn,
   ArrowsOut as PhArrowsOut,
+  Atom as PhAtom,
+  Backpack as PhBackpack,
+  Bank as PhBank,
   Bell as PhBell,
+  Book as PhBook,
+  BookBookmark as PhBookBookmark,
   BookOpenText as PhBookOpenText,
   BookmarkSimple as PhBookmarkSimple,
+  Books as PhBooks,
   Brain as PhBrain,
   Briefcase as PhBriefcase,
   Buildings as PhBuildings,
+  Calculator as PhCalculator,
   Calendar as PhCalendar,
   CalendarCheck as PhCalendarCheck,
   Camera as PhCamera,
@@ -39,7 +48,10 @@ import {
   Chalkboard as PhChalkboard,
   ChartBar as PhChartBar,
   ChartLineUp as PhChartLineUp,
+  ChartPie as PhChartPie,
   ChatCenteredText as PhChatCenteredText,
+  ChatCircle as PhChatCircle,
+  ChatsCircle as PhChatsCircle,
   Check as PhCheck,
   CheckCircle as PhCheckCircle,
   CheckSquare as PhCheckSquare,
@@ -53,9 +65,11 @@ import {
   CloudSlash as PhCloudSlash,
   Code as PhCode,
   Coins as PhCoins,
+  Confetti as PhConfetti,
   Copy as PhCopy,
   Cpu as PhCpu,
   CreditCard as PhCreditCard,
+  Crown as PhCrown,
   Cube as PhCube,
   CurrencyInr as PhCurrencyInr,
   Database as PhDatabase,
@@ -69,11 +83,14 @@ import {
   Eraser as PhEraser,
   Eye as PhEye,
   EyeSlash as PhEyeSlash,
+  FacebookLogo as PhFacebookLogo,
+  FilePlus as PhFilePlus,
   FileText as PhFileText,
   FileXls as PhFileXls,
   Files as PhFiles,
   Fire as PhFire,
   Flag as PhFlag,
+  Flask as PhFlask,
   FloppyDisk as PhFloppyDisk,
   FolderOpen as PhFolderOpen,
   FolderSimple as PhFolderSimple,
@@ -83,17 +100,24 @@ import {
   Gift as PhGift,
   Globe as PhGlobe,
   GraduationCap as PhGraduationCap,
+  GridFour as PhGridFour,
   HardDrives as PhHardDrives,
   Hash as PhHash,
+  Headphones as PhHeadphones,
   Heart as PhHeart,
+  Highlighter as PhHighlighter,
   HouseSimple as PhHouseSimple,
   Image as PhImage,
   Info as PhInfo,
+  InstagramLogo as PhInstagramLogo,
   Key as PhKey,
+  Leaf as PhLeaf,
   Lightbulb as PhLightbulb,
   Lightning as PhLightning,
   Link as PhLink,
+  LinkedinLogo as PhLinkedinLogo,
   List as PhList,
+  ListBullets as PhListBullets,
   ListChecks as PhListChecks,
   ListNumbers as PhListNumbers,
   Lock as PhLock,
@@ -108,11 +132,15 @@ import {
   Minus as PhMinus,
   MinusCircle as PhMinusCircle,
   Monitor as PhMonitor,
+  MonitorPlay as PhMonitorPlay,
   Moon as PhMoon,
   NotePencil as PhNotePencil,
   Palette as PhPalette,
   PaperPlaneTilt as PhPaperPlaneTilt,
   Paperclip as PhPaperclip,
+  Path as PhPath,
+  Pause as PhPause,
+  PenNib as PhPenNib,
   PencilLine as PhPencilLine,
   PencilSimple as PhPencilSimple,
   Percent as PhPercent,
@@ -125,11 +153,17 @@ import {
   Printer as PhPrinter,
   Pulse as PhPulse,
   PushPin as PhPushPin,
+  PuzzlePiece as PhPuzzlePiece,
+  Question as PhQuestion,
+  Quotes as PhQuotes,
   RadioButton as PhRadioButton,
   Receipt as PhReceipt,
   Robot as PhRobot,
   Rocket as PhRocket,
   Ruler as PhRuler,
+  Scroll as PhScroll,
+  SealCheck as PhSealCheck,
+  ShareNetwork as PhShareNetwork,
   Shield as PhShield,
   ShieldCheck as PhShieldCheck,
   ShieldWarning as PhShieldWarning,
@@ -138,6 +172,9 @@ import {
   SignIn as PhSignIn,
   SignOut as PhSignOut,
   SlidersHorizontal as PhSlidersHorizontal,
+  Smiley as PhSmiley,
+  SortAscending as PhSortAscending,
+  SortDescending as PhSortDescending,
   Sparkle as PhSparkle,
   SpeakerHigh as PhSpeakerHigh,
   SpeakerSlash as PhSpeakerSlash,
@@ -145,11 +182,23 @@ import {
   SquaresFour as PhSquaresFour,
   Stack as PhStack,
   Star as PhStar,
+  Storefront as PhStorefront,
   Sun as PhSun,
+  Table as PhTable,
   Tag as PhTag,
   Target as PhTarget,
   Terminal as PhTerminal,
+  TextAlignCenter as PhTextAlignCenter,
+  TextAlignLeft as PhTextAlignLeft,
+  TextAlignRight as PhTextAlignRight,
+  TextB as PhTextB,
+  TextHOne as PhTextHOne,
+  TextHThree as PhTextHThree,
+  TextHTwo as PhTextHTwo,
+  TextItalic as PhTextItalic,
+  TextStrikethrough as PhTextStrikethrough,
   TextT as PhTextT,
+  TextUnderline as PhTextUnderline,
   ThumbsDown as PhThumbsDown,
   ThumbsUp as PhThumbsUp,
   Timer as PhTimer,
@@ -162,8 +211,10 @@ import {
   TrendDown as PhTrendDown,
   TrendUp as PhTrendUp,
   Trophy as PhTrophy,
+  TwitterLogo as PhTwitterLogo,
   UploadSimple as PhUploadSimple,
   User as PhUser,
+  UserCheck as PhUserCheck,
   UserMinus as PhUserMinus,
   UserPlus as PhUserPlus,
   UsersFour as PhUsersFour,
@@ -189,8 +240,8 @@ function wrap(Glyph: ComponentType<any>, name: string) {
   return C
 }
 
-// @ts-ignore — deep import has no typings; the public types come from the real package
-export * from 'lucide-react/dist/esm/lucide-react.js'
+// @ts-ignore deep import has no typings; the public types come from the real package
+export { BookOpenText, HeartPulse, MessageSquareShare, Scale, SearchCode, SeparatorHorizontal } from 'lucide-react/dist/esm/lucide-react.js'
 export const Loader2 = wrap(PhCircleNotch, 'Loader2')
 export const X = wrap(PhX, 'X')
 export const Plus = wrap(PhPlus, 'Plus')
@@ -374,6 +425,72 @@ export const CircleDot = wrap(PhRadioButton, 'CircleDot')
 export const ChevronsLeft = wrap(PhCaretDoubleLeft, 'ChevronsLeft')
 export const ChevronsRight = wrap(PhCaretDoubleRight, 'ChevronsRight')
 export const Dot = wrap(PhDotOutline, 'Dot')
+export const AlignLeft = wrap(PhTextAlignLeft, 'AlignLeft')
+export const AlignCenter = wrap(PhTextAlignCenter, 'AlignCenter')
+export const AlignRight = wrap(PhTextAlignRight, 'AlignRight')
+export const Archive = wrap(PhArchive, 'Archive')
+export const Atom = wrap(PhAtom, 'Atom')
+export const Backpack = wrap(PhBackpack, 'Backpack')
+export const BadgeCheck = wrap(PhSealCheck, 'BadgeCheck')
+export const Beaker = wrap(PhFlask, 'Beaker')
+export const Bold = wrap(PhTextB, 'Bold')
+export const Book = wrap(PhBook, 'Book')
+export const BookMarked = wrap(PhBookBookmark, 'BookMarked')
+export const BookmarkPlus = wrap(PhBookmarkSimple, 'BookmarkPlus')
+export const Calculator = wrap(PhCalculator, 'Calculator')
+export const ClipboardList = wrap(PhClipboardText, 'ClipboardList')
+export const CornerUpLeft = wrap(PhArrowBendUpLeft, 'CornerUpLeft')
+export const Crown = wrap(PhCrown, 'Crown')
+export const Edit3 = wrap(PhPencilSimple, 'Edit3')
+export const Facebook = wrap(PhFacebookLogo, 'Facebook')
+export const FilePlus = wrap(PhFilePlus, 'FilePlus')
+export const FilePlus2 = wrap(PhFilePlus, 'FilePlus2')
+export const FlaskConical = wrap(PhFlask, 'FlaskConical')
+export const FolderInput = wrap(PhFolderSimple, 'FolderInput')
+export const FolderTree = wrap(PhTreeStructure, 'FolderTree')
+export const Globe2 = wrap(PhGlobe, 'Globe2')
+export const Grid3X3 = wrap(PhGridFour, 'Grid3X3')
+export const Grid3x3 = wrap(PhGridFour, 'Grid3x3')
+export const Headphones = wrap(PhHeadphones, 'Headphones')
+export const HelpCircle = wrap(PhQuestion, 'HelpCircle')
+export const Highlighter = wrap(PhHighlighter, 'Highlighter')
+export const ImagePlus = wrap(PhImage, 'ImagePlus')
+export const Instagram = wrap(PhInstagramLogo, 'Instagram')
+export const Italic = wrap(PhTextItalic, 'Italic')
+export const Landmark = wrap(PhBank, 'Landmark')
+export const Leaf = wrap(PhLeaf, 'Leaf')
+export const Library = wrap(PhBooks, 'Library')
+export const LibraryBig = wrap(PhBooks, 'LibraryBig')
+export const Linkedin = wrap(PhLinkedinLogo, 'Linkedin')
+export const List = wrap(PhListBullets, 'List')
+export const Maximize = wrap(PhArrowsOut, 'Maximize')
+export const MessageCircle = wrap(PhChatCircle, 'MessageCircle')
+export const MessagesSquare = wrap(PhChatsCircle, 'MessagesSquare')
+export const Minimize = wrap(PhArrowsIn, 'Minimize')
+export const MonitorPlay = wrap(PhMonitorPlay, 'MonitorPlay')
+export const PanelRightClose = wrap(PhSidebarSimple, 'PanelRightClose')
+export const PanelRightOpen = wrap(PhSidebarSimple, 'PanelRightOpen')
+export const Pause = wrap(PhPause, 'Pause')
+export const PenTool = wrap(PhPenNib, 'PenTool')
+export const PieChart = wrap(PhChartPie, 'PieChart')
+export const Puzzle = wrap(PhPuzzlePiece, 'Puzzle')
+export const Quote = wrap(PhQuotes, 'Quote')
+export const Route = wrap(PhPath, 'Route')
+export const ScrollText = wrap(PhScroll, 'ScrollText')
+export const Share2 = wrap(PhShareNetwork, 'Share2')
+export const Smile = wrap(PhSmiley, 'Smile')
+export const SortAsc = wrap(PhSortAscending, 'SortAsc')
+export const SortDesc = wrap(PhSortDescending, 'SortDesc')
+export const Store = wrap(PhStorefront, 'Store')
+export const Strikethrough = wrap(PhTextStrikethrough, 'Strikethrough')
+export const Table = wrap(PhTable, 'Table')
+export const Twitter = wrap(PhTwitterLogo, 'Twitter')
+export const Underline = wrap(PhTextUnderline, 'Underline')
+export const UserCheck = wrap(PhUserCheck, 'UserCheck')
+export const PartyPopper = wrap(PhConfetti, 'PartyPopper')
+export const Heading1 = wrap(PhTextHOne, 'Heading1')
+export const Heading2 = wrap(PhTextHTwo, 'Heading2')
+export const Heading3 = wrap(PhTextHThree, 'Heading3')
 export const Plug = wrap(PhPlug, 'Plug')
 export const Cpu = wrap(PhCpu, 'Cpu')
 export const Code = wrap(PhCode, 'Code')

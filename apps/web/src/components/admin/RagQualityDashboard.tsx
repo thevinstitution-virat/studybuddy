@@ -25,7 +25,7 @@ type Metric = (typeof METRICS)[number];
 
 const COLORS: Record<Metric, string> = {
   faithfulness: '#6366f1',
-  answer_relevancy: '#10b981',
+  answer_relevancy: 'var(--sb-saffron-deep)',
   context_precision: '#f59e0b',
   context_recall: '#ef4444',
 };
@@ -74,7 +74,7 @@ export default function RagQualityDashboard() {
     return (
       <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-12 shadow-xl border border-white/20">
         <div className="flex items-center justify-center gap-3">
-          <div className="w-6 h-6 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+          <div className="w-6 h-6 border-2 border-sb-lav border-t-transparent rounded-full animate-spin" />
           <span className="text-muted-foreground text-lg">Loading RAG quality metrics…</span>
         </div>
       </div>
@@ -84,13 +84,13 @@ export default function RagQualityDashboard() {
   // ── Error ──
   if (err) {
     return (
-      <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-12 shadow-xl border border-red-200/30 dark:border-red-700/20">
+      <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-12 shadow-xl border border-sb-danger ">
         <div className="text-center">
-          <div className="text-red-500 text-xl font-semibold mb-2">Failed to load</div>
+          <div className="text-sb-rose-ink text-xl font-semibold mb-2">Failed to load</div>
           <p className="text-muted-foreground">{err}</p>
           <button
             onClick={fetchData}
-            className="mt-4 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl text-sm font-medium hover:shadow-lg transition-all"
+            className="mt-4 px-4 py-2 bg-sb-navy   text-white rounded-xl text-sm font-medium hover:shadow-lg transition-all"
           >
             Retry
           </button>
@@ -104,7 +104,7 @@ export default function RagQualityDashboard() {
     return (
       <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-12 shadow-xl border border-white/20">
         <div className="text-center">
-          <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-2xl flex items-center justify-center">
+          <div className="w-16 h-16 mx-auto mb-4 bg-sb-surface-2 from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-2xl flex items-center justify-center">
             <svg className="w-8 h-8 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
@@ -124,7 +124,7 @@ export default function RagQualityDashboard() {
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-2xl font-bold text-sb-saffron-deep    ">
             RAG Quality Metrics
           </h2>
           <p className="text-muted-foreground text-sm mt-1">
@@ -146,16 +146,16 @@ export default function RagQualityDashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {METRICS.map((m, i) => {
           const gradients = [
-            'from-indigo-50 to-purple-50 dark:from-indigo-950 dark:to-purple-950 border-indigo-200/30',
-            'from-emerald-50 to-teal-50 dark:from-emerald-950 dark:to-teal-950 border-emerald-200/30',
-            'from-amber-50 to-orange-50 dark:from-amber-950 dark:to-orange-950 border-amber-200/30',
-            'from-rose-50 to-red-50 dark:from-rose-950 dark:to-red-950 border-rose-200/30',
+            '    border-sb-lav',
+            '    border-sb-saffron',
+            '    border-sb-butter',
+            '    border-sb-rose',
           ];
           const iconGradients = [
-            'from-indigo-500 to-purple-500',
-            'from-emerald-500 to-teal-500',
-            'from-amber-500 to-orange-500',
-            'from-rose-500 to-red-500',
+            ' ',
+            ' ',
+            ' ',
+            ' ',
           ];
           return (
             <MetricCard
@@ -292,14 +292,14 @@ function MetricCard({
   const pct = value !== null ? `${(value * 100).toFixed(1)}%` : '—';
   const tone =
     value === null ? 'text-muted-foreground'
-    : value >= 0.8 ? 'text-emerald-600 dark:text-emerald-400'
-    : value >= 0.6 ? 'text-amber-600 dark:text-amber-400'
-    : 'text-rose-600 dark:text-rose-400';
+    : value >= 0.8 ? 'text-sb-saffron-deep '
+    : value >= 0.6 ? 'text-sb-butter-ink '
+    : 'text-sb-rose-ink ';
 
   return (
-    <div className={`p-5 bg-gradient-to-r ${gradient} rounded-2xl border hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]`}>
+    <div className={`p-5 bg-sb-surface-2 ${gradient} rounded-2xl border hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]`}>
       <div className="flex items-center gap-3 mb-3">
-        <div className={`w-8 h-8 bg-gradient-to-r ${iconGradient} rounded-lg flex items-center justify-center shadow-sm`}>
+        <div className={`w-8 h-8 bg-sb-surface-2 ${iconGradient} rounded-lg flex items-center justify-center shadow-sm`}>
           <div className="w-3 h-3 rounded-full bg-white/80" />
         </div>
         <span className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
@@ -316,9 +316,9 @@ function ScoreBadge({ value }: { value: number | null }) {
 
   const pct = (value * 100).toFixed(1);
   const cls =
-    value >= 0.8 ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400'
-    : value >= 0.6 ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
-    : 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400';
+    value >= 0.8 ? 'bg-sb-saffron-tint text-sb-saffron-deep  '
+    : value >= 0.6 ? 'bg-sb-butter text-sb-butter-ink  '
+    : 'bg-sb-rose text-sb-rose-ink  ';
 
   return (
     <span className={`inline-block px-2 py-0.5 rounded-lg text-xs font-semibold ${cls}`}>

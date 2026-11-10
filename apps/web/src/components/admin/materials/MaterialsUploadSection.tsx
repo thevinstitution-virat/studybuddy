@@ -387,14 +387,14 @@ export default function MaterialsUploadSection({ onUploadComplete }: MaterialsUp
             {...getRootProps()}
             className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
               isDragActive 
-                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' 
-                : 'border-input hover:border-blue-400'
+                ? 'border-sb-sky bg-sb-sky ' 
+                : 'border-input hover:border-sb-sky'
             }`}
           >
             <input {...getInputProps()} />
             <CloudArrowUpIcon className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
             {isDragActive ? (
-              <p className="text-blue-600 dark:text-blue-400">Drop the files here...</p>
+              <p className="text-sb-sky-ink ">Drop the files here...</p>
             ) : (
               <div>
                 <p className="text-muted-foreground mb-2">
@@ -431,7 +431,7 @@ export default function MaterialsUploadSection({ onUploadComplete }: MaterialsUp
               <Button
                 onClick={uploadFiles}
                 disabled={isUploading || files.length === 0}
-                className="bg-blue-600 hover:bg-blue-700"
+                className="bg-sb-navy hover:bg-sb-navy"
               >
                 {isUploading ? 'Uploading...' : 'Upload All'}
               </Button>
@@ -482,11 +482,11 @@ function FileUploadItem({ file, materialTypes, subjects, studyMaterialTypes, onU
   const getStatusIcon = () => {
     switch (file.status) {
       case 'completed':
-        return <CheckCircleIcon className="h-5 w-5 text-green-500" />
+        return <CheckCircleIcon className="h-5 w-5 text-sb-saffron-deep" />
       case 'error':
-        return <ExclamationTriangleIcon className="h-5 w-5 text-red-500" />
+        return <ExclamationTriangleIcon className="h-5 w-5 text-sb-rose-ink" />
       case 'uploading':
-        return <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600" />
+        return <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-sb-sky" />
       default:
         return <DocumentTextIcon className="h-5 w-5 text-muted-foreground" />
     }
@@ -524,7 +524,7 @@ function FileUploadItem({ file, materialTypes, subjects, studyMaterialTypes, onU
       </div>
 
       {file.error && (
-        <div className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 p-2 rounded">
+        <div className="text-sm text-sb-rose-ink  bg-sb-rose  p-2 rounded">
           {file.error}
         </div>
       )}

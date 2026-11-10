@@ -45,7 +45,7 @@ export default function OrganizationSwitcher({ isCollapsed = false }: Organizati
         className={`w-full flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} p-3 rounded-xl hover:bg-muted dark:hover:bg-gray-800 transition-colors border border-transparent hover:border-border dark:hover:border-gray-700`}
       >
         <div className="flex items-center gap-3 overflow-hidden">
-          <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center flex-shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-sb-sky  text-sb-sky-ink  flex items-center justify-center flex-shrink-0">
             <Building2 className="w-4 h-4" />
           </div>
           {!isCollapsed && (
@@ -79,7 +79,7 @@ export default function OrganizationSwitcher({ isCollapsed = false }: Organizati
                   onClick={() => handleSwitch(org.id)}
                   className={`w-full flex items-center justify-between p-2 rounded-lg text-sm text-left transition-colors ${
                     activeOrg?.id === org.id 
-                    ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 font-medium' 
+                    ? 'bg-sb-sky  text-sb-sky-ink  font-medium' 
                     : 'text-foreground hover:bg-muted/50'
                   }`}
                 >
@@ -100,7 +100,7 @@ export default function OrganizationSwitcher({ isCollapsed = false }: Organizati
                 setIsOpen(false);
                 router.push('/dashboard/super-admin/onboarding');
               }}
-              className="w-full flex items-center gap-2 p-2 rounded-lg text-sm text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+              className="w-full flex items-center gap-2 p-2 rounded-lg text-sm text-sb-sky-ink  hover:bg-sb-sky  transition-colors"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Create Institution</span>

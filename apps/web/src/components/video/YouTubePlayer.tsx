@@ -147,7 +147,7 @@ export function YouTubePlayer({
 
   if (playerError) {
     return (
-      <div className="flex aspect-video w-full flex-col items-center justify-center gap-4 bg-slate-950 p-6 text-center text-red-500">
+      <div className="flex aspect-video w-full flex-col items-center justify-center gap-4 bg-slate-950 p-6 text-center text-sb-rose-ink">
         <AlertTriangle className="h-10 w-10" />
         <p className="max-w-md text-sm">{playerError}</p>
       </div>

@@ -28,9 +28,9 @@ interface CanaryData {
 
 const VERDICT_STYLES: Record<string, { bg: string; text: string; label: string }> = {
   insufficient_data: { bg: 'bg-muted', text: 'text-muted-foreground', label: '⏳ Insufficient Data' },
-  regressed: { bg: 'bg-red-100 dark:bg-red-900/30', text: 'text-red-700 dark:text-red-400', label: '🔴 Regressed — Do NOT Promote' },
-  neutral: { bg: 'bg-yellow-100 dark:bg-yellow-900/30', text: 'text-yellow-700 dark:text-yellow-400', label: '🟡 Neutral — Review Needed' },
-  improved: { bg: 'bg-green-100 dark:bg-green-900/30', text: 'text-green-700 dark:text-green-400', label: '🟢 Improved — Safe to Promote' },
+  regressed: { bg: 'bg-sb-rose ', text: 'text-sb-rose-ink ', label: '🔴 Regressed — Do NOT Promote' },
+  neutral: { bg: 'bg-sb-butter ', text: 'text-sb-butter-ink ', label: '🟡 Neutral — Review Needed' },
+  improved: { bg: 'bg-sb-saffron-tint ', text: 'text-sb-saffron-deep ', label: '🟢 Improved — Safe to Promote' },
 };
 
 function MetricCard({ label, value, unit, delta }: { label: string; value: number | null; unit?: string; delta?: number | null }) {
@@ -41,7 +41,7 @@ function MetricCard({ label, value, unit, delta }: { label: string; value: numbe
         {value != null ? `${value}${unit || ''}` : '—'}
       </div>
       {delta != null && (
-        <div className={`text-xs mt-1 font-medium ${delta > 0 ? 'text-green-600' : delta < 0 ? 'text-red-600' : 'text-muted-foreground'}`}>
+        <div className={`text-xs mt-1 font-medium ${delta > 0 ? 'text-sb-saffron-deep' : delta < 0 ? 'text-sb-rose-ink' : 'text-muted-foreground'}`}>
           {delta > 0 ? '+' : ''}{delta.toFixed(4)} vs baseline
         </div>
       )}
@@ -52,11 +52,11 @@ function MetricCard({ label, value, unit, delta }: { label: string; value: numbe
 function ProviderPanel({ stats, isCanary }: { stats: ProviderStats; isCanary?: boolean }) {
   const providerLabel = stats.provider === 'openai' ? 'OpenAI (GPT-4.1)' : stats.provider === 'google' ? 'Google (Gemini 2.5 Flash-Lite)' : stats.provider;
   return (
-    <div className={`rounded-xl border-2 p-6 ${isCanary ? 'border-blue-400 dark:border-blue-600' : 'border-input'} bg-card`}>
+    <div className={`rounded-xl border-2 p-6 ${isCanary ? 'border-sb-sky ' : 'border-input'} bg-card`}>
       <div className="flex items-center gap-2 mb-4">
-        <span className={`w-3 h-3 rounded-full ${isCanary ? 'bg-blue-500' : 'bg-gray-400'}`} />
+        <span className={`w-3 h-3 rounded-full ${isCanary ? 'bg-sb-navy' : 'bg-gray-400'}`} />
         <h3 className="text-lg font-semibold text-foreground">{providerLabel}</h3>
-        {isCanary && <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-full font-medium">CANARY</span>}
+        {isCanary && <span className="text-xs bg-sb-sky  text-sb-sky-ink  px-2 py-0.5 rounded-full font-medium">CANARY</span>}
       </div>
       <div className="text-sm text-muted-foreground mb-4">{stats.totalRequests} requests • {stats.ragas.sampleSize} with RAGAS</div>
       <div className="grid grid-cols-2 gap-3">
@@ -93,8 +93,8 @@ export function CanaryComparisonDashboard() {
 
   useEffect(() => { fetchData(); }, [fetchData]);
 
-  if (loading) return <div className="flex items-center justify-center h-64"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" /></div>;
-  if (error) return <div className="p-6 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 rounded-xl">Error: {error}</div>;
+  if (loading) return <div className="flex items-center justify-center h-64"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sb-sky" /></div>;
+  if (error) return <div className="p-6 bg-sb-rose  text-sb-rose-ink  rounded-xl">Error: {error}</div>;
   if (!data) return null;
 
   const openai = data.providers.find(p => p.provider === 'openai');
@@ -117,7 +117,7 @@ export function CanaryComparisonDashboard() {
             <option value={14}>14 days</option>
             <option value={30}>30 days</option>
           </select>
-          <button onClick={fetchData} className="px-3 py-1.5 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700">Refresh</button>
+          <button onClick={fetchData} className="px-3 py-1.5 bg-sb-navy text-white rounded-lg text-sm hover:bg-sb-navy">Refresh</button>
         </div>
       </div>
 

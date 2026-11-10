@@ -110,14 +110,14 @@ export default function PerformanceDashboard() {
     switch (status) {
       case 'excellent':
       case 'healthy':
-        return 'bg-green-500'
+        return 'bg-sb-navy'
       case 'good':
-        return 'bg-blue-500'
+        return 'bg-sb-navy'
       case 'needs_improvement':
       case 'degraded':
-        return 'bg-yellow-500'
+        return 'bg-sb-navy'
       case 'critical':
-        return 'bg-red-500'
+        return 'bg-sb-danger'
       default:
         return 'bg-muted/400'
     }
@@ -317,20 +317,20 @@ export default function PerformanceDashboard() {
                 <div className="space-y-2">
                   {metrics?.startupTime && metrics.startupTime > 5000 && (
                     <div className="flex items-start space-x-2">
-                      <AlertTriangle className="h-4 w-4 text-yellow-500 mt-0.5" />
+                      <AlertTriangle className="h-4 w-4 text-sb-butter-ink mt-0.5" />
                       <span className="text-sm">Consider lazy loading for faster startup</span>
                     </div>
                   )}
                   {metrics?.cacheHitRate && metrics.cacheHitRate < 0.8 && (
                     <div className="flex items-start space-x-2">
-                      <AlertTriangle className="h-4 w-4 text-yellow-500 mt-0.5" />
+                      <AlertTriangle className="h-4 w-4 text-sb-butter-ink mt-0.5" />
                       <span className="text-sm">Cache hit rate could be improved</span>
                     </div>
                   )}
                   {(!metrics?.startupTime || metrics.startupTime < 3000) && 
                    (!metrics?.cacheHitRate || metrics.cacheHitRate > 0.8) && (
                     <div className="flex items-start space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-500 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-sb-saffron-deep mt-0.5" />
                       <span className="text-sm">Performance is optimal!</span>
                     </div>
                   )}

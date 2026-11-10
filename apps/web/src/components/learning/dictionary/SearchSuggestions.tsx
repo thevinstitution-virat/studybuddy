@@ -117,11 +117,11 @@ export default function SearchSuggestions({
   const getSuggestionIcon = (type: string) => {
     switch (type) {
       case 'cached':
-        return <Zap className="h-3 w-3 text-yellow-500" />
+        return <Zap className="h-3 w-3 text-sb-butter-ink" />
       case 'recent':
-        return <Clock className="h-3 w-3 text-blue-500" />
+        return <Clock className="h-3 w-3 text-sb-sky-ink" />
       case 'popular':
-        return <TrendingUp className="h-3 w-3 text-green-500" />
+        return <TrendingUp className="h-3 w-3 text-sb-saffron-deep" />
       default:
         return <Search className="h-3 w-3 text-muted-foreground" />
     }
@@ -167,7 +167,7 @@ export default function SearchSuggestions({
             variant="ghost"
             size="sm"
             onClick={() => onSuggestionClick(suggestion.word)}
-            className="justify-start h-auto p-3 text-left hover:bg-gradient-to-r hover:from-orange-50 hover:to-blue-50 dark:hover:from-orange-900/20 dark:hover:to-blue-900/20 transition-all duration-200"
+            className="justify-start h-auto p-3 text-left hover:bg-sb-surface-2     transition-all duration-200"
           >
             <div className="flex items-center space-x-3 w-full">
               {getSuggestionIcon(suggestion.type)}

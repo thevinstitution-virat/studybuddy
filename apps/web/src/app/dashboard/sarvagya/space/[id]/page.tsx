@@ -129,7 +129,7 @@ export default function SpaceChatPage() {
     if (!space && !isLoadingSpaces) {
         return (
             <div className="flex h-full flex-col items-center justify-center bg-muted/40 text-center px-4">
-                <ShieldAlert className="w-12 h-12 text-red-500 mb-4" />
+                <ShieldAlert className="w-12 h-12 text-sb-rose-ink mb-4" />
                 <h2 className="text-xl font-bold mb-2">Space Not Found</h2>
                 <p className="text-muted-foreground mb-6">The search space you are looking for does not exist or you don't have access.</p>
                 <button onClick={() => router.push('/dashboard/sarvagya')} className="text-primary hover:underline">
@@ -151,7 +151,7 @@ export default function SpaceChatPage() {
                         <ArrowLeft className="w-5 h-5" />
                     </Link>
                     <div>
-                        <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-cyan-600 bg-clip-text text-transparent">
+                        <h1 className="text-xl font-bold text-sb-saffron-deep from-primary   ">
                             {space?.name || 'Loading Space...'}
                         </h1>
                         <p className="text-sm text-muted-foreground dark:text-muted-foreground">
@@ -191,7 +191,7 @@ export default function SpaceChatPage() {
                         onClick={() => setShowSources(!showSources)}
                         className={`flex items-center gap-2 px-4 py-2 border shadow-sm rounded-lg text-sm font-medium transition-colors ${showSources ? 'bg-muted border-input' : 'bg-card hover:bg-muted/40'}`}
                     >
-                        <LibraryBig className={`w-4 h-4 ${showSources ? 'text-primary' : 'text-emerald-500'}`} />
+                        <LibraryBig className={`w-4 h-4 ${showSources ? 'text-primary' : 'text-sb-saffron-deep'}`} />
                         Study Library ({documents.length})
                     </button>
                 </div>
@@ -207,7 +207,7 @@ export default function SpaceChatPage() {
                             <div className="flex h-full items-center justify-center py-12">
                                 <div className="max-w-3xl w-full mx-auto px-4">
                                     <div className="text-center mb-10">
-                                        <div className="w-16 h-16 bg-gradient-to-br from-primary/100 to-primary/80 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/20 text-white">
+                                        <div className="w-16 h-16 bg-sb-surface-2 from-primary/100 to-primary/80 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg  text-white">
                                             <GraduationCap className="w-8 h-8" />
                                         </div>
                                         <h2 className="text-3xl font-bold mb-3 text-foreground">Welcome to your Study Space</h2>
@@ -218,7 +218,7 @@ export default function SpaceChatPage() {
 
                                     <div className="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto">
                                         <div className="bg-card border border-border p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                                            <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-lg flex items-center justify-center mb-3">
+                                            <div className="w-10 h-10 bg-sb-saffron-tint  text-sb-saffron-deep  rounded-lg flex items-center justify-center mb-3">
                                                 <LibraryBig className="w-5 h-5" />
                                             </div>
                                             <h3 className="font-semibold text-foreground mb-2">1. Upload Materials</h3>
@@ -232,7 +232,7 @@ export default function SpaceChatPage() {
                                             <p className="text-sm text-muted-foreground dark:text-muted-foreground">Ask complex questions. I'll read through your library and provide cited answers.</p>
                                         </div>
                                         <div className="bg-card border border-border p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                                            <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-lg flex items-center justify-center mb-3">
+                                            <div className="w-10 h-10 bg-sb-saffron-tint  text-sb-saffron-deep  rounded-lg flex items-center justify-center mb-3">
                                                 <Headphones className="w-5 h-5" />
                                             </div>
                                             <h3 className="font-semibold text-foreground mb-2">3. Audio Lessons</h3>
@@ -246,7 +246,7 @@ export default function SpaceChatPage() {
                                 {messages.map((msg) => (
                                     <div key={msg.id} className={`flex gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
                                         <div className={`flex-none w-8 h-8 rounded-full flex items-center justify-center mt-1 ${msg.role === 'user' ? 'bg-primary/15 text-primary' :
-                                            msg.role === 'assistant' ? 'bg-primary text-white' : 'bg-red-100 text-red-600'
+                                            msg.role === 'assistant' ? 'bg-primary text-white' : 'bg-sb-rose text-sb-rose-ink'
                                             }`}>
                                             {msg.role === 'user' ? <User className="w-5 h-5" /> :
                                                 msg.role === 'assistant' ? <Bot className="w-5 h-5" /> : <ShieldAlert className="w-5 h-5" />}
@@ -257,7 +257,7 @@ export default function SpaceChatPage() {
                                                 ? 'bg-primary text-white rounded-tr-sm'
                                                 : msg.role === 'assistant'
                                                     ? 'bg-card border shadow-sm rounded-tl-sm'
-                                                    : 'bg-red-50 text-red-700 border border-red-200 mt-2'
+                                                    : 'bg-sb-rose text-sb-rose-ink border border-sb-danger mt-2'
                                                 }`}>
                                                 <div className="prose dark:prose-invert max-w-none prose-p:leading-relaxed prose-pre:bg-muted dark:prose-pre:bg-muted break-words whitespace-pre-wrap">
                                                     {msg.content}
@@ -271,14 +271,14 @@ export default function SpaceChatPage() {
                                                         {msg.sources.map((source, i) => (
                                                             <div key={i} className="flex-none max-w-[250px] bg-card border rounded-lg p-3 shadow-sm text-xs group cursor-default hover:border-primary/40 transition-colors">
                                                                 <div className="font-semibold text-foreground truncate mb-1.5 flex items-center gap-2">
-                                                                    {source.url ? <LinkIcon className="w-3.5 h-3.5 text-primary flex-none" /> : <FileText className="w-3.5 h-3.5 text-emerald-500 flex-none" />}
+                                                                    {source.url ? <LinkIcon className="w-3.5 h-3.5 text-primary flex-none" /> : <FileText className="w-3.5 h-3.5 text-sb-saffron-deep flex-none" />}
                                                                     <a href={source.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary hover:underline">{source.title}</a>
                                                                 </div>
                                                                 <div className="text-muted-foreground dark:text-muted-foreground line-clamp-3 text-[11px] leading-relaxed">
                                                                     {source.content_snippet}
                                                                 </div>
                                                                 {source.relevance_score && (
-                                                                    <div className="mt-2 text-[10px] bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-full w-fit flex items-center gap-1 border border-emerald-200 dark:border-emerald-800/50">
+                                                                    <div className="mt-2 text-[10px] bg-sb-saffron-tint  text-sb-saffron-deep  px-2 py-0.5 rounded-full w-fit flex items-center gap-1 border border-sb-saffron ">
                                                                         <CheckCircle className="w-3 h-3" />
                                                                         {Math.round(source.relevance_score * 100)}% match
                                                                     </div>
@@ -358,7 +358,7 @@ export default function SpaceChatPage() {
                     <div className="w-80 flex-none bg-card border-l flex flex-col hidden md:flex relative z-10 transition-all shadow-[-4px_0_15px_-3px_rgba(0,0,0,0.05)]">
                         <div className="p-4 border-b flex-none bg-muted/30">
                             <h2 className="font-semibold text-foreground flex items-center gap-2">
-                                <LibraryBig className="w-4 h-4 text-emerald-500" />
+                                <LibraryBig className="w-4 h-4 text-sb-saffron-deep" />
                                 Study Library
                             </h2>
                             <p className="text-xs text-muted-foreground mt-1">Upload documents or link websites to build your knowledge base.</p>
@@ -383,15 +383,15 @@ export default function SpaceChatPage() {
                                             const size = doc.size || 0;
                                             return (
                                                 <div key={doc.id} className="bg-card border rounded-lg p-3 shadow-sm text-sm flex items-start gap-3">
-                                                    <div className={`mt-0.5 rounded flex items-center justify-center ${fileType.includes('pdf') || fileType.includes('text') ? 'bg-orange-100 text-orange-600' : 'bg-primary/15 text-primary'}`}>
+                                                    <div className={`mt-0.5 rounded flex items-center justify-center ${fileType.includes('pdf') || fileType.includes('text') ? 'bg-sb-saffron-tint text-sb-saffron-deep' : 'bg-primary/15 text-primary'}`}>
                                                         {fileType.includes('pdf') || fileType.includes('text') ? <FileText className="w-4 h-4 m-1.5" /> : <LinkIcon className="w-4 h-4 m-1.5" />}
                                                     </div>
                                                     <div className="flex-1 min-w-0">
                                                         <p className="font-medium text-foreground truncate">{doc.name}</p>
                                                         <div className="flex items-center gap-2 mt-1">
-                                                            {doc.status === 'pending' && <span className="flex items-center gap-1.5 text-[10px] bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400 px-2 py-0.5 rounded-full"><Loader2 className="w-3 h-3 animate-spin" /> Processing...</span>}
-                                                            {doc.status === 'processed' && <span className="flex items-center gap-1.5 text-[10px] bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 px-2 py-0.5 rounded-full"><CheckCircle className="w-3 h-3" /> Active</span>}
-                                                            {doc.status === 'failed' && <span className="flex items-center gap-1.5 text-[10px] bg-red-50 text-red-600 dark:bg-red-900/30 dark:text-red-400 px-2 py-0.5 rounded-full"><ShieldAlert className="w-3 h-3" /> Failed</span>}
+                                                            {doc.status === 'pending' && <span className="flex items-center gap-1.5 text-[10px] bg-sb-butter text-sb-butter-ink   px-2 py-0.5 rounded-full"><Loader2 className="w-3 h-3 animate-spin" /> Processing...</span>}
+                                                            {doc.status === 'processed' && <span className="flex items-center gap-1.5 text-[10px] bg-sb-saffron-tint text-sb-saffron-deep   px-2 py-0.5 rounded-full"><CheckCircle className="w-3 h-3" /> Active</span>}
+                                                            {doc.status === 'failed' && <span className="flex items-center gap-1.5 text-[10px] bg-sb-rose text-sb-rose-ink   px-2 py-0.5 rounded-full"><ShieldAlert className="w-3 h-3" /> Failed</span>}
 
                                                             {size > 0 && <span className="text-[10px] text-muted-foreground">{(size / 1024).toFixed(0)} KB</span>}
                                                         </div>

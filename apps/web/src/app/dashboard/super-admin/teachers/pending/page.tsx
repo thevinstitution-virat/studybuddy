@@ -106,11 +106,11 @@ export default function AdminPendingTeachersPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'pending':
-        return <span className="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded">Pending</span>
+        return <span className="px-2 py-1 text-xs font-medium bg-sb-butter text-sb-butter-ink rounded">Pending</span>
       case 'approved':
-        return <span className="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded">Approved</span>
+        return <span className="px-2 py-1 text-xs font-medium bg-sb-saffron-tint text-sb-saffron-deep rounded">Approved</span>
       case 'rejected':
-        return <span className="px-2 py-1 text-xs font-medium bg-red-100 text-red-800 rounded">Rejected</span>
+        return <span className="px-2 py-1 text-xs font-medium bg-sb-rose text-sb-rose-ink rounded">Rejected</span>
       default:
         return null
     }
@@ -215,9 +215,9 @@ export default function AdminPendingTeachersPage() {
 
                 {/* Rejection Reason */}
                 {teacher.approvalStatus === 'rejected' && teacher.rejectionReason && (
-                  <div className="p-3 bg-red-50 rounded-lg">
-                    <p className="text-sm font-medium text-red-800 mb-1">Rejection Reason:</p>
-                    <p className="text-sm text-red-700">{teacher.rejectionReason}</p>
+                  <div className="p-3 bg-sb-rose rounded-lg">
+                    <p className="text-sm font-medium text-sb-rose-ink mb-1">Rejection Reason:</p>
+                    <p className="text-sm text-sb-rose-ink">{teacher.rejectionReason}</p>
                   </div>
                 )}
 
@@ -243,7 +243,7 @@ export default function AdminPendingTeachersPage() {
                       }}
                       disabled={submitting}
                       variant="outline"
-                      className="flex-1 text-red-600 border-red-300 hover:bg-red-50"
+                      className="flex-1 text-sb-rose-ink border-sb-danger hover:bg-sb-rose"
                     >
                       <XCircle className="h-4 w-4 mr-2" />
                       Reject
@@ -251,7 +251,7 @@ export default function AdminPendingTeachersPage() {
                     <Button
                       onClick={() => handleApprove(teacher.userId)}
                       disabled={submitting}
-                      className="flex-1 bg-green-600 hover:bg-green-700"
+                      className="flex-1 bg-sb-navy hover:bg-sb-navy"
                     >
                       <CheckCircle className="h-4 w-4 mr-2" />
                       Approve
@@ -318,7 +318,7 @@ export default function AdminPendingTeachersPage() {
                   <Button
                     onClick={handleReject}
                     disabled={submitting || !rejectionReason.trim()}
-                    className="flex-1 bg-red-600 hover:bg-red-700"
+                    className="flex-1 bg-sb-danger hover:bg-sb-danger"
                   >
                     {submitting ? 'Rejecting...' : 'Reject Application'}
                   </Button>

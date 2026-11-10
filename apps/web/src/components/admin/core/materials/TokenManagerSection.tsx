@@ -133,7 +133,7 @@ export function TokenManagerSection() {
           </div>
           <div className="flex items-center gap-2">
             {status?.isRunning ? (
-              <Badge variant="default" className="bg-green-100 text-green-800">
+              <Badge variant="default" className="bg-sb-saffron-tint text-sb-saffron-deep">
                 <CheckCircleIcon className="h-3 w-3 mr-1" />
                 Running
               </Badge>
@@ -150,7 +150,7 @@ export function TokenManagerSection() {
 
       <CardContent className="space-y-4">
         {error && (
-          <div className="p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2 text-red-700">
+          <div className="p-3 bg-sb-rose border border-sb-danger rounded-lg flex items-center gap-2 text-sb-rose-ink">
             <ExclamationTriangleIcon className="h-4 w-4" />
             {error}
           </div>
@@ -184,9 +184,9 @@ export function TokenManagerSection() {
         )}
 
         {status?.lastRefresh && (
-          <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-            <div className="text-sm font-medium text-blue-800">Last Token Refresh</div>
-            <div className="text-sm text-blue-600">
+          <div className="p-3 bg-sb-sky border border-sb-sky rounded-lg">
+            <div className="text-sm font-medium text-sb-sky-ink">Last Token Refresh</div>
+            <div className="text-sm text-sb-sky-ink">
               {new Date(status.lastRefresh).toLocaleString()}
             </div>
           </div>

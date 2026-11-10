@@ -23,9 +23,9 @@ function WordDiff({ ops }: { ops: NonNullable<Adj['diff']> extends infer D ? D e
       {ops.map((o, i) => o.op === 'match'
         ? <span key={i}>{o.truth} </span>
         : (
-          <span key={i} className="mr-1 rounded bg-amber-100 px-1 dark:bg-amber-900/40">
-            <span className="text-blue-700 dark:text-blue-300">A: {o.truth ?? '∅'}</span>{' '}
-            <span className="text-fuchsia-700 dark:text-fuchsia-300">B: {o.out ?? '∅'}</span>
+          <span key={i} className="mr-1 rounded bg-sb-butter px-1 ">
+            <span className="text-sb-sky-ink ">A: {o.truth ?? '∅'}</span>{' '}
+            <span className="text-sb-lav-ink ">B: {o.out ?? '∅'}</span>
           </span>
         ))}
     </p>

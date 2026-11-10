@@ -51,9 +51,9 @@ export const PLATFORM_NAV: DashboardNavItem[] = [
   { section: 'Overview', name: 'Dashboard', href: '/dashboard/super-admin', icon: Home, description: 'Platform overview & metrics' },
 
   // Institutions (B2B) — the core of the platform, promoted to the top
-  { section: 'Institutions', name: 'Organizations', href: '/dashboard/super-admin/organizations', icon: Building2, description: 'All institutions', gradient: 'from-violet-500 to-purple-600' },
-  { section: 'Institutions', name: 'Onboard Institution', href: '/dashboard/super-admin/onboarding', icon: Rocket, description: 'Create a new institution', gradient: 'from-violet-500 to-purple-600' },
-  { section: 'Institutions', name: 'Subscription Plans', href: '/dashboard/super-admin/plans', icon: CreditCard, description: 'Billing & plan management', gradient: 'from-emerald-500 to-green-600' },
+  { section: 'Institutions', name: 'Organizations', href: '/dashboard/super-admin/organizations', icon: Building2, description: 'All institutions', gradient: ' ' },
+  { section: 'Institutions', name: 'Onboard Institution', href: '/dashboard/super-admin/onboarding', icon: Rocket, description: 'Create a new institution', gradient: ' ' },
+  { section: 'Institutions', name: 'Subscription Plans', href: '/dashboard/super-admin/plans', icon: CreditCard, description: 'Billing & plan management', gradient: ' ' },
 
   // People & Access
   { section: 'People & Access', name: 'Users', href: '/dashboard/super-admin/users', icon: Users, description: 'All users & role assignment' },
@@ -70,12 +70,12 @@ export const PLATFORM_NAV: DashboardNavItem[] = [
   { section: 'Content & Knowledge', name: 'Live Classes', href: '/dashboard/super-admin/live-classes', icon: Video, description: 'Global live classes' },
 
   // AI & Infrastructure
-  { section: 'AI & Infrastructure', name: 'Sarvagya AI', href: '/dashboard/super-admin/sarvagya', icon: Brain, description: 'Document-AI microservice', gradient: 'from-amber-500 to-orange-500' },
+  { section: 'AI & Infrastructure', name: 'Sarvagya AI', href: '/dashboard/super-admin/sarvagya', icon: Brain, description: 'Document-AI microservice', gradient: ' ' },
   { section: 'AI & Infrastructure', name: 'Vector DB', href: '/dashboard/super-admin/database', icon: Database, description: 'AI knowledge base' },
   { section: 'AI & Infrastructure', name: 'Performance', href: '/dashboard/super-admin/performance', icon: Activity, description: 'System monitoring' },
 
   // Insights
-  { section: 'Insights', name: 'Revenue', href: '/dashboard/super-admin/revenue', icon: TrendingUp, description: 'Platform earnings & transactions', gradient: 'from-indigo-500 to-purple-600' },
+  { section: 'Insights', name: 'Revenue', href: '/dashboard/super-admin/revenue', icon: TrendingUp, description: 'Platform earnings & transactions', gradient: ' ' },
   { section: 'Insights', name: 'Analytics', href: '/dashboard/super-admin/quality-metrics', icon: BarChart3, description: 'Usage & RAG quality' },
   { section: 'Insights', name: 'Evaluation', href: '/dashboard/super-admin/evaluation', icon: ClipboardCheck, description: 'Raters and reference data for the AI reader and marker' },
 
@@ -84,7 +84,7 @@ export const PLATFORM_NAV: DashboardNavItem[] = [
   { section: 'Platform Control', name: 'Batch Templates', href: '/dashboard/super-admin/batch-templates', icon: GraduationCap, description: 'Manage global batch templates for institutions' },
   { section: 'Platform Control', name: 'Zoom Integration', href: '/dashboard/super-admin/zoom', icon: Video, description: 'S2S Zoom config' },
   { section: 'Platform Control', name: 'Platform Settings', href: '/dashboard/super-admin/settings', icon: Settings, description: 'Global configuration' },
-  { section: 'Platform Control', name: 'Danger Zone', href: '/dashboard/super-admin/danger-zone', icon: AlertTriangle, description: 'Destructive operations', gradient: 'from-red-500 to-rose-600' },
+  { section: 'Platform Control', name: 'Danger Zone', href: '/dashboard/super-admin/danger-zone', icon: AlertTriangle, description: 'Destructive operations', gradient: ' ' },
 ];
 
 // ── Institution dashboard (admin | owner | org_admin) — org-scoped, grouped ──
@@ -106,12 +106,12 @@ export const INSTITUTION_NAV: DashboardNavItem[] = [
   { section: 'Academics', name: 'Classes', href: '/dashboard/institution/classes', icon: BookOpen, description: 'Classes & sections' },
   { section: 'Academics', name: 'Content', href: '/dashboard/institution/content', icon: FileText, description: "Your institution's materials" },
   { section: 'Academics', name: 'Assignments', href: '/dashboard/institution/assignments', icon: FileText, description: 'Teachers, classes and AI use for written assignments' },
-  { section: 'Academics', name: 'Features', href: '/dashboard/institution/features', icon: SlidersHorizontal, description: 'Enable modules for your students', gradient: 'from-sky-500 to-blue-600' },
+  { section: 'Academics', name: 'Features', href: '/dashboard/institution/features', icon: SlidersHorizontal, description: 'Enable modules for your students', gradient: ' ' },
   { section: 'Academics', name: 'Video Library', href: '/dashboard/institution/videos', icon: Video, description: 'Manage class videos' },
   { section: 'Academics', name: 'Live Classes', href: '/dashboard/admin/live-classes', icon: Video, description: 'Manage class schedules' },
 
   // Insights
-  { section: 'Insights', name: 'Revenue', href: '/dashboard/institution/revenue', icon: TrendingUp, description: 'Batch earnings & transactions', gradient: 'from-teal-500 to-emerald-600' },
+  { section: 'Insights', name: 'Revenue', href: '/dashboard/institution/revenue', icon: TrendingUp, description: 'Batch earnings & transactions', gradient: ' ' },
   { section: 'Insights', name: 'Analytics', href: '/dashboard/institution/analytics', icon: LineChart, description: 'Engagement & performance' },
 
   // Account — the institution's own subscription & profile
@@ -131,35 +131,35 @@ export const TEACHER_NAV: DashboardNavItem[] = [
   { name: 'Notices', href: '/dashboard/teacher/notices', icon: MessageSquare, description: 'Classroom announcements' },
   { name: 'Live Classes', href: '/dashboard/teacher/live-classes', icon: Video, description: 'Schedule live sessions' },
   { name: 'Content Validation', href: '/dashboard/teacher/validation', icon: ClipboardCheck, description: 'Review & approve content' },
-  { name: 'AI Tutor', href: '/dashboard/user/ai-tutor', icon: Brain, description: 'Teaching assistant', featured: true, gradient: 'from-purple-500 to-indigo-600' },
+  { name: 'AI Tutor', href: '/dashboard/user/ai-tutor', icon: Brain, description: 'Teaching assistant', featured: true, gradient: ' ' },
 ];
 
 // ── Student dashboard ───────────────────────────────────────────────────────
 export const STUDENT_NAV: DashboardNavItem[] = [
   { name: 'Dashboard', href: '/dashboard/user', icon: Home, description: 'Overview & activities', gradient: 'from-slate-500 to-gray-600' },
-  { name: 'My Courses', href: '/dashboard/student', icon: MonitorPlay, description: 'Video lectures & live classes', featured: true, gradient: 'from-indigo-500 to-purple-600' },
-  { name: 'My Progress', href: '/dashboard/student/progress', icon: LineChart, description: 'Track your learning', featured: true, gradient: 'from-blue-500 to-cyan-500' },
-  { name: 'AI Tutor', href: '/dashboard/user/ai-tutor', icon: Brain, description: 'Chat with your AI teacher', featured: true, gradient: 'from-purple-500 to-indigo-600' },
-  { name: 'Sarvagya', href: '/dashboard/sarvagya', icon: Search, description: 'AI research assistant', featured: true, gradient: 'from-amber-500 to-orange-500' },
-  { name: 'Study Materials', href: '/dashboard/user/materials', icon: BookOpen, description: 'Course content', featured: true, gradient: 'from-green-500 to-emerald-500' },
-  { name: 'Assignments', href: '/dashboard/student/assignments', icon: FileText, description: 'Written answers for your teacher', featured: true, gradient: 'from-emerald-500 to-teal-600' },
-  { name: 'Practest', href: '/dashboard/user/practest', icon: FileText, description: 'AI assessment engine', featured: true, gradient: 'from-blue-500 to-cyan-500' },
-  { name: 'Sanchika', href: '/dashboard/user/sanchika', icon: FolderTree, description: 'Smart notes workspace', featured: true, gradient: 'from-cyan-500 to-blue-600' },
-  { name: 'Dictionary', href: '/dashboard/user/dictionary', icon: Bookmark, description: 'English-Hindi dictionary', featured: true, gradient: 'from-pink-500 to-rose-500' },
-  { name: 'Mitram', href: '/dashboard/user/mitram', icon: Heart, description: 'Focus & aptitude', featured: true, gradient: 'from-teal-500 to-blue-500' },
-  { name: 'Productivity', href: '/dashboard/user/productivity', icon: Rocket, description: 'Study tools', featured: true, gradient: 'from-orange-500 to-red-500' },
+  { name: 'My Courses', href: '/dashboard/student', icon: MonitorPlay, description: 'Video lectures & live classes', featured: true, gradient: ' ' },
+  { name: 'My Progress', href: '/dashboard/student/progress', icon: LineChart, description: 'Track your learning', featured: true, gradient: ' ' },
+  { name: 'AI Tutor', href: '/dashboard/user/ai-tutor', icon: Brain, description: 'Chat with your AI teacher', featured: true, gradient: ' ' },
+  { name: 'Sarvagya', href: '/dashboard/sarvagya', icon: Search, description: 'AI research assistant', featured: true, gradient: ' ' },
+  { name: 'Study Materials', href: '/dashboard/user/materials', icon: BookOpen, description: 'Course content', featured: true, gradient: ' ' },
+  { name: 'Assignments', href: '/dashboard/student/assignments', icon: FileText, description: 'Written answers for your teacher', featured: true, gradient: ' ' },
+  { name: 'Practest', href: '/dashboard/user/practest', icon: FileText, description: 'AI assessment engine', featured: true, gradient: ' ' },
+  { name: 'Sanchika', href: '/dashboard/user/sanchika', icon: FolderTree, description: 'Smart notes workspace', featured: true, gradient: ' ' },
+  { name: 'Dictionary', href: '/dashboard/user/dictionary', icon: Bookmark, description: 'English-Hindi dictionary', featured: true, gradient: ' ' },
+  { name: 'Mitram', href: '/dashboard/user/mitram', icon: Heart, description: 'Focus & aptitude', featured: true, gradient: ' ' },
+  { name: 'Productivity', href: '/dashboard/user/productivity', icon: Rocket, description: 'Study tools', featured: true, gradient: ' ' },
   { name: 'Subscription', href: '/dashboard/user/pricing', icon: CreditCard, description: 'Plan & billing', gradient: 'from-slate-400 to-slate-500' },
-  { name: 'Profile', href: '/dashboard/user/profile', icon: User, description: 'Settings & preferences', gradient: 'from-indigo-500 to-purple-500' },
-  { name: 'Payment History', href: '/dashboard/student/purchases', icon: Receipt, description: 'Receipts for paid batches', gradient: 'from-green-500 to-emerald-500' },
+  { name: 'Profile', href: '/dashboard/user/profile', icon: User, description: 'Settings & preferences', gradient: ' ' },
+  { name: 'Payment History', href: '/dashboard/student/purchases', icon: Receipt, description: 'Receipts for paid batches', gradient: ' ' },
 ];
 
 // ── Parent dashboard (DCP-specific tier) ────────────────────────────────────
 export const PARENT_NAV: DashboardNavItem[] = [
   { name: 'Dashboard', href: '/dashboard/parent', icon: Home, description: "Your child's overview" },
   { name: 'My Wards', href: '/dashboard/parent/wards', icon: Users, description: 'The children linked to your account' },
-  { name: 'Child Progress', href: '/dashboard/parent/progress', icon: LineChart, description: 'Learning progress & scores', featured: true, gradient: 'from-green-500 to-emerald-500' },
+  { name: 'Child Progress', href: '/dashboard/parent/progress', icon: LineChart, description: 'Learning progress & scores', featured: true, gradient: ' ' },
   { name: 'Assignments', href: '/dashboard/parent/assignments', icon: FileText, description: "Your child's written assignments and results" },
-  { name: 'Reports', href: '/dashboard/parent/reports', icon: FileText, description: 'ParentPulse reports', featured: true, gradient: 'from-blue-500 to-indigo-500' },
+  { name: 'Reports', href: '/dashboard/parent/reports', icon: FileText, description: 'ParentPulse reports', featured: true, gradient: ' ' },
   { name: 'Attendance', href: '/dashboard/parent/attendance', icon: CalendarCheck, description: 'Engagement & attendance' },
   { name: 'Messages', href: '/dashboard/parent/messages', icon: MessageSquare, description: 'School communication' },
   { name: 'Billing', href: '/dashboard/parent/billing', icon: CreditCard, description: 'Subscription & payments' },

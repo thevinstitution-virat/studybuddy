@@ -52,11 +52,11 @@ export default function MoodMentor() {
   const [chatInput, setChatInput] = useState('')
 
   const moodOptions = [
-    { value: 'excellent', label: 'Excellent', emoji: '😄', color: 'text-green-600' },
-    { value: 'good', label: 'Good', emoji: '😊', color: 'text-blue-600' },
+    { value: 'excellent', label: 'Excellent', emoji: '😄', color: 'text-sb-saffron-deep' },
+    { value: 'good', label: 'Good', emoji: '😊', color: 'text-sb-sky-ink' },
     { value: 'neutral', label: 'Neutral', emoji: '😐', color: 'text-muted-foreground' },
-    { value: 'stressed', label: 'Stressed', emoji: '😰', color: 'text-orange-600' },
-    { value: 'overwhelmed', label: 'Overwhelmed', emoji: '😵', color: 'text-red-600' }
+    { value: 'stressed', label: 'Stressed', emoji: '😰', color: 'text-sb-saffron-deep' },
+    { value: 'overwhelmed', label: 'Overwhelmed', emoji: '😵', color: 'text-sb-rose-ink' }
   ]
 
   // Load mood history from localStorage
@@ -183,11 +183,11 @@ export default function MoodMentor() {
 
   const getRecommendationColor = (type: string) => {
     const colors = {
-      schedule: 'border-blue-200 bg-blue-50 dark:bg-blue-950',
-      break: 'border-green-200 bg-green-50 dark:bg-green-950',
-      subject: 'border-purple-200 bg-purple-50 dark:bg-purple-950',
-      technique: 'border-orange-200 bg-orange-50 dark:bg-orange-950',
-      motivation: 'border-pink-200 bg-pink-50 dark:bg-pink-950'
+      schedule: 'border-sb-sky bg-sb-sky ',
+      break: 'border-sb-saffron bg-sb-saffron-tint ',
+      subject: 'border-sb-lav bg-sb-lav ',
+      technique: 'border-sb-saffron bg-sb-saffron-tint ',
+      motivation: 'border-sb-rose bg-sb-rose '
     }
     return colors[type as keyof typeof colors] || colors.schedule
   }
@@ -195,13 +195,13 @@ export default function MoodMentor() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <Card className="border-pink-200 bg-gradient-to-r from-pink-50 to-purple-50 dark:from-pink-950 dark:to-purple-950 dark:border-pink-800">
+      <Card className="border-sb-rose bg-sb-surface-2     ">
         <CardHeader>
-          <CardTitle className="flex items-center space-x-2 text-pink-800 dark:text-pink-200">
+          <CardTitle className="flex items-center space-x-2 text-sb-rose-ink ">
             <SparklesIcon className="h-6 w-6" />
             <span>MoodMentor - AI Study Coach</span>
           </CardTitle>
-          <CardDescription className="text-pink-700 dark:text-pink-300">
+          <CardDescription className="text-sb-rose-ink ">
             🇮🇳 Personalized guidance with Indian wisdom and modern psychology
           </CardDescription>
         </CardHeader>
@@ -223,7 +223,7 @@ export default function MoodMentor() {
                   onClick={() => setCurrentMood(option.value as MoodEntry['mood'])}
                   className={`p-3 text-center border rounded-lg transition-all ${
                     currentMood === option.value 
-                      ? 'border-blue-500 bg-blue-50 dark:bg-blue-950' 
+                      ? 'border-sb-sky bg-sb-sky ' 
                       : 'border-border hover:border-border'
                   }`}
                 >
@@ -327,7 +327,7 @@ export default function MoodMentor() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
-            <LightBulbIcon className="h-5 w-5 text-yellow-600" />
+            <LightBulbIcon className="h-5 w-5 text-sb-butter-ink" />
             <span>Personalized Recommendations</span>
           </CardTitle>
           <CardDescription>AI-powered suggestions based on your mood and study patterns</CardDescription>
@@ -344,7 +344,7 @@ export default function MoodMentor() {
                 </div>
                 <p className="text-sm mb-2">{rec.description}</p>
                 {rec.culturalContext && (
-                  <p className="text-xs text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900 p-2 rounded">
+                  <p className="text-xs text-sb-sky-ink  bg-sb-sky  p-2 rounded">
                     🇮🇳 {rec.culturalContext}
                   </p>
                 )}
@@ -358,7 +358,7 @@ export default function MoodMentor() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
-            <ChatBubbleLeftRightIcon className="h-5 w-5 text-blue-600" />
+            <ChatBubbleLeftRightIcon className="h-5 w-5 text-sb-sky-ink" />
             <span>Chat with Your AI Coach</span>
           </CardTitle>
           <CardDescription>Get personalized advice and motivation</CardDescription>
@@ -377,7 +377,7 @@ export default function MoodMentor() {
                 <div key={message.id} className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-xs p-3 rounded-lg ${
                     message.isUser 
-                      ? 'bg-blue-600 text-white' 
+                      ? 'bg-sb-navy text-white' 
                       : 'bg-muted text-foreground'
                   }`}>
                     <p className="text-sm">{message.text}</p>
@@ -421,30 +421,30 @@ export default function MoodMentor() {
         <CardContent>
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-4 bg-green-50 dark:bg-green-950 rounded-lg">
-                <h4 className="font-semibold text-green-800 dark:text-green-200">Best Study Time</h4>
-                <p className="text-2xl font-bold text-green-600">6:00 - 8:00 AM</p>
-                <p className="text-sm text-green-700 dark:text-green-300">Peak focus period</p>
+              <div className="p-4 bg-sb-saffron-tint  rounded-lg">
+                <h4 className="font-semibold text-sb-saffron-deep ">Best Study Time</h4>
+                <p className="text-2xl font-bold text-sb-saffron-deep">6:00 - 8:00 AM</p>
+                <p className="text-sm text-sb-saffron-deep ">Peak focus period</p>
               </div>
               
-              <div className="p-4 bg-blue-50 dark:bg-blue-950 rounded-lg">
-                <h4 className="font-semibold text-blue-800 dark:text-blue-200">Recommended Subject</h4>
-                <p className="text-2xl font-bold text-blue-600">Mathematics</p>
-                <p className="text-sm text-blue-700 dark:text-blue-300">Based on current mood</p>
+              <div className="p-4 bg-sb-sky  rounded-lg">
+                <h4 className="font-semibold text-sb-sky-ink ">Recommended Subject</h4>
+                <p className="text-2xl font-bold text-sb-sky-ink">Mathematics</p>
+                <p className="text-sm text-sb-sky-ink ">Based on current mood</p>
               </div>
               
-              <div className="p-4 bg-purple-50 dark:bg-purple-950 rounded-lg">
-                <h4 className="font-semibold text-purple-800 dark:text-purple-200">Break Reminder</h4>
-                <p className="text-2xl font-bold text-purple-600">Every 25 min</p>
-                <p className="text-sm text-purple-700 dark:text-purple-300">Stress management</p>
+              <div className="p-4 bg-sb-lav  rounded-lg">
+                <h4 className="font-semibold text-sb-lav-ink ">Break Reminder</h4>
+                <p className="text-2xl font-bold text-sb-lav-ink">Every 25 min</p>
+                <p className="text-sm text-sb-lav-ink ">Stress management</p>
               </div>
             </div>
 
-            <div className="p-4 bg-orange-50 dark:bg-orange-950 rounded-lg">
-              <h4 className="font-semibold text-orange-800 dark:text-orange-200 mb-2">
+            <div className="p-4 bg-sb-saffron-tint  rounded-lg">
+              <h4 className="font-semibold text-sb-saffron-deep  mb-2">
                 🧘‍♂️ Recommended Wellness Activities
               </h4>
-              <ul className="text-sm text-orange-700 dark:text-orange-300 space-y-1">
+              <ul className="text-sm text-sb-saffron-deep  space-y-1">
                 <li>• 5-minute pranayama breathing before studying</li>
                 <li>• Listen to classical Indian music during breaks</li>
                 <li>• Practice gratitude journaling in the evening</li>

@@ -60,7 +60,7 @@ export default function BatchAnalyticsClient({ batchId }: { batchId: string }) {
         </Card>
         <Card>
           <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground font-medium">At-Risk Students</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold text-red-500">{data.kpis.atRiskCount}</div></CardContent>
+          <CardContent><div className="text-2xl font-bold text-sb-rose-ink">{data.kpis.atRiskCount}</div></CardContent>
         </Card>
         <Card>
           <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground font-medium">Active Today</CardTitle></CardHeader>
@@ -119,7 +119,7 @@ export default function BatchAnalyticsClient({ batchId }: { batchId: string }) {
                       <TableCell>
                         <div className="flex items-center gap-2">
                           <div className="h-2 w-16 bg-muted rounded-full overflow-hidden">
-                            <div className="h-full bg-blue-500" style={{ width: `${student.completion}%` }} />
+                            <div className="h-full bg-sb-navy" style={{ width: `${student.completion}%` }} />
                           </div>
                           <span className="text-sm">{student.completion.toFixed(0)}%</span>
                         </div>

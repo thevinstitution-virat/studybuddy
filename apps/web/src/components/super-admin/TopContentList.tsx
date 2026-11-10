@@ -38,7 +38,7 @@ export function TopContentList() {
           <CardTitle>Top Content</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-sm text-red-600">Failed to load top content</div>
+          <div className="text-sm text-sb-rose-ink">Failed to load top content</div>
         </CardContent>
       </Card>
     );

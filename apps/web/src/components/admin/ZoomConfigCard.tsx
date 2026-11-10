@@ -58,11 +58,11 @@ export function ZoomConfigCard({ tenantId }: { tenantId?: string }) {
   }
 
   return (
-    <Card className="border-emerald-500/20 shadow-lg shadow-emerald-500/5">
+    <Card className="border-sb-saffron shadow-lg ">
       <CardHeader>
         <div className="flex items-center gap-2">
-          <div className="p-2 bg-emerald-500/10 rounded-lg">
-            <Video className="w-5 h-5 text-emerald-500" />
+          <div className="p-2 bg-sb-navy rounded-lg">
+            <Video className="w-5 h-5 text-sb-saffron-deep" />
           </div>
           <div>
             <CardTitle className="text-xl">Zoom S2S Integration</CardTitle>
@@ -76,11 +76,11 @@ export function ZoomConfigCard({ tenantId }: { tenantId?: string }) {
       <CardContent>
         {status?.hasCredentials ? (
           <div className="space-y-4">
-            <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4 flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+            <div className="bg-sb-navy border border-sb-saffron rounded-lg p-4 flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-sb-saffron-deep shrink-0 mt-0.5" />
               <div>
-                <p className="font-medium text-emerald-500">Zoom is Connected</p>
-                <p className="text-sm text-emerald-500/80 mt-1">
+                <p className="font-medium text-sb-saffron-deep">Zoom is Connected</p>
+                <p className="text-sm text-sb-saffron-deep mt-1">
                   Your organization can now schedule and host Live Classes.
                 </p>
                 <div className="mt-2 text-xs text-muted-foreground space-y-1">
@@ -99,9 +99,9 @@ export function ZoomConfigCard({ tenantId }: { tenantId?: string }) {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-4 flex items-start gap-3 mb-6">
-              <AlertCircle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-              <div className="text-sm text-amber-500">
+            <div className="bg-sb-navy border border-sb-butter rounded-lg p-4 flex items-start gap-3 mb-6">
+              <AlertCircle className="w-5 h-5 text-sb-butter-ink shrink-0 mt-0.5" />
+              <div className="text-sm text-sb-butter-ink">
                 <p className="font-medium mb-1">Setup Required</p>
                 <p>Create a Server-to-Server OAuth app in the Zoom App Marketplace, then copy the credentials here.</p>
               </div>

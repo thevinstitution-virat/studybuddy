@@ -118,7 +118,7 @@ export function IARevenueClient() {
                   labelFormatter={(label) => `Month: ${label}`}
                   cursor={{ fill: 'rgba(0,0,0,0.05)' }}
                 />
-                <Bar dataKey="institutionPaise" stackId="a" fill="#14b8a6" radius={[4,4,0,0]} />
+                <Bar dataKey="institutionPaise" stackId="a" fill="var(--sb-saffron-deep)" radius={[4,4,0,0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -146,7 +146,7 @@ export function IARevenueClient() {
                 {data.byBatch.map(batch => (
                   <tr key={batch.batchId} className="border-b last:border-0 hover:bg-muted/20 transition-colors">
                     <td className="px-4 py-3 font-medium">{batch.batchName}</td>
-                    <td className="px-4 py-3 text-right tabular-nums text-teal-600 font-medium">{formatPaise(Number(batch.institutionPaise))}</td>
+                    <td className="px-4 py-3 text-right tabular-nums text-sb-saffron-deep font-medium">{formatPaise(Number(batch.institutionPaise))}</td>
                     <td className="px-4 py-3 text-right tabular-nums text-muted-foreground">{batch.paymentCount}</td>
                   </tr>
                 ))}

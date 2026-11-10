@@ -105,11 +105,11 @@ export default function MaterialsAnalyticsSection({ stats }: MaterialsAnalyticsS
                   {formatNumber(stats.totalMaterials)}
                 </p>
                 <div className="flex items-center mt-1">
-                  <ArrowTrendingUpIcon className="h-4 w-4 text-green-500 mr-1" />
-                  <span className="text-sm text-green-600">+12% from last month</span>
+                  <ArrowTrendingUpIcon className="h-4 w-4 text-sb-saffron-deep mr-1" />
+                  <span className="text-sm text-sb-saffron-deep">+12% from last month</span>
                 </div>
               </div>
-              <DocumentTextIcon className="h-8 w-8 text-blue-500" />
+              <DocumentTextIcon className="h-8 w-8 text-sb-sky-ink" />
             </div>
           </CardContent>
         </Card>
@@ -123,11 +123,11 @@ export default function MaterialsAnalyticsSection({ stats }: MaterialsAnalyticsS
                   {formatNumber(stats.totalDownloads)}
                 </p>
                 <div className="flex items-center mt-1">
-                  <ArrowTrendingUpIcon className="h-4 w-4 text-green-500 mr-1" />
-                  <span className="text-sm text-green-600">+8% from last month</span>
+                  <ArrowTrendingUpIcon className="h-4 w-4 text-sb-saffron-deep mr-1" />
+                  <span className="text-sm text-sb-saffron-deep">+8% from last month</span>
                 </div>
               </div>
-              <ArrowDownTrayIcon className="h-8 w-8 text-green-500" />
+              <ArrowDownTrayIcon className="h-8 w-8 text-sb-saffron-deep" />
             </div>
           </CardContent>
         </Card>
@@ -141,11 +141,11 @@ export default function MaterialsAnalyticsSection({ stats }: MaterialsAnalyticsS
                   {formatNumber(stats.totalViews)}
                 </p>
                 <div className="flex items-center mt-1">
-                  <ArrowTrendingUpIcon className="h-4 w-4 text-green-500 mr-1" />
-                  <span className="text-sm text-green-600">+15% from last month</span>
+                  <ArrowTrendingUpIcon className="h-4 w-4 text-sb-saffron-deep mr-1" />
+                  <span className="text-sm text-sb-saffron-deep">+15% from last month</span>
                 </div>
               </div>
-              <EyeIcon className="h-8 w-8 text-purple-500" />
+              <EyeIcon className="h-8 w-8 text-sb-lav-ink" />
             </div>
           </CardContent>
         </Card>
@@ -159,11 +159,11 @@ export default function MaterialsAnalyticsSection({ stats }: MaterialsAnalyticsS
                   {stats.pendingApprovals}
                 </p>
                 <div className="flex items-center mt-1">
-                  <ArrowTrendingDownIcon className="h-4 w-4 text-red-500 mr-1" />
-                  <span className="text-sm text-red-600">-5% from last month</span>
+                  <ArrowTrendingDownIcon className="h-4 w-4 text-sb-rose-ink mr-1" />
+                  <span className="text-sm text-sb-rose-ink">-5% from last month</span>
                 </div>
               </div>
-              <ChartBarIcon className="h-8 w-8 text-orange-500" />
+              <ChartBarIcon className="h-8 w-8 text-sb-saffron-deep" />
             </div>
           </CardContent>
         </Card>
@@ -288,7 +288,7 @@ export default function MaterialsAnalyticsSection({ stats }: MaterialsAnalyticsS
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-lg font-bold text-blue-600">#{index + 1}</p>
+                    <p className="text-lg font-bold text-sb-sky-ink">#{index + 1}</p>
                   </div>
                 </div>
               ))}
@@ -338,7 +338,7 @@ export default function MaterialsAnalyticsSection({ stats }: MaterialsAnalyticsS
               <div className="pt-4 border-t">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">Available Space</span>
-                  <span className="text-sm font-medium text-green-600">
+                  <span className="text-sm font-medium text-sb-saffron-deep">
                     {(15 - (stats.storageUsed / 1024 / 1024 / 1024)).toFixed(1)} GB
                   </span>
                 </div>
@@ -357,15 +357,15 @@ export default function MaterialsAnalyticsSection({ stats }: MaterialsAnalyticsS
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
-              <p className="text-2xl font-bold text-blue-600">{stats.recentUploads}</p>
+              <p className="text-2xl font-bold text-sb-sky-ink">{stats.recentUploads}</p>
               <p className="text-sm text-muted-foreground">New uploads this week</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-green-600">{stats.pendingApprovals}</p>
+              <p className="text-2xl font-bold text-sb-saffron-deep">{stats.pendingApprovals}</p>
               <p className="text-sm text-muted-foreground">Pending approvals</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-purple-600">
+              <p className="text-2xl font-bold text-sb-lav-ink">
                 {Math.round((stats.totalDownloads / stats.totalMaterials) * 100) / 100}
               </p>
               <p className="text-sm text-muted-foreground">Avg downloads per material</p>

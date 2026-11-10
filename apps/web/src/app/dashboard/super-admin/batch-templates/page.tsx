@@ -79,7 +79,7 @@ export default function BatchTemplatesPage() {
     <div className="mx-auto max-w-5xl px-4 py-8">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-2xl font-bold text-transparent">
+          <h1 className="text-sb-saffron-deep from-primary to-primary/80  text-2xl font-bold ">
             Batch Templates
           </h1>
           <p className="mt-2 text-muted-foreground">
@@ -175,7 +175,7 @@ export default function BatchTemplatesPage() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="text-red-500 hover:text-red-600 hover:bg-red-50"
+                      className="text-sb-rose-ink hover:text-sb-rose-ink hover:bg-sb-rose"
                       onClick={() => handleDelete(template.id)}
                       disabled={deleteMutation.isPending}
                     >

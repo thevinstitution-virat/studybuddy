@@ -220,11 +220,11 @@ export default function MobileSearchInterface({
         <CardContent className="p-6">
           {/* Search Header */}
           <div className="text-center mb-6">
-            <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-orange-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+            <div className="w-16 h-16 mx-auto mb-4 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg">
               <Search className="h-8 w-8 text-white" />
             </div>
             <h2 className="text-2xl font-bold mb-2">
-              <span className="bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="text-sb-saffron-deep    ">
                 Word Search
               </span>
             </h2>
@@ -244,7 +244,7 @@ export default function MobileSearchInterface({
                 onChange={(e) => onSearchQueryChange(e.target.value)}
                 onFocus={handleInputFocus}
                 onBlur={handleInputBlur}
-                className="pl-12 pr-20 h-14 text-base bg-muted/40 backdrop-blur-sm border-border/50 rounded-xl focus:ring-2 focus:ring-orange-500 transition-all duration-200"
+                className="pl-12 pr-20 h-14 text-base bg-muted/40 backdrop-blur-sm border-border/50 rounded-xl focus:ring-2 focus:ring-sb-saffron transition-all duration-200"
                 disabled={isSearching}
               />
               
@@ -270,8 +270,8 @@ export default function MobileSearchInterface({
                 disabled={isVoiceRecording || isSearching}
                 className={`absolute right-2 top-1/2 transform -translate-y-1/2 h-10 w-10 p-0 rounded-full transition-all duration-200 ${
                   isVoiceRecording 
-                    ? 'bg-red-100 text-red-600 animate-pulse' 
-                    : 'hover:bg-blue-100 hover:text-blue-600'
+                    ? 'bg-sb-rose text-sb-rose-ink animate-pulse' 
+                    : 'hover:bg-sb-sky hover:text-sb-sky-ink'
                 }`}
               >
                 <Mic className="h-4 w-4" />
@@ -282,7 +282,7 @@ export default function MobileSearchInterface({
             <Button
               type="submit"
               disabled={isSearching || !searchQuery.trim()}
-              className="w-full h-12 bg-gradient-to-r from-orange-500 to-blue-600 hover:from-orange-600 hover:to-blue-700 text-white font-medium rounded-xl shadow-lg transform transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full h-12 bg-sb-navy     text-white font-medium rounded-xl shadow-lg transform transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               {isSearching ? (
                 <div className="flex items-center space-x-2">
@@ -339,7 +339,7 @@ export default function MobileSearchInterface({
                       variant="ghost"
                       size="sm"
                       onClick={() => handleSuggestionSelect(suggestion)}
-                      className="w-full justify-start h-10 px-3 rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-blue-50 dark:hover:from-orange-900/20 dark:hover:to-blue-900/20"
+                      className="w-full justify-start h-10 px-3 rounded-lg hover:bg-sb-surface-2    "
                     >
                       <Search className="h-3 w-3 mr-2 text-muted-foreground" />
                       <span className="truncate">{suggestion}</span>
@@ -363,9 +363,9 @@ export default function MobileSearchInterface({
                       variant="ghost"
                       size="sm"
                       onClick={() => handleSuggestionSelect(search)}
-                      className="w-full justify-start h-10 px-3 rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-blue-50 dark:hover:from-orange-900/20 dark:hover:to-blue-900/20"
+                      className="w-full justify-start h-10 px-3 rounded-lg hover:bg-sb-surface-2    "
                     >
-                      <Clock className="h-3 w-3 mr-2 text-blue-400" />
+                      <Clock className="h-3 w-3 mr-2 text-sb-sky-ink" />
                       <span className="truncate">{search}</span>
                     </Button>
                   ))}
@@ -387,10 +387,10 @@ export default function MobileSearchInterface({
                       variant="ghost"
                       size="sm"
                       onClick={() => handleSuggestionSelect(item.word)}
-                      className="w-full justify-between h-10 px-3 rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-blue-50 dark:hover:from-orange-900/20 dark:hover:to-blue-900/20"
+                      className="w-full justify-between h-10 px-3 rounded-lg hover:bg-sb-surface-2    "
                     >
                       <div className="flex items-center">
-                        <TrendingUp className="h-3 w-3 mr-2 text-green-400" />
+                        <TrendingUp className="h-3 w-3 mr-2 text-sb-saffron-deep" />
                         <span className="truncate">{item.word}</span>
                       </div>
                       <Badge variant="secondary" className="text-xs">

@@ -151,3 +151,12 @@
   .sb-auth-headline { font-size: 30px; }
   .sb-auth-form { align-items: start; padding-top: 32px; }
 }
+
+/* ---- headings in every dashboard page: Bricolage, tight, per the type scale (brief §2) ---- */
+.sbshell main h1 { font-family: var(--sb-font-display); font-weight: 700; font-size: clamp(28px, 5vw, 42px); line-height: 1.05; letter-spacing: -.035em; color: var(--sb-ink); text-wrap: balance; }
+.sbshell main h2 { font-family: var(--sb-font-display); font-weight: 700; letter-spacing: -.02em; }
+.sbshell main h3 { font-family: var(--sb-font-display); font-weight: 700; letter-spacing: -.02em; }
+.sbshell main h1.text-4xl, .sbshell main h1.md\:text-5xl { font-size: clamp(30px, 5.5vw, 44px); }
+.sbshell main { overscroll-behavior: contain; }
+/* tap feedback on interactive cards and buttons instead of hover-only states */
+.sbshell main button:not(:disabled):active, .sbshell main a.card:active { transform: scale(.98); }

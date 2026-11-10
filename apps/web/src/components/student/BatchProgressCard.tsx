@@ -65,7 +65,7 @@ export function BatchProgressCard({
               fill="transparent"
               strokeDasharray={circumference}
               strokeDashoffset={offset}
-              className={`${stats.avgCompletion >= 90 ? 'text-green-500' : 'text-blue-500'} transition-all duration-1000`}
+              className={`${stats.avgCompletion >= 90 ? 'text-sb-saffron-deep' : 'text-sb-sky-ink'} transition-all duration-1000`}
             />
           </svg>
           <div className="absolute inset-0 flex items-center justify-center font-bold text-sm">
@@ -112,7 +112,7 @@ export function BatchProgressCard({
                 <div key={video.id} className="flex items-center justify-between p-3 rounded-lg bg-muted/30">
                   <div className="flex items-center gap-3">
                     {video.progress?.completed ? (
-                      <CheckCircle className="h-5 w-5 text-green-500" />
+                      <CheckCircle className="h-5 w-5 text-sb-saffron-deep" />
                     ) : (
                       <PlayCircle className="h-5 w-5 text-muted-foreground" />
                     )}
@@ -120,7 +120,7 @@ export function BatchProgressCard({
                   </div>
                   <div className="text-xs font-mono">
                     {video.progress ? (
-                      <span className={video.progress.completed ? 'text-green-600' : 'text-blue-600'}>
+                      <span className={video.progress.completed ? 'text-sb-saffron-deep' : 'text-sb-sky-ink'}>
                         {video.progress.completed ? '100%' : 'Partial'}
                       </span>
                     ) : (

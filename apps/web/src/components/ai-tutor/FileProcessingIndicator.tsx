@@ -47,11 +47,11 @@ export function FileProcessingIndicator({
     switch (file.status) {
       case 'uploading':
       case 'processing':
-        return <Loader2 className="h-4 w-4 animate-spin text-blue-600" />
+        return <Loader2 className="h-4 w-4 animate-spin text-sb-sky-ink" />
       case 'completed':
-        return <CheckCircle className="h-4 w-4 text-green-600" />
+        return <CheckCircle className="h-4 w-4 text-sb-saffron-deep" />
       case 'error':
-        return <AlertCircle className="h-4 w-4 text-red-600" />
+        return <AlertCircle className="h-4 w-4 text-sb-rose-ink" />
       default:
         return null
     }
@@ -61,11 +61,11 @@ export function FileProcessingIndicator({
     switch (file.status) {
       case 'uploading':
       case 'processing':
-        return 'border-blue-200 bg-blue-50/50'
+        return 'border-sb-sky bg-sb-sky'
       case 'completed':
-        return 'border-green-200 bg-green-50/50'
+        return 'border-sb-saffron bg-sb-saffron-tint'
       case 'error':
-        return 'border-red-200 bg-red-50/50'
+        return 'border-sb-danger bg-sb-rose'
       default:
         return 'border-border bg-muted/30'
     }
@@ -129,9 +129,9 @@ export function FileProcessingIndicator({
             {/* File Icon */}
             <div className="flex-shrink-0 mt-1">
               {file.type === 'image' ? (
-                <Image className="h-5 w-5 text-blue-600" />
+                <Image className="h-5 w-5 text-sb-sky-ink" />
               ) : (
-                <FileText className="h-5 w-5 text-blue-600" />
+                <FileText className="h-5 w-5 text-sb-sky-ink" />
               )}
             </div>
 
@@ -149,7 +149,7 @@ export function FileProcessingIndicator({
                   variant="ghost"
                   size="sm"
                   onClick={onRemove}
-                  className="h-6 w-6 p-0 hover:bg-red-100 hover:text-red-600"
+                  className="h-6 w-6 p-0 hover:bg-sb-rose hover:text-sb-rose-ink"
                 >
                   <X className="h-3 w-3" />
                 </Button>
@@ -160,7 +160,7 @@ export function FileProcessingIndicator({
                 <span>{formatFileSize(file.file.size)}</span>
                 <span>{file.file.type}</span>
                 {file.result?.confidence && (
-                  <span className="text-green-600">
+                  <span className="text-sb-saffron-deep">
                     {Math.round(file.result.confidence * 100)}% confidence
                   </span>
                 )}
@@ -185,7 +185,7 @@ export function FileProcessingIndicator({
 
                 {/* Error Message */}
                 {file.status === 'error' && file.result?.error && (
-                  <div className="text-sm text-red-600 bg-red-50 p-2 rounded-md border border-red-200">
+                  <div className="text-sm text-sb-rose-ink bg-sb-rose p-2 rounded-md border border-sb-danger">
                     {file.result.error}
                   </div>
                 )}

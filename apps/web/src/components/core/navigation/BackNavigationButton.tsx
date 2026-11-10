@@ -51,7 +51,7 @@ const BackNavigationButton: React.FC<BackNavigationButtonProps> = ({
           hover:text-foreground dark:hover:text-gray-100
           hover:bg-muted dark:hover:bg-gray-800
           rounded-lg transition-all duration-200
-          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+          focus:outline-none focus:ring-2 focus:ring-sb-sky focus:ring-offset-2
           ${className}
         `}
         whileHover={{ scale: 1.02 }}
@@ -82,7 +82,7 @@ const BackNavigationButton: React.FC<BackNavigationButtonProps> = ({
           hover:bg-muted dark:hover:bg-gray-800
           border border-border
           rounded-lg transition-all duration-200
-          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+          focus:outline-none focus:ring-2 focus:ring-sb-sky focus:ring-offset-2
           shadow-sm hover:shadow-md
         "
         aria-label={`Navigate ${label.toLowerCase()}`}

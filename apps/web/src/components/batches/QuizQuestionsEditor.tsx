@@ -185,10 +185,10 @@ export function QuizQuestionsEditor({
                             {q.options.map((opt: any, oi: number) => (
                               <div key={opt.id} className="flex items-center gap-2 text-sm">
                                 <span className="text-muted-foreground w-4">{String.fromCharCode(65 + oi)}.</span>
-                                <span className={opt.isCorrect ? 'text-emerald-600 font-medium' : 'text-muted-foreground'}>
+                                <span className={opt.isCorrect ? 'text-sb-saffron-deep font-medium' : 'text-muted-foreground'}>
                                   {opt.optionText}
                                 </span>
-                                {opt.isCorrect && <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />}
+                                {opt.isCorrect && <CheckCircle2 className="h-3.5 w-3.5 text-sb-saffron-deep" />}
                               </div>
                             ))}
                           </div>

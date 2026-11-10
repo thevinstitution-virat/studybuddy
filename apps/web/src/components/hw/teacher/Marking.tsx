@@ -33,9 +33,9 @@ function Transcript({ row, quotes }: { row: Row; quotes: string[] }) {
       <p className="whitespace-pre-wrap rounded-md bg-muted p-3 text-base leading-relaxed">
         {annotate(row.transcript, row.studentFlags, quotes).map((s, i) => (
           <span key={i} className={cn(
-            s.quote && 'bg-green-200 dark:bg-green-900',
-            s.unclear && 'rounded bg-amber-200 px-0.5 font-semibold dark:bg-amber-800',
-            s.flag && 'underline decoration-red-500 decoration-wavy underline-offset-4',
+            s.quote && 'bg-sb-saffron-tint ',
+            s.unclear && 'rounded bg-sb-butter px-0.5 font-semibold ',
+            s.flag && 'underline decoration-sb-danger decoration-wavy underline-offset-4',
           )}>{s.text}</span>
         ))}
       </p>
@@ -128,9 +128,9 @@ function Panel({ q, row, onDone }: { q: Queue; row: Row; onDone: () => void }) {
             </div>
           </div>
         ) : <Transcript row={row} quotes={sugItems.filter((x) => x.verdict !== 'missing').map((x) => x.quote)} />}
-        {row.failureReason && <p className="mt-2 text-sm text-amber-700 dark:text-amber-400">{t('mk.failure')}: {row.failureReason}</p>}
+        {row.failureReason && <p className="mt-2 text-sm text-sb-butter-ink ">{t('mk.failure')}: {row.failureReason}</p>}
         {'instructionFlag' in row && row.instructionFlag && (
-          <div className="mt-2 flex flex-wrap items-center justify-between gap-2 rounded border border-amber-300 p-2 text-sm text-amber-800 dark:border-amber-700 dark:text-amber-300">
+          <div className="mt-2 flex flex-wrap items-center justify-between gap-2 rounded border border-sb-butter p-2 text-sm text-sb-butter-ink  ">
             <p>{t('mk.instructionFlag')}</p>
             <Button size="sm" variant="outline" disabled={busy} onClick={() => notInstr.mutate({ answerId: row.answerId })}>{t('mk.notInstruction')}</Button>
           </div>
@@ -176,7 +176,7 @@ function Panel({ q, row, onDone }: { q: Queue; row: Row; onDone: () => void }) {
         {s ? (
           <p className="text-sm">{t('st.result.total', { got: changed ? itemTotal : s.suggestedMarks, of: q.question.marks })}</p>
         ) : 'aiOff' in q && q.aiOff ? (
-          <p className="text-sm text-amber-700 dark:text-amber-400">{t(q.aiOff.reason === 'config_changed' ? 'mk.aiOff.paused' : String(q.aiOff.reason).startsWith('key_') || q.aiOff.reason === 'teacher_rubric' ? (`mk.aiOff.${q.aiOff.reason}` as never) : 'mk.aiOff.default')}</p>
+          <p className="text-sm text-sb-butter-ink ">{t(q.aiOff.reason === 'config_changed' ? 'mk.aiOff.paused' : String(q.aiOff.reason).startsWith('key_') || q.aiOff.reason === 'teacher_rubric' ? (`mk.aiOff.${q.aiOff.reason}` as never) : 'mk.aiOff.default')}</p>
         ) : <p className="text-sm text-muted-foreground">{t('mk.noSuggestion')}</p>}
         {s && Array.isArray(s.validationNotes) && s.validationNotes.length > 0 && (
           <details className="text-xs text-muted-foreground">
@@ -191,7 +191,7 @@ function Panel({ q, row, onDone }: { q: Queue; row: Row; onDone: () => void }) {
         <Textarea id={`c-${row.answerId}`} value={comment} onChange={(e) => setComment(e.target.value)} rows={2} disabled={returned} />
       </div>
 
-      {row.grade && <p className="text-sm font-medium text-green-700 dark:text-green-400"><Check className="mr-1 inline h-4 w-4" />{t('mk.graded', { n: row.grade.marks, of: q.question.marks, source: t(`mk.source.${row.grade.source}`) })}</p>}
+      {row.grade && <p className="text-sm font-medium text-sb-saffron-deep "><Check className="mr-1 inline h-4 w-4" />{t('mk.graded', { n: row.grade.marks, of: q.question.marks, source: t(`mk.source.${row.grade.source}`) })}</p>}
       {err && <HwMessage tone="error">{err.message}</HwMessage>}
 
       {!returned && (
@@ -268,7 +268,7 @@ export function Marking({ questions, initialQuestionId }: { questions: { id: str
         <div className="flex flex-wrap gap-1">
           {filters.map((f) => <Button key={f} size="sm" variant={filter === f ? 'default' : 'outline'} onClick={() => { setFilter(f); setIndex(0) }}>{t(`mk.filter.${f}`)}</Button>)}
         </div>
-        {bulk.error && <p className="text-sm text-red-600">{bulk.error.message}</p>}
+        {bulk.error && <p className="text-sm text-sb-rose-ink">{bulk.error.message}</p>}
       </CardHeader>
     </Card>
   )

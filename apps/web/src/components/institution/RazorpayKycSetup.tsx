@@ -60,15 +60,15 @@ export function RazorpayKycSetup() {
 
   if (statusData?.isLinked) {
     return (
-      <Card className="border-green-200 bg-green-50/30">
+      <Card className="border-sb-saffron bg-sb-saffron-tint">
         <CardContent className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6">
           <div className="flex items-center gap-4">
-            <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-              <CheckCircle2 className="h-6 w-6 text-green-600" />
+            <div className="h-10 w-10 rounded-full bg-sb-saffron-tint flex items-center justify-center flex-shrink-0">
+              <CheckCircle2 className="h-6 w-6 text-sb-saffron-deep" />
             </div>
             <div>
-              <h3 className="font-semibold text-green-900">Razorpay Connected</h3>
-              <p className="text-sm text-green-700">
+              <h3 className="font-semibold text-sb-saffron-deep">Razorpay Connected</h3>
+              <p className="text-sm text-sb-saffron-deep">
                 Your account ({statusData.accountId}) is linked to Razorpay for split payments.
               </p>
             </div>
@@ -105,10 +105,10 @@ export function RazorpayKycSetup() {
         )}
         
         {setupMutation.isSuccess && !setupMutation.data?.onboardingUrl && (
-          <Alert className="bg-blue-50 border-blue-200">
-            <CheckCircle2 className="h-4 w-4 text-blue-600" />
-            <AlertTitle className="text-blue-800">Account Created</AlertTitle>
-            <AlertDescription className="text-blue-700">
+          <Alert className="bg-sb-sky border-sb-sky">
+            <CheckCircle2 className="h-4 w-4 text-sb-sky-ink" />
+            <AlertTitle className="text-sb-sky-ink">Account Created</AlertTitle>
+            <AlertDescription className="text-sb-sky-ink">
               Your account was created but no onboarding link was returned. Razorpay will email you to complete verification.
             </AlertDescription>
           </Alert>

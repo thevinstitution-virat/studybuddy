@@ -24,7 +24,7 @@ function UseBar({ u }: { u: Tenant['usage'] }) {
   return (
     <span className="block min-w-[10rem]">
       <span className="block h-2 w-full overflow-hidden rounded bg-muted" aria-hidden>
-        <span className={`block h-2 ${u.exhausted ? 'bg-red-600' : u.warn ? 'bg-amber-500' : 'bg-emerald-600'}`} style={{ width: `${pct}%` }} />
+        <span className={`block h-2 ${u.exhausted ? 'bg-sb-danger' : u.warn ? 'bg-sb-navy' : 'bg-sb-navy'}`} style={{ width: `${pct}%` }} />
       </span>
       <span className="text-xs">{rupees(u.costPaise)} of {rupees(u.budgetPaise)} ({Math.round(u.fraction * 100)}%){u.exhausted ? ' · used up' : u.warn ? ' · over 80%' : ''}</span>
     </span>
@@ -125,7 +125,7 @@ function Editor({ t, onDone }: { t: Tenant; onDone: () => void }) {
       <div className="flex flex-wrap items-center gap-2">
         <Button disabled={!ready || save.isPending} onClick={() => save.mutate({ organizationId: t.organizationId, enabled, monthlyBudgetPaise: paise, scopeRestricted: restricted, scope, reason: reason.trim() })}>Save</Button>
         <Button variant="outline" onClick={onDone}>Close</Button>
-        {save.data && <span className="text-emerald-700">{save.data.changed ? 'Saved and recorded.' : 'Nothing changed.'}</span>}
+        {save.data && <span className="text-sb-saffron-deep">{save.data.changed ? 'Saved and recorded.' : 'Nothing changed.'}</span>}
       </div>
       {save.error && <HwMessage tone="error">{save.error.message}</HwMessage>}
       <div>

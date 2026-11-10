@@ -61,13 +61,13 @@ export default function SarvagyaDashboard() {
             title: 'Deep Web Research',
             description: 'Search and synthesize information across the entire web with AI-powered analysis',
             icon: Globe,
-            gradient: 'from-primary to-cyan-500'
+            gradient: 'from-primary '
         },
         {
             title: 'Document Intelligence',
             description: 'Upload PDFs, URLs, and files — ask questions grounded in your own sources',
             icon: FileText,
-            gradient: 'from-green-500 to-emerald-500'
+            gradient: ' '
         },
         {
             title: 'Cited Answers',
@@ -78,24 +78,24 @@ export default function SarvagyaDashboard() {
     ];
 
     const statItems = [
-        { label: 'Spaces', value: spaces.length, icon: Database, gradient: 'from-primary to-cyan-500' },
+        { label: 'Spaces', value: spaces.length, icon: Database, gradient: 'from-primary ' },
         { label: 'Threads', value: totalThreads, icon: MessageSquareShare, gradient: 'from-primary to-primary/80' },
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-orange-50/30 via-primary/10 to-primary/15 dark:from-[var(--night-ink)] dark:via-[var(--indigo-deep)] dark:to-[var(--indigo-ink)]">
+        <div className="min-h-screen bg-sb-surface-2  via-primary/10 to-primary/15 dark:from-[var(--night-ink)] dark:via-[var(--indigo-deep)] dark:to-[var(--indigo-ink)]">
             <div className="container mx-auto px-4 py-4 max-w-6xl">
 
                 {/* ── Header Card (matching TutorHeader pattern) ── */}
                 <div className="mb-4 bg-white/90 backdrop-blur-md border-0 shadow-lg rounded-2xl overflow-hidden">
-                    <div className="pb-4 pt-5 px-6 bg-gradient-to-r from-orange-500/5 to-primary/80 dark:from-orange-500/10 dark:to-primary/10">
+                    <div className="pb-4 pt-5 px-6 bg-sb-navy  to-primary/80  dark:to-primary/10">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-4">
-                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-orange-500 to-primary/80 flex items-center justify-center shadow-lg">
+                                <div className="w-12 h-12 rounded-2xl bg-sb-navy  to-primary/80 flex items-center justify-center shadow-lg">
                                     <Brain className="h-6 w-6 text-white" />
                                 </div>
                                 <div>
-                                    <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-primary/80 bg-clip-text text-transparent">
+                                    <h1 className="text-2xl font-bold text-sb-saffron-deep  to-primary/80  ">
                                         Sarvagya AI Search
                                     </h1>
                                     <p className="text-muted-foreground text-sm">
@@ -143,7 +143,7 @@ export default function SarvagyaDashboard() {
                             </div>
                             <button
                                 onClick={() => setIsCreateModalOpen(true)}
-                                className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-orange-500 to-primary/80 hover:from-orange-600 hover:to-primary/80 text-white rounded-xl font-bold text-sm transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg whitespace-nowrap"
+                                className="flex items-center gap-2 px-5 py-2.5 bg-sb-navy  to-primary/80  hover:to-primary/80 text-white rounded-xl font-bold text-sm transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg whitespace-nowrap"
                             >
                                 <Plus className="w-4 h-4" />
                                 New Space
@@ -153,7 +153,7 @@ export default function SarvagyaDashboard() {
                         {/* Spaces Grid */}
                         <div>
                             <div className="flex items-center mb-4">
-                                <div className="w-10 h-10 bg-gradient-to-br from-primary/100 to-primary/80 rounded-xl flex items-center justify-center mr-3 shadow-md">
+                                <div className="w-10 h-10 bg-sb-surface-2 from-primary/100 to-primary/80 rounded-xl flex items-center justify-center mr-3 shadow-md">
                                     <Database className="h-5 w-5 text-white" />
                                 </div>
                                 <div>
@@ -171,7 +171,7 @@ export default function SarvagyaDashboard() {
                                 </div>
                             ) : filteredSpaces.length === 0 ? (
                                 <div className="flex flex-col items-center justify-center p-16 bg-white/90 backdrop-blur-md rounded-2xl shadow-lg border-0 text-center">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center mb-5 shadow-lg">
+                                    <div className="w-16 h-16 bg-sb-surface-2 from-primary to-primary/80 rounded-2xl flex items-center justify-center mb-5 shadow-lg">
                                         <SearchCode className="w-8 h-8 text-white" />
                                     </div>
                                     <h3 className="text-xl font-bold text-foreground mb-3">No Search Spaces Yet</h3>
@@ -180,7 +180,7 @@ export default function SarvagyaDashboard() {
                                     </p>
                                     <button
                                         onClick={() => setIsCreateModalOpen(true)}
-                                        className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-primary/80 hover:from-orange-600 hover:to-primary/80 text-white rounded-xl font-bold transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md shadow-primary/20 text-sm"
+                                        className="flex items-center gap-2 px-6 py-3 bg-sb-navy  to-primary/80  hover:to-primary/80 text-white rounded-xl font-bold transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md shadow-primary/20 text-sm"
                                     >
                                         <Plus className="w-5 h-5" />
                                         Create Your First Space
@@ -194,11 +194,11 @@ export default function SarvagyaDashboard() {
                                             key={space.id}
                                             className="relative p-6 bg-white/90 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] border-0 group overflow-hidden cursor-pointer"
                                         >
-                                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                            <div className="absolute inset-0 bg-sb-surface-2 from-primary/5 to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                                             <div className="relative z-10">
                                                 <div className="flex items-start justify-between mb-3">
-                                                    <div className="w-11 h-11 bg-gradient-to-br from-primary/100 to-primary/80 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-200">
+                                                    <div className="w-11 h-11 bg-sb-surface-2 from-primary/100 to-primary/80 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-200">
                                                         <MessageSquareShare className="w-5 h-5 text-white" />
                                                     </div>
 
@@ -209,7 +209,7 @@ export default function SarvagyaDashboard() {
                                                 </div>
 
                                                 <div className="mb-3">
-                                                    <span className="inline-block px-2 py-0.5 text-[10px] font-semibold bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full mb-1.5">
+                                                    <span className="inline-block px-2 py-0.5 text-[10px] font-semibold bg-sb-navy   text-white rounded-full mb-1.5">
                                                         Research Space
                                                     </span>
                                                     <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
@@ -227,7 +227,7 @@ export default function SarvagyaDashboard() {
                                                     <div className="text-xs text-muted-foreground font-medium">
                                                         0 threads
                                                     </div>
-                                                    <div className="flex items-center text-xs font-medium text-muted-foreground group-hover:text-orange-500 transition-colors duration-300">
+                                                    <div className="flex items-center text-xs font-medium text-muted-foreground group-hover:text-sb-saffron-deep transition-colors duration-300">
                                                         <span>Enter Space</span>
                                                         <ChevronRight className="h-3 w-3 ml-1 transform group-hover:translate-x-1 transition-transform duration-300" />
                                                     </div>
@@ -242,7 +242,7 @@ export default function SarvagyaDashboard() {
                         {/* ── Research Capabilities (bottom) ── */}
                         <div className="pt-4">
                             <div className="flex items-center mb-4">
-                                <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center mr-3 shadow-md">
+                                <div className="w-10 h-10 bg-sb-navy   rounded-xl flex items-center justify-center mr-3 shadow-md">
                                     <Sparkles className="h-5 w-5 text-white" />
                                 </div>
                                 <div>
@@ -254,9 +254,9 @@ export default function SarvagyaDashboard() {
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                                 {capabilities.map((cap, index) => (
                                     <div key={index} className="relative p-6 bg-white/90 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] border-0 group overflow-hidden">
-                                        <div className={`absolute inset-0 bg-gradient-to-br ${cap.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+                                        <div className={`absolute inset-0 bg-sb-surface-2 ${cap.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
                                         <div className="relative z-10">
-                                            <div className={`inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br ${cap.gradient} rounded-xl mb-4 shadow-md`}>
+                                            <div className={`inline-flex items-center justify-center w-12 h-12 bg-sb-surface-2 ${cap.gradient} rounded-xl mb-4 shadow-md`}>
                                                 <cap.icon className="h-6 w-6 text-white" />
                                             </div>
                                             <h3 className="text-lg font-bold text-foreground mb-1.5">{cap.title}</h3>
@@ -286,12 +286,12 @@ export default function SarvagyaDashboard() {
                                     }}
                                 >
                                     <div className="flex items-center space-x-3 mb-3">
-                                        <div className={`w-10 h-10 bg-gradient-to-r ${stat.gradient} rounded-xl flex items-center justify-center shadow-md`}>
+                                        <div className={`w-10 h-10 bg-sb-surface-2 ${stat.gradient} rounded-xl flex items-center justify-center shadow-md`}>
                                             <stat.icon className="h-5 w-5 text-white" />
                                         </div>
                                         <span className="text-sm font-medium text-muted-foreground">{stat.label}</span>
                                     </div>
-                                    <p className="text-3xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+                                    <p className="text-3xl font-bold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                                         {stat.value}
                                     </p>
                                 </div>
@@ -307,7 +307,7 @@ export default function SarvagyaDashboard() {
                                 }}
                             >
                                 <div className="flex items-center space-x-3 mb-3">
-                                    <div className="w-10 h-10 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl flex items-center justify-center shadow-md">
+                                    <div className="w-10 h-10 bg-sb-navy   rounded-xl flex items-center justify-center shadow-md">
                                         <Coins className="h-5 w-5 text-white" />
                                     </div>
                                     <span className="text-sm font-medium text-muted-foreground">Credits</span>
@@ -326,7 +326,7 @@ export default function SarvagyaDashboard() {
                             >
                                 <Link
                                     href="/dashboard/sarvagya/store"
-                                    className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-orange-500 to-primary/80 hover:from-orange-600 hover:to-primary/80 text-white rounded-xl font-bold text-sm transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
+                                    className="flex items-center justify-center gap-2 w-full py-3 bg-sb-navy  to-primary/80  hover:to-primary/80 text-white rounded-xl font-bold text-sm transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
                                 >
                                     <Plus className="w-4 h-4" />
                                     Top Up Credits
@@ -349,7 +349,7 @@ export default function SarvagyaDashboard() {
                         </button>
 
                         <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-primary/80 rounded-xl flex items-center justify-center shadow-md">
+                            <div className="w-10 h-10 bg-sb-navy  to-primary/80 rounded-xl flex items-center justify-center shadow-md">
                                 <Brain className="w-5 h-5 text-white" />
                             </div>
                             <div>
@@ -361,7 +361,7 @@ export default function SarvagyaDashboard() {
                         <form onSubmit={handleCreateSpace} className="space-y-4">
                             <div>
                                 <label className="block text-sm font-medium text-foreground mb-1">
-                                    Space Name <span className="text-red-500">*</span>
+                                    Space Name <span className="text-sb-rose-ink">*</span>
                                 </label>
                                 <input
                                     type="text"
@@ -398,7 +398,7 @@ export default function SarvagyaDashboard() {
                                 <button
                                     type="submit"
                                     disabled={createSpaceMutation.isPending || !newSpaceName.trim()}
-                                    className="flex-1 px-4 py-2.5 bg-gradient-to-r from-orange-500 to-primary/80 hover:from-orange-600 hover:to-primary/80 text-white rounded-xl font-bold transition-all shadow-md disabled:opacity-50 flex items-center justify-center"
+                                    className="flex-1 px-4 py-2.5 bg-sb-navy  to-primary/80  hover:to-primary/80 text-white rounded-xl font-bold transition-all shadow-md disabled:opacity-50 flex items-center justify-center"
                                 >
                                     {createSpaceMutation.isPending ? (
                                         <Loader2 className="w-5 h-5 animate-spin" />

@@ -332,16 +332,16 @@ export default function QuizChatInterface({
   }
 
   return (
-    <div className="flex flex-col h-[600px] bg-gradient-to-b from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 rounded-lg border border-green-200 dark:border-green-800">
+    <div className="flex flex-col h-[600px] bg-sb-surface-2     rounded-lg border border-sb-saffron ">
       {/* Quiz Header */}
-      <div className="flex items-center justify-between p-4 bg-green-600 text-white rounded-t-lg">
+      <div className="flex items-center justify-between p-4 bg-sb-navy text-white rounded-t-lg">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-            <span className="text-green-600 font-bold text-lg">🎯</span>
+            <span className="text-sb-saffron-deep font-bold text-lg">🎯</span>
           </div>
           <div>
             <h3 className="font-semibold">VG Kosh Quiz Master</h3>
-            <p className="text-sm text-green-100">Interactive Vocabulary Quiz</p>
+            <p className="text-sm text-white">Interactive Vocabulary Quiz</p>
           </div>
         </div>
         <div className="text-right">
@@ -353,18 +353,18 @@ export default function QuizChatInterface({
       </div>
 
       {/* Progress Bar */}
-      <div className="p-4 bg-white dark:bg-gray-800 border-b border-green-200 dark:border-green-700">
+      <div className="p-4 bg-white dark:bg-gray-800 border-b border-sb-saffron ">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
             Progress: {quizProgress.current}/{quizProgress.total}
           </span>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
-              <TrophyIcon className="h-4 w-4 text-yellow-600" />
+              <TrophyIcon className="h-4 w-4 text-sb-butter-ink" />
               <span className="text-sm font-medium">{score}</span>
             </div>
             <div className="flex items-center space-x-1">
-              <FireIcon className="h-4 w-4 text-orange-600" />
+              <FireIcon className="h-4 w-4 text-sb-saffron-deep" />
               <span className="text-sm font-medium">{streak}</span>
             </div>
           </div>
@@ -423,9 +423,9 @@ function ChatMessageBubble({ message, onAnswerSelect, onPlayPronunciation }: Cha
       <div className={`max-w-xs lg:max-w-md ${isUser ? 'order-2' : 'order-1'}`}>
         <div className={`rounded-lg p-3 ${
           isUser 
-            ? 'bg-green-600 text-white' 
+            ? 'bg-sb-navy text-white' 
             : message.type === 'system' 
-              ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
+              ? 'bg-sb-sky text-sb-sky-ink  '
               : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700'
         }`}>
           <p className="text-sm whitespace-pre-line">{message.content}</p>
@@ -439,7 +439,7 @@ function ChatMessageBubble({ message, onAnswerSelect, onPlayPronunciation }: Cha
                   variant="outline"
                   size="sm"
                   onClick={() => onAnswerSelect(option)}
-                  className="w-full text-left justify-start bg-white hover:bg-green-50 border-green-300 text-gray-700"
+                  className="w-full text-left justify-start bg-white hover:bg-sb-saffron-tint border-sb-saffron text-gray-700"
                 >
                   <span className="font-medium mr-2">{String.fromCharCode(65 + index)})</span>
                   {option}
@@ -452,7 +452,7 @@ function ChatMessageBubble({ message, onAnswerSelect, onPlayPronunciation }: Cha
                   variant="ghost"
                   size="sm"
                   onClick={onPlayPronunciation}
-                  className="text-green-600 hover:text-green-700"
+                  className="text-sb-saffron-deep hover:text-sb-saffron-deep"
                 >
                   <SpeakerWaveIcon className="h-4 w-4 mr-1" />
                   Pronunciation
@@ -465,8 +465,8 @@ function ChatMessageBubble({ message, onAnswerSelect, onPlayPronunciation }: Cha
           {message.type === 'result' && message.answerData && (
             <div className="mt-2">
               {message.answerData.culturalContext && (
-                <div className="mt-2 p-2 bg-orange-50 dark:bg-orange-900 rounded border border-orange-200 dark:border-orange-700">
-                  <p className="text-xs text-orange-800 dark:text-orange-200">
+                <div className="mt-2 p-2 bg-sb-saffron-tint  rounded border border-sb-saffron ">
+                  <p className="text-xs text-sb-saffron-deep ">
                     🇮🇳 <strong>Cultural Context:</strong> {message.answerData.culturalContext}
                   </p>
                 </div>

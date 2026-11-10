@@ -137,17 +137,17 @@ export default function TeacherValidationPage() {
     if (!rating)
   return 'text-muted-foreground'
     if (rating >= 4)
-  return 'text-green-600'
+  return 'text-sb-saffron-deep'
     if (rating >= 3)
-  return 'text-yellow-600'
-    return 'text-red-600'
+  return 'text-sb-butter-ink'
+    return 'text-sb-rose-ink'
   }
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'validated': return <CheckCircle className="h-5 w-5 text-green-600" />
-      case 'rejected': return <XCircle className="h-5 w-5 text-red-600" />
-      case 'pending': return <AlertCircle className="h-5 w-5 text-yellow-600" />
+      case 'validated': return <CheckCircle className="h-5 w-5 text-sb-saffron-deep" />
+      case 'rejected': return <XCircle className="h-5 w-5 text-sb-rose-ink" />
+      case 'pending': return <AlertCircle className="h-5 w-5 text-sb-butter-ink" />
       default: return null
     }
   }
@@ -285,7 +285,7 @@ export default function TeacherValidationPage() {
                   {selectedItem.validationStatus === 'pending' && (
                     <>
                       {/* Overall Score Display */}
-                      <div className="p-4 bg-gradient-to-r from-primary/10 to-primary/10 rounded-lg border border-primary/30">
+                      <div className="p-4 bg-sb-surface-2 from-primary/10 to-primary/10 rounded-lg border border-primary/30">
                         <div className="text-center">
                           <p className="text-sm text-muted-foreground mb-1">Overall Score</p>
                           <p className="text-4xl font-bold text-primary">{overallScore}</p>
@@ -460,13 +460,13 @@ export default function TeacherValidationPage() {
                       </div>
 
                       {/* Approval Checkbox */}
-                      <div className="flex items-center gap-2 p-3 bg-green-50 rounded-lg border border-green-200">
+                      <div className="flex items-center gap-2 p-3 bg-sb-saffron-tint rounded-lg border border-sb-saffron">
                         <input
                           type="checkbox"
                           id="approve-pregen"
                           checked={approveForPregen}
                           onChange={(e) => setApproveForPregen(e.target.checked)}
-                          className="h-4 w-4 text-green-600 focus:ring-green-500 border-input rounded"
+                          className="h-4 w-4 text-sb-saffron-deep focus:ring-sb-saffron border-input rounded"
                         />
                         <label htmlFor="approve-pregen" className="text-sm font-medium text-foreground cursor-pointer">
                           Approve for Pre-generation {overallScore >= 85 && '(Score ≥85 - Auto-approved)'}

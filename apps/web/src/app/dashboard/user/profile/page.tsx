@@ -32,10 +32,10 @@ import {
 // unchanged — only the presentation layer moved onto the warm-Indic tokens.
 
 const GP = 'var(--bb-grad-primary)'
-const GC = 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))'
-const GW = 'linear-gradient(135deg,var(--turmeric),var(--gold))'
-const GT = 'linear-gradient(135deg,var(--teal-light),var(--peacock-teal))'
-const GV = 'linear-gradient(135deg,var(--lotus-deep),var(--lotus-pink))'
+const GC = 'var(--sb-navy)'
+const GW = 'var(--sb-navy)'
+const GT = 'var(--sb-navy)'
+const GV = 'var(--sb-navy)'
 
 interface ProfileFormData {
   firstName: string
@@ -352,7 +352,7 @@ export default function ProfilePage() {
         {error && (
           <div className="card" style={{ padding: 16, borderColor: 'rgb(229 40 58 / 0.4)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: 'linear-gradient(135deg,#FF5468,#E5283A 55%,#B0182A)' }}><AlertTriangle className="h-5 w-5" /></span>
+              <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: 'var(--sb-navy)' }}><AlertTriangle className="h-5 w-5" /></span>
               <div>
                 <h4 style={{ margin: 0, fontWeight: 800, color: 'var(--kumkum)' }}>Error</h4>
                 <p style={{ margin: '2px 0 0', fontSize: 13.5, color: 'var(--muted)' }}>{error}</p>
@@ -558,7 +558,7 @@ function ProfileCompletionCard({ userProfile, completionPercentage }: { userProf
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {completionItems.map((item, index) => {
           const Icon = item.icon
-          const bg = item.completed ? GT : item.optional ? 'linear-gradient(135deg,var(--muted),var(--muted))' : GW
+          const bg = item.completed ? GT : item.optional ? 'var(--sb-navy)' : GW
           return (
             <div key={index} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 11, borderRadius: 12, background: 'var(--panel-2)', border: '1px solid var(--line-soft)' }}>
               <span className="plinth" style={{ width: 34, height: 34, flex: 'none', background: bg }}><Icon className="h-[17px] w-[17px]" /></span>
@@ -578,7 +578,7 @@ function ProfileCompletionCard({ userProfile, completionPercentage }: { userProf
           <span className="grad" style={{ fontSize: 20, fontWeight: 800 }}>{completionPercentage}%</span>
         </div>
         <div style={{ height: 10, borderRadius: 999, background: 'var(--track)', overflow: 'hidden' }}>
-          <div style={{ height: '100%', borderRadius: 999, width: `${completionPercentage}%`, background: 'linear-gradient(90deg,var(--accent-strong),var(--gold))', transition: 'width .5s' }} />
+          <div style={{ height: '100%', borderRadius: 999, width: `${completionPercentage}%`, background: 'var(--sb-navy)', transition: 'width .5s' }} />
         </div>
       </div>
     </div>
@@ -641,7 +641,7 @@ function SubscriptionCard({ userProfile, getSubscriptionStatusGrad }: { userProf
 
         {(isExpired(expiresAt) || isExpiringSoon(expiresAt)) && (
           <div style={{ display: 'flex', gap: 12, padding: 14, borderRadius: 12, background: isExpired(expiresAt) ? 'rgb(229 40 58 / 0.08)' : 'rgb(245 166 35 / 0.1)', border: `1px solid ${isExpired(expiresAt) ? 'rgb(229 40 58 / 0.3)' : 'rgb(245 166 35 / 0.3)'}` }}>
-            <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: isExpired(expiresAt) ? 'linear-gradient(135deg,#FF5468,#E5283A 55%,#B0182A)' : GW }}><AlertTriangle className="h-5 w-5" /></span>
+            <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: isExpired(expiresAt) ? 'var(--sb-navy)' : GW }}><AlertTriangle className="h-5 w-5" /></span>
             <div>
               <h4 style={{ margin: 0, fontWeight: 800, fontSize: 14, color: isExpired(expiresAt) ? 'var(--kumkum)' : 'var(--turmeric)' }}>
                 {isExpired(expiresAt) ? 'Subscription expired' : 'Expiring soon'}

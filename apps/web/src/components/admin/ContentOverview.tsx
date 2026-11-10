@@ -140,11 +140,11 @@ export default function ContentOverview({ isActive = true }: ContentOverviewProp
       <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/20">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg">
               <Database className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h2 className="text-2xl font-bold text-sb-saffron-deep    ">
                 Uploaded Content Overview
               </h2>
               <p className="text-muted-foreground">
@@ -155,7 +155,7 @@ export default function ContentOverview({ isActive = true }: ContentOverviewProp
           <button
             onClick={handleRefresh}
             disabled={booksLoading}
-            className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl hover:shadow-lg transition-all duration-300 flex items-center space-x-2 disabled:opacity-50"
+            className="px-4 py-2 bg-sb-navy   text-white rounded-xl hover:shadow-lg transition-all duration-300 flex items-center space-x-2 disabled:opacity-50"
           >
             <RefreshCw className={`h-4 w-4 ${booksLoading ? 'animate-spin' : ''}`} />
             <span>Refresh</span>
@@ -170,7 +170,7 @@ export default function ContentOverview({ isActive = true }: ContentOverviewProp
             placeholder="Search books by title, subject, or class..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 bg-muted/40 border border-border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+            className="w-full pl-10 pr-4 py-3 bg-muted/40 border border-border rounded-xl focus:ring-2 focus:ring-sb-sky focus:border-transparent transition-all duration-300"
           />
         </div>
       </div>
@@ -179,15 +179,15 @@ export default function ContentOverview({ isActive = true }: ContentOverviewProp
       <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 overflow-hidden">
         {booksLoading ? (
           <div className="p-8 text-center">
-            <Loader2 className="h-12 w-12 animate-spin mx-auto text-blue-500 mb-4" />
+            <Loader2 className="h-12 w-12 animate-spin mx-auto text-sb-sky-ink mb-4" />
             <p className="text-muted-foreground">Loading uploaded books...</p>
             <p className="text-sm text-muted-foreground dark:text-muted-foreground mt-2">Auto-refreshing every 10 seconds...</p>
           </div>
         ) : booksError ? (
           <div className="p-8 text-center">
-            <AlertTriangle className="h-12 w-12 mx-auto text-red-500 mb-4" />
-            <p className="text-red-600 dark:text-red-400">Failed to load books</p>
-            <button onClick={handleRefresh} className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            <AlertTriangle className="h-12 w-12 mx-auto text-sb-rose-ink mb-4" />
+            <p className="text-sb-rose-ink ">Failed to load books</p>
+            <button onClick={handleRefresh} className="mt-4 px-4 py-2 bg-sb-navy text-white rounded-lg hover:bg-sb-navy">
               Retry
             </button>
           </div>
@@ -241,10 +241,10 @@ export default function ContentOverview({ isActive = true }: ContentOverviewProp
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center space-x-2">
-                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-sb-sky text-sb-sky-ink  ">
                             {book.chapters_count} chapters
                           </span>
-                          {book.status === 'complete' && <CheckCircle className="h-4 w-4 text-green-500" />}
+                          {book.status === 'complete' && <CheckCircle className="h-4 w-4 text-sb-saffron-deep" />}
                         </div>
                       </td>
                       <td className="px-6 py-4 text-sm text-muted-foreground">
@@ -254,14 +254,14 @@ export default function ContentOverview({ isActive = true }: ContentOverviewProp
                         <div className="flex items-center space-x-2">
                           <button
                             onClick={() => handleViewBook(book.id)}
-                            className="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 dark:hover:bg-blue-900 rounded-lg transition-colors duration-200"
+                            className="p-2 text-sb-sky-ink hover:text-sb-sky-ink hover:bg-sb-sky  rounded-lg transition-colors duration-200"
                             title="View in Qdrant"
                           >
                             <Eye className="h-4 w-4" />
                           </button>
                           <button
                             onClick={() => handleDeleteBook(book.id, book.book_title)}
-                            className="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 dark:hover:bg-red-900 rounded-lg transition-colors duration-200"
+                            className="p-2 text-sb-rose-ink hover:text-sb-rose-ink hover:bg-sb-rose  rounded-lg transition-colors duration-200"
                             title="Delete Book"
                           >
                             <Trash2 className="h-4 w-4" />

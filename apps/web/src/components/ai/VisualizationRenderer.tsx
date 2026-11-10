@@ -72,7 +72,7 @@ export default function VisualizationRenderer({ visualizations }: VisualizationR
     <div className="mt-6 space-y-6">
       <div className="border-t border-border pt-4">
         <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-          <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-sb-sky-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
           </svg>
           Visual Learning Aids
@@ -150,7 +150,7 @@ function VisualizationCard({ visualization, index }: VisualizationCardProps) {
       {/* Header */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full px-4 py-3 flex items-center justify-between bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 transition-colors"
+        className="w-full px-4 py-3 flex items-center justify-between bg-sb-surface-2     transition-colors"
       >
         <div className="flex items-center gap-3">
           <span className="text-2xl">{getIcon()}</span>
@@ -216,7 +216,7 @@ interface MarkdownVisualizationProps {
 
 function MarkdownVisualization({ content }: MarkdownVisualizationProps) {
   return (
-    <div className="prose prose-sm max-w-none prose-table:border-collapse prose-table:w-full prose-th:bg-blue-50 prose-th:border prose-th:border-input prose-th:px-4 prose-th:py-2 prose-th:text-left prose-th:font-semibold prose-th:text-foreground prose-td:border prose-td:border-input prose-td:px-4 prose-td:py-2 prose-td:text-foreground">
+    <div className="prose prose-sm max-w-none prose-table:border-collapse prose-table:w-full prose-th:bg-sb-sky prose-th:border prose-th:border-input prose-th:px-4 prose-th:py-2 prose-th:text-left prose-th:font-semibold prose-th:text-foreground prose-td:border prose-td:border-input prose-td:px-4 prose-td:py-2 prose-td:text-foreground">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
@@ -226,7 +226,7 @@ function MarkdownVisualization({ content }: MarkdownVisualizationProps) {
             </div>
           ),
           thead: ({ node, ...props }) => (
-            <thead className="bg-gradient-to-r from-blue-50 to-indigo-50" {...props} />
+            <thead className="bg-sb-surface-2  " {...props} />
           ),
           th: ({ node, ...props }) => (
             <th className="border border-input px-4 py-3 text-left font-semibold text-foreground text-sm" {...props} />
@@ -301,13 +301,13 @@ function MermaidVisualization({ content, id }: MermaidVisualizationProps) {
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-        <p className="text-sm text-red-800">
+      <div className="bg-sb-rose border border-sb-danger rounded-lg p-4">
+        <p className="text-sm text-sb-rose-ink">
           <strong>Diagram Error:</strong> {error}
         </p>
         <details className="mt-2">
-          <summary className="text-xs text-red-600 cursor-pointer">Show diagram code</summary>
-          <pre className="mt-2 text-xs bg-red-100 p-2 rounded overflow-x-auto">
+          <summary className="text-xs text-sb-rose-ink cursor-pointer">Show diagram code</summary>
+          <pre className="mt-2 text-xs bg-sb-rose p-2 rounded overflow-x-auto">
             {content}
           </pre>
         </details>

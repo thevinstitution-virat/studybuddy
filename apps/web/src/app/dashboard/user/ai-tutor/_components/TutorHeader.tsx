@@ -1,7 +1,8 @@
 'use client'
 
 import React from 'react'
-import { Brain, History, RotateCcw } from 'lucide-react'
+import { History, RotateCcw } from 'lucide-react'
+import { IconTile } from '@/components/sb'
 
 interface TutorHeaderProps {
     isLoadingSubscription: boolean
@@ -43,14 +44,9 @@ export function TutorHeader({
             className="card"
             style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}
         >
-            <span
-                className="plinth"
-                style={{ width: 48, height: 48, flex: 'none', background: 'var(--bb-grad-cobalt)' }}
-            >
-                <Brain className="h-[25px] w-[25px]" />
-            </span>
+            <IconTile icon="gyankosh" tone="lav" size={52} />
             <div style={{ minWidth: 0, flex: 1 }}>
-                <div className="grad" style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-.02em' }}>
+                <div style={{ fontFamily: 'var(--sb-font-display)', fontSize: 24, fontWeight: 700, letterSpacing: '-.03em', color: 'var(--sb-ink)' }}>
                     Virat Gyankosh
                 </div>
                 <div style={{ fontSize: 13, color: 'var(--muted)' }}>
@@ -71,7 +67,7 @@ export function TutorHeader({
                             <div
                                 style={{
                                     height: '100%', width: `${remainingPct}%`, borderRadius: 999,
-                                    background: 'linear-gradient(90deg,var(--emerald),var(--teal-light))',
+                                    background: 'var(--sb-navy)',
                                     transition: 'width .3s',
                                 }}
                             />

@@ -194,10 +194,10 @@ export default function FocusShield() {
 
   const getCategoryColor = (category: string) => {
     const colors = {
-      social: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-      entertainment: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
-      news: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
-      gaming: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
+      social: 'bg-sb-sky text-sb-sky-ink  ',
+      entertainment: 'bg-sb-lav text-sb-lav-ink  ',
+      news: 'bg-sb-saffron-tint text-sb-saffron-deep  ',
+      gaming: 'bg-sb-rose text-sb-rose-ink  ',
       custom: 'bg-muted text-foreground'
     }
     return colors[category as keyof typeof colors] || colors.custom
@@ -216,13 +216,13 @@ export default function FocusShield() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <Card className="border-green-200 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 dark:border-green-800">
+      <Card className="border-sb-saffron bg-sb-surface-2     ">
         <CardHeader>
-          <CardTitle className="flex items-center space-x-2 text-green-800 dark:text-green-200">
+          <CardTitle className="flex items-center space-x-2 text-sb-saffron-deep ">
             <ShieldCheckIcon className="h-6 w-6" />
             <span>FocusShield - Smart Distraction Blocker</span>
           </CardTitle>
-          <CardDescription className="text-green-700 dark:text-green-300">
+          <CardDescription className="text-sb-saffron-deep ">
             🇮🇳 Block distractions while keeping educational sites accessible
           </CardDescription>
         </CardHeader>
@@ -230,21 +230,21 @@ export default function FocusShield() {
 
       {/* Current Session Status */}
       {isActive && currentSession && (
-        <Card className="border-blue-200 bg-blue-50 dark:bg-blue-950 dark:border-blue-800">
+        <Card className="border-sb-sky bg-sb-sky  ">
           <CardContent className="pt-6">
             <div className="text-center space-y-4">
               <div className="flex items-center justify-center space-x-2">
-                <ShieldCheckIcon className="h-8 w-8 text-blue-600" />
-                <span className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+                <ShieldCheckIcon className="h-8 w-8 text-sb-sky-ink" />
+                <span className="text-2xl font-bold text-sb-sky-ink ">
                   Focus Mode Active
                 </span>
               </div>
               
-              <div className="text-3xl font-mono font-bold text-blue-600">
+              <div className="text-3xl font-mono font-bold text-sb-sky-ink">
                 {formatTimeRemaining(timeRemaining)}
               </div>
               
-              <div className="text-sm text-blue-700 dark:text-blue-300">
+              <div className="text-sm text-sb-sky-ink ">
                 {blockedSites.filter(site => site.isBlocked).length} sites blocked • 
                 {whitelistedSites.length} educational sites allowed
               </div>
@@ -256,7 +256,7 @@ export default function FocusShield() {
                 <Button 
                   onClick={() => setShowSosPanel(true)} 
                   variant="destructive"
-                  className="bg-red-600 hover:bg-red-700"
+                  className="bg-sb-danger hover:bg-sb-danger"
                 >
                   <ExclamationTriangleIcon className="h-4 w-4 mr-2" />
                   Emergency SOS
@@ -269,10 +269,10 @@ export default function FocusShield() {
 
       {/* SOS Panel */}
       {showSosPanel && (
-        <Card className="border-red-200 bg-red-50 dark:bg-red-950 dark:border-red-800">
+        <Card className="border-sb-danger bg-sb-rose  ">
           <CardHeader>
-            <CardTitle className="text-red-800 dark:text-red-200">Emergency SOS</CardTitle>
-            <CardDescription className="text-red-700 dark:text-red-300">
+            <CardTitle className="text-sb-rose-ink ">Emergency SOS</CardTitle>
+            <CardDescription className="text-sb-rose-ink ">
               This will temporarily disable focus mode and notify your emergency contact
             </CardDescription>
           </CardHeader>
@@ -324,7 +324,7 @@ export default function FocusShield() {
             </div>
 
             {!isActive && (
-              <Button onClick={startFocusSession} className="w-full bg-green-600 hover:bg-green-700">
+              <Button onClick={startFocusSession} className="w-full bg-sb-navy hover:bg-sb-navy">
                 <ShieldCheckIcon className="h-4 w-4 mr-2" />
                 Start Focus Session
               </Button>
@@ -336,16 +336,16 @@ export default function FocusShield() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <GlobeAltIcon className="h-5 w-5 text-green-600" />
+              <GlobeAltIcon className="h-5 w-5 text-sb-saffron-deep" />
               <span>Always Allowed (Educational)</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {whitelistedSites.map((site, index) => (
-                <div key={index} className="flex items-center justify-between p-2 bg-green-50 dark:bg-green-900 rounded">
+                <div key={index} className="flex items-center justify-between p-2 bg-sb-saffron-tint  rounded">
                   <span className="text-sm">{site}</span>
-                  <Badge variant="outline" className="text-green-700 border-green-300">
+                  <Badge variant="outline" className="text-sb-saffron-deep border-sb-saffron">
                     Educational
                   </Badge>
                 </div>
@@ -359,7 +359,7 @@ export default function FocusShield() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
-            <BellSlashIcon className="h-5 w-5 text-red-600" />
+            <BellSlashIcon className="h-5 w-5 text-sb-rose-ink" />
             <span>Blocked Sites & Apps</span>
           </CardTitle>
         </CardHeader>
@@ -393,9 +393,9 @@ export default function FocusShield() {
                   </div>
                 </div>
                 {site.isBlocked ? (
-                  <BellSlashIcon className="h-5 w-5 text-red-500" />
+                  <BellSlashIcon className="h-5 w-5 text-sb-rose-ink" />
                 ) : (
-                  <BellIcon className="h-5 w-5 text-green-500" />
+                  <BellIcon className="h-5 w-5 text-sb-saffron-deep" />
                 )}
               </div>
             ))}
@@ -411,22 +411,22 @@ export default function FocusShield() {
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="text-center">
-              <ClockIcon className="h-8 w-8 mx-auto mb-2 text-blue-600" />
+              <ClockIcon className="h-8 w-8 mx-auto mb-2 text-sb-sky-ink" />
               <div className="text-2xl font-bold">0</div>
               <div className="text-sm text-muted-foreground">Hours Focused Today</div>
             </div>
             <div className="text-center">
-              <ShieldCheckIcon className="h-8 w-8 mx-auto mb-2 text-green-600" />
+              <ShieldCheckIcon className="h-8 w-8 mx-auto mb-2 text-sb-saffron-deep" />
               <div className="text-2xl font-bold">0</div>
               <div className="text-sm text-muted-foreground">Sessions This Week</div>
             </div>
             <div className="text-center">
-              <BellSlashIcon className="h-8 w-8 mx-auto mb-2 text-red-600" />
+              <BellSlashIcon className="h-8 w-8 mx-auto mb-2 text-sb-rose-ink" />
               <div className="text-2xl font-bold">{blockedSites.filter(s => s.isBlocked).length}</div>
               <div className="text-sm text-muted-foreground">Sites Blocked</div>
             </div>
             <div className="text-center">
-              <GlobeAltIcon className="h-8 w-8 mx-auto mb-2 text-purple-600" />
+              <GlobeAltIcon className="h-8 w-8 mx-auto mb-2 text-sb-lav-ink" />
               <div className="text-2xl font-bold">{whitelistedSites.length}</div>
               <div className="text-sm text-muted-foreground">Educational Sites</div>
             </div>

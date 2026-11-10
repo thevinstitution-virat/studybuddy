@@ -54,16 +54,16 @@ export default function QuizReview({
 
   const getAnswerStatusIcon = (isCorrect: boolean) => {
     return isCorrect ? (
-      <CheckCircleIcon className="h-6 w-6 text-green-600" />
+      <CheckCircleIcon className="h-6 w-6 text-sb-saffron-deep" />
     ) : (
-      <XCircleIcon className="h-6 w-6 text-red-600" />
+      <XCircleIcon className="h-6 w-6 text-sb-rose-ink" />
     )
   }
 
   const getAnswerStatusColor = (isCorrect: boolean) => {
     return isCorrect 
-      ? 'bg-green-50 border-green-200 text-green-800 dark:bg-green-950 dark:border-green-800 dark:text-green-200'
-      : 'bg-red-50 border-red-200 text-red-800 dark:bg-red-950 dark:border-red-800 dark:text-red-200'
+      ? 'bg-sb-saffron-tint border-sb-saffron text-sb-saffron-deep   '
+      : 'bg-sb-rose border-sb-danger text-sb-rose-ink   '
   }
 
   const playPronunciation = (word: string) => {
@@ -74,13 +74,13 @@ export default function QuizReview({
   return (
     <div className="space-y-6">
       {/* Review Header */}
-      <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 dark:border-blue-800">
+      <Card className="border-sb-sky bg-sb-surface-2     ">
         <CardHeader>
-          <CardTitle className="flex items-center space-x-2 text-blue-800 dark:text-blue-200">
+          <CardTitle className="flex items-center space-x-2 text-sb-sky-ink ">
             <BookOpenIcon className="h-6 w-6" />
             <span>📚 Quiz Review - Detailed Analysis</span>
           </CardTitle>
-          <CardDescription className="text-blue-700 dark:text-blue-300">
+          <CardDescription className="text-sb-sky-ink ">
             Review your answers and learn from explanations
           </CardDescription>
         </CardHeader>
@@ -88,19 +88,19 @@ export default function QuizReview({
           {/* Summary Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             <div className="text-center p-3 bg-white dark:bg-gray-800 rounded-lg border">
-              <div className="text-2xl font-bold text-blue-600">{totalScore}/{maxScore}</div>
+              <div className="text-2xl font-bold text-sb-sky-ink">{totalScore}/{maxScore}</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Total Score</div>
             </div>
             <div className="text-center p-3 bg-white dark:bg-gray-800 rounded-lg border">
-              <div className="text-2xl font-bold text-green-600">{correctAnswers}</div>
+              <div className="text-2xl font-bold text-sb-saffron-deep">{correctAnswers}</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Correct</div>
             </div>
             <div className="text-center p-3 bg-white dark:bg-gray-800 rounded-lg border">
-              <div className="text-2xl font-bold text-red-600">{incorrectAnswers}</div>
+              <div className="text-2xl font-bold text-sb-rose-ink">{incorrectAnswers}</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Incorrect</div>
             </div>
             <div className="text-center p-3 bg-white dark:bg-gray-800 rounded-lg border">
-              <div className="text-2xl font-bold text-purple-600">{formatTime(timeElapsed)}</div>
+              <div className="text-2xl font-bold text-sb-lav-ink">{formatTime(timeElapsed)}</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Time Taken</div>
             </div>
           </div>
@@ -187,9 +187,9 @@ export default function QuizReview({
                   
                   let optionClass = 'p-3 rounded border '
                   if (isCorrectAnswer) {
-                    optionClass += 'bg-green-100 border-green-300 text-green-800 dark:bg-green-900 dark:border-green-700 dark:text-green-200'
+                    optionClass += 'bg-sb-saffron-tint border-sb-saffron text-sb-saffron-deep   '
                   } else if (isUserAnswer && !isCorrectAnswer) {
-                    optionClass += 'bg-red-100 border-red-300 text-red-800 dark:bg-red-900 dark:border-red-700 dark:text-red-200'
+                    optionClass += 'bg-sb-rose border-sb-danger text-sb-rose-ink   '
                   } else {
                     optionClass += 'bg-gray-50 border-gray-200 text-gray-700 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300'
                   }
@@ -201,10 +201,10 @@ export default function QuizReview({
                           <strong>{String.fromCharCode(65 + index)})</strong> {option}
                         </span>
                         <div className="flex items-center space-x-2">
-                          {isCorrectAnswer && <CheckCircleIcon className="h-5 w-5 text-green-600" />}
-                          {isUserAnswer && !isCorrectAnswer && <XCircleIcon className="h-5 w-5 text-red-600" />}
+                          {isCorrectAnswer && <CheckCircleIcon className="h-5 w-5 text-sb-saffron-deep" />}
+                          {isUserAnswer && !isCorrectAnswer && <XCircleIcon className="h-5 w-5 text-sb-rose-ink" />}
                           {isUserAnswer && <Badge variant="outline">Your Answer</Badge>}
-                          {isCorrectAnswer && <Badge variant="outline" className="bg-green-50 text-green-700 border-green-300">Correct</Badge>}
+                          {isCorrectAnswer && <Badge variant="outline" className="bg-sb-saffron-tint text-sb-saffron-deep border-sb-saffron">Correct</Badge>}
                         </div>
                       </div>
                     </div>
@@ -216,23 +216,23 @@ export default function QuizReview({
             {/* Explanation */}
             {showExplanations && (
               <div className="space-y-3">
-                <div className="p-4 bg-blue-50 dark:bg-blue-950 rounded-lg border border-blue-200 dark:border-blue-800">
-                  <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2 flex items-center">
+                <div className="p-4 bg-sb-sky  rounded-lg border border-sb-sky ">
+                  <h4 className="font-semibold text-sb-sky-ink  mb-2 flex items-center">
                     <LightBulbIcon className="h-5 w-5 mr-2" />
                     Explanation
                   </h4>
-                  <p className="text-blue-700 dark:text-blue-300">
+                  <p className="text-sb-sky-ink ">
                     {currentReview.question.explanation}
                   </p>
                 </div>
 
                 {/* Cultural Context */}
                 {currentReview.question.culturalContext && (
-                  <div className="p-4 bg-orange-50 dark:bg-orange-950 rounded-lg border border-orange-200 dark:border-orange-800">
-                    <h4 className="font-semibold text-orange-800 dark:text-orange-200 mb-2">
+                  <div className="p-4 bg-sb-saffron-tint  rounded-lg border border-sb-saffron ">
+                    <h4 className="font-semibold text-sb-saffron-deep  mb-2">
                       🇮🇳 Cultural Context
                     </h4>
-                    <p className="text-orange-700 dark:text-orange-300">
+                    <p className="text-sb-saffron-deep ">
                       {currentReview.question.culturalContext}
                     </p>
                   </div>
@@ -240,11 +240,11 @@ export default function QuizReview({
 
                 {/* Hindi Context */}
                 {currentReview.question.hindiContext && (
-                  <div className="p-4 bg-green-50 dark:bg-green-950 rounded-lg border border-green-200 dark:border-green-800">
-                    <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">
+                  <div className="p-4 bg-sb-saffron-tint  rounded-lg border border-sb-saffron ">
+                    <h4 className="font-semibold text-sb-saffron-deep  mb-2">
                       🔤 Hindi Translation
                     </h4>
-                    <p className="text-green-700 dark:text-green-300">
+                    <p className="text-sb-saffron-deep ">
                       {currentReview.question.hindiContext}
                     </p>
                   </div>
@@ -260,7 +260,7 @@ export default function QuizReview({
         <Button onClick={onClose} variant="outline">
           📚 Back to Dictionary
         </Button>
-        <Button onClick={onRetakeQuiz} className="bg-green-600 hover:bg-green-700">
+        <Button onClick={onRetakeQuiz} className="bg-sb-navy hover:bg-sb-navy">
           🔄 Retake Quiz
         </Button>
       </div>
@@ -278,11 +278,11 @@ export default function QuizReview({
                 variant={index === currentReviewIndex ? "default" : "outline"}
                 size="sm"
                 onClick={() => setCurrentReviewIndex(index)}
-                className={`relative ${item.isCorrect ? 'border-green-300' : 'border-red-300'}`}
+                className={`relative ${item.isCorrect ? 'border-sb-saffron' : 'border-sb-danger'}`}
               >
                 {index + 1}
                 <div className={`absolute -top-1 -right-1 w-3 h-3 rounded-full ${
-                  item.isCorrect ? 'bg-green-500' : 'bg-red-500'
+                  item.isCorrect ? 'bg-sb-navy' : 'bg-sb-danger'
                 }`} />
               </Button>
             ))}

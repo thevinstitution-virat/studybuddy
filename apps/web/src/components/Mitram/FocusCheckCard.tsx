@@ -77,12 +77,12 @@ export const FocusCheckCard: React.FC<FocusCheckCardProps> = ({ className = '' }
 
   const getScoreColor = (percentile: number) => {
     if (percentile >= 75)
-  return 'text-green-600'
+  return 'text-sb-saffron-deep'
     if (percentile >= 50)
-  return 'text-blue-600'
+  return 'text-sb-sky-ink'
     if (percentile >= 25)
-  return 'text-yellow-600'
-    return 'text-red-600'
+  return 'text-sb-butter-ink'
+    return 'text-sb-rose-ink'
   }
 
   const getScoreLabel = (percentile: number) => {
@@ -100,21 +100,21 @@ export const FocusCheckCard: React.FC<FocusCheckCardProps> = ({ className = '' }
   return (
     <div className={`relative p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-200 dark:border-gray-700 group overflow-hidden ${className}`}>
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-0 bg-sb-navy   opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       
       <div className="relative z-10">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-600 rounded-xl shadow-lg shadow-purple-500/25">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-sb-navy   rounded-xl shadow-lg ">
             <Brain className="h-8 w-8 text-white" />
           </div>
           
           {lastAssessment && (
             <div className="flex items-center space-x-2">
               {lastAssessment.belowThreshold ? (
-                <AlertCircle className="h-5 w-5 text-amber-500" />
+                <AlertCircle className="h-5 w-5 text-sb-butter-ink" />
               ) : (
-                <CheckCircle className="h-5 w-5 text-green-500" />
+                <CheckCircle className="h-5 w-5 text-sb-saffron-deep" />
               )}
               <span className="text-sm text-gray-600 dark:text-gray-400">
                 {formatLastTaken(lastAssessment.testDate.toString())}
@@ -145,7 +145,7 @@ export const FocusCheckCard: React.FC<FocusCheckCardProps> = ({ className = '' }
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-semibold text-gray-900 dark:text-white">Latest Results</h4>
                 <div className="text-right">
-                  <div className="text-2xl font-bold text-purple-600">
+                  <div className="text-2xl font-bold text-sb-lav-ink">
                     {Math.round(lastAssessment.everydayIndex || 0)}
                   </div>
                   <div className="text-xs text-gray-500">Overall Score</div>
@@ -174,22 +174,22 @@ export const FocusCheckCard: React.FC<FocusCheckCardProps> = ({ className = '' }
             </div>
 
             {/* Pomodoro Recommendation */}
-            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4">
+            <div className="bg-sb-sky  rounded-xl p-4">
               <div className="flex items-center gap-2 mb-2">
-                <Target className="h-4 w-4 text-blue-600" />
-                <h4 className="font-semibold text-blue-900 dark:text-blue-100">
+                <Target className="h-4 w-4 text-sb-sky-ink" />
+                <h4 className="font-semibold text-sb-sky-ink ">
                   Your Optimal Study Session
                 </h4>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-2xl font-bold text-blue-600">
+                <span className="text-2xl font-bold text-sb-sky-ink">
                   🍅 {pomodoroRecommendation} min
                 </span>
                 <div className="text-right">
-                  <div className="text-sm text-blue-700 dark:text-blue-300">
+                  <div className="text-sm text-sb-sky-ink ">
                     Personalized for you
                   </div>
-                  <div className="text-xs text-blue-600">
+                  <div className="text-xs text-sb-sky-ink">
                     Based on attention profile
                   </div>
                 </div>
@@ -198,14 +198,14 @@ export const FocusCheckCard: React.FC<FocusCheckCardProps> = ({ className = '' }
 
             {/* Alert if below threshold */}
             {lastAssessment.belowThreshold && (
-              <div className="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-4 border border-amber-200 dark:border-amber-800">
+              <div className="bg-sb-butter  rounded-xl p-4 border border-sb-butter ">
                 <div className="flex items-start gap-3">
-                  <AlertCircle className="h-5 w-5 text-amber-600 mt-0.5" />
+                  <AlertCircle className="h-5 w-5 text-sb-butter-ink mt-0.5" />
                   <div>
-                    <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-1">
+                    <h4 className="font-semibold text-sb-butter-ink  mb-1">
                       Attention Support Recommended
                     </h4>
-                    <p className="text-sm text-amber-700 dark:text-amber-300">
+                    <p className="text-sm text-sb-butter-ink ">
                       Your results suggest room for attention improvement. Consider attention training exercises.
                     </p>
                   </div>
@@ -215,8 +215,8 @@ export const FocusCheckCard: React.FC<FocusCheckCardProps> = ({ className = '' }
           </div>
         ) : (
           <div className="text-center py-6 mb-6">
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <TrendingUp className="h-8 w-8 text-purple-600" />
+            <div className="w-16 h-16 bg-sb-surface-2   rounded-full flex items-center justify-center mx-auto mb-4">
+              <TrendingUp className="h-8 w-8 text-sb-lav-ink" />
             </div>
             <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
               Ready for Your First Focus Check?
@@ -231,7 +231,7 @@ export const FocusCheckCard: React.FC<FocusCheckCardProps> = ({ className = '' }
         <button
           onClick={handleStartAssessment}
           disabled={isLoading}
-          className="w-full bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+          className="w-full bg-sb-navy     text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
         >
           <div className="flex items-center justify-center space-x-2">
             {isLoading ? (

@@ -285,19 +285,19 @@ export default function QuestionEditor({ question, onSaved, onCancel, onError }:
               const optionText = formData[`option_${option.toLowerCase()}` as keyof QuestionFormData] as string
               const isCorrect = formData.correct_option === option
               return (
-                <div key={option} className={`p-3 border rounded-lg ${isCorrect ? 'bg-green-50 border-green-200' : ''}`}>
+                <div key={option} className={`p-3 border rounded-lg ${isCorrect ? 'bg-sb-saffron-tint border-sb-saffron' : ''}`}>
                   <span className="font-medium mr-2">{option}.</span>
                   {optionText}
-                  {isCorrect && <Badge className="ml-2 bg-green-600">Correct</Badge>}
+                  {isCorrect && <Badge className="ml-2 bg-sb-navy">Correct</Badge>}
                 </div>
               )
             })}
           </div>
         )}
         
-        <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-          <h4 className="font-medium text-blue-800 dark:text-blue-200">Explanation:</h4>
-          <p className="text-blue-700 dark:text-blue-300">{formData.explanation}</p>
+        <div className="mt-6 p-4 bg-sb-sky  rounded-lg">
+          <h4 className="font-medium text-sb-sky-ink ">Explanation:</h4>
+          <p className="text-sb-sky-ink ">{formData.explanation}</p>
           {formData.explanation_image_url && (
             <img src={formData.explanation_image_url} alt="Explanation" className="mt-2 max-w-full h-auto" />
           )}
@@ -314,7 +314,7 @@ export default function QuestionEditor({ question, onSaved, onCancel, onError }:
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="flex items-center gap-2">
-                <DocumentTextIcon className="h-5 w-5 text-blue-600" />
+                <DocumentTextIcon className="h-5 w-5 text-sb-sky-ink" />
                 {question ? 'Edit Question' : 'Create New Question'}
               </CardTitle>
               <CardDescription>
@@ -363,14 +363,14 @@ export default function QuestionEditor({ question, onSaved, onCancel, onError }:
           {/* Main Editor */}
           <div className="lg:col-span-3 space-y-6">
             {/* CASA — page-level citation (Vinstitution differentiator) */}
-            <Card className="border-violet-200 dark:border-violet-900/40">
+            <Card className="border-sb-lav ">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <span>📖 CASA Citation</span>
                   {question?.casa_verified ? (
-                    <Badge className="bg-green-100 text-green-800">Verified</Badge>
+                    <Badge className="bg-sb-saffron-tint text-sb-saffron-deep">Verified</Badge>
                   ) : (formData.casa_page || formData.casa_anchor) ? (
-                    <Badge className="bg-yellow-100 text-yellow-800">Cited · unverified</Badge>
+                    <Badge className="bg-sb-butter text-sb-butter-ink">Cited · unverified</Badge>
                   ) : (
                     <Badge variant="outline">Not cited</Badge>
                   )}
@@ -406,7 +406,7 @@ export default function QuestionEditor({ question, onSaved, onCancel, onError }:
                         {casaVerifying ? 'Verifying…' : '✓ Verify against NCERT corpus'}
                       </Button>
                       {casaResult && (
-                        <span className={`text-sm ${casaResult.verified ? 'text-green-600' : 'text-amber-600'}`}>
+                        <span className={`text-sm ${casaResult.verified ? 'text-sb-saffron-deep' : 'text-sb-butter-ink'}`}>
                           {casaResult.verified ? '✓' : '⚠'} {casaResult.message}
                         </span>
                       )}
@@ -550,7 +550,7 @@ export default function QuestionEditor({ question, onSaved, onCancel, onError }:
                             name="correct_option"
                             checked={formData.correct_option === option}
                             onChange={() => handleInputChange('correct_option', option)}
-                            className="text-green-600"
+                            className="text-sb-saffron-deep"
                           />
                           <Label className="font-medium">{option}.</Label>
                         </div>

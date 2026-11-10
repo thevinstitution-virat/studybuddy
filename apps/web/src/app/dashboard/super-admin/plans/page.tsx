@@ -89,7 +89,7 @@ export default function AdminPlansPage() {
     return (
       <div className="space-y-6">
         <h1 className="flex items-center gap-2 text-2xl font-bold tracking-tight text-foreground"><CreditCard className="h-6 w-6 text-primary" /> {editing.id ? 'Edit' : 'New'} plan</h1>
-        {error && <Alert className="border-rose-200 bg-rose-50 dark:border-rose-900/40 dark:bg-rose-950/30"><X className="h-4 w-4 text-rose-600" /><AlertDescription className="text-rose-800 dark:text-rose-300">{error}</AlertDescription></Alert>}
+        {error && <Alert className="border-sb-rose bg-sb-rose  "><X className="h-4 w-4 text-sb-rose-ink" /><AlertDescription className="text-sb-rose-ink ">{error}</AlertDescription></Alert>}
         <Card>
           <CardContent className="space-y-5 p-6">
             <div className="grid gap-4 sm:grid-cols-2">
@@ -136,7 +136,7 @@ export default function AdminPlansPage() {
         </div>
       </div>
 
-      {error && <Alert className="border-rose-200 bg-rose-50 dark:border-rose-900/40 dark:bg-rose-950/30"><X className="h-4 w-4 text-rose-600" /><AlertDescription className="text-rose-800 dark:text-rose-300">{error}</AlertDescription></Alert>}
+      {error && <Alert className="border-sb-rose bg-sb-rose  "><X className="h-4 w-4 text-sb-rose-ink" /><AlertDescription className="text-sb-rose-ink ">{error}</AlertDescription></Alert>}
 
       <Card>
         <CardHeader><CardTitle className="text-lg">All plans</CardTitle><CardDescription>Active plans appear on the pricing page in display order.</CardDescription></CardHeader>
@@ -164,7 +164,7 @@ export default function AdminPlansPage() {
                   </div>
                   <div className="flex shrink-0 gap-2">
                     <Button variant="outline" size="sm" onClick={() => { setError(null); setEditing({ ...blank, ...p }) }}><Pencil className="h-4 w-4" /></Button>
-                    <Button variant="outline" size="sm" onClick={() => remove(p.id)}><Trash2 className="h-4 w-4 text-rose-600" /></Button>
+                    <Button variant="outline" size="sm" onClick={() => remove(p.id)}><Trash2 className="h-4 w-4 text-sb-rose-ink" /></Button>
                   </div>
                 </div>
               ))}

@@ -14,7 +14,7 @@ function PerformanceDashboardLoading() {
       {/* Header skeleton */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2">
-          <BarChart3 className="h-6 w-6 text-blue-600" />
+          <BarChart3 className="h-6 w-6 text-sb-sky-ink" />
           <h1 className="text-2xl font-bold">Performance Dashboard</h1>
         </div>
         <div className="animate-pulse bg-gray-200 dark:bg-gray-700 h-10 w-32 rounded"></div>
@@ -52,7 +52,7 @@ function PerformanceDashboardLoading() {
       {/* Loading indicator */}
       <div className="flex items-center justify-center py-8">
         <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin text-blue-600 mx-auto mb-4" />
+          <Loader2 className="h-8 w-8 animate-spin text-sb-sky-ink mx-auto mb-4" />
           <p className="text-gray-600 dark:text-gray-400">Loading performance analytics...</p>
         </div>
       </div>

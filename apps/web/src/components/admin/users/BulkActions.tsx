@@ -79,15 +79,15 @@ export default function BulkActions({
 
   return (
     <>
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <div className="bg-sb-sky border border-sb-sky rounded-lg p-4 mb-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <span className="text-sm font-medium text-blue-900">
+            <span className="text-sm font-medium text-sb-sky-ink">
               {selectedUsers.length} user{selectedUsers.length !== 1 ? 's' : ''} selected
             </span>
             <button
               onClick={onClearSelection}
-              className="text-sm text-blue-600 hover:text-blue-800"
+              className="text-sm text-sb-sky-ink hover:text-sb-sky-ink"
             >
               Clear selection
             </button>
@@ -97,7 +97,7 @@ export default function BulkActions({
             <button
               onClick={() => setShowRoleModal(true)}
               disabled={loading}
-              className="px-3 py-1 text-sm bg-white border border-blue-300 text-blue-700 rounded hover:bg-blue-50 disabled:opacity-50"
+              className="px-3 py-1 text-sm bg-white border border-sb-sky text-sb-sky-ink rounded hover:bg-sb-sky disabled:opacity-50"
             >
               Change Role
             </button>
@@ -105,7 +105,7 @@ export default function BulkActions({
             <button
               onClick={() => setShowStatusModal(true)}
               disabled={loading}
-              className="px-3 py-1 text-sm bg-white border border-blue-300 text-blue-700 rounded hover:bg-blue-50 disabled:opacity-50"
+              className="px-3 py-1 text-sm bg-white border border-sb-sky text-sb-sky-ink rounded hover:bg-sb-sky disabled:opacity-50"
             >
               Change Status
             </button>
@@ -113,7 +113,7 @@ export default function BulkActions({
             <button
               onClick={() => setShowEmailModal(true)}
               disabled={loading}
-              className="px-3 py-1 text-sm bg-white border border-blue-300 text-blue-700 rounded hover:bg-blue-50 disabled:opacity-50"
+              className="px-3 py-1 text-sm bg-white border border-sb-sky text-sb-sky-ink rounded hover:bg-sb-sky disabled:opacity-50"
             >
               Send Email
             </button>
@@ -121,7 +121,7 @@ export default function BulkActions({
             <button
               onClick={() => setShowDeleteModal(true)}
               disabled={loading}
-              className="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50"
+              className="px-3 py-1 text-sm bg-sb-danger text-white rounded hover:bg-sb-danger disabled:opacity-50"
             >
               Delete
             </button>
@@ -144,7 +144,7 @@ export default function BulkActions({
               <select
                 value={selectedRole}
                 onChange={(e) => setSelectedRole(e.target.value)}
-                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
               >
                 <option value="">Select a role...</option>
                 {USER_ROLES.map(role => (
@@ -165,7 +165,7 @@ export default function BulkActions({
               <button
                 onClick={handleRoleChange}
                 disabled={!selectedRole || loading}
-                className="px-4 py-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+                className="px-4 py-2 text-sm bg-sb-navy text-white rounded hover:bg-sb-navy disabled:opacity-50"
               >
                 {loading ? 'Updating...' : 'Update Role'}
               </button>
@@ -189,7 +189,7 @@ export default function BulkActions({
               <select
                 value={selectedStatus}
                 onChange={(e) => setSelectedStatus(e.target.value)}
-                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
               >
                 <option value="">Select a status...</option>
                 {USER_STATUSES.map(status => (
@@ -210,7 +210,7 @@ export default function BulkActions({
               <button
                 onClick={handleStatusChange}
                 disabled={!selectedStatus || loading}
-                className="px-4 py-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+                className="px-4 py-2 text-sm bg-sb-navy text-white rounded hover:bg-sb-navy disabled:opacity-50"
               >
                 {loading ? 'Updating...' : 'Update Status'}
               </button>
@@ -236,7 +236,7 @@ export default function BulkActions({
                 onChange={(e) => setEmailMessage(e.target.value)}
                 rows={4}
                 placeholder="Enter your message..."
-                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
               />
             </div>
             
@@ -250,7 +250,7 @@ export default function BulkActions({
               <button
                 onClick={handleSendEmail}
                 disabled={!emailMessage.trim() || loading}
-                className="px-4 py-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+                className="px-4 py-2 text-sm bg-sb-navy text-white rounded hover:bg-sb-navy disabled:opacity-50"
               >
                 {loading ? 'Sending...' : 'Send Email'}
               </button>
@@ -282,7 +282,7 @@ export default function BulkActions({
               <button
                 onClick={handleDelete}
                 disabled={loading}
-                className="px-4 py-2 text-sm bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50"
+                className="px-4 py-2 text-sm bg-sb-danger text-white rounded hover:bg-sb-danger disabled:opacity-50"
               >
                 {loading ? 'Deleting...' : 'Delete Users'}
               </button>

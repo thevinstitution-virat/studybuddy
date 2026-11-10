@@ -103,9 +103,9 @@ export default function TestSeriesManager() {
         </CardHeader>
         <CardContent className="space-y-5">
           {error && (
-            <Alert className="border-rose-200 bg-rose-50 dark:border-rose-900/40 dark:bg-rose-950/30">
-              <XCircleIcon className="h-4 w-4 text-rose-600" />
-              <AlertDescription className="text-rose-800 dark:text-rose-300">{error}</AlertDescription>
+            <Alert className="border-sb-rose bg-sb-rose  ">
+              <XCircleIcon className="h-4 w-4 text-sb-rose-ink" />
+              <AlertDescription className="text-sb-rose-ink ">{error}</AlertDescription>
             </Alert>
           )}
 
@@ -189,7 +189,7 @@ export default function TestSeriesManager() {
                 </div>
                 <div className="flex shrink-0 gap-2">
                   <Button variant="outline" size="sm" onClick={() => { setError(null); setEditing({ ...blank, ...c }) }}><PencilIcon className="h-4 w-4" /></Button>
-                  <Button variant="outline" size="sm" onClick={() => remove(c.id)}><TrashIcon className="h-4 w-4 text-rose-600" /></Button>
+                  <Button variant="outline" size="sm" onClick={() => remove(c.id)}><TrashIcon className="h-4 w-4 text-sb-rose-ink" /></Button>
                 </div>
               </div>
             ))}

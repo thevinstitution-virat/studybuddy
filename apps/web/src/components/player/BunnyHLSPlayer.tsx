@@ -189,7 +189,7 @@ export function BunnyHLSPlayer({
       {/* Loading spinner */}
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/60">
-          <Loader2 className="w-12 h-12 animate-spin text-indigo-500" />
+          <Loader2 className="w-12 h-12 animate-spin text-sb-lav-ink" />
         </div>
       )}
 
@@ -197,7 +197,7 @@ export function BunnyHLSPlayer({
       <div data-video-overlay="true" className="absolute inset-0" />
 
       {/* Custom control bar */}
-      <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent px-4 pb-3 pt-10 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+      <div className={`absolute bottom-0 left-0 right-0 bg-sb-surface-2 from-black/90 via-black/50 to-transparent px-4 pb-3 pt-10 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         {/* Progress bar with chapter ticks */}
         <div
           className="w-full h-1.5 bg-white/20 rounded-full cursor-pointer mb-3 relative group/progress hover:h-2.5 transition-all"
@@ -205,7 +205,7 @@ export function BunnyHLSPlayer({
         >
           {/* Played fill */}
           <div
-            className="absolute top-0 left-0 h-full bg-indigo-500 rounded-full transition-[width] duration-100"
+            className="absolute top-0 left-0 h-full bg-sb-navy rounded-full transition-[width] duration-100"
             style={{ width: `${progress}%` }}
           />
           {/* Chapter tick marks */}
@@ -219,18 +219,18 @@ export function BunnyHLSPlayer({
           ))}
           {/* Seek handle */}
           <div
-            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-indigo-400 rounded-full shadow-md opacity-0 group-hover/progress:opacity-100 transition-opacity"
+            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-sb-navy rounded-full shadow-md opacity-0 group-hover/progress:opacity-100 transition-opacity"
             style={{ left: `${progress}%`, transform: `translateX(-50%) translateY(-50%)` }}
           />
         </div>
 
         {/* Control buttons */}
         <div className="flex items-center gap-3 text-white">
-          <button onClick={togglePlay} className="hover:text-indigo-400 transition-colors">
+          <button onClick={togglePlay} className="hover:text-sb-lav-ink transition-colors">
             {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
           </button>
 
-          <button onClick={toggleMute} className="hover:text-indigo-400 transition-colors">
+          <button onClick={toggleMute} className="hover:text-sb-lav-ink transition-colors">
             {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
           </button>
 
@@ -240,7 +240,7 @@ export function BunnyHLSPlayer({
 
           <div className="flex-1" />
 
-          <button onClick={toggleFullscreen} className="hover:text-indigo-400 transition-colors">
+          <button onClick={toggleFullscreen} className="hover:text-sb-lav-ink transition-colors">
             {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
           </button>
         </div>

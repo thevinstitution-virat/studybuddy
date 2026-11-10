@@ -99,7 +99,7 @@ export default function NoteContextMenu({
   const row =
     'w-full flex items-center gap-2.5 px-3 py-2 text-sm text-left text-foreground hover:bg-muted/70 transition-colors';
   const subRow =
-    'w-full flex items-center gap-2 px-3 py-1.5 text-sm text-left text-muted-foreground hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-md transition-colors disabled:opacity-50 disabled:cursor-default';
+    'w-full flex items-center gap-2 px-3 py-1.5 text-sm text-left text-muted-foreground hover:bg-sb-sky  rounded-md transition-colors disabled:opacity-50 disabled:cursor-default';
 
   return (
     <div
@@ -113,11 +113,11 @@ export default function NoteContextMenu({
         <Pencil className="h-4 w-4 text-muted-foreground" /> Open
       </button>
       <button className={row} onClick={() => { onToggleFavorite(note); onClose(); }}>
-        <Star className={`h-4 w-4 ${note.is_favorite ? 'fill-yellow-400 text-yellow-400' : 'text-muted-foreground'}`} />
+        <Star className={`h-4 w-4 ${note.is_favorite ? 'fill-sb-butter-ink text-sb-butter-ink' : 'text-muted-foreground'}`} />
         {note.is_favorite ? 'Remove from favorites' : 'Add to favorites'}
       </button>
       <button className={row} onClick={() => { onTogglePin(note); onClose(); }}>
-        <Pin className={`h-4 w-4 ${note.is_pinned ? 'fill-orange-400 text-orange-500' : 'text-muted-foreground'}`} />
+        <Pin className={`h-4 w-4 ${note.is_pinned ? 'fill-sb-saffron-deep text-sb-saffron-deep' : 'text-muted-foreground'}`} />
         {note.is_pinned ? 'Unpin' : 'Pin to top'}
       </button>
 
@@ -148,7 +148,7 @@ export default function NoteContextMenu({
               >
                 <FolderIcon className="h-4 w-4 flex-shrink-0" style={{ color: tint(f.color) }} />
                 <span className="truncate flex-1">{f.name}</span>
-                {note.folder_id === f.id && <Check className="h-4 w-4 text-blue-500" />}
+                {note.folder_id === f.id && <Check className="h-4 w-4 text-sb-sky-ink" />}
               </button>
             ))
           )}
@@ -179,7 +179,7 @@ export default function NoteContextMenu({
       <div className="my-1 border-t border-border/60" />
 
       <button
-        className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-left text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors"
+        className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-left text-sb-rose-ink  hover:bg-sb-rose  transition-colors"
         onClick={() => { onDelete(note.id); onClose(); }}
       >
         <Trash2 className="h-4 w-4" /> Delete

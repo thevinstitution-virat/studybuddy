@@ -149,10 +149,10 @@ export default function MaterialsManagementPage() {
 
       {/* Error Display */}
       {state.error && (
-        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+        <div className="bg-sb-rose  border border-sb-danger  rounded-lg p-4">
           <div className="flex items-center">
-            <ExclamationTriangleIcon className="h-5 w-5 text-red-500 mr-2" />
-            <span className="text-red-700 dark:text-red-400">{state.error}</span>
+            <ExclamationTriangleIcon className="h-5 w-5 text-sb-rose-ink mr-2" />
+            <span className="text-sb-rose-ink ">{state.error}</span>
           </div>
         </div>
       )}
@@ -183,7 +183,7 @@ export default function MaterialsManagementPage() {
                     {state.stats.pendingApprovals}
                   </p>
                 </div>
-                <ExclamationTriangleIcon className="h-8 w-8 text-orange-500" />
+                <ExclamationTriangleIcon className="h-8 w-8 text-sb-saffron-deep" />
               </div>
             </CardContent>
           </Card>
@@ -197,7 +197,7 @@ export default function MaterialsManagementPage() {
                     {state.stats.totalDownloads.toLocaleString()}
                   </p>
                 </div>
-                <ChartBarIcon className="h-8 w-8 text-green-500" />
+                <ChartBarIcon className="h-8 w-8 text-sb-saffron-deep" />
               </div>
             </CardContent>
           </Card>
@@ -239,7 +239,7 @@ export default function MaterialsManagementPage() {
               <CardContent>
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
-                    <CheckCircleIcon className="h-5 w-5 text-green-500" />
+                    <CheckCircleIcon className="h-5 w-5 text-sb-saffron-deep" />
                     <div className="flex-1">
                       <p className="text-sm font-medium">Mathematics Chapter 1 Notes approved</p>
                       <p className="text-xs text-muted-foreground">2 hours ago</p>
@@ -253,7 +253,7 @@ export default function MaterialsManagementPage() {
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <ExclamationTriangleIcon className="h-5 w-5 text-orange-500" />
+                    <ExclamationTriangleIcon className="h-5 w-5 text-sb-saffron-deep" />
                     <div className="flex-1">
                       <p className="text-sm font-medium">Chemistry Notes pending review</p>
                       <p className="text-xs text-muted-foreground">6 hours ago</p>

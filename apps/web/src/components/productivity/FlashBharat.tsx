@@ -264,9 +264,9 @@ export default function FlashBharat() {
 
   const getDifficultyColor = (difficulty: string) => {
     const colors = {
-      easy: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-      medium: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-      hard: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+      easy: 'bg-sb-saffron-tint text-sb-saffron-deep  ',
+      medium: 'bg-sb-butter text-sb-butter-ink  ',
+      hard: 'bg-sb-rose text-sb-rose-ink  '
     }
     return colors[difficulty as keyof typeof colors] || colors.medium
   }
@@ -276,12 +276,12 @@ export default function FlashBharat() {
       {!currentCard ? (
         <Card className="text-center">
           <CardContent className="pt-6">
-            <AcademicCapIcon className="h-16 w-16 mx-auto mb-4 text-blue-600" />
+            <AcademicCapIcon className="h-16 w-16 mx-auto mb-4 text-sb-sky-ink" />
             <h3 className="text-xl font-semibold mb-2">Ready to Review?</h3>
             <p className="text-muted-foreground mb-4">
               Test your knowledge with culturally-relevant flashcards
             </p>
-            <Button onClick={startReview} size="lg" className="bg-blue-600 hover:bg-blue-700">
+            <Button onClick={startReview} size="lg" className="bg-sb-navy hover:bg-sb-navy">
               <PlayIcon className="h-5 w-5 mr-2" />
               Start Review Session
             </Button>
@@ -309,14 +309,14 @@ export default function FlashBharat() {
               ) : (
                 <div className="space-y-4">
                   {/* Answer */}
-                  <div className="p-4 bg-blue-50 dark:bg-blue-950 rounded-lg">
+                  <div className="p-4 bg-sb-sky  rounded-lg">
                     <p className="font-medium">{currentCard.answer}</p>
                   </div>
 
                   {/* Hindi Translation */}
                   {currentCard.hindiTranslation && (
-                    <div className="p-4 bg-green-50 dark:bg-green-950 rounded-lg">
-                      <p className="text-sm text-green-800 dark:text-green-200">
+                    <div className="p-4 bg-sb-saffron-tint  rounded-lg">
+                      <p className="text-sm text-sb-saffron-deep ">
                         🔤 Hindi: {currentCard.hindiTranslation}
                       </p>
                     </div>
@@ -324,8 +324,8 @@ export default function FlashBharat() {
 
                   {/* Cultural Context */}
                   {currentCard.culturalContext && (
-                    <div className="p-4 bg-orange-50 dark:bg-orange-950 rounded-lg">
-                      <p className="text-sm text-orange-800 dark:text-orange-200">
+                    <div className="p-4 bg-sb-saffron-tint  rounded-lg">
+                      <p className="text-sm text-sb-saffron-deep ">
                         🇮🇳 Cultural Context: {currentCard.culturalContext}
                       </p>
                     </div>
@@ -345,14 +345,14 @@ export default function FlashBharat() {
                     <Button 
                       onClick={() => markCard(false)} 
                       variant="outline" 
-                      className="flex-1 border-red-300 text-red-700 hover:bg-red-50"
+                      className="flex-1 border-sb-danger text-sb-rose-ink hover:bg-sb-rose"
                     >
                       <XMarkIcon className="h-4 w-4 mr-2" />
                       Incorrect
                     </Button>
                     <Button 
                       onClick={() => markCard(true)} 
-                      className="flex-1 bg-green-600 hover:bg-green-700"
+                      className="flex-1 bg-sb-navy hover:bg-sb-navy"
                     >
                       <CheckIcon className="h-4 w-4 mr-2" />
                       Correct
@@ -466,7 +466,7 @@ export default function FlashBharat() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card>
           <CardContent className="p-4 text-center">
-            <TrophyIcon className="h-8 w-8 mx-auto mb-2 text-yellow-600" />
+            <TrophyIcon className="h-8 w-8 mx-auto mb-2 text-sb-butter-ink" />
             <div className="text-2xl font-bold">#{userStats.rank}</div>
             <div className="text-sm text-muted-foreground">Your Rank</div>
           </CardContent>
@@ -474,7 +474,7 @@ export default function FlashBharat() {
         
         <Card>
           <CardContent className="p-4 text-center">
-            <StarIcon className="h-8 w-8 mx-auto mb-2 text-blue-600" />
+            <StarIcon className="h-8 w-8 mx-auto mb-2 text-sb-sky-ink" />
             <div className="text-2xl font-bold">{userStats.totalPoints}</div>
             <div className="text-sm text-muted-foreground">Total Points</div>
           </CardContent>
@@ -482,7 +482,7 @@ export default function FlashBharat() {
         
         <Card>
           <CardContent className="p-4 text-center">
-            <FireIcon className="h-8 w-8 mx-auto mb-2 text-orange-600" />
+            <FireIcon className="h-8 w-8 mx-auto mb-2 text-sb-saffron-deep" />
             <div className="text-2xl font-bold">{userStats.currentStreak}</div>
             <div className="text-sm text-muted-foreground">Current Streak</div>
           </CardContent>
@@ -490,7 +490,7 @@ export default function FlashBharat() {
         
         <Card>
           <CardContent className="p-4 text-center">
-            <UsersIcon className="h-8 w-8 mx-auto mb-2 text-green-600" />
+            <UsersIcon className="h-8 w-8 mx-auto mb-2 text-sb-saffron-deep" />
             <div className="text-2xl font-bold">{userStats.battlesWon}</div>
             <div className="text-sm text-muted-foreground">Battles Won</div>
           </CardContent>
@@ -517,7 +517,7 @@ export default function FlashBharat() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="font-bold text-blue-600">{entry.points}</div>
+                  <div className="font-bold text-sb-sky-ink">{entry.points}</div>
                   <div className="text-sm text-muted-foreground">points</div>
                 </div>
               </div>
@@ -535,7 +535,7 @@ export default function FlashBharat() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {achievements.map((achievement) => (
-              <div key={achievement.id} className={`p-4 border rounded-lg ${achievement.unlocked ? 'bg-yellow-50 border-yellow-300' : 'bg-muted/40 border-input'}`}>
+              <div key={achievement.id} className={`p-4 border rounded-lg ${achievement.unlocked ? 'bg-sb-butter border-sb-butter' : 'bg-muted/40 border-input'}`}>
                 <div className="flex items-center space-x-3 mb-2">
                   <span className="text-2xl">{achievement.icon}</span>
                   <div>
@@ -561,13 +561,13 @@ export default function FlashBharat() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950 dark:to-pink-950 dark:border-purple-800">
+      <Card className="border-sb-lav bg-sb-surface-2     ">
         <CardHeader>
-          <CardTitle className="flex items-center space-x-2 text-purple-800 dark:text-purple-200">
+          <CardTitle className="flex items-center space-x-2 text-sb-lav-ink ">
             <AcademicCapIcon className="h-6 w-6" />
             <span>FlashBharat - Cultural Learning Cards</span>
           </CardTitle>
-          <CardDescription className="text-purple-700 dark:text-purple-300">
+          <CardDescription className="text-sb-lav-ink ">
             🇮🇳 Master concepts with Indian cultural context and compete with peers
           </CardDescription>
         </CardHeader>

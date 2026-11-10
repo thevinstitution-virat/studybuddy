@@ -66,8 +66,8 @@ function RubricEditor({ q, onSaved }: { q: Question; onSaved: () => void }) {
         </Button>
       </div>
       {draftBlocked && <p className="text-xs text-muted-foreground">{t('tc.b.draftNeedsModelAnswer')}</p>}
-      {hasDraft && <p className="text-xs text-amber-700 dark:text-amber-400">{t('tc.b.draftUnsaved')}</p>}
-      {draft.error && <p className="text-sm text-red-600">{draft.error.message}</p>}
+      {hasDraft && <p className="text-xs text-sb-butter-ink ">{t('tc.b.draftUnsaved')}</p>}
+      {draft.error && <p className="text-sm text-sb-rose-ink">{draft.error.message}</p>}
       {items.map((it, i) => (
         <div key={i} className="grid gap-2 sm:grid-cols-[8rem_1fr_5rem_auto]">
           <NativeSelect value={it.kind} onChange={(e) => edit(i, { kind: e.target.value as Kind })} aria-label="kind">
@@ -89,7 +89,7 @@ function RubricEditor({ q, onSaved }: { q: Question; onSaved: () => void }) {
         <Button size="sm" variant="outline" onClick={() => { setDirty(true); setItems((xs) => [...xs, { kind: 'key_point', description: '', marks: Math.min(1, qMarks) }]) }}>
           <Plus className="mr-1 h-4 w-4" />{t('tc.b.addPoint')}
         </Button>
-        <span className={total === qMarks ? 'text-sm text-green-700 dark:text-green-400' : 'text-sm text-amber-700 dark:text-amber-400'}>
+        <span className={total === qMarks ? 'text-sm text-sb-saffron-deep ' : 'text-sm text-sb-butter-ink '}>
           {t('tc.b.pointsTotal', { got: total, of: qMarks })}
         </span>
         <Button size="sm" className="ml-auto" disabled={!(dirty || hasDraft) || save.isPending || !okMarks || total > qMarks || items.some((i) => !i.description.trim())}
@@ -97,7 +97,7 @@ function RubricEditor({ q, onSaved }: { q: Question; onSaved: () => void }) {
           {save.isPending && <Loader2 className="mr-1 h-4 w-4 animate-spin" />}{t('tc.b.saveRubric')}
         </Button>
       </div>
-      {save.error && <p className="text-sm text-red-600">{save.error.message}</p>}
+      {save.error && <p className="text-sm text-sb-rose-ink">{save.error.message}</p>}
     </div>
   )
 }
@@ -114,7 +114,7 @@ function KeyPanel({ q, onChanged }: { q: Question; onChanged: () => void }) {
     : k.status === 'partial' ? t('tc.key.partial')
     : k.status === 'no_grounding' ? t('tc.key.no_grounding')
     : t('tc.key.not_available')
-  const tone = k.status === 'ready' ? 'text-green-700 dark:text-green-400' : k.status === 'building' ? 'text-muted-foreground' : 'text-amber-700 dark:text-amber-400'
+  const tone = k.status === 'ready' ? 'text-sb-saffron-deep ' : k.status === 'building' ? 'text-muted-foreground' : 'text-sb-butter-ink '
   return (
     <div className="space-y-3 rounded-md border p-3" data-testid="key-panel" data-key-status={k.status}>
       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -138,11 +138,11 @@ function KeyPanel({ q, onChanged }: { q: Question; onChanged: () => void }) {
               </li>
             ))}
           </ul>
-          <p className="text-sm text-green-700 dark:text-green-400">{t('tc.key.total', { got: k.total ?? 0, of: n(q.marks) })}</p>
+          <p className="text-sm text-sb-saffron-deep ">{t('tc.key.total', { got: k.total ?? 0, of: n(q.marks) })}</p>
           {k.fromShared && <p className="text-xs text-muted-foreground">{t('tc.key.shared')}</p>}
         </div>
       )}
-      {(own.error || retry.error) && <p className="text-sm text-red-600">{(own.error ?? retry.error)!.message}</p>}
+      {(own.error || retry.error) && <p className="text-sm text-sb-rose-ink">{(own.error ?? retry.error)!.message}</p>}
     </div>
   )
 }
@@ -231,11 +231,11 @@ function QuestionEditor({ q, index, count, onChanged, onMove }: { q: Question; i
             })}>
             {update.isPending && <Loader2 className="mr-1 h-4 w-4 animate-spin" />}{t('common.save')}
           </Button>
-          {update.error && <span className="text-sm text-red-600">{update.error.message}</span>}
+          {update.error && <span className="text-sm text-sb-rose-ink">{update.error.message}</span>}
         </div>
         {!dirty && (q.key.mode === 'key' ? <KeyPanel q={q} onChanged={onChanged} /> : (
           <>
-            <p className="text-sm text-amber-700 dark:text-amber-400" data-testid="own-rubric-note">{t('tc.key.ownNote')}</p>
+            <p className="text-sm text-sb-butter-ink " data-testid="own-rubric-note">{t('tc.key.ownNote')}</p>
             <RubricEditor q={q} onSaved={onChanged} />
             <Button size="sm" variant="outline" onClick={() => useKey.mutate({ questionId: q.id })} disabled={useKey.isPending}>{t('tc.key.useKey')}</Button>
           </>
@@ -290,7 +290,7 @@ export function Builder({ detail, onChanged }: { detail: Detail; onChanged: () =
               <Plus className="mr-1 h-4 w-4" />{t(`type.${ty}`)} ({presets.data?.[ty].defaultMarks ?? ''})
             </Button>
           ))}
-          {add.error && <span className="text-sm text-red-600">{add.error.message}</span>}
+          {add.error && <span className="text-sm text-sb-rose-ink">{add.error.message}</span>}
         </CardContent>
       </Card>
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -304,8 +304,8 @@ export function Builder({ detail, onChanged }: { detail: Detail; onChanged: () =
           {publish.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}{t('tc.b.publish')}
         </Button>
       </div>
-      {unchecked.length > 0 && <p className="text-sm text-amber-700 dark:text-amber-400">{t('tc.b.publishBlocked', { qs: unchecked.join(', ') })}</p>}
-      {publish.error && <p className="text-sm text-red-600">{publish.error.message}</p>}
+      {unchecked.length > 0 && <p className="text-sm text-sb-butter-ink ">{t('tc.b.publishBlocked', { qs: unchecked.join(', ') })}</p>}
+      {publish.error && <p className="text-sm text-sb-rose-ink">{publish.error.message}</p>}
     </div>
   )
 }

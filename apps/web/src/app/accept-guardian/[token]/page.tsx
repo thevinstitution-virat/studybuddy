@@ -32,9 +32,9 @@ export default function AcceptGuardianPage() {
   const p = preview.data
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-orange-50/70 via-background to-primary/10 p-5 dark:from-[var(--night-ink)] dark:via-background dark:to-primary/40">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-sb-surface-2  via-background to-primary/10 p-5 dark:from-[var(--night-ink)] dark:via-background dark:to-primary/40">
       <div className="relative w-full max-w-md rounded-2xl border border-border/70 bg-card/90 p-8 text-center shadow-elev-3 backdrop-blur-xl">
-        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 via-primary to-primary/80 text-white shadow-lg ring-1 ring-white/20">
+        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-sb-navy  via-primary to-primary/80 text-white shadow-lg ring-1 ring-white/20">
           <Heart className="h-8 w-8" />
         </div>
         <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('ga.title')}</h1>
@@ -57,7 +57,7 @@ export default function AcceptGuardianPage() {
           </>
         ) : done ? (
           <>
-            <CheckCircle2 className="mx-auto my-4 h-12 w-12 text-emerald-500" />
+            <CheckCircle2 className="mx-auto my-4 h-12 w-12 text-sb-saffron-deep" />
             <p className="text-sm text-muted-foreground">{t('ga.done', { name: done })}</p>
             {leaving && <Loader2 className="mx-auto mt-4 h-5 w-5 animate-spin text-primary" />}
           </>
@@ -78,7 +78,7 @@ export default function AcceptGuardianPage() {
               {p.organizationName ? t('ga.for', { org: p.organizationName, name: p.studentFirstName, email: p.forEmail }) : t('ga.forPlatform', { name: p.studentFirstName, email: p.forEmail })}
             </p>
             {!p.addressMatches ? (
-              <p role="alert" className="mt-4 rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">{t('ga.mismatch')}</p>
+              <p role="alert" className="mt-4 rounded-xl border border-sb-butter bg-sb-butter p-3 text-sm text-sb-butter-ink">{t('ga.mismatch')}</p>
             ) : (
               <>
                 {accept.error && <p role="alert" className="mt-4 rounded-xl border border-destructive/30 bg-destructive/10 p-3 text-sm font-medium text-destructive">{accept.error.message}</p>}

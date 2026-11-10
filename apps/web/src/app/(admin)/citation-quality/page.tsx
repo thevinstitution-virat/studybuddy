@@ -44,11 +44,11 @@ export default async function CitationQualityDashboard() {
         return (
             <div className="p-8 max-w-4xl mx-auto">
                 <h1 className="text-2xl font-bold mb-4">Citation Quality Dashboard</h1>
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                    <p className="text-yellow-800 font-medium">
+                <div className="bg-sb-butter border border-sb-butter rounded-lg p-4">
+                    <p className="text-sb-butter-ink font-medium">
                         Langfuse not configured
                     </p>
-                    <p className="text-yellow-700 text-sm mt-1">
+                    <p className="text-sb-butter-ink text-sm mt-1">
                         Set LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY, and LANGFUSE_HOST
                         environment variables to enable citation metrics.
                     </p>
@@ -80,9 +80,9 @@ export default async function CitationQualityDashboard() {
         return (
             <div className="p-8 max-w-4xl mx-auto">
                 <h1 className="text-2xl font-bold mb-4">Citation Quality Dashboard</h1>
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                    <p className="text-red-800 font-medium">Failed to fetch Langfuse data</p>
-                    <p className="text-red-700 text-sm mt-1">
+                <div className="bg-sb-rose border border-sb-danger rounded-lg p-4">
+                    <p className="text-sb-rose-ink font-medium">Failed to fetch Langfuse data</p>
+                    <p className="text-sb-rose-ink text-sm mt-1">
                         {(err as Error).message}
                     </p>
                 </div>
@@ -123,10 +123,10 @@ export default async function CitationQualityDashboard() {
         overallPrecision === null
             ? 'text-muted-foreground'
             : overallPrecision >= 0.95
-                ? 'text-green-600'
+                ? 'text-sb-saffron-deep'
                 : overallPrecision >= 0.85
-                    ? 'text-yellow-600'
-                    : 'text-red-600';
+                    ? 'text-sb-butter-ink'
+                    : 'text-sb-rose-ink';
 
     return (
         <div className="p-8 max-w-7xl mx-auto">
@@ -231,8 +231,8 @@ export default async function CitationQualityDashboard() {
                                     <td className="py-2 px-3 text-right">
                                         <span
                                             className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${trace.level === 'ERROR'
-                                                ? 'bg-red-100 text-red-700'
-                                                : 'bg-green-100 text-green-700'
+                                                ? 'bg-sb-rose text-sb-rose-ink'
+                                                : 'bg-sb-saffron-tint text-sb-saffron-deep'
                                                 }`}
                                         >
                                             {trace.level === 'ERROR' ? 'Error' : 'OK'}

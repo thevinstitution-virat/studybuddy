@@ -130,7 +130,7 @@ export function ChapterEditor({ videoId, durationSeconds }: ChapterEditorProps) 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center p-8">
-        <Loader2 className="w-6 h-6 animate-spin text-indigo-500" />
+        <Loader2 className="w-6 h-6 animate-spin text-sb-lav-ink" />
       </div>
     )
   }
@@ -139,7 +139,7 @@ export function ChapterEditor({ videoId, durationSeconds }: ChapterEditorProps) 
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h3 className="font-semibold text-sm flex items-center gap-2 text-slate-800 dark:text-slate-200">
-          <ListOrdered className="w-4 h-4 text-indigo-500" />
+          <ListOrdered className="w-4 h-4 text-sb-lav-ink" />
           Chapters
           {durationSeconds && (
             <span className="text-xs text-slate-400 font-normal">
@@ -214,7 +214,7 @@ export function ChapterEditor({ videoId, durationSeconds }: ChapterEditorProps) 
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-red-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 h-8 w-8 p-0"
+                className="text-sb-rose-ink hover:text-sb-rose-ink hover:bg-sb-rose  h-8 w-8 p-0"
                 onClick={() => removeChapter(ch.key)}
               >
                 <Trash2 className="w-3.5 h-3.5" />
@@ -232,7 +232,7 @@ export function ChapterEditor({ videoId, durationSeconds }: ChapterEditorProps) 
       <Button
         onClick={handleSave}
         disabled={saveMutation.isPending || chapters.length === 0}
-        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white"
+        className="w-full bg-sb-navy hover:bg-sb-navy text-white"
       >
         {saveMutation.isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
         <Save className="w-4 h-4 mr-2" />

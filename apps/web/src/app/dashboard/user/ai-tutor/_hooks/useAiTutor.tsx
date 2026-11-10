@@ -1457,13 +1457,13 @@ Feel free to ask me any questions related to your studies. I'll provide detailed
 
     // Gradient colors for each menu item
     const gradients = [
-      'from-orange-500 to-red-500',
-      'from-primary to-cyan-500',
-      'from-green-500 to-emerald-500',
+      ' ',
+      'from-primary ',
+      ' ',
       'from-primary to-primary/80',
-      'from-primary to-rose-500',
-      'from-yellow-500 to-orange-500',
-      'from-teal-500 to-green-500'
+      'from-primary ',
+      ' ',
+      ' '
     ]
 
     return (
@@ -1484,12 +1484,12 @@ Feel free to ask me any questions related to your studies. I'll provide detailed
             >
               <Card
                 onClick={() => handleMenuSelection(menuItem.value)}
-                className="group cursor-pointer h-full border-2 border-orange-200/60 dark:border-orange-700/60 hover:border-primary/80 dark:hover:border-primary/80 transition-all duration-300 hover:shadow-lg bg-card/90 backdrop-blur-sm overflow-hidden"
+                className="group cursor-pointer h-full border-2 border-sb-saffron  hover:border-primary/80 dark:hover:border-primary/80 transition-all duration-300 hover:shadow-lg bg-card/90 backdrop-blur-sm overflow-hidden"
               >
                 <CardContent className="p-4">
                   {/* Horizontal layout with icon and text */}
                   <div className="flex items-center space-x-3">
-                    <div className={`flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-r ${gradient} flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300`}>
+                    <div className={`flex-shrink-0 w-10 h-10 rounded-lg bg-sb-surface-2 ${gradient} flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300`}>
                       <IconComponent className="h-5 w-5 text-white" />
                     </div>
 
@@ -1502,7 +1502,7 @@ Feel free to ask me any questions related to your studies. I'll provide detailed
                   </div>
 
                   {/* Hover effect gradient overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`}></div>
+                  <div className={`absolute inset-0 bg-sb-surface-2 ${gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`}></div>
                 </CardContent>
               </Card>
             </motion.div>

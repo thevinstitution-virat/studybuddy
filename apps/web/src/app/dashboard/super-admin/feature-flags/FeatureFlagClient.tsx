@@ -102,8 +102,8 @@ export default function FeatureFlagClient() {
                   disabled={updateFeatures.isPending}
                 />
               </div>
-              <div className="flex items-center justify-between space-x-2 bg-emerald-50/50 p-2 rounded-md border border-emerald-100">
-                <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-emerald-900">
+              <div className="flex items-center justify-between space-x-2 bg-sb-saffron-tint p-2 rounded-md border border-sb-saffron">
+                <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sb-saffron-deep">
                   Admins Can Manage Zoom
                 </label>
                 <Switch 

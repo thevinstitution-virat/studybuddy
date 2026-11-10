@@ -42,7 +42,7 @@ export function ChatHistoryPanel({ isOpen, onClose }: ChatHistoryPanelProps) {
                     </button>
                 </div>
                 <div style={{ flex: 1, overflowY: 'auto', padding: 14, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 10, textAlign: 'center' }}>
-                    <span className="plinth" style={{ width: 44, height: 44, background: 'linear-gradient(135deg,var(--turmeric),var(--gold))' }}>
+                    <span className="plinth" style={{ width: 44, height: 44, background: 'var(--sb-navy)' }}>
                         <History className="h-[22px] w-[22px]" />
                     </span>
                     <div style={{ fontSize: 13.5, color: 'var(--muted)', maxWidth: '24ch' }}>

@@ -125,12 +125,12 @@ const UserDashboardHeader: React.FC<UserDashboardHeaderProps> = ({
 
           {/* Page Icon and Title */}
           <div className="flex items-center gap-4">
-            <div className="p-3 bg-gradient-to-br from-orange-500 to-blue-600 rounded-xl shadow-lg">
+            <div className="p-3 bg-sb-navy   rounded-xl shadow-lg">
               <IconComponent className="h-8 w-8 text-white" />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
-                <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">
+                <span className="text-sb-saffron-deep    ">
                   {pageInfo.title}
                 </span>
               </h1>

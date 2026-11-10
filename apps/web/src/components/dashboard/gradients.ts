@@ -5,7 +5,7 @@
  * any accent retint follow automatically.
  */
 export const GP = 'var(--bb-grad-primary)'
-export const GC = 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))'
-export const GW = 'linear-gradient(135deg,var(--turmeric),var(--gold))'
-export const GT = 'linear-gradient(135deg,var(--teal-light),var(--peacock-teal))'
-export const GV = 'linear-gradient(135deg,var(--lotus-deep),var(--lotus-pink))'
+export const GC = 'var(--sb-navy)'
+export const GW = 'var(--sb-navy)'
+export const GT = 'var(--sb-navy)'
+export const GV = 'var(--sb-navy)'

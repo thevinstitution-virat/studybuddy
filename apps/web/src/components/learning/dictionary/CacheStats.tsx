@@ -132,7 +132,7 @@ export default function CacheStats({ className = '', showControls = true }: Cach
         <div className="flex items-center justify-between">
           <div>
             <CardTitle className="flex items-center space-x-2">
-              <Database className="h-5 w-5 text-blue-500" />
+              <Database className="h-5 w-5 text-sb-sky-ink" />
               <span>Cache Performance</span>
             </CardTitle>
             <CardDescription>
@@ -163,7 +163,7 @@ export default function CacheStats({ className = '', showControls = true }: Cach
                 variant="outline"
                 size="sm"
                 onClick={handleClearCache}
-                className="h-8 w-8 p-0 text-red-600 hover:text-red-700"
+                className="h-8 w-8 p-0 text-sb-rose-ink hover:text-sb-rose-ink"
                 title="Clear cache"
               >
                 <Trash2 className="h-4 w-4" />
@@ -176,25 +176,25 @@ export default function CacheStats({ className = '', showControls = true }: Cach
         {/* Cache Overview */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="text-center">
-            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+            <div className="text-2xl font-bold text-sb-sky-ink ">
               {cacheStats.totalCachedResults}
             </div>
             <div className="text-sm text-muted-foreground">Cached Results</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+            <div className="text-2xl font-bold text-sb-saffron-deep ">
               {cacheStats.cacheHitRate}%
             </div>
             <div className="text-sm text-muted-foreground">Hit Rate</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+            <div className="text-2xl font-bold text-sb-lav-ink ">
               {cacheStats.totalSearchHistory}
             </div>
             <div className="text-sm text-muted-foreground">Total Searches</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+            <div className="text-2xl font-bold text-sb-saffron-deep ">
               {formatCacheSize(cacheStats.cacheSize)}
             </div>
             <div className="text-sm text-muted-foreground">Cache Size</div>
@@ -233,7 +233,7 @@ export default function CacheStats({ className = '', showControls = true }: Cach
                 <Badge 
                   key={index} 
                   variant="secondary" 
-                  className="text-xs bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300"
+                  className="text-xs bg-sb-sky  text-sb-sky-ink "
                 >
                   {search}
                 </Badge>

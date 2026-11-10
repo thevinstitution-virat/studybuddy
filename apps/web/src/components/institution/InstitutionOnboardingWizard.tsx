@@ -16,7 +16,7 @@ const PRESET_COLORS = [
   '#6366f1', // Indigo (default)
   '#3b82f6', // Blue
   '#0ea5e9', // Sky
-  '#10b981', // Emerald
+  'var(--sb-saffron-deep)', // Emerald
   '#f59e0b', // Amber
   '#ef4444', // Red
   '#ec4899', // Pink
@@ -71,7 +71,7 @@ export default function InstitutionOnboardingWizard({ initialData }: { initialDa
         
         {/* Header */}
         <div className="text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-600 to-indigo-600 shadow-lg">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-sb-navy   shadow-lg">
             <Rocket className="h-8 w-8 text-white" />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-foreground">Welcome to your Institution</h1>
@@ -84,15 +84,15 @@ export default function InstitutionOnboardingWizard({ initialData }: { initialDa
             <div key={label} className="flex items-center">
               <div className="flex items-center gap-2">
                 <div className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold transition-colors ${
-                  i < step ? 'bg-green-500 text-white'
-                  : i === step ? 'bg-violet-600 text-white shadow-md'
+                  i < step ? 'bg-sb-navy text-white'
+                  : i === step ? 'bg-sb-navy text-white shadow-md'
                   : 'bg-muted text-muted-foreground dark:text-muted-foreground'}`}>
                   {i < step ? <Check className="h-4 w-4" /> : i + 1}
                 </div>
                 <span className={`hidden sm:block text-sm font-medium ${i === step ? 'text-foreground' : 'text-muted-foreground'}`}>{label}</span>
               </div>
               {i < STEPS.length - 1 && (
-                <div className={`mx-4 h-0.5 w-12 sm:w-24 transition-colors ${i < step ? 'bg-green-500' : 'bg-muted'}`} />
+                <div className={`mx-4 h-0.5 w-12 sm:w-24 transition-colors ${i < step ? 'bg-sb-navy' : 'bg-muted'}`} />
               )}
             </div>
           ))}
@@ -107,7 +107,7 @@ export default function InstitutionOnboardingWizard({ initialData }: { initialDa
               <div className="space-y-4">
                 <div>
                   <label className="mb-1.5 flex items-center gap-2 text-sm font-medium text-foreground">
-                    <ImageIcon className="h-4 w-4 text-muted-foreground" /> Logo URL <span className="text-red-500">*</span>
+                    <ImageIcon className="h-4 w-4 text-muted-foreground" /> Logo URL <span className="text-sb-rose-ink">*</span>
                   </label>
                   <div className="flex gap-4">
                     <input
@@ -115,7 +115,7 @@ export default function InstitutionOnboardingWizard({ initialData }: { initialDa
                       value={formData.logoUrl}
                       onChange={(e) => updateField('logoUrl', e.target.value)}
                       placeholder="https://example.com/logo.png"
-                      className="flex-1 rounded-xl border border-input px-4 py-2.5 outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-200 dark:bg-gray-950"
+                      className="flex-1 rounded-xl border border-input px-4 py-2.5 outline-none focus:border-sb-lav focus:ring-2 focus:ring-sb-lav dark:bg-gray-950"
                     />
                     {formData.logoUrl && (
                       <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-muted/40 overflow-hidden">
@@ -135,7 +135,7 @@ export default function InstitutionOnboardingWizard({ initialData }: { initialDa
                     value={formData.bannerUrl}
                     onChange={(e) => updateField('bannerUrl', e.target.value)}
                     placeholder="https://example.com/banner.jpg"
-                    className="w-full rounded-xl border border-input px-4 py-2.5 outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-200 dark:bg-gray-950"
+                    className="w-full rounded-xl border border-input px-4 py-2.5 outline-none focus:border-sb-lav focus:ring-2 focus:ring-sb-lav dark:bg-gray-950"
                   />
                   <p className="mt-1.5 text-xs text-muted-foreground">Recommended size: 1200x300px.</p>
                   {formData.bannerUrl && (
@@ -148,10 +148,10 @@ export default function InstitutionOnboardingWizard({ initialData }: { initialDa
 
                 <div>
                   <label className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
-                    <Palette className="h-4 w-4 text-muted-foreground" /> Primary Color <span className="text-red-500">*</span>
+                    <Palette className="h-4 w-4 text-muted-foreground" /> Primary Color <span className="text-sb-rose-ink">*</span>
                   </label>
                   <div className="flex flex-wrap items-center gap-3">
-                    <div className="flex h-11 w-11 overflow-hidden rounded-xl border border-input focus-within:ring-2 focus-within:ring-violet-500">
+                    <div className="flex h-11 w-11 overflow-hidden rounded-xl border border-input focus-within:ring-2 focus-within:ring-sb-lav">
                       <input
                         type="color"
                         value={formData.primaryColor}
@@ -182,14 +182,14 @@ export default function InstitutionOnboardingWizard({ initialData }: { initialDa
               <div className="grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-1.5 flex items-center gap-2 text-sm font-medium text-foreground">
-                    <Mail className="h-4 w-4 text-muted-foreground" /> Contact Email <span className="text-red-500">*</span>
+                    <Mail className="h-4 w-4 text-muted-foreground" /> Contact Email <span className="text-sb-rose-ink">*</span>
                   </label>
                   <input
                     type="email"
                     value={formData.contactEmail}
                     onChange={(e) => updateField('contactEmail', e.target.value)}
                     placeholder="office@institution.edu"
-                    className="w-full rounded-xl border border-input px-4 py-2.5 outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-200 dark:bg-gray-950"
+                    className="w-full rounded-xl border border-input px-4 py-2.5 outline-none focus:border-sb-lav focus:ring-2 focus:ring-sb-lav dark:bg-gray-950"
                   />
                 </div>
                 <div>
@@ -201,7 +201,7 @@ export default function InstitutionOnboardingWizard({ initialData }: { initialDa
                     value={formData.contactPhone}
                     onChange={(e) => updateField('contactPhone', e.target.value)}
                     placeholder="+1 (555) 000-0000"
-                    className="w-full rounded-xl border border-input px-4 py-2.5 outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-200 dark:bg-gray-950"
+                    className="w-full rounded-xl border border-input px-4 py-2.5 outline-none focus:border-sb-lav focus:ring-2 focus:ring-sb-lav dark:bg-gray-950"
                   />
                 </div>
               </div>
@@ -215,20 +215,20 @@ export default function InstitutionOnboardingWizard({ initialData }: { initialDa
                   value={formData.website}
                   onChange={(e) => updateField('website', e.target.value)}
                   placeholder="https://institution.edu"
-                  className="w-full rounded-xl border border-input px-4 py-2.5 outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-200 dark:bg-gray-950"
+                  className="w-full rounded-xl border border-input px-4 py-2.5 outline-none focus:border-sb-lav focus:ring-2 focus:ring-sb-lav dark:bg-gray-950"
                 />
               </div>
 
               <div>
                 <label className="mb-1.5 flex items-center gap-2 text-sm font-medium text-foreground">
-                  <MapPin className="h-4 w-4 text-muted-foreground" /> Address <span className="text-red-500">*</span>
+                  <MapPin className="h-4 w-4 text-muted-foreground" /> Address <span className="text-sb-rose-ink">*</span>
                 </label>
                 <textarea
                   value={formData.address}
                   onChange={(e) => updateField('address', e.target.value)}
                   placeholder="123 Education Lane&#10;City, State 12345"
                   rows={3}
-                  className="w-full rounded-xl border border-input px-4 py-2.5 outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-200 dark:bg-gray-950"
+                  className="w-full rounded-xl border border-input px-4 py-2.5 outline-none focus:border-sb-lav focus:ring-2 focus:ring-sb-lav dark:bg-gray-950"
                 />
               </div>
             </div>
@@ -270,7 +270,7 @@ export default function InstitutionOnboardingWizard({ initialData }: { initialDa
               </div>
 
               {mutation.isError && (
-                <div className="flex items-start gap-2 rounded-xl bg-red-50 p-4 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-300">
+                <div className="flex items-start gap-2 rounded-xl bg-sb-rose p-4 text-sm text-sb-rose-ink  ">
                   <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                   <p>{mutation.error.message}</p>
                 </div>
@@ -302,7 +302,7 @@ export default function InstitutionOnboardingWizard({ initialData }: { initialDa
             <button
               onClick={() => mutation.mutate(formData)}
               disabled={mutation.isPending}
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md hover:from-violet-500 hover:to-indigo-500 disabled:opacity-60 transition-all hover:shadow-lg"
+              className="inline-flex items-center gap-2 rounded-xl bg-sb-navy   px-6 py-2.5 text-sm font-semibold text-white shadow-md   disabled:opacity-60 transition-all hover:shadow-lg"
             >
               {mutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Check className="h-4 w-4" />}
               {mutation.isPending ? 'Saving...' : 'Complete Setup'}

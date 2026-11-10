@@ -63,7 +63,7 @@ export function InstitutionSwitcher() {
       >
         <span className="flex min-w-0 items-center gap-2">
           {isGlobal ? (
-            <Globe className="h-4 w-4 shrink-0 text-blue-500" />
+            <Globe className="h-4 w-4 shrink-0 text-sb-sky-ink" />
           ) : (
             <Building2 className="h-4 w-4 shrink-0 text-muted-foreground" />
           )}
@@ -83,7 +83,7 @@ export function InstitutionSwitcher() {
 
           {/* Global Platform — always first */}
           <OptionRow
-            icon={<Globe className="h-4 w-4 text-blue-500" />}
+            icon={<Globe className="h-4 w-4 text-sb-sky-ink" />}
             label="Global Platform"
             sublabel="Cross-institution content"
             active={isGlobal}
@@ -103,7 +103,7 @@ export function InstitutionSwitcher() {
 
           {/* Error state */}
           {isError && (
-            <p className="px-3 py-3 text-xs text-red-500">
+            <p className="px-3 py-3 text-xs text-sb-rose-ink">
               Failed to load institutions. Refresh and try again.
             </p>
           )}
@@ -161,7 +161,7 @@ function OptionRow({
       onClick={onClick}
       className={cx(
         'flex w-full items-start gap-3 px-3 py-2.5 text-left text-sm transition-colors hover:bg-muted/40 dark:hover:bg-slate-900',
-        active ? 'bg-indigo-50/50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400' : 'text-foreground dark:text-slate-200',
+        active ? 'bg-sb-lav  text-sb-lav-ink ' : 'text-foreground dark:text-slate-200',
         isFirst && 'rounded-t-lg',
         isLast && 'rounded-b-lg',
       )}
@@ -171,7 +171,7 @@ function OptionRow({
         <span
           className={cx(
             'block truncate font-medium',
-            active && 'text-indigo-600 dark:text-indigo-400',
+            active && 'text-sb-lav-ink ',
           )}
         >
           {label}
@@ -183,7 +183,7 @@ function OptionRow({
         )}
       </span>
       {active && (
-        <span className="ml-auto shrink-0 self-center rounded-full bg-indigo-100 dark:bg-indigo-900/30 px-2 py-0.5 text-[10px] uppercase tracking-wider font-bold text-indigo-600 dark:text-indigo-400">
+        <span className="ml-auto shrink-0 self-center rounded-full bg-sb-lav  px-2 py-0.5 text-[10px] uppercase tracking-wider font-bold text-sb-lav-ink ">
           Active
         </span>
       )}

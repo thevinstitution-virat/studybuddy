@@ -82,7 +82,7 @@ export default function AccountMenu({ profilePath = '/dashboard/user/profile' }:
           style={{
             width: 30, height: 30, borderRadius: 999, display: 'inline-flex',
             alignItems: 'center', justifyContent: 'center',
-            background: 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))',
+            background: 'var(--sb-navy)',
             color: '#fff', fontWeight: 800, fontSize: 12,
           }}
         >

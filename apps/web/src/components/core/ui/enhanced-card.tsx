@@ -27,14 +27,14 @@ const enhancedCardVariants = cva(
         
         // Educational context with subtle patterns
         educational: [
-          "bg-gradient-to-br from-vg-primary-50/50 to-vg-cultural-50/50 border-vg-primary-200/50",
+          "bg-sb-surface-2 from-vg-primary-50/50 to-vg-cultural-50/50 border-vg-primary-200/50",
           "shadow-vg-sm hover:shadow-vg-md vg-pattern-mandala",
           "dark:from-vg-primary-900/20 dark:to-vg-cultural-900/20 dark:border-vg-primary-700/50"
         ],
         
         // Cultural Sanskrit-inspired design
         cultural: [
-          "bg-gradient-to-br from-vg-sanskrit-50/50 to-vg-cultural-50/50 border-vg-sanskrit-200/50",
+          "bg-sb-surface-2 from-vg-sanskrit-50/50 to-vg-cultural-50/50 border-vg-sanskrit-200/50",
           "shadow-vg-sm hover:shadow-vg-md vg-pattern-lotus",
           "dark:from-vg-sanskrit-900/20 dark:to-vg-cultural-900/20 dark:border-vg-sanskrit-700/50"
         ],
@@ -47,14 +47,14 @@ const enhancedCardVariants = cva(
         
         // Success/achievement cards
         success: [
-          "bg-gradient-to-br from-vg-success-50/50 to-vg-success-100/50 border-vg-success-200/50",
+          "bg-sb-surface-2 from-vg-success-50/50 to-vg-success-100/50 border-vg-success-200/50",
           "shadow-vg-sm hover:shadow-vg-success",
           "dark:from-vg-success-900/20 dark:to-vg-success-800/20 dark:border-vg-success-700/50"
         ],
         
         // Warning/attention cards
         warning: [
-          "bg-gradient-to-br from-vg-warning-50/50 to-vg-warning-100/50 border-vg-warning-200/50",
+          "bg-sb-surface-2 from-vg-warning-50/50 to-vg-warning-100/50 border-vg-warning-200/50",
           "shadow-vg-sm hover:shadow-vg-warning",
           "dark:from-vg-warning-900/20 dark:to-vg-warning-800/20 dark:border-vg-warning-700/50"
         ],

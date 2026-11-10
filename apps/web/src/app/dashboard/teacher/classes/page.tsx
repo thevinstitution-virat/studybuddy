@@ -151,7 +151,7 @@ export default function TeacherClassesPage() {
                   <div className="flex gap-2">
                     <button
                       onClick={() => handleDeleteClass(cls.id)}
-                      className="p-1 text-red-600 hover:bg-red-50 rounded"
+                      className="p-1 text-sb-rose-ink hover:bg-sb-rose rounded"
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>

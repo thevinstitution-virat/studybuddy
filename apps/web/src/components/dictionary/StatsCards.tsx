@@ -55,9 +55,9 @@ export default function StatsCards() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {/* Today's Progress Card */}
-      <Card className="border-green-200 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 dark:border-green-800">
+      <Card className="border-sb-saffron bg-sb-surface-2     ">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-green-800 dark:text-green-200 flex items-center">
+          <CardTitle className="text-sm font-medium text-sb-saffron-deep  flex items-center">
             <BookOpenIcon className="h-4 w-4 mr-2" />
             Today's Progress
           </CardTitle>
@@ -65,28 +65,28 @@ export default function StatsCards() {
         <CardContent>
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-2xl font-bold text-green-900 dark:text-green-100">
+              <span className="text-2xl font-bold text-sb-saffron-deep ">
                 {todayProgress.wordsLearned}
               </span>
-              <span className="text-sm text-green-700 dark:text-green-300">
+              <span className="text-sm text-sb-saffron-deep ">
                 / {todayProgress.goal} words
               </span>
             </div>
             <Progress 
               value={todayProgress.percentage} 
-              className="h-2 bg-green-100 dark:bg-green-900"
+              className="h-2 bg-sb-saffron-tint "
             />
             <div className="flex items-center justify-between text-xs">
-              <span className="text-green-600 dark:text-green-400">
+              <span className="text-sb-saffron-deep ">
                 {todayProgress.percentage.toFixed(0)}% complete
               </span>
               {todayProgress.remaining > 0 && (
-                <span className="text-green-600 dark:text-green-400">
+                <span className="text-sb-saffron-deep ">
                   {todayProgress.remaining} to go
                 </span>
               )}
               {todayProgress.percentage >= 100 && (
-                <Badge variant="default" className="bg-green-600 text-white">
+                <Badge variant="default" className="bg-sb-navy text-white">
                   Goal Achieved! 🎉
                 </Badge>
               )}
@@ -96,9 +96,9 @@ export default function StatsCards() {
       </Card>
 
       {/* Current Streak Card */}
-      <Card className="border-orange-200 bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-950 dark:to-red-950 dark:border-orange-800">
+      <Card className="border-sb-saffron bg-sb-surface-2     ">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-orange-800 dark:text-orange-200 flex items-center">
+          <CardTitle className="text-sm font-medium text-sb-saffron-deep  flex items-center">
             <FireIcon className="h-4 w-4 mr-2" />
             Current Streak
           </CardTitle>
@@ -106,23 +106,23 @@ export default function StatsCards() {
         <CardContent>
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-2xl font-bold text-orange-900 dark:text-orange-100">
+              <span className="text-2xl font-bold text-sb-saffron-deep ">
                 {streakInfo.current}
               </span>
-              <span className="text-sm text-orange-700 dark:text-orange-300">
+              <span className="text-sm text-sb-saffron-deep ">
                 days
               </span>
             </div>
             <div className="flex items-center justify-between text-xs">
-              <span className="text-orange-600 dark:text-orange-400">
+              <span className="text-sb-saffron-deep ">
                 Longest: {streakInfo.longest} days
               </span>
               {streakInfo.isOnTrack ? (
-                <Badge variant="default" className="bg-orange-600 text-white">
+                <Badge variant="default" className="bg-sb-navy text-white">
                   On Track! 🔥
                 </Badge>
               ) : (
-                <Badge variant="outline" className="border-orange-300 text-orange-700">
+                <Badge variant="outline" className="border-sb-saffron text-sb-saffron-deep">
                   Keep Going!
                 </Badge>
               )}
@@ -132,9 +132,9 @@ export default function StatsCards() {
       </Card>
 
       {/* Level & Points Card */}
-      <Card className="border-purple-200 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-950 dark:to-indigo-950 dark:border-purple-800">
+      <Card className="border-sb-lav bg-sb-surface-2     ">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-purple-800 dark:text-purple-200 flex items-center">
+          <CardTitle className="text-sm font-medium text-sb-lav-ink  flex items-center">
             <StarIcon className="h-4 w-4 mr-2" />
             Level & Points
           </CardTitle>
@@ -142,18 +142,18 @@ export default function StatsCards() {
         <CardContent>
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-2xl font-bold text-purple-900 dark:text-purple-100">
+              <span className="text-2xl font-bold text-sb-lav-ink ">
                 {levelInfo.current}
               </span>
-              <span className="text-sm text-purple-700 dark:text-purple-300">
+              <span className="text-sm text-sb-lav-ink ">
                 {levelInfo.totalPoints} pts
               </span>
             </div>
             <Progress 
               value={levelInfo.progress} 
-              className="h-2 bg-purple-100 dark:bg-purple-900"
+              className="h-2 bg-sb-lav "
             />
-            <div className="text-xs text-purple-600 dark:text-purple-400">
+            <div className="text-xs text-sb-lav-ink ">
               {levelInfo.pointsToNext} points to Level {levelInfo.current + 1}
             </div>
           </div>
@@ -161,9 +161,9 @@ export default function StatsCards() {
       </Card>
 
       {/* Total Words Learned Card */}
-      <Card className="border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 dark:border-blue-800">
+      <Card className="border-sb-sky bg-sb-surface-2     ">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-blue-800 dark:text-blue-200 flex items-center">
+          <CardTitle className="text-sm font-medium text-sb-sky-ink  flex items-center">
             <TrophyIcon className="h-4 w-4 mr-2" />
             Total Learned
           </CardTitle>
@@ -171,18 +171,18 @@ export default function StatsCards() {
         <CardContent>
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-2xl font-bold text-blue-900 dark:text-blue-100">
+              <span className="text-2xl font-bold text-sb-sky-ink ">
                 {stats.totalWordsLearned}
               </span>
-              <span className="text-sm text-blue-700 dark:text-blue-300">
+              <span className="text-sm text-sb-sky-ink ">
                 words
               </span>
             </div>
             <div className="flex items-center justify-between text-xs">
-              <span className="text-blue-600 dark:text-blue-400">
+              <span className="text-sb-sky-ink ">
                 Mastered: {stats.wordsMastered}
               </span>
-              <Badge variant="outline" className="border-blue-300 text-blue-700">
+              <Badge variant="outline" className="border-sb-sky text-sb-sky-ink">
                 {((stats.wordsMastered / Math.max(1, stats.totalWordsLearned)) * 100).toFixed(0)}% mastery
               </Badge>
             </div>
@@ -191,9 +191,9 @@ export default function StatsCards() {
       </Card>
 
       {/* Additional Stats Row */}
-      <Card className="md:col-span-2 border-indigo-200 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950 dark:to-purple-950 dark:border-indigo-800">
+      <Card className="md:col-span-2 border-sb-lav bg-sb-surface-2     ">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-indigo-800 dark:text-indigo-200 flex items-center">
+          <CardTitle className="text-sm font-medium text-sb-lav-ink  flex items-center">
             <ChartBarIcon className="h-4 w-4 mr-2" />
             Learning Analytics
           </CardTitle>
@@ -201,34 +201,34 @@ export default function StatsCards() {
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="text-center">
-              <div className="text-lg font-bold text-indigo-900 dark:text-indigo-100">
+              <div className="text-lg font-bold text-sb-lav-ink ">
                 {stats.todayWordsSearched}
               </div>
-              <div className="text-xs text-indigo-600 dark:text-indigo-400">
+              <div className="text-xs text-sb-lav-ink ">
                 Words Searched Today
               </div>
             </div>
             <div className="text-center">
-              <div className="text-lg font-bold text-indigo-900 dark:text-indigo-100">
+              <div className="text-lg font-bold text-sb-lav-ink ">
                 {stats.todayQuizzesCompleted}
               </div>
-              <div className="text-xs text-indigo-600 dark:text-indigo-400">
+              <div className="text-xs text-sb-lav-ink ">
                 Quizzes Completed
               </div>
             </div>
             <div className="text-center">
-              <div className="text-lg font-bold text-indigo-900 dark:text-indigo-100">
+              <div className="text-lg font-bold text-sb-lav-ink ">
                 {stats.culturalWordsLearned}
               </div>
-              <div className="text-xs text-indigo-600 dark:text-indigo-400">
+              <div className="text-xs text-sb-lav-ink ">
                 Cultural Words
               </div>
             </div>
             <div className="text-center">
-              <div className="text-lg font-bold text-indigo-900 dark:text-indigo-100">
+              <div className="text-lg font-bold text-sb-lav-ink ">
                 {stats.hindiTranslationsViewed}
               </div>
-              <div className="text-xs text-indigo-600 dark:text-indigo-400">
+              <div className="text-xs text-sb-lav-ink ">
                 Hindi Translations
               </div>
             </div>
@@ -237,9 +237,9 @@ export default function StatsCards() {
       </Card>
 
       {/* Quick Actions Card */}
-      <Card className="md:col-span-2 border-emerald-200 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950 dark:to-teal-950 dark:border-emerald-800">
+      <Card className="md:col-span-2 border-sb-saffron bg-sb-surface-2     ">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-emerald-800 dark:text-emerald-200 flex items-center">
+          <CardTitle className="text-sm font-medium text-sb-saffron-deep  flex items-center">
             <AcademicCapIcon className="h-4 w-4 mr-2" />
             Learning Insights
           </CardTitle>
@@ -247,31 +247,31 @@ export default function StatsCards() {
         <CardContent>
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-emerald-700 dark:text-emerald-300">
+              <span className="text-sm text-sb-saffron-deep ">
                 📅 Member since: {new Date(stats.joinDate).toLocaleDateString()}
               </span>
-              <span className="text-sm text-emerald-700 dark:text-emerald-300">
+              <span className="text-sm text-sb-saffron-deep ">
                 🎯 Achievements: {stats.achievements.length}
               </span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-emerald-700 dark:text-emerald-300">
+              <span className="text-sm text-sb-saffron-deep ">
                 🇮🇳 Cultural focus: {((stats.culturalWordsLearned / Math.max(1, stats.totalWordsLearned)) * 100).toFixed(0)}%
               </span>
-              <span className="text-sm text-emerald-700 dark:text-emerald-300">
+              <span className="text-sm text-sb-saffron-deep ">
                 📈 Level progress: {levelInfo.progress.toFixed(0)}%
               </span>
             </div>
             {todayProgress.percentage >= 100 && (
-              <div className="mt-2 p-2 bg-emerald-100 dark:bg-emerald-900 rounded-md">
-                <span className="text-sm font-medium text-emerald-800 dark:text-emerald-200">
+              <div className="mt-2 p-2 bg-sb-saffron-tint  rounded-md">
+                <span className="text-sm font-medium text-sb-saffron-deep ">
                   🎉 Congratulations! You've achieved your daily goal. Keep up the excellent work!
                 </span>
               </div>
             )}
             {streakInfo.current >= 7 && (
-              <div className="mt-2 p-2 bg-orange-100 dark:bg-orange-900 rounded-md">
-                <span className="text-sm font-medium text-orange-800 dark:text-orange-200">
+              <div className="mt-2 p-2 bg-sb-saffron-tint  rounded-md">
+                <span className="text-sm font-medium text-sb-saffron-deep ">
                   🔥 Amazing! You're on a {streakInfo.current}-day streak. You're building great learning habits!
                 </span>
               </div>

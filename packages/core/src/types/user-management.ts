@@ -278,20 +278,20 @@ export function getUserDisplayName(user: UserProfile): string {
 
 export function getUserRoleColor(role: UserRole): string {
   switch (role) {
-    case 'super_admin': return 'bg-purple-100 text-purple-800'
-    case 'admin': return 'bg-red-100 text-red-800'
-    case 'teacher': return 'bg-blue-100 text-blue-800'
-    case 'student': return 'bg-green-100 text-green-800'
-    case 'parent': return 'bg-amber-100 text-amber-800'
+    case 'super_admin': return 'bg-sb-lav text-sb-lav-ink'
+    case 'admin': return 'bg-sb-rose text-sb-rose-ink'
+    case 'teacher': return 'bg-sb-sky text-sb-sky-ink'
+    case 'student': return 'bg-sb-saffron-tint text-sb-saffron-deep'
+    case 'parent': return 'bg-sb-butter text-sb-butter-ink'
     default: return 'bg-gray-100 text-gray-800'
   }
 }
 
 export function getUserStatusColor(status: UserStatus): string {
   switch (status) {
-    case 'active': return 'bg-green-100 text-green-800'
-    case 'suspended': return 'bg-red-100 text-red-800'
-    case 'pending': return 'bg-yellow-100 text-yellow-800'
+    case 'active': return 'bg-sb-saffron-tint text-sb-saffron-deep'
+    case 'suspended': return 'bg-sb-rose text-sb-rose-ink'
+    case 'pending': return 'bg-sb-butter text-sb-butter-ink'
     case 'inactive': return 'bg-gray-100 text-gray-800'
     default: return 'bg-gray-100 text-gray-800'
   }

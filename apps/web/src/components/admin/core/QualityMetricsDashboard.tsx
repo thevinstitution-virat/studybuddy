@@ -133,7 +133,7 @@ export default function QualityMetricsDashboard() {
   if (error) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="text-lg text-red-600 dark:text-red-400">Error: {error}</div>
+        <div className="text-lg text-sb-rose-ink ">Error: {error}</div>
       </div>
     )
   }
@@ -145,31 +145,31 @@ export default function QualityMetricsDashboard() {
   const getStatusColor = (value: number, metric: string): string => {
     if (metric === 'avgUserRating') {
       if (value >= 4.5)
-  return 'text-green-600 dark:text-green-400'
+  return 'text-sb-saffron-deep '
       if (value >= 3.5)
-  return 'text-yellow-600 dark:text-yellow-400'
-      return 'text-red-600 dark:text-red-400'
+  return 'text-sb-butter-ink '
+      return 'text-sb-rose-ink '
     }
     if (metric === 'avgFaithfulness' || metric === 'avgRelevance') {
       if (value >= 0.8)
-  return 'text-green-600 dark:text-green-400'
+  return 'text-sb-saffron-deep '
       if (value >= 0.7)
-  return 'text-yellow-600 dark:text-yellow-400'
-      return 'text-red-600 dark:text-red-400'
+  return 'text-sb-butter-ink '
+      return 'text-sb-rose-ink '
     }
     if (metric === 'avgResponseTime') {
       if (value <= 3000)
-  return 'text-green-600 dark:text-green-400'
+  return 'text-sb-saffron-deep '
       if (value <= 5000)
-  return 'text-yellow-600 dark:text-yellow-400'
-      return 'text-red-600 dark:text-red-400'
+  return 'text-sb-butter-ink '
+      return 'text-sb-rose-ink '
     }
     if (metric === 'cacheHitRate' || metric === 'satisfactionRate') {
       if (value >= 0.7)
-  return 'text-green-600 dark:text-green-400'
+  return 'text-sb-saffron-deep '
       if (value >= 0.5)
-  return 'text-yellow-600 dark:text-yellow-400'
-      return 'text-red-600 dark:text-red-400'
+  return 'text-sb-butter-ink '
+      return 'text-sb-rose-ink '
     }
     return 'text-muted-foreground'
   }
@@ -312,7 +312,7 @@ export default function QualityMetricsDashboard() {
         {/* Metric Card: Active Alerts */}
         <div className="bg-card p-6 rounded-lg shadow">
           <div className="text-sm text-muted-foreground mb-2">Active Alerts</div>
-          <div className={`text-3xl font-bold ${data.metrics.alertCount > 0 ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`}>
+          <div className={`text-3xl font-bold ${data.metrics.alertCount > 0 ? 'text-sb-rose-ink ' : 'text-sb-saffron-deep '}`}>
             {data.metrics.alertCount}
           </div>
         </div>
@@ -357,8 +357,8 @@ export default function QualityMetricsDashboard() {
                 key={alert.alertId}
                 className={`p-4 rounded-lg border-l-4 ${
                   alert.severity === 'high'
-                    ? 'bg-red-50 dark:bg-red-900/20 border-red-500'
-                    : 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-500'
+                    ? 'bg-sb-rose  border-sb-danger'
+                    : 'bg-sb-butter  border-sb-butter'
                 }`}
               >
                 <div className="flex justify-between items-start">

@@ -49,8 +49,8 @@ export default async function OrganizationDetailsPage({ params }: { params: { or
           <div className="flex flex-col items-end gap-2">
             <div className="flex items-center gap-2">
               <span className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize ${
-                org.subscriptionStatus === 'active' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300' :
-                org.subscriptionStatus === 'trial' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300' :
+                org.subscriptionStatus === 'active' ? 'bg-sb-saffron-tint text-sb-saffron-deep  ' :
+                org.subscriptionStatus === 'trial' ? 'bg-sb-butter text-sb-butter-ink  ' :
                 'bg-muted text-foreground dark:text-muted-foreground/60'
               }`}>
                 Status: {org.subscriptionStatus ?? 'Trial'}
@@ -178,8 +178,8 @@ export default async function OrganizationDetailsPage({ params }: { params: { or
               </div>
               <div className={`px-3 py-1.5 rounded-full text-sm font-semibold ${
                 profile?.onboardingCompleted 
-                  ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300' 
-                  : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300'
+                  ? 'bg-sb-saffron-tint text-sb-saffron-deep  ' 
+                  : 'bg-sb-butter text-sb-butter-ink  '
               }`}>
                 {profile?.onboardingCompleted ? 'Completed' : 'Pending'}
               </div>

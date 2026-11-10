@@ -31,12 +31,12 @@ interface DashboardState {
 }
 
 const TYPE_GRAD: Record<string, string> = {
-  notes: 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))',
-  summaries: 'linear-gradient(135deg,var(--teal-light),var(--peacock-teal))',
-  mind_maps: 'linear-gradient(135deg,var(--lotus-deep),var(--lotus-pink))',
+  notes: 'var(--sb-navy)',
+  summaries: 'var(--sb-navy)',
+  mind_maps: 'var(--sb-navy)',
   quizzes: 'var(--bb-grad-primary)',
-  textbooks: 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))',
-  reference: 'linear-gradient(135deg,var(--turmeric),var(--gold))',
+  textbooks: 'var(--sb-navy)',
+  reference: 'var(--sb-navy)',
 }
 
 // Material Card Component
@@ -152,9 +152,9 @@ export default function MaterialsPage() {
   const getTypeColor = (type: string) => {
     const colors = {
       notes: 'bg-primary/10 text-primary',
-      summaries: 'bg-green-50 text-green-600',
+      summaries: 'bg-sb-saffron-tint text-sb-saffron-deep',
       mind_maps: 'bg-primary/10 text-primary',
-      quizzes: 'bg-orange-50 text-orange-600',
+      quizzes: 'bg-sb-saffron-tint text-sb-saffron-deep',
       textbooks: 'bg-primary/10 text-primary',
       reference: 'bg-muted/40 text-muted-foreground'
     }
@@ -275,7 +275,7 @@ export default function MaterialsPage() {
           </div>
         ) : dashboardState.error ? (
           <div className="card" style={{ padding: 32, textAlign: 'center' }}>
-            <span className="plinth" style={{ width: 56, height: 56, margin: '0 auto 14px', background: 'linear-gradient(135deg,#FF5468,#E5283A 55%,#B0182A)' }}>
+            <span className="plinth" style={{ width: 56, height: 56, margin: '0 auto 14px', background: 'var(--sb-navy)' }}>
               <FileText className="h-7 w-7" />
             </span>
             <h3 style={{ fontSize: 16, fontWeight: 800, color: 'var(--ink)', margin: '0 0 6px' }}>Error loading materials</h3>
@@ -284,7 +284,7 @@ export default function MaterialsPage() {
           </div>
         ) : dashboardState.filteredMaterials.length === 0 ? (
           <div className="card" style={{ padding: 32, textAlign: 'center' }}>
-            <span className="plinth" style={{ width: 56, height: 56, margin: '0 auto 14px', background: 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))' }}>
+            <span className="plinth" style={{ width: 56, height: 56, margin: '0 auto 14px', background: 'var(--sb-navy)' }}>
               <BookOpen className="h-7 w-7" />
             </span>
             <h3 style={{ fontSize: 16, fontWeight: 800, color: 'var(--ink)', margin: '0 0 6px' }}>No materials found</h3>

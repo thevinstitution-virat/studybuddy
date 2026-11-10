@@ -287,7 +287,7 @@ export default function GoogleDriveSetupSection({
         <CardHeader>
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <CloudIcon className="h-8 w-8 text-blue-500" />
+              <CloudIcon className="h-8 w-8 text-sb-sky-ink" />
               <div>
                 <CardTitle>Google Drive Integration</CardTitle>
                 <CardDescription>
@@ -431,9 +431,9 @@ export default function GoogleDriveSetupSection({
               </Button>
 
               {state.authUrl && (
-                <div className="space-y-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                <div className="space-y-4 p-4 bg-sb-sky  rounded-lg">
                   <div className="flex items-center space-x-2">
-                    <LinkIcon className="h-5 w-5 text-blue-500" />
+                    <LinkIcon className="h-5 w-5 text-sb-sky-ink" />
                     <span className="font-medium">Authorization Required</span>
                   </div>
                   <p className="text-sm text-muted-foreground">
@@ -499,7 +499,7 @@ export default function GoogleDriveSetupSection({
                       className="flex items-center justify-between p-3 border rounded-lg"
                     >
                       <div className="flex items-center space-x-3">
-                        <FolderIcon className="h-5 w-5 text-blue-500" />
+                        <FolderIcon className="h-5 w-5 text-sb-sky-ink" />
                         <div>
                           <p className="font-medium">{folder.folderName}</p>
                           <p className="text-sm text-muted-foreground">{folder.folderPath}</p>

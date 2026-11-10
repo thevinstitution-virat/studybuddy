@@ -268,7 +268,7 @@ export const BalloonHunt: React.FC<BalloonHuntProps> = ({
     // Create temporary feedback element
     const feedback = document.createElement('div')
     feedback.className = `fixed pointer-events-none z-50 text-2xl font-bold ${
-      type === 'correct' ? 'text-green-500' : 'text-red-500'
+      type === 'correct' ? 'text-sb-saffron-deep' : 'text-sb-rose-ink'
     }`
     feedback.style.left = `${position.x - 20}px`
     feedback.style.top = `${position.y - 20}px`
@@ -283,10 +283,10 @@ export const BalloonHunt: React.FC<BalloonHuntProps> = ({
 
   if (gameState === 'instructions') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-sb-surface-2   flex items-center justify-center p-4">
         <div className="max-w-2xl bg-white rounded-2xl shadow-xl p-8">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-20 h-20 bg-sb-navy   rounded-full flex items-center justify-center mx-auto mb-4">
               <Target className="h-10 w-10 text-white" />
             </div>
             <h2 className="text-3xl font-bold text-foreground mb-2">🎈 Balloon Hunt</h2>
@@ -294,7 +294,7 @@ export const BalloonHunt: React.FC<BalloonHuntProps> = ({
           </div>
           
           <div className="space-y-6">
-            <div className="bg-blue-50 rounded-xl p-6">
+            <div className="bg-sb-sky rounded-xl p-6">
               <p className="text-lg text-foreground mb-3">
                 <strong>English:</strong> Find and tap the colorful balloons as quickly as possible! 
                 Ignore the gray balloons - they're just distractors.
@@ -307,30 +307,30 @@ export const BalloonHunt: React.FC<BalloonHuntProps> = ({
             
             <div className="flex justify-center gap-8 py-4">
               <div className="text-center">
-                <div className="w-16 h-16 bg-red-400 rounded-full flex items-center justify-center text-white text-2xl mb-2 mx-auto">
+                <div className="w-16 h-16 bg-sb-navy rounded-full flex items-center justify-center text-white text-2xl mb-2 mx-auto">
                   🎈
                 </div>
-                <p className="text-green-600 font-semibold">✓ Tap These!</p>
+                <p className="text-sb-saffron-deep font-semibold">✓ Tap These!</p>
                 <p className="text-sm text-muted-foreground">रंगीन गुब्बारे</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 bg-blue-400 rounded-full flex items-center justify-center text-white text-2xl mb-2 mx-auto">
+                <div className="w-16 h-16 bg-sb-navy rounded-full flex items-center justify-center text-white text-2xl mb-2 mx-auto">
                   🎈
                 </div>
-                <p className="text-green-600 font-semibold">✓ Tap These!</p>
+                <p className="text-sb-saffron-deep font-semibold">✓ Tap These!</p>
                 <p className="text-sm text-muted-foreground">रंगीन गुब्बारे</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-gray-400 rounded-full flex items-center justify-center text-white text-2xl mb-2 mx-auto">
                   ⚫
                 </div>
-                <p className="text-red-600 font-semibold">✗ Ignore These</p>
+                <p className="text-sb-rose-ink font-semibold">✗ Ignore These</p>
                 <p className="text-sm text-muted-foreground">स्लेटी गुब्बारे</p>
               </div>
             </div>
             
-            <div className="bg-yellow-50 rounded-xl p-4">
-              <div className="flex items-center gap-2 text-amber-700">
+            <div className="bg-sb-butter rounded-xl p-4">
+              <div className="flex items-center gap-2 text-sb-butter-ink">
                 <Clock className="h-5 w-5" />
                 <span className="font-semibold">Time: {Math.floor(config.duration! / 60)} minutes</span>
                 <span className="ml-4">समय: {Math.floor(config.duration! / 60)} मिनट</span>
@@ -347,7 +347,7 @@ export const BalloonHunt: React.FC<BalloonHuntProps> = ({
             </button>
             <button
               onClick={startCountdown}
-              className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all transform hover:scale-105"
+              className="flex-1 bg-sb-navy     text-white font-semibold py-3 px-6 rounded-xl transition-all transform hover:scale-105"
             >
               <Play className="h-5 w-5 inline mr-2" />
               Start Test / टेस्ट शुरू करें
@@ -362,7 +362,7 @@ export const BalloonHunt: React.FC<BalloonHuntProps> = ({
                   console.log('Quick start clicked')
                   startGame()
                 }}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm"
+                className="bg-sb-danger hover:bg-sb-danger text-white px-4 py-2 rounded text-sm"
               >
                 🚀 Quick Start (Debug)
               </button>
@@ -375,13 +375,13 @@ export const BalloonHunt: React.FC<BalloonHuntProps> = ({
 
   if (gameState === 'countdown') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center">
+      <div className="min-h-screen bg-sb-surface-2   flex items-center justify-center">
         <div className="text-center">
           <motion.div
             key={countdown}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="text-8xl font-bold text-blue-600 mb-4"
+            className="text-8xl font-bold text-sb-sky-ink mb-4"
           >
             {countdown}
           </motion.div>
@@ -393,17 +393,17 @@ export const BalloonHunt: React.FC<BalloonHuntProps> = ({
 
   if (gameState === 'complete') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-sb-surface-2   flex items-center justify-center p-4">
         <div className="max-w-md bg-white rounded-2xl shadow-xl p-8 text-center">
-          <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="w-20 h-20 bg-sb-navy   rounded-full flex items-center justify-center mx-auto mb-6">
             <Trophy className="h-10 w-10 text-white" />
           </div>
           <h3 className="text-3xl font-bold text-foreground mb-2">Great Job! 🎉</h3>
           <h4 className="text-2xl font-bold text-muted-foreground mb-4">बहुत बढ़िया!</h4>
           <p className="text-xl text-foreground mb-6">
-            You found <span className="font-bold text-blue-600">{score}</span> balloons!
+            You found <span className="font-bold text-sb-sky-ink">{score}</span> balloons!
           </p>
-          <div className="bg-blue-50 rounded-xl p-4">
+          <div className="bg-sb-sky rounded-xl p-4">
             <p className="text-muted-foreground">Processing your results...</p>
             <p className="text-muted-foreground">आपके परिणाम संसाधित हो रहे हैं...</p>
           </div>
@@ -413,16 +413,16 @@ export const BalloonHunt: React.FC<BalloonHuntProps> = ({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
+    <div className="min-h-screen bg-sb-surface-2  ">
       {/* Game Header */}
       <div className="bg-white shadow-sm p-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 text-blue-600">
+            <div className="flex items-center gap-2 text-sb-sky-ink">
               <Target className="h-5 w-5" />
               <span className="font-semibold">Score: {score}</span>
             </div>
-            <div className="flex items-center gap-2 text-purple-600">
+            <div className="flex items-center gap-2 text-sb-lav-ink">
               <Trophy className="h-5 w-5" />
               <span className="font-semibold">Accuracy: {responses.length > 0 ? Math.round((responses.filter(r => r.correct).length / responses.length) * 100) : 0}%</span>
             </div>
@@ -440,7 +440,7 @@ export const BalloonHunt: React.FC<BalloonHuntProps> = ({
         <div className="max-w-4xl mx-auto mt-3">
           <div className="w-full bg-muted rounded-full h-2">
             <div 
-              className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-300"
+              className="bg-sb-navy   h-2 rounded-full transition-all duration-300"
               style={{ width: `${Math.min(100, (1 - timeRemaining / config.duration!) * 100)}%` }}
             />
           </div>
@@ -450,7 +450,7 @@ export const BalloonHunt: React.FC<BalloonHuntProps> = ({
       {/* Game Area */}
       <div
         ref={gameAreaRef}
-        className="relative h-[calc(100vh-120px)] overflow-hidden cursor-crosshair bg-gradient-to-br from-blue-50 to-purple-50"
+        className="relative h-[calc(100vh-120px)] overflow-hidden cursor-crosshair bg-sb-surface-2  "
         onMouseMove={trackGaze}
       >
         {/* Debug info */}

@@ -106,8 +106,8 @@ export function YouTubePlayer({
 
   if (hasError) {
     return (
-      <div className="w-full h-full flex flex-col items-center justify-center bg-slate-950 text-red-400 gap-3">
-        <AlertCircle className="w-12 h-12 text-red-500/80" />
+      <div className="w-full h-full flex flex-col items-center justify-center bg-slate-950 text-sb-rose-ink gap-3">
+        <AlertCircle className="w-12 h-12 text-sb-rose-ink" />
         <p className="font-medium text-lg">Failed to load YouTube video</p>
         <p className="text-sm opacity-70">The video may be private or unavailable.</p>
       </div>
@@ -118,7 +118,7 @@ export function YouTubePlayer({
     <div className="w-full h-full relative bg-black">
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/60 z-10">
-          <Loader2 className="w-12 h-12 animate-spin text-indigo-500" />
+          <Loader2 className="w-12 h-12 animate-spin text-sb-lav-ink" />
         </div>
       )}
       <div ref={containerRef} className="w-full h-full" />

@@ -184,7 +184,7 @@ export function CurriculumBrowser() {
         <div className="max-h-[28rem] overflow-y-auto">
           {listing.error ? (
             <div className="flex items-center gap-2 px-3 py-4 text-sm text-muted-foreground">
-              <AlertTriangle className="h-4 w-4 text-amber-500 shrink-0" />
+              <AlertTriangle className="h-4 w-4 text-sb-butter-ink shrink-0" />
               <span className="flex-1">The taxonomy could not be loaded. {listing.error.message}</span>
               <Button size="sm" variant="ghost" className="h-7 text-xs" onClick={() => void listing.refetch()}>
                 Try again

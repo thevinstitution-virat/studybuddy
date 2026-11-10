@@ -38,12 +38,12 @@ export interface TutorAgentOption {
  * resetting the conversation.
  */
 export const TUTOR_AGENTS: TutorAgentOption[] = [
-  { id: 'selfstudy_buddy', title: 'Selfstudy Buddy', description: 'Step-by-step Socratic guidance', Icon: PenTool, accent: 'bg-amber-100 text-amber-700' },
-  { id: 'explain_topic', title: 'Deep Dive', description: 'In-depth topic explanations', Icon: Layers, accent: 'bg-blue-100 text-blue-700' },
-  { id: 'exam_prep', title: 'Ace Your Exams', description: 'Exam strategy & study plans', Icon: Trophy, accent: 'bg-orange-100 text-orange-700' },
-  { id: 'clear_doubts', title: 'Doubt Resolution', description: 'Clear doubts & misconceptions', Icon: CheckCircle, accent: 'bg-green-100 text-green-700' },
-  { id: 'study_tips', title: 'Virat Insights', description: 'Study techniques & motivation', Icon: Sparkles, accent: 'bg-purple-100 text-purple-700' },
-  { id: 'book_structure', title: "Let's Talk", description: 'Chat with your textbook', Icon: MessageCircle, accent: 'bg-indigo-100 text-indigo-700' },
+  { id: 'selfstudy_buddy', title: 'Selfstudy Buddy', description: 'Step-by-step Socratic guidance', Icon: PenTool, accent: 'bg-sb-butter text-sb-butter-ink' },
+  { id: 'explain_topic', title: 'Deep Dive', description: 'In-depth topic explanations', Icon: Layers, accent: 'bg-sb-sky text-sb-sky-ink' },
+  { id: 'exam_prep', title: 'Ace Your Exams', description: 'Exam strategy & study plans', Icon: Trophy, accent: 'bg-sb-saffron-tint text-sb-saffron-deep' },
+  { id: 'clear_doubts', title: 'Doubt Resolution', description: 'Clear doubts & misconceptions', Icon: CheckCircle, accent: 'bg-sb-saffron-tint text-sb-saffron-deep' },
+  { id: 'study_tips', title: 'Virat Insights', description: 'Study techniques & motivation', Icon: Sparkles, accent: 'bg-sb-lav text-sb-lav-ink' },
+  { id: 'book_structure', title: "Let's Talk", description: 'Chat with your textbook', Icon: MessageCircle, accent: 'bg-sb-lav text-sb-lav-ink' },
 ]
 
 /**
@@ -241,7 +241,7 @@ export function AgentSelector({ value, onChange, disabled = false, className, dr
               }}
               className={cn(
                 'flex cursor-pointer items-start gap-2.5 rounded-lg px-2 py-2',
-                isActive && 'bg-blue-50/70',
+                isActive && 'bg-sb-sky',
               )}
             >
               <span className={cn('mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg', agent.accent)}>
@@ -250,7 +250,7 @@ export function AgentSelector({ value, onChange, disabled = false, className, dr
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5">
                   <span className="text-sm font-medium text-foreground">{agent.title}</span>
-                  {isActive && <Check className="h-3.5 w-3.5 text-blue-600" />}
+                  {isActive && <Check className="h-3.5 w-3.5 text-sb-sky-ink" />}
                 </div>
                 <p className="truncate text-xs text-muted-foreground">{agent.description}</p>
               </div>

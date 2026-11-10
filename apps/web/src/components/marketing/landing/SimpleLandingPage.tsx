@@ -11,24 +11,24 @@ export const SimpleLandingPage: React.FC = () => {
     <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900" />
+        <div className="absolute inset-0 bg-sb-surface-2    dark:from-gray-900  " />
         <div className="absolute inset-0 bg-white/30 dark:bg-black/20 backdrop-blur-sm" />
 
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <div className="mb-6">
-            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-orange-500/10 to-blue-500/10 rounded-full border border-orange-200/50 dark:border-blue-200/20 mb-6 backdrop-blur-sm">
-              <Zap className="h-4 w-4 text-orange-500 mr-2 animate-pulse" />
+            <div className="inline-flex items-center px-4 py-2 bg-sb-navy   rounded-full border border-sb-saffron  mb-6 backdrop-blur-sm">
+              <Zap className="h-4 w-4 text-sb-saffron-deep mr-2 animate-pulse" />
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Powered by Advanced AI & Machine Learning</span>
             </div>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-            <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">Study Buddy</span>
+            <span className="text-sb-saffron-deep    ">Study Buddy</span>
             <br />
             <span className="text-4xl md:text-5xl">Next-Gen Learning Platform</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 italic underline decoration-orange-500 decoration-2 underline-offset-4">
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 italic underline decoration-sb-saffron decoration-2 underline-offset-4">
             AI-Powered • Adaptive • Comprehensive
           </p>
 
@@ -60,10 +60,10 @@ export const SimpleLandingPage: React.FC = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
             {[
-              { label: 'AI Models', value: '5+', icon: Brain, color: 'text-purple-500' },
-              { label: 'Question Bank', value: '50K+', icon: Database, color: 'text-blue-500' },
-              { label: 'Success Rate', value: '98%', icon: Target, color: 'text-green-500' },
-              { label: 'Learning Paths', value: '1000+', icon: TrendingUp, color: 'text-orange-500' }
+              { label: 'AI Models', value: '5+', icon: Brain, color: 'text-sb-lav-ink' },
+              { label: 'Question Bank', value: '50K+', icon: Database, color: 'text-sb-sky-ink' },
+              { label: 'Success Rate', value: '98%', icon: Target, color: 'text-sb-saffron-deep' },
+              { label: 'Learning Paths', value: '1000+', icon: TrendingUp, color: 'text-sb-saffron-deep' }
             ].map((stat, index) => (
               <div key={index} className="text-center p-4 bg-white/20 dark:bg-gray-800/20 backdrop-blur-md rounded-xl border border-white/30 dark:border-gray-700/30 hover:bg-white/30 dark:hover:bg-gray-800/30 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
                 <stat.icon className={`h-8 w-8 mx-auto mb-2 ${stat.color} animate-pulse`} />
@@ -79,7 +79,7 @@ export const SimpleLandingPage: React.FC = () => {
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
-            Platform <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">Features</span>
+            Platform <span className="text-sb-saffron-deep    ">Features</span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-12">
             Discover the cutting-edge technology that powers personalized learning experiences
@@ -87,17 +87,17 @@ export const SimpleLandingPage: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg">
-              <Brain className="h-12 w-12 mx-auto mb-4 text-purple-500" />
+              <Brain className="h-12 w-12 mx-auto mb-4 text-sb-lav-ink" />
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Agentic RAG AI System</h3>
               <p className="text-gray-600 dark:text-gray-300">Advanced retrieval-augmented generation with multiple search strategies</p>
             </div>
             <div className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg">
-              <Database className="h-12 w-12 mx-auto mb-4 text-blue-500" />
+              <Database className="h-12 w-12 mx-auto mb-4 text-sb-sky-ink" />
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">e-Learning Practest Engine</h3>
               <p className="text-gray-600 dark:text-gray-300">Comprehensive assessment system with adaptive testing</p>
             </div>
             <div className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg">
-              <Target className="h-12 w-12 mx-auto mb-4 text-green-500" />
+              <Target className="h-12 w-12 mx-auto mb-4 text-sb-saffron-deep" />
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Enhanced Question Bank</h3>
               <p className="text-gray-600 dark:text-gray-300">Hierarchical topic organization with metadata tagging</p>
             </div>

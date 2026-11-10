@@ -77,9 +77,9 @@ export const QuickReplyCard: React.FC<QuickReplyCardProps> = ({
         // Shape
         "rounded-xl",
         // Colors
-        "border border-orange-100 bg-orange-50/30",
+        "border border-sb-saffron bg-sb-saffron-tint",
         // Hover / active states
-        "hover:bg-orange-50 hover:border-orange-200",
+        "hover:bg-sb-saffron-tint hover:border-sb-saffron",
         "active:scale-[0.99]",
         // Disabled
         "disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none",
@@ -90,7 +90,7 @@ export const QuickReplyCard: React.FC<QuickReplyCardProps> = ({
     >
       {/* Icon — only render if it's a valid component */}
       {isIconComponent && (
-        <span className="mt-0.5 flex-shrink-0 text-orange-600" aria-hidden="true">
+        <span className="mt-0.5 flex-shrink-0 text-sb-saffron-deep" aria-hidden="true">
           <Icon size={17} strokeWidth={1.8} />
         </span>
       )}

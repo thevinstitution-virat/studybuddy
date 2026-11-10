@@ -490,20 +490,20 @@ export default function SanchikaListPage() {
 
   // ============ RENDER ============
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-primary/10 to-primary/10 dark:from-[var(--night-ink)] dark:via-[var(--indigo-deep)] dark:to-[var(--indigo-ink)]">
+    <div className="min-h-screen bg-sb-surface-2 from-primary/10 via-primary/10 to-primary/10 dark:from-[var(--night-ink)] dark:via-[var(--indigo-deep)] dark:to-[var(--indigo-ink)]">
       {/* ============ HEADER ============ */}
       <div className="sticky top-0 z-10 backdrop-blur-md bg-white/80 border-b border-border shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
             <div className="flex items-center gap-3 sm:gap-4">
               <div className="relative flex-shrink-0">
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-primary/80 rounded-2xl blur-lg opacity-30 animate-pulse"></div>
-                <div className="relative bg-gradient-to-r from-orange-500 to-primary/80 p-2 sm:p-3 rounded-2xl shadow-lg">
+                <div className="absolute inset-0 bg-sb-navy  to-primary/80 rounded-2xl blur-lg opacity-30 animate-pulse"></div>
+                <div className="relative bg-sb-navy  to-primary/80 p-2 sm:p-3 rounded-2xl shadow-lg">
                   <BookMarked className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                 </div>
               </div>
               <div className="min-w-0 flex-1">
-                <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-500 to-primary/80 bg-clip-text text-transparent truncate">
+                <h1 className="text-2xl sm:text-3xl font-bold text-sb-saffron-deep  to-primary/80   truncate">
                   Sanchika Notes
                 </h1>
                 <p className="text-xs sm:text-sm text-muted-foreground mt-0.5 sm:mt-1 flex items-center gap-1.5 sm:gap-2 flex-wrap">
@@ -527,7 +527,7 @@ export default function SanchikaListPage() {
                   <button
                     onClick={() => handleBulkDelete()}
                     disabled={selectedNotes.size === 0}
-                    className="px-3 py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-3 py-2 bg-sb-danger hover:bg-sb-danger text-white text-sm font-medium rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Delete
                   </button>
@@ -550,9 +550,9 @@ export default function SanchikaListPage() {
 
               <button
                 onClick={() => router.push('/dashboard/user/sanchika/new')}
-                className="group relative inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-orange-500 to-primary/80 hover:from-orange-600 hover:to-primary/80 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden text-sm sm:text-base"
+                className="group relative inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-sb-navy  to-primary/80  hover:to-primary/80 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden text-sm sm:text-base"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+                <div className="absolute inset-0 bg-sb-surface-2 from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
                 <Plus className="h-4 w-4 sm:h-5 sm:w-5 relative z-10 flex-shrink-0" />
                 <span className="relative z-10 whitespace-nowrap">New Note</span>
               </button>
@@ -661,7 +661,7 @@ export default function SanchikaListPage() {
                       onClick={() => setViewMode('grid')}
                       className={`px-4 py-3 transition-all duration-200 ${
                         viewMode === 'grid'
-                          ? 'bg-gradient-to-r from-orange-500 to-primary/80 text-white'
+                          ? 'bg-sb-navy  to-primary/80 text-white'
                           : 'text-muted-foreground hover:bg-muted'
                       }`}
                       title="Grid View"
@@ -672,7 +672,7 @@ export default function SanchikaListPage() {
                       onClick={() => setViewMode('list')}
                       className={`px-4 py-3 transition-all duration-200 ${
                         viewMode === 'list'
-                          ? 'bg-gradient-to-r from-orange-500 to-primary/80 text-white'
+                          ? 'bg-sb-navy  to-primary/80 text-white'
                           : 'text-muted-foreground hover:bg-muted'
                       }`}
                       title="List View"
@@ -689,14 +689,14 @@ export default function SanchikaListPage() {
               {loading && (
                 <div className="flex flex-col items-center justify-center py-20">
                   <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-primary/80 rounded-full blur-xl opacity-30 animate-pulse"></div>
+                    <div className="absolute inset-0 bg-sb-navy  to-primary/80 rounded-full blur-xl opacity-30 animate-pulse"></div>
                     <Loader2 className="relative h-16 w-16 text-primary animate-spin" />
                   </div>
                   <p className="mt-6 text-lg font-medium text-foreground animate-pulse">
                     Loading your notes...
                   </p>
                   <div className="mt-4 flex gap-2">
-                    <div className="h-2 w-2 bg-orange-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                    <div className="h-2 w-2 bg-sb-navy rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
                     <div className="h-2 w-2 bg-primary/100 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
                     <div className="h-2 w-2 bg-primary/100 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
                   </div>
@@ -705,17 +705,17 @@ export default function SanchikaListPage() {
 
               {error && (
                 <div className="max-w-md mx-auto mt-12">
-                  <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-2xl p-8 text-center shadow-lg">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 dark:bg-red-900/40 rounded-full mb-4">
-                      <Sparkles className="h-8 w-8 text-red-600 dark:text-red-400" />
+                  <div className="bg-sb-rose  border-2 border-sb-danger  rounded-2xl p-8 text-center shadow-lg">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-sb-rose  rounded-full mb-4">
+                      <Sparkles className="h-8 w-8 text-sb-rose-ink " />
                     </div>
-                    <h3 className="text-xl font-bold text-red-900 dark:text-red-100 mb-2">
+                    <h3 className="text-xl font-bold text-sb-rose-ink  mb-2">
                       Oops! Something went wrong
                     </h3>
-                    <p className="text-red-700 dark:text-red-300 mb-6">{error}</p>
+                    <p className="text-sb-rose-ink  mb-6">{error}</p>
                     <button
                       onClick={fetchNotes}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-sb-navy     text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                     >
                       <Zap className="h-5 w-5" />
                       Try Again
@@ -728,10 +728,10 @@ export default function SanchikaListPage() {
                 <div className="max-w-2xl mx-auto mt-12">
                   <div className="bg-white/80 backdrop-blur-md border-2 border-dashed border-input rounded-3xl p-12 text-center shadow-xl">
                     <div className="relative inline-block mb-6">
-                      <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-primary/80 rounded-full blur-2xl opacity-20 animate-pulse"></div>
-                      <div className="relative bg-gradient-to-r from-orange-100 to-primary/15 dark:from-orange-900/30 dark:to-primary/15 p-6 rounded-full">
+                      <div className="absolute inset-0 bg-sb-navy  to-primary/80 rounded-full blur-2xl opacity-20 animate-pulse"></div>
+                      <div className="relative bg-sb-surface-2  to-primary/15  dark:to-primary/15 p-6 rounded-full">
                         {notes.length === 0 ? (
-                          <BookOpen className="h-16 w-16 text-orange-600 dark:text-orange-400" />
+                          <BookOpen className="h-16 w-16 text-sb-saffron-deep " />
                         ) : (
                           <Search className="h-16 w-16 text-primary" />
                         )}
@@ -748,7 +748,7 @@ export default function SanchikaListPage() {
                     {notes.length === 0 && (
                       <button
                         onClick={() => router.push('/dashboard/user/sanchika/new')}
-                        className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 to-primary/80 hover:from-orange-600 hover:to-primary/80 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                        className="group inline-flex items-center gap-3 px-8 py-4 bg-sb-navy  to-primary/80  hover:to-primary/80 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                       >
                         <Plus className="h-6 w-6" />
                         <span>Create Your First Note</span>
@@ -773,7 +773,7 @@ export default function SanchikaListPage() {
               try {
                 coverDesign = getCoverDesign(note.cover_design || 'solid-blue');
               } catch (err) {
-                coverDesign = { pattern: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)' };
+                coverDesign = { pattern: 'var(--sb-navy)' };
               }
               const spineColor = note.spine_color || '#3B82F6';
 
@@ -836,7 +836,7 @@ export default function SanchikaListPage() {
                   <div
                     className="absolute top-0 left-0 right-0 h-[60%] opacity-90"
                     style={{
-                      background: coverDesign?.pattern || 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)',
+                      background: coverDesign?.pattern || 'var(--sb-navy)',
                     }}
                   >
                     {/* Note Title on Cover */}
@@ -874,7 +874,7 @@ export default function SanchikaListPage() {
                         </div>
                       )}
                       {!!note.is_favorite && (
-                        <div className="bg-yellow-500 text-white p-1 rounded-md shadow-lg">
+                        <div className="bg-sb-navy text-white p-1 rounded-md shadow-lg">
                           <Star className="h-3 w-3 fill-current" />
                         </div>
                       )}
@@ -892,13 +892,13 @@ export default function SanchikaListPage() {
                       {/* Metadata Tags */}
                       <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-auto">
                         {note.folder_id && note.folder && (
-                          <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-[10px] sm:text-xs font-medium rounded-full">
+                          <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-sb-saffron-tint  text-sb-saffron-deep  text-[10px] sm:text-xs font-medium rounded-full">
                             <Folder className="h-2 w-2 sm:h-2.5 sm:w-2.5 flex-shrink-0" />
                             <span className="truncate max-w-[60px] sm:max-w-[80px]">{note.folder.name}</span>
                           </span>
                         )}
                         {!!note.subject && (
-                          <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-[10px] sm:text-xs font-medium rounded-full">
+                          <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-sb-saffron-tint  text-sb-saffron-deep  text-[10px] sm:text-xs font-medium rounded-full">
                             <BookOpen className="h-2 w-2 sm:h-2.5 sm:w-2.5 flex-shrink-0" />
                             <span className="truncate max-w-[60px] sm:max-w-[80px]">{note.subject}</span>
                           </span>
@@ -932,8 +932,8 @@ export default function SanchikaListPage() {
                             }}
                             className={`p-1.5 sm:p-2 rounded-md transition-all duration-200 ${
                               !!note.is_favorite
-                                ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400'
-                                : 'bg-muted text-muted-foreground hover:bg-yellow-100 dark:hover:bg-yellow-900/30 hover:text-yellow-600'
+                                ? 'bg-sb-butter  text-sb-butter-ink '
+                                : 'bg-muted text-muted-foreground hover:bg-sb-butter  hover:text-sb-butter-ink'
                             }`}
                             title={!!note.is_favorite ? 'Remove from favorites' : 'Add to favorites'}
                           >
@@ -941,7 +941,7 @@ export default function SanchikaListPage() {
                           </button>
 
                           <Link href={`/dashboard/user/sanchika/${note.id}`}>
-                            <button className="p-1.5 sm:p-2 bg-gradient-to-r from-primary to-primary/80 hover:from-primary hover:to-primary/80 text-white rounded-md transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-105">
+                            <button className="p-1.5 sm:p-2 bg-sb-surface-2 from-primary to-primary/80 hover:from-primary hover:to-primary/80 text-white rounded-md transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-105">
                               <Edit3 className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                             </button>
                           </Link>
@@ -952,7 +952,7 @@ export default function SanchikaListPage() {
                               handleDeleteNote(note.id);
                             }}
                             disabled={deletingId === note.id}
-                            className="p-1.5 sm:p-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-md transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="p-1.5 sm:p-2 bg-sb-navy     text-white rounded-md transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                             title="Delete note"
                           >
                             {deletingId === note.id ? (
@@ -1039,7 +1039,7 @@ export default function SanchikaListPage() {
               <button
                 onClick={handleCreateFolder}
                 disabled={!newFolderName.trim() || creatingFolder}
-                className="flex-1 px-4 py-3 bg-gradient-to-r from-primary to-primary/80 hover:from-primary hover:to-primary/80 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="flex-1 px-4 py-3 bg-sb-surface-2 from-primary to-primary/80 hover:from-primary hover:to-primary/80 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {creatingFolder ? (
                   <span className="flex items-center justify-center gap-2">
@@ -1120,12 +1120,12 @@ export default function SanchikaListPage() {
         }
 
         ::-webkit-scrollbar-thumb {
-          background: linear-gradient(135deg, #f97316, #2563eb);
+          background: var(--sb-navy);
           border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(135deg, #ea580c, #1d4ed8);
+          background: var(--sb-navy);
         }
       `}</style>
     </div>

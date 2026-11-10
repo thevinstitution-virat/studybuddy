@@ -45,7 +45,7 @@ export function InstitutionBreakdownTable() {
 
   if (error || !data) {
     return (
-      <div className="p-4 border border-red-200 bg-red-50 text-red-600 rounded-lg">
+      <div className="p-4 border border-sb-danger bg-sb-rose text-sb-rose-ink rounded-lg">
         Failed to load institution breakdown
       </div>
     );

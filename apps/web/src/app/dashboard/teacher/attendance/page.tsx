@@ -184,7 +184,7 @@ export default function TeacherAttendancePage() {
                           type="button"
                           variant={attendanceMap[student.id] === 'present' ? 'default' : 'ghost'}
                           size="sm"
-                          className={cn("w-24", attendanceMap[student.id] === 'present' && "bg-green-600 hover:bg-green-700")}
+                          className={cn("w-24", attendanceMap[student.id] === 'present' && "bg-sb-navy hover:bg-sb-navy")}
                           onClick={() => setAttendanceMap(prev => ({...prev, [student.id]: 'present'}))}
                         >
                           <Check className="mr-1 h-4 w-4" /> Present
@@ -193,7 +193,7 @@ export default function TeacherAttendancePage() {
                           type="button"
                           variant={attendanceMap[student.id] === 'late' ? 'default' : 'ghost'}
                           size="sm"
-                          className={cn("w-24", attendanceMap[student.id] === 'late' && "bg-yellow-500 hover:bg-yellow-600")}
+                          className={cn("w-24", attendanceMap[student.id] === 'late' && "bg-sb-navy hover:bg-sb-navy")}
                           onClick={() => setAttendanceMap(prev => ({...prev, [student.id]: 'late'}))}
                         >
                           <Clock className="mr-1 h-4 w-4" /> Late
@@ -202,7 +202,7 @@ export default function TeacherAttendancePage() {
                           type="button"
                           variant={attendanceMap[student.id] === 'absent' ? 'default' : 'ghost'}
                           size="sm"
-                          className={cn("w-24", attendanceMap[student.id] === 'absent' && "bg-red-500 hover:bg-red-600")}
+                          className={cn("w-24", attendanceMap[student.id] === 'absent' && "bg-sb-danger hover:bg-sb-danger")}
                           onClick={() => setAttendanceMap(prev => ({...prev, [student.id]: 'absent'}))}
                         >
                           <X className="mr-1 h-4 w-4" /> Absent

@@ -8,7 +8,7 @@ interface PageHeaderProps {
   title: string
   subtitle?: string
   icon?: ComponentType<{ className?: string }>
-  /** Tailwind gradient stops for the icon chip, e.g. 'from-orange-500 to-blue-600'. */
+  /** Tailwind gradient stops for the icon chip, e.g. ' '. */
   gradient?: string
   /** Right-aligned actions (buttons, links). */
   actions?: ReactNode
@@ -18,14 +18,14 @@ export default function PageHeader({
   title,
   subtitle,
   icon: Icon,
-  gradient = 'from-orange-500 to-blue-600',
+  gradient = ' ',
   actions,
 }: PageHeaderProps) {
   return (
     <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
       <div className="flex items-center gap-3">
         {Icon && (
-          <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} text-white shadow-lg shadow-blue-600/20`}>
+          <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sb-surface-2 ${gradient} text-white shadow-lg `}>
             <Icon className="h-6 w-6" />
           </div>
         )}

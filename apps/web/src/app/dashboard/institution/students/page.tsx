@@ -132,7 +132,7 @@ export default function StudentEnrollments() {
       {/* CSV Import Card */}
       <div className="bg-card rounded-2xl border border-border p-6 mb-8 shadow-sm">
         <h2 className="text-lg font-semibold text-foreground flex items-center gap-2 mb-4">
-          <FileSpreadsheet className="w-5 h-5 text-emerald-500" />
+          <FileSpreadsheet className="w-5 h-5 text-sb-saffron-deep" />
           Bulk Import (CSV)
         </h2>
         <p className="text-sm text-muted-foreground mb-4">
@@ -150,7 +150,7 @@ export default function StudentEnrollments() {
           <button
             onClick={handleCsvUpload}
             disabled={!csvFile || uploading}
-            className="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-medium disabled:opacity-50 transition-colors shadow-md"
+            className="flex items-center gap-2 px-5 py-2.5 bg-sb-navy hover:bg-sb-navy text-white rounded-xl text-sm font-medium disabled:opacity-50 transition-colors shadow-md"
           >
             {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
             {uploading ? 'Importing...' : 'Import'}
@@ -159,27 +159,27 @@ export default function StudentEnrollments() {
 
         {/* Bulk Result */}
         {bulkResult && (
-          <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl">
-            <div className="flex items-center gap-2 text-green-700 dark:text-green-400 font-medium mb-2">
+          <div className="mt-4 p-4 bg-sb-saffron-tint  border border-sb-saffron  rounded-xl">
+            <div className="flex items-center gap-2 text-sb-saffron-deep  font-medium mb-2">
               <CheckCircle2 className="w-4 h-4" /> Import Complete
             </div>
             <div className="grid grid-cols-4 gap-4 text-sm">
               <div><span className="text-muted-foreground">Total:</span> <strong>{bulkResult.total}</strong></div>
-              <div><span className="text-muted-foreground">Enrolled:</span> <strong className="text-green-600">{bulkResult.enrolled}</strong></div>
-              <div><span className="text-muted-foreground">Skipped:</span> <strong className="text-amber-600">{bulkResult.skipped}</strong></div>
-              <div><span className="text-muted-foreground">Errors:</span> <strong className="text-red-600">{bulkResult.errorCount}</strong></div>
+              <div><span className="text-muted-foreground">Enrolled:</span> <strong className="text-sb-saffron-deep">{bulkResult.enrolled}</strong></div>
+              <div><span className="text-muted-foreground">Skipped:</span> <strong className="text-sb-butter-ink">{bulkResult.skipped}</strong></div>
+              <div><span className="text-muted-foreground">Errors:</span> <strong className="text-sb-rose-ink">{bulkResult.errorCount}</strong></div>
             </div>
           </div>
         )}
 
         {/* Bulk Errors */}
         {bulkErrors.length > 0 && (
-          <div className="mt-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl max-h-40 overflow-y-auto">
-            <div className="flex items-center gap-2 text-red-600 dark:text-red-400 text-sm font-medium mb-1">
+          <div className="mt-3 p-3 bg-sb-rose  border border-sb-danger  rounded-xl max-h-40 overflow-y-auto">
+            <div className="flex items-center gap-2 text-sb-rose-ink  text-sm font-medium mb-1">
               <AlertCircle className="w-4 h-4" /> Issues
             </div>
             {bulkErrors.map((err, i) => (
-              <p key={i} className="text-xs text-red-600 dark:text-red-400 py-0.5">{err}</p>
+              <p key={i} className="text-xs text-sb-rose-ink  py-0.5">{err}</p>
             ))}
           </div>
         )}
@@ -220,7 +220,7 @@ export default function StudentEnrollments() {
                     <td className="px-6 py-3 text-foreground">{e.rollNumber || '—'}</td>
                     <td className="px-6 py-3 text-foreground">{e.academicYear}</td>
                     <td className="px-6 py-3 text-right">
-                      <button onClick={() => handleDelete(e.id)} className="p-1.5 text-red-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+                      <button onClick={() => handleDelete(e.id)} className="p-1.5 text-sb-rose-ink hover:text-sb-rose-ink hover:bg-sb-rose  rounded-lg transition-colors">
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </td>

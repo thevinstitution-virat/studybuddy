@@ -11,7 +11,7 @@ export default function StudentProgressPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
-      <h1 className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-2xl font-bold text-transparent">
+      <h1 className="text-sb-saffron-deep from-primary to-primary/80  text-2xl font-bold ">
         My Progress
       </h1>
       <p className="mt-2 text-muted-foreground">
@@ -38,7 +38,7 @@ export default function StudentProgressPage() {
             </div>
             <div className="flex flex-col">
               <span className="text-sm text-muted-foreground">Completed</span>
-              <span className="text-xl font-semibold text-green-600">{data.overallStats.completedVideos}</span>
+              <span className="text-xl font-semibold text-sb-saffron-deep">{data.overallStats.completedVideos}</span>
             </div>
             <div className="flex flex-col">
               <span className="text-sm text-muted-foreground">Avg Completion</span>

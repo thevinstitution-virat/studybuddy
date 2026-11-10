@@ -28,7 +28,7 @@ export function SectionShell({ title, icon, children }: { title: string; icon?: 
 
 export function ObjectivesSection({ markdown }: LessonSectionProps) {
   return (
-    <SectionShell title="Objectives" icon={<Target className="h-5 w-5 text-indigo-600" /> }>
+    <SectionShell title="Objectives" icon={<Target className="h-5 w-5 text-sb-lav-ink" /> }>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown || ''}</ReactMarkdown>
     </SectionShell>
   )
@@ -36,7 +36,7 @@ export function ObjectivesSection({ markdown }: LessonSectionProps) {
 
 export function KeyPointsSection({ markdown }: LessonSectionProps) {
   return (
-    <SectionShell title="Key Points" icon={<ListChecks className="h-5 w-5 text-blue-600" /> }>
+    <SectionShell title="Key Points" icon={<ListChecks className="h-5 w-5 text-sb-sky-ink" /> }>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown || ''}</ReactMarkdown>
     </SectionShell>
   )
@@ -44,7 +44,7 @@ export function KeyPointsSection({ markdown }: LessonSectionProps) {
 
 export function ActivitiesSection({ markdown }: LessonSectionProps) {
   return (
-    <SectionShell title="Activities" icon={<Activity className="h-5 w-5 text-emerald-600" /> }>
+    <SectionShell title="Activities" icon={<Activity className="h-5 w-5 text-sb-saffron-deep" /> }>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown || ''}</ReactMarkdown>
     </SectionShell>
   )
@@ -52,7 +52,7 @@ export function ActivitiesSection({ markdown }: LessonSectionProps) {
 
 export function AssessmentSection({ markdown }: LessonSectionProps) {
   return (
-    <SectionShell title="Assessment" icon={<CheckCircle2 className="h-5 w-5 text-orange-600" /> }>
+    <SectionShell title="Assessment" icon={<CheckCircle2 className="h-5 w-5 text-sb-saffron-deep" /> }>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown || ''}</ReactMarkdown>
     </SectionShell>
   )

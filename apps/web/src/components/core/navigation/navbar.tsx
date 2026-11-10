@@ -31,10 +31,10 @@ export function Navbar({ className = '' }: NavbarProps) {
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="p-2 bg-gradient-to-r from-orange-500 to-blue-500 rounded-lg">
+              <div className="p-2 bg-sb-navy   rounded-lg">
                 <GraduationCap className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-orange-500 to-blue-500 bg-clip-text text-transparent">
+              <span className="text-xl font-bold text-sb-saffron-deep    ">
                 Study Buddy
               </span>
             </Link>
@@ -46,7 +46,7 @@ export function Navbar({ className = '' }: NavbarProps) {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-foreground hover:text-orange-500 dark:hover:text-orange-400 transition-colors duration-200 font-medium"
+                className="text-foreground hover:text-sb-saffron-deep  transition-colors duration-200 font-medium"
               >
                 {item.name}
               </Link>
@@ -61,13 +61,13 @@ export function Navbar({ className = '' }: NavbarProps) {
               <Button
                 variant="ghost"
                 onClick={() => router.push('/sign-in')}
-                className="text-foreground hover:text-orange-500 dark:hover:text-orange-400"
+                className="text-foreground hover:text-sb-saffron-deep "
               >
                 Sign In
               </Button>
               <Button
                 onClick={() => router.push('/sign-up')}
-                className="bg-gradient-to-r from-orange-500 to-blue-500 hover:from-orange-600 hover:to-blue-600 text-white font-medium px-6 py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                className="bg-sb-navy     text-white font-medium px-6 py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
                 Get Started
               </Button>
@@ -96,7 +96,7 @@ export function Navbar({ className = '' }: NavbarProps) {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-foreground hover:text-orange-500 dark:hover:text-orange-400 transition-colors duration-200 font-medium px-2 py-1"
+                  className="text-foreground hover:text-sb-saffron-deep  transition-colors duration-200 font-medium px-2 py-1"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
@@ -109,7 +109,7 @@ export function Navbar({ className = '' }: NavbarProps) {
                     router.push('/sign-in')
                     setIsMenuOpen(false)
                   }}
-                  className="justify-start text-foreground hover:text-orange-500 dark:hover:text-orange-400"
+                  className="justify-start text-foreground hover:text-sb-saffron-deep "
                 >
                   Sign In
                 </Button>
@@ -118,7 +118,7 @@ export function Navbar({ className = '' }: NavbarProps) {
                     router.push('/sign-up')
                     setIsMenuOpen(false)
                   }}
-                  className="justify-start bg-gradient-to-r from-orange-500 to-blue-500 hover:from-orange-600 hover:to-blue-600 text-white font-medium"
+                  className="justify-start bg-sb-navy     text-white font-medium"
                 >
                   Get Started
                 </Button>

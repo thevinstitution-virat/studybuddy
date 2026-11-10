@@ -198,9 +198,9 @@ export default function QuizCategorySelector({
 
   const getDifficultyColor = (level: string) => {
     switch (level) {
-      case 'easy': return 'bg-green-100 text-green-800 border-green-300'
-      case 'medium': return 'bg-yellow-100 text-yellow-800 border-yellow-300'
-      case 'hard': return 'bg-red-100 text-red-800 border-red-300'
+      case 'easy': return 'bg-sb-saffron-tint text-sb-saffron-deep border-sb-saffron'
+      case 'medium': return 'bg-sb-butter text-sb-butter-ink border-sb-butter'
+      case 'hard': return 'bg-sb-rose text-sb-rose-ink border-sb-danger'
       default: return 'bg-gray-100 text-gray-800 border-gray-300'
     }
   }
@@ -220,7 +220,7 @@ export default function QuizCategorySelector({
     return (
       <div className="flex items-center justify-center h-64">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sb-saffron mx-auto mb-4"></div>
           <p className="text-gray-600 dark:text-gray-400">Loading quiz categories...</p>
         </div>
       </div>
@@ -240,9 +240,9 @@ export default function QuizCategorySelector({
       </div>
 
       {/* Quick Start Options */}
-      <Card className="border-blue-200 bg-blue-50 dark:bg-blue-950 dark:border-blue-800">
+      <Card className="border-sb-sky bg-sb-sky  ">
         <CardHeader>
-          <CardTitle className="flex items-center space-x-2 text-blue-800 dark:text-blue-200">
+          <CardTitle className="flex items-center space-x-2 text-sb-sky-ink ">
             <SparklesIcon className="h-5 w-5" />
             <span>Quick Start Settings</span>
           </CardTitle>
@@ -250,13 +250,13 @@ export default function QuizCategorySelector({
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>
-              <label className="block text-sm font-medium text-blue-700 dark:text-blue-300 mb-2">
+              <label className="block text-sm font-medium text-sb-sky-ink  mb-2">
                 Questions
               </label>
               <select 
                 value={quickStartConfig.questionCount}
                 onChange={(e) => setQuickStartConfig(prev => ({ ...prev, questionCount: parseInt(e.target.value) }))}
-                className="w-full p-2 border border-blue-300 rounded-md bg-white dark:bg-gray-800"
+                className="w-full p-2 border border-sb-sky rounded-md bg-white dark:bg-gray-800"
               >
                 <option value={5}>5 Questions</option>
                 <option value={10}>10 Questions</option>
@@ -265,13 +265,13 @@ export default function QuizCategorySelector({
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-blue-700 dark:text-blue-300 mb-2">
+              <label className="block text-sm font-medium text-sb-sky-ink  mb-2">
                 Difficulty
               </label>
               <select 
                 value={quickStartConfig.difficultyLevel}
                 onChange={(e) => setQuickStartConfig(prev => ({ ...prev, difficultyLevel: e.target.value as any }))}
-                className="w-full p-2 border border-blue-300 rounded-md bg-white dark:bg-gray-800"
+                className="w-full p-2 border border-sb-sky rounded-md bg-white dark:bg-gray-800"
               >
                 <option value="adaptive">Adaptive</option>
                 <option value="easy">Easy</option>
@@ -280,13 +280,13 @@ export default function QuizCategorySelector({
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-blue-700 dark:text-blue-300 mb-2">
+              <label className="block text-sm font-medium text-sb-sky-ink  mb-2">
                 Session Type
               </label>
               <select 
                 value={quickStartConfig.sessionType}
                 onChange={(e) => setQuickStartConfig(prev => ({ ...prev, sessionType: e.target.value as any }))}
-                className="w-full p-2 border border-blue-300 rounded-md bg-white dark:bg-gray-800"
+                className="w-full p-2 border border-sb-sky rounded-md bg-white dark:bg-gray-800"
               >
                 <option value="practice">Practice</option>
                 <option value="review">Review</option>
@@ -300,9 +300,9 @@ export default function QuizCategorySelector({
                   type="checkbox"
                   checked={quickStartConfig.culturalContextEnabled}
                   onChange={(e) => setQuickStartConfig(prev => ({ ...prev, culturalContextEnabled: e.target.checked }))}
-                  className="rounded border-blue-300"
+                  className="rounded border-sb-sky"
                 />
-                <span className="text-sm text-blue-700 dark:text-blue-300">Indian Context</span>
+                <span className="text-sm text-sb-sky-ink ">Indian Context</span>
               </label>
             </div>
           </div>
@@ -316,7 +316,7 @@ export default function QuizCategorySelector({
             key={category.id}
             className={`cursor-pointer transition-all duration-200 hover:shadow-lg ${
               selectedCategory === category.id 
-                ? 'ring-2 ring-green-500 bg-green-50 dark:bg-green-950' 
+                ? 'ring-2 ring-sb-saffron bg-sb-saffron-tint ' 
                 : 'hover:bg-gray-50 dark:hover:bg-gray-800'
             }`}
             onClick={() => handleCategorySelect(category.id)}
@@ -332,7 +332,7 @@ export default function QuizCategorySelector({
                         {category.difficultyLevel}
                       </Badge>
                       {category.culturalContext && (
-                        <Badge variant="outline" className="text-orange-700 border-orange-300 bg-orange-50">
+                        <Badge variant="outline" className="text-sb-saffron-deep border-sb-saffron bg-sb-saffron-tint">
                           🇮🇳 Cultural
                         </Badge>
                       )}
@@ -340,7 +340,7 @@ export default function QuizCategorySelector({
                   </div>
                 </div>
                 {selectedCategory === category.id && (
-                  <div className="text-green-600">
+                  <div className="text-sb-saffron-deep">
                     ✅
                   </div>
                 )}
@@ -383,7 +383,7 @@ export default function QuizCategorySelector({
           <Button 
             onClick={handleStartQuiz}
             size="lg"
-            className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg"
+            className="bg-sb-navy hover:bg-sb-navy text-white px-8 py-3 text-lg"
           >
             <TrophyIcon className="h-5 w-5 mr-2" />
             Start Quiz ({quickStartConfig.questionCount} Questions)

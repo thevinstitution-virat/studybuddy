@@ -18,7 +18,7 @@ export function NativeSelect({ className, ...props }: SelectHTMLAttributes<HTMLS
   return (
     <select
       {...props}
-      className={cn('h-10 w-full rounded-md border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring', className)}
+      className={cn('h-12 w-full rounded-2xl border-[1.5px] border-input bg-card px-4 text-[15px] font-medium focus:outline-none focus:ring-2 focus:ring-ring', className)}
     />
   )
 }

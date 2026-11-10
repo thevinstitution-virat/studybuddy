@@ -166,7 +166,7 @@ VALID ECHARTS CONFIG EXAMPLE:
     "type": "pie",
     "radius": "60%",
     "data": [
-      { "value": 43, "name": "Forest", "itemStyle": { "color": "#4ade80" } },
+      { "value": 43, "name": "Forest", "itemStyle": { "color": "var(--sb-saffron-deep)" } },
       { "value": 24, "name": "Agriculture", "itemStyle": { "color": "#fbbf24" } },
       { "value": 18, "name": "Pasture", "itemStyle": { "color": "#60a5fa" } },
       { "value": 15, "name": "Other", "itemStyle": { "color": "#a78bfa" } }

@@ -61,17 +61,17 @@ export function LengthSelector({ value, onChange, disabled = false, className }:
               }}
               className={cn(
                 'flex cursor-pointer items-start gap-2.5 rounded-lg px-2 py-2',
-                isActive && 'bg-blue-50/70',
+                isActive && 'bg-sb-sky',
               )}
             >
-              <span className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-teal-100 text-teal-700">
+              <span className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-sb-saffron-tint text-sb-saffron-deep">
                 <Ruler className="h-3.5 w-3.5" />
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5">
                   <span className="text-sm font-medium text-foreground">{tier.label}</span>
                   <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">{tier.marks}</span>
-                  {isActive && <Check className="h-3.5 w-3.5 text-blue-600" />}
+                  {isActive && <Check className="h-3.5 w-3.5 text-sb-sky-ink" />}
                 </div>
                 <p className="truncate text-xs text-muted-foreground">{tier.wordRange} · {tier.hint}</p>
               </div>
