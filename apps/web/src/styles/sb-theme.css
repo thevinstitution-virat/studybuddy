@@ -422,3 +422,31 @@ h1, h2, h3, h4 { font-family: var(--sb-font-display); letter-spacing: -0.02em; }
 .dcs .chip, .dcd .chip { border-radius: 999px; font-weight: 700; border: 1.5px solid var(--sb-line); background: var(--sb-surface); color: var(--sb-ink); }
 .dcs .chip.on, .dcd .chip.on { background: var(--sb-grad-stage); color: #fff; border-color: transparent; box-shadow: var(--sb-shadow-stage); }
 .dcs .chip:hover:not(.on), .dcd .chip:hover:not(.on) { border-color: var(--sb-ink); color: var(--sb-ink); }
+
+/* ── Answer action chips (Translate / Word Meanings / Visual Aid / Add to Sanchika / Explain Differently) ──
+   One consistent chip instead of five pastel colours: paper surface, hairline border, saffron icon,
+   lift + saffron edge on hover. */
+button.sb-act, .sb-act {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 38px; padding: 0 14px; border-radius: 12px;
+  background: var(--sb-surface); color: var(--sb-ink);
+  border: 1px solid var(--sb-line);
+  font-weight: 700; font-size: 13px; line-height: 1;
+  box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 1px 2px rgba(20,28,52,.06);
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, background .15s ease;
+}
+button.sb-act svg, .sb-act svg { color: var(--sb-saffron-deep); flex: none; }
+button.sb-act:hover:not(:disabled), .sb-act:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: var(--sb-saffron);
+  background: var(--sb-surface-2);
+  box-shadow: 0 6px 16px -8px rgba(255,153,51,.55), 0 1px 2px rgba(20,28,52,.08);
+}
+button.sb-act:active:not(:disabled) { transform: translateY(0); }
+button.sb-act:disabled { opacity: .55; cursor: wait; }
+button.sb-act:focus-visible { outline: 2px solid var(--sb-saffron); outline-offset: 2px; }
+.sb-act-panel {
+  background: var(--sb-surface-2); border: 1px solid var(--sb-line);
+  border-left: 3px solid var(--sb-saffron); border-radius: 14px; padding: 16px;
+  box-shadow: var(--sb-shadow-sm, 0 1px 2px rgba(20,28,52,.06));
+}

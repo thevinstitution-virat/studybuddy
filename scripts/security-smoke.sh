@@ -37,6 +37,16 @@ expect POST /api/webhooks/bunny 401
 echo "== public and healthy"
 expect GET /api/health 200
 
+echo "== signed-in B2C student must NOT be locked out (set SMOKE_COOKIE='better-auth.session_token=...' to run)"
+if [[ -n "${SMOKE_COOKIE:-}" ]]; then
+  for p in /api/user/progress "/api/dictionary/search?q=cat" /api/user/subscription /api/ai/chat/usage; do
+    code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 -H "Cookie: $SMOKE_COOKIE" "$HOST$p")
+    if [[ "$code" == 200 ]]; then echo "ok    GET   $p  200 (signed in)"; else echo "FAIL  GET   $p  expected 200 signed-in, got $code"; fail=1; fi
+  done
+else
+  echo "skip  (no SMOKE_COOKIE) - a guard that 401s signed-in students looks identical to a working one without this"
+fi
+
 echo "== headers"
 h=$(curl -sI --max-time 20 "$HOST/api/health")
 echo "$h" | grep -qi '^content-security-policy:' && echo "ok    CSP present" || { echo "FAIL  CSP missing"; fail=1; }

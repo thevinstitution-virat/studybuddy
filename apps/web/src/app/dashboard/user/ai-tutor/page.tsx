@@ -19,7 +19,7 @@ import { ChatHistoryPanel } from '@/components/ai/tutor/ChatHistoryPanel'
 import { StreamingChatMessage } from '@/components/ai/chat/StreamingChatMessage'
 import { ChatErrorBoundary } from '@/components/core/common/ChatErrorBoundary'
 import { useAiTutor } from './_hooks/useAiTutor'
-import { TutorHeader, UpgradeModal, ContextSelector } from './_components'
+import { TutorHeader, UpgradeModal, ContextSelector, StartTrialCard } from './_components'
 import { formatContextHeader } from '@/lib/context-labels'
 import QuickReplies from '@/components/ai/tutor/QuickReplyCard'
 import type { Message } from './_types'
@@ -138,6 +138,10 @@ export default function AITutorPage() {
               <span style={{ fontSize: 14, color: 'var(--muted)' }}>Loading subscription details…</span>
             </div>
           </div>
+        )}
+
+        {subscriptionError === 'NO_SUBSCRIPTION' && !isLoadingSubscription && (
+          <StartTrialCard onStarted={() => window.location.reload()} />
         )}
 
         {subscriptionError && subscriptionError !== 'NO_SUBSCRIPTION' && (
@@ -496,15 +500,6 @@ export default function AITutorPage() {
                                   />
                                 )}
 
-                              {/* Feedback Widget - Show for all assistant messages that have an ID */}
-                              {message.role === 'assistant' && message.id && message.id !== 'initial_greeting' && (
-                                <div className="mt-4 pt-4 border-t border-border">
-                                  <FeedbackWidget 
-                                    messageId={message.id}
-                                    sessionId={sessionId}
-                                  />
-                                </div>
-                              )}
                             </div>
                           ) : (
                             <p className="text-sm leading-relaxed">{message.content}</p>

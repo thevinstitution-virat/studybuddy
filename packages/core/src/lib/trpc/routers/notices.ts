@@ -69,11 +69,19 @@ export const noticesRouter = createTRPCRouter({
   getNotices: protectedProcedure
     .input(getNoticesSchema)
     .query(async ({ input, ctx }) => {
-      // 1. Check feature flag
-      const featureCheck = await executeQuerySingle<{ enable_notices: number }>(
-        `SELECT enable_notices FROM tenant_features WHERE tenant_id = ?`,
-        [ctx.tenantId]
-      )
+      // 1. Check feature flag. Independent (B2C) students have no tenant, and the classroom tables
+      //    (tenant_features, notices) are only created for institutions: a missing table or row means
+      //    "no notices", never a 500 on the student dashboard.
+      let featureCheck: { enable_notices: number } | null | undefined
+      try {
+        featureCheck = await executeQuerySingle<{ enable_notices: number }>(
+          `SELECT enable_notices FROM tenant_features WHERE tenant_id = ?`,
+          [ctx.tenantId]
+        )
+      } catch (err) {
+        console.warn('[notices.getNotices] tenant_features unavailable, returning no notices:', (err as Error)?.message)
+        return { notices: [], total: 0 }
+      }
       if (!featureCheck?.enable_notices) {
         return { notices: [], total: 0 } // Return empty if disabled
       }

@@ -4,6 +4,9 @@ import React, { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
+import 'katex/dist/katex.min.css'
 import { IntelligentFormatter, IntelligentFormattingResult, FormattingOptions } from '@/lib/ai/formatting/intelligent-formatter'
 import { Card, CardContent } from '@/components/core/ui/card'
 import { Badge } from '@/components/core/ui/badge'
@@ -29,6 +32,9 @@ function sanitizeMarkdown(content: string): string {
   let sanitized = content
     // Normalize line endings (Windows -> Unix)
     .replace(/\r\n/g, '\n')
+    // LaTeX written as \( ... \) or \[ ... \] -> the $ / $$ forms that remark-math understands
+    .replace(/\\\(([\s\S]+?)\\\)/g, (_m, t) => '$' + String(t).trim() + '$')
+    .replace(/\\\[([\s\S]+?)\\\]/g, (_m, t) => '\n$$' + String(t).trim() + '$$\n')
     // Fix broken heading syntax (### text ### -> ### text)
     .replace(/###\s*([^#\n]+?)###/g, '### $1')
     .replace(/##\s*([^#\n]+?)##/g, '## $1')
@@ -225,8 +231,8 @@ function FormattedContent({
         )}
         <div className="prose prose-sm max-w-none">
           <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw]}
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeRaw, rehypeKatex]}
           >
             {sanitized}
           </ReactMarkdown>
@@ -511,8 +517,8 @@ function FormattedContentRenderer({
 
       <div className="formatted-content prose prose-base max-w-none prose-headings:font-bold prose-headings:text-foreground prose-h1:text-2xl prose-h1:mb-4 prose-h1:mt-6 prose-h2:text-xl prose-h2:mb-3 prose-h2:mt-5 prose-h3:text-lg prose-h3:mb-2 prose-h3:mt-4 prose-p:mb-4 prose-p:leading-7 prose-p:text-foreground prose-li:mb-2 prose-li:leading-7 prose-ul:my-4 prose-ul:space-y-2 prose-ol:my-4 prose-ol:space-y-2 prose-strong:text-foreground prose-strong:font-semibold overflow-hidden break-words">
         <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeRaw]}
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[rehypeRaw, rehypeKatex]}
         components={{
           // Enhanced heading rendering with better spacing
           h1: ({node, ...props}) => (

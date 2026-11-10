@@ -80,6 +80,16 @@ export default function OnboardingWrapper({ children }: { children: React.ReactN
                         console.error('Join request failed (non-blocking):', joinErr)
                     }
                 }
+                // An independent student has no plan yet, and without one the tutor has nothing to answer
+                // with. Start the free trial now (idempotent server-side; failure is non-blocking because the
+                // tutor and dashboard both offer a "Start free trial" button).
+                if (data.role === 'student' && !data.institutionId) {
+                    try {
+                        await fetch('/api/user/subscription/create-trial', { method: 'POST', credentials: 'include' })
+                    } catch (trialErr) {
+                        console.error('Auto-start of free trial failed (non-blocking):', trialErr)
+                    }
+                }
                 setShowModal(false)
                 // Refresh the page so children components fetch properly
                 // initialized profile data (like materials page)

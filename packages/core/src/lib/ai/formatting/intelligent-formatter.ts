@@ -43,6 +43,11 @@ export interface FormattingOptions {
 }
 
 export class IntelligentFormatter {
+  /** True when the text contains explicit LaTeX math delimiters. */
+  static hasExplicitLatex(text: string): boolean {
+    return /\$\$[\s\S]+?\$\$|\\\([\s\S]+?\\\)|\\\[[\s\S]+?\\\]|\$[^$\n]*\\[a-zA-Z]+[^$\n]*\$/.test(text)
+  }
+
   /**
    * Main formatting method that analyzes content and applies appropriate formatting
    */
@@ -110,7 +115,14 @@ export class IntelligentFormatter {
       const formattingStartTime = Date.now()
 
       try {
-        switch (result.contentAnalysis.contentType) {
+        // The model already wrote real LaTeX (double-dollar blocks, backslash-paren / backslash-bracket
+        // delimiters, or $...$ containing a backslash command). The heuristic math/chemistry rewriters below
+        // re-wrap and mangle it (the backslash-r of an arrow command turned into a carriage return, and triple
+        // dollar signs piled up), so valid LaTeX is passed through untouched and rendered by KaTeX on the client.
+        if (IntelligentFormatter.hasExplicitLatex(content)) {
+          result.formattedContent = content
+          result.appliedFormatters.push('LaTeX passthrough')
+        } else switch (result.contentAnalysis.contentType) {
           case 'mathematical':
             result.formattedContent = await this.applyMathematicalFormatting(content, options, result)
             result.appliedFormatters.push('Mathematical Formatter')
