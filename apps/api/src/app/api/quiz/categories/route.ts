@@ -3,6 +3,7 @@
  * Handles quiz category management and retrieval
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server'
 import { QuizCategory } from '@/lib/types/quiz'
 
@@ -191,7 +192,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: false,
       error: 'Failed to get quiz categories',
-      details: error instanceof Error ? error.message : 'Unknown error'
+      details: publicErrorDetails(error)
     }, { status: 500 })
   }
 }

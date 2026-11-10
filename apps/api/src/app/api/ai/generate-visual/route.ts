@@ -6,6 +6,7 @@
  * when user clicks the Visual Aid button
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
@@ -73,7 +74,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Visual generation failed',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: publicErrorDetails(error)
       },
       { status: 500 }
     );

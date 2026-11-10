@@ -3,6 +3,7 @@
  * Provides comprehensive word information with Indian context
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server'
 import { enhancedDictionary } from '@/lib/services/enhanced-dictionary'
 import { requireUser } from '@/lib/auth/require-user'
@@ -52,7 +53,7 @@ export async function GET(request: NextRequest) {
       { 
         success: false, 
         error: 'Enhanced search failed',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: publicErrorDetails(error)
       },
       { status: 500 }
     )
@@ -98,7 +99,7 @@ export async function POST(request: NextRequest) {
       { 
         success: false, 
         error: 'Enhanced search failed',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: publicErrorDetails(error)
       },
       { status: 500 }
     )

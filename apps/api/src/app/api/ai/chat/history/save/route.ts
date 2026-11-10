@@ -5,6 +5,7 @@
  * POST /api/ai/chat/history/save
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
@@ -84,7 +85,7 @@ export async function POST(request: NextRequest) {
       {
         error: 'INTERNAL_SERVER_ERROR',
         message: 'Failed to save conversation',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: publicErrorDetails(error)
       },
       { status: 500 }
     );

@@ -8,39 +8,14 @@ import { isDesignatedSuperAdmin, sanitizeRole } from '@/lib/auth/super-admin-gua
 
 const DEFAULT_ROLE: UserRole = 'user'
 
-const TEACHER_EMAIL_PATTERNS = [
-  /teacher\./i,
-  /faculty\./i,
-  /instructor\./i,
-  /prof\./i,
-  /educator\./i,
-]
+const PERSONAS: UserPersona[] = ['student', 'teacher', 'guardian']
 
-const PARENT_EMAIL_PATTERNS = [
-  /parent\./i,
-  /guardian\./i,
-  /family\./i,
-]
-
-function determineUserRoleAndPersona(email: string): { role: UserRole; persona: UserPersona } {
-  const emailLower = email.toLowerCase()
-
-  // SECURITY: super_admin is ONLY ever the configured platform owner. The old
-  // email-allowlist and `@viratgyankosh.com` domain grants were privilege-
-  // escalation shortcuts (anyone on that domain became super_admin) — removed.
-  if (isDesignatedSuperAdmin(email)) {
-    return { role: 'super_admin', persona: 'teacher' }
-  }
-
-  if (TEACHER_EMAIL_PATTERNS.some(pattern => pattern.test(emailLower))) {
-    return { role: 'user', persona: 'teacher' }
-  }
-
-  if (PARENT_EMAIL_PATTERNS.some(pattern => pattern.test(emailLower))) {
-    return { role: 'user', persona: 'guardian' }
-  }
-
-  return { role: 'user', persona: 'student' }
+// SECURITY: the role comes from the server only. This used to guess a teacher / guardian persona from
+// email aliases ("teacher.", "parent.") and, worse, to write whatever `role` the request body asked for
+// (see POST below). Neither is trustworthy: anyone can pick an email, and anyone can craft a body.
+function roleFor(email: string): UserRole {
+  // super_admin is ONLY ever the configured platform owner.
+  return isDesignatedSuperAdmin(email) ? 'super_admin' : DEFAULT_ROLE
 }
 
 export async function POST(request: NextRequest) {
@@ -57,7 +32,11 @@ export async function POST(request: NextRequest) {
     const { userId } = ctx;
 
     const body = await request.json().catch(() => ({}))
-    const { role: manualRole, persona: manualPersona, manualAssignment } = body
+    // The persona is a display preference only (it is not stored here and grants nothing), so the caller
+    // may choose it. The ROLE is never read from the body: this route used to accept
+    // { manualAssignment: true, role: 'admin' } from any signed-in member of an organisation and write it
+    // to their account, so a school's student could make themselves an institution admin or a teacher.
+    const persona: UserPersona = PERSONAS.includes(body?.persona) ? body.persona : 'student'
 
     // Fetch user from DB
     const users = await db.select().from(userTable).where(eq(userTable.id, userId)).limit(1)
@@ -66,40 +45,25 @@ export async function POST(request: NextRequest) {
     }
     const user = users[0]
 
+    // An account that already has a role keeps it. Changing roles is the super-admin route's job.
     const existingRole = user.role as UserRole
-    if (existingRole && !manualAssignment) {
+    if (existingRole) {
       return NextResponse.json({
         success: true,
         role: existingRole,
-        persona: 'student', // default persona
-        message: `User already has role: \${existingRole}`
+        persona,
+        message: `User already has role: ${existingRole}`
       })
     }
 
-    let assignedRole: UserRole
-    let assignedPersona: UserPersona
-
-    if (manualAssignment && manualRole && manualPersona) {
-      assignedRole = manualRole
-      assignedPersona = manualPersona
-    } else {
-      const primaryEmail = user.email
-
-      if (!primaryEmail) {
-        return NextResponse.json(
-          { error: 'No email address found' },
-          { status: 400 }
-        )
-      }
-
-      const result = determineUserRoleAndPersona(primaryEmail)
-      assignedRole = result.role
-      assignedPersona = result.persona
+    if (!user.email) {
+      return NextResponse.json(
+        { error: 'No email address found' },
+        { status: 400 }
+      )
     }
 
-    // SECURITY: never allow self-assignment of super_admin via this route, even if
-    // the request body (manualAssignment) asks for it. Clamp to the owner-gated value.
-    assignedRole = sanitizeRole(assignedRole, user.email, DEFAULT_ROLE) as UserRole
+    const assignedRole = sanitizeRole(roleFor(user.email), user.email, DEFAULT_ROLE) as UserRole
 
     await db.update(userTable).set({
       role: assignedRole,
@@ -109,10 +73,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       role: assignedRole,
-      persona: assignedPersona,
-      message: manualAssignment 
-        ? `Manually assigned role: \${assignedRole} with persona: \${assignedPersona}`
-        : `Automatically assigned role: \${assignedRole} with persona: \${assignedPersona}`
+      persona,
+      message: `Assigned role: ${assignedRole} with persona: ${persona}`
     })
 
   } catch (error) {
@@ -120,7 +82,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        message: error instanceof Error ? error.message : 'Unknown error',
+        message: 'Role assignment failed',
         role: 'user',
         persona: 'student'
       },

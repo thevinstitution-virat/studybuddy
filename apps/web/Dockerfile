@@ -97,6 +97,9 @@ COPY --from=pruner --chown=nextjs:nodejs /app/package.json ./package.json
 COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next ./apps/web/.next
 COPY --from=builder --chown=nextjs:nodejs /app/apps/web/public ./apps/web/public
 COPY --from=builder --chown=nextjs:nodejs /app/apps/web/package.json ./apps/web/package.json
+# `next start` reads a config when it starts. Without one it runs on defaults (and advertises
+# "X-Powered-By: Next.js"). See apps/web/next.config.runtime.js for why this is not next.config.ts.
+COPY --from=builder --chown=nextjs:nodejs /app/apps/web/next.config.runtime.js ./apps/web/next.config.js
 
 RUN mkdir -p /app/apps/web/uploads /app/apps/web/logs /app/apps/web/tmp && \
     chown -R nextjs:nodejs /app/apps/web/uploads /app/apps/web/logs /app/apps/web/tmp

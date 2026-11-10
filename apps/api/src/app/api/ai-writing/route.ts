@@ -1,3 +1,4 @@
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
@@ -70,7 +71,7 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('❌ Error in AI Writing Assistant:', error);
     return NextResponse.json(
-      { error: 'Failed to process AI writing request', details: error instanceof Error ? error.message : 'Unknown error' },
+      { error: 'Failed to process AI writing request', details: publicErrorDetails(error) },
       { status: 500 }
     );
   }

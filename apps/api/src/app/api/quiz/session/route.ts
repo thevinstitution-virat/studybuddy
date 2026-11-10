@@ -3,6 +3,7 @@
  * Handles quiz session creation, management, and completion
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server'
 import { QuizSession, QuizConfig, QuizResult } from '@/lib/types/quiz'
 import { quizEngine } from '@/lib/services/quiz-engine'
@@ -76,7 +77,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: false,
       error: 'Failed to create quiz session',
-      details: error instanceof Error ? error.message : 'Unknown error'
+      details: publicErrorDetails(error)
     }, { status: 500 })
   }
 }

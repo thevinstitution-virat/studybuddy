@@ -1,3 +1,4 @@
+import { publicErrorMessage } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server'
 import { writeFile, unlink } from 'fs/promises'
 import { join } from 'path'
@@ -86,7 +87,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json(
       { 
         success: false, 
-        error: error instanceof Error ? error.message : 'Processing failed' 
+        error: publicErrorMessage(error, 'Processing failed') 
       },
       { status: 500 }
     )

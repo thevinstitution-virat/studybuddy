@@ -3,6 +3,7 @@
  * Handles spaced repetition card management and review scheduling
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server'
 import { SpacedRepetitionCard, SpacedRepetitionPerformance } from '@/lib/types/quiz'
 import { SpacedRepetitionService } from '@/lib/services/spaced-repetition'
@@ -130,7 +131,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: false,
       error: 'Failed to get due words',
-      details: error instanceof Error ? error.message : 'Unknown error'
+      details: publicErrorDetails(error)
     }, { status: 500 })
   }
 }
@@ -208,7 +209,7 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({
       success: false,
       error: 'Failed to update spaced repetition card',
-      details: error instanceof Error ? error.message : 'Unknown error'
+      details: publicErrorDetails(error)
     }, { status: 500 })
   }
 }
@@ -249,7 +250,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: false,
       error: 'Failed to create spaced repetition card',
-      details: error instanceof Error ? error.message : 'Unknown error'
+      details: publicErrorDetails(error)
     }, { status: 500 })
   }
 }
@@ -309,7 +310,7 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({
       success: false,
       error: 'Failed to get spaced repetition statistics',
-      details: error instanceof Error ? error.message : 'Unknown error'
+      details: publicErrorDetails(error)
     }, { status: 500 })
   }
 }

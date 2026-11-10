@@ -1,3 +1,4 @@
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
@@ -111,7 +112,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         error: 'Failed to run smart detection',
-        details: error instanceof Error ? error.message : 'Unknown error',
+        details: publicErrorDetails(error),
       },
       { status: 500 }
     );
@@ -170,7 +171,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(
       {
         error: 'Failed to fetch detections',
-        details: error instanceof Error ? error.message : 'Unknown error',
+        details: publicErrorDetails(error),
       },
       { status: 500 }
     );

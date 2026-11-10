@@ -3,6 +3,7 @@
  * Simple REST endpoint for word search
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server'
 import { executeQuery } from '@/lib/db/connection'
 import { requireUser } from '@/lib/auth/require-user'
@@ -104,7 +105,7 @@ export async function GET(request: NextRequest) {
       { 
         success: false, 
         error: 'Search failed',
-        details: error instanceof Error ? error.message : 'Unknown error',
+        details: publicErrorDetails(error),
         words: []
       },
       { status: 500 }

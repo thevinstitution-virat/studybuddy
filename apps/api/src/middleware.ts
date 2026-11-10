@@ -35,6 +35,51 @@ const NEVER_IN_PRODUCTION = ['/api/debug', '/api/dev', '/api/test', '/api/ragas'
 const UNFINISHED = ['/api/mitram', '/api/curricutimer', '/api/quiz']
 const startsWithAny = (path: string, prefixes: string[]) => prefixes.some((p) => path === p || path.startsWith(p + '/') || path.startsWith(p + '-'))
 
+// ── Burst limit on the endpoints that cost money or CPU ─────────────────────────────────────────────────────
+// The tutor has a daily question quota, but nothing stopped a signed-in account (or a stolen session) from
+// hammering the model, OCR, speech and translation endpoints in a tight loop. This caps each session at
+// AI_BURST_LIMIT write requests per minute across them. A person asking questions sends 2-3 of these per
+// question, so the cap is far above real use.
+// In memory, per process: right for the single API container this runs as. Behind more than one instance it
+// would need Redis.
+const AI_BURST_LIMIT = Number(process.env.AI_BURST_LIMIT_PER_MINUTE) || 30
+const AI_BURST_WINDOW_MS = 60_000
+const COSTLY = ['/api/ai', '/api/chat', '/api/ai-writing', '/api/file-processing', '/api/ocr', '/api/speech-to-text', '/api/smart-detect', '/api/dictionary/translate']
+// Cheap bookkeeping under /api/ai that the tutor calls often; not limited.
+const COSTLY_EXEMPT = ['/api/ai/chat/history', '/api/ai/chat/usage', '/api/ai/health']
+const burst = new Map<string, { count: number; resetAt: number }>()
+
+function sessionKey(req: NextRequest): string | null {
+  // better-auth's cookie is "better-auth.session_token", prefixed "__Secure-" over https.
+  const cookie = req.cookies.getAll().find((c) => c.name.endsWith('session_token'))
+  return cookie?.value ? cookie.value.slice(0, 48) : null
+}
+
+/** Seconds to wait if this request is over the burst limit, otherwise null. Never throws. */
+function overBurstLimit(req: NextRequest, path: string): number | null {
+  try {
+    if (req.method === 'GET' || req.method === 'HEAD' || req.method === 'OPTIONS') return null
+    if (!startsWithAny(path, COSTLY) || startsWithAny(path, COSTLY_EXEMPT)) return null
+    // No session cookie: the route answers 401 without doing any work, so there is nothing to protect.
+    const key = sessionKey(req)
+    if (!key) return null
+
+    const now = Date.now()
+    if (burst.size > 5000) {
+      for (const [k, v] of burst) if (v.resetAt <= now) burst.delete(k)
+    }
+    const entry = burst.get(key)
+    if (!entry || entry.resetAt <= now) {
+      burst.set(key, { count: 1, resetAt: now + AI_BURST_WINDOW_MS })
+      return null
+    }
+    entry.count += 1
+    return entry.count > AI_BURST_LIMIT ? Math.max(1, Math.ceil((entry.resetAt - now) / 1000)) : null
+  } catch {
+    return null // fail open: a limiter bug must not take the tutor down
+  }
+}
+
 export function middleware(req: NextRequest) {
   const origin = req.headers.get('origin')
   const path = req.nextUrl.pathname
@@ -51,6 +96,16 @@ export function middleware(req: NextRequest) {
 
   if (req.method === 'OPTIONS') {
     return new NextResponse(null, { status: 204, headers: applyCors(new Headers(), origin) })
+  }
+
+  const retryAfter = overBurstLimit(req, path)
+  if (retryAfter !== null) {
+    const headers = applyCors(new Headers(), origin)
+    headers.set('Retry-After', String(retryAfter))
+    return NextResponse.json(
+      { success: false, error: 'Too many requests. Please wait a moment and try again.', code: 'RATE_LIMIT_EXCEEDED', retryAfter },
+      { status: 429, headers },
+    )
   }
 
   const res = NextResponse.next()

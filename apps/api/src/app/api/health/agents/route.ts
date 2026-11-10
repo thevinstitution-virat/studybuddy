@@ -1,3 +1,4 @@
+import { publicErrorMessage } from '@/lib/http/public-error'
 import { NextResponse } from 'next/server'
 import { MenuRouter } from '@/lib/ai/menu/menu-router'
 import { requirePlatformStaff } from '@/lib/auth/require-platform-staff'
@@ -104,7 +105,7 @@ export async function GET() {
     return NextResponse.json({
       status: 'unhealthy',
       timestamp: new Date().toISOString(),
-      error: error instanceof Error ? error.message : 'Unknown error',
+      error: publicErrorMessage(error, 'Unknown error'),
       message: 'Failed to initialize MenuRouter - check server logs'
     }, { status: 500 })
   }

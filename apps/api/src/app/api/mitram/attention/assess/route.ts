@@ -3,6 +3,7 @@
  * Processes assessment results and generates recommendations
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server'
@@ -225,7 +226,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Assessment processing error:', error)
     return NextResponse.json(
-      { error: 'Assessment processing failed', details: error instanceof Error ? error.message : 'Unknown error' },
+      { error: 'Assessment processing failed', details: publicErrorDetails(error) },
       { status: 500 }
     )
   }

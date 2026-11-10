@@ -16,6 +16,7 @@
  * it is flattened to combined HTML for editing.
  */
 
+import DOMPurify from 'dompurify';
 import React, { useEffect, useMemo, useState, useRef, useCallback } from 'react';
 import { useEditor, EditorContent, type Editor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
@@ -262,7 +263,17 @@ function Toolbar({ editor, inkActive, setInkActive }: { editor: Editor; inkActiv
 }
 
 export function RichTextEditor(props: RichTextEditorProps) {
-  const { content, initialContent, onChange, editable, readOnly, className, placeholder, autoFocus, hideToolbar, searchNotes, onWikiLinkClick, pageLayout, inkControls, initialInkSVG } = props;
+  const { content, initialContent, onChange, editable, readOnly, className, placeholder, autoFocus, hideToolbar, searchNotes, onWikiLinkClick, pageLayout, inkControls, initialInkSVG: rawInkSVG } = props;
+  // SECURITY: the saved ink drawing is stored markup that goes into the page with dangerouslySetInnerHTML.
+  // It was injected as stored, so an SVG carrying a script or an event handler would run in the reader's
+  // session (only the author today, anyone a note is ever shared with later). Everything below uses the
+  // sanitised copy, including the merge that is written back when new strokes are saved.
+  const initialInkSVG = useMemo(
+    () => (rawInkSVG && typeof window !== 'undefined'
+      ? DOMPurify.sanitize(rawInkSVG, { USE_PROFILES: { svg: true, svgFilters: true } })
+      : ''),
+    [rawInkSVG],
+  );
 
   const isEditable = editable ?? (readOnly === undefined ? true : !readOnly);
 

@@ -1,3 +1,4 @@
+import { publicErrorMessage } from '@/lib/http/public-error'
 import { executeQuery, executeUpdate } from '@/lib/db/connection';
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
@@ -76,7 +77,7 @@ export async function GET(
     console.error(' [Notes] GET error:', error.message);
     return NextResponse.json(
         // @ts-ignore
-      { error: error.message || 'Failed to fetch note' },
+      { error: publicErrorMessage(error, 'Failed to fetch note') },
       { status: 500 }
     );
   }
@@ -218,7 +219,7 @@ export async function PUT(
     console.error(' [Notes] PUT error:', error.message);
     return NextResponse.json(
         // @ts-ignore
-      { error: error.message || 'Failed to update note' },
+      { error: publicErrorMessage(error, 'Failed to update note') },
       { status: 500 }
     );
   }
@@ -262,7 +263,7 @@ export async function DELETE(
     console.error(' [Notes] DELETE error:', error.message);
     return NextResponse.json(
         // @ts-ignore
-      { error: error.message || 'Failed to delete note' },
+      { error: publicErrorMessage(error, 'Failed to delete note') },
       { status: 500 }
     );
   }

@@ -3,6 +3,7 @@
  * Tests the Azure Cognitive Services translation functionality
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server'
 import { microsoftTranslator } from '@/lib/services/microsoft-translator'
 import { requireUser } from '@/lib/auth/require-user'
@@ -78,7 +79,7 @@ export async function GET(request: NextRequest) {
       { 
         success: false, 
         error: 'Translation service test failed',
-        details: error instanceof Error ? error.message : 'Unknown error',
+        details: publicErrorDetails(error),
         configStatus: microsoftTranslator.getConfigStatus()
       },
       { status: 500 }
@@ -117,7 +118,7 @@ export async function POST(request: NextRequest) {
       { 
         success: false, 
         error: 'Translation failed',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: publicErrorDetails(error)
       },
       { status: 500 }
     )
