@@ -11,6 +11,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Study Buddy tokens (Redesign Brief §2) — values live in styles/sb-theme.css and swap in dark mode.
+        sb: {
+          paper: 'var(--sb-paper)', surface: 'var(--sb-surface)', 'surface-2': 'var(--sb-surface-2)',
+          line: 'var(--sb-line)', ink: 'var(--sb-ink)', 'ink-2': 'var(--sb-ink-2)', muted: 'var(--sb-muted)',
+          navy: 'var(--sb-navy)', 'muted-navy': 'var(--sb-muted-navy)',
+          saffron: 'var(--sb-saffron)', 'saffron-deep': 'var(--sb-saffron-deep)', 'saffron-tint': 'var(--sb-saffron-tint)',
+          danger: 'var(--sb-danger)', 'danger-tint': 'var(--sb-danger-tint)',
+          lav: 'var(--sb-lav)', 'lav-ink': 'var(--sb-lav-ink)', sky: 'var(--sb-sky)', 'sky-ink': 'var(--sb-sky-ink)',
+          butter: 'var(--sb-butter)', 'butter-ink': 'var(--sb-butter-ink)', rose: 'var(--sb-rose)', 'rose-ink': 'var(--sb-rose-ink)',
+          stone: 'var(--sb-stone)', 'stone-ink': 'var(--sb-stone-ink)',
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         'apple-blue': 'var(--apple-blue)',
@@ -114,7 +125,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-sf-pro)', 'system-ui', 'sans-serif'],
+        sans: ['var(--sb-font-ui)', 'system-ui', 'sans-serif'],
+        display: ['var(--sb-font-display)', 'system-ui', 'sans-serif'],
+        hand: ['var(--sb-font-hand)', 'cursive'],
         mono: ['var(--font-geist-mono)', 'monospace'],
         'vg-primary': ['var(--font-vg-primary)', 'system-ui', 'sans-serif'],
         'vg-cultural': ['var(--font-vg-cultural)', 'serif'],

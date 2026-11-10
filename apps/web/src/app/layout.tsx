@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import { TRPCProvider } from '@/lib/trpc/provider'
 import { ThemeProvider } from '@/components/providers/theme-provider'
@@ -31,12 +31,20 @@ import "../styles/indic-bridge.css";
 import "@fontsource-variable/bricolage-grotesque";
 import "@fontsource-variable/familjen-grotesk";
 import "@fontsource-variable/newsreader";
+// Study Buddy redesign faces: Plus Jakarta Sans (body/UI), Kalam (InkBuddy handwriting only).
+import "@fontsource-variable/plus-jakarta-sans";
+import "@fontsource/kalam/400.css";
+import "@fontsource/kalam/700.css";
 import "@fontsource/noto-sans-devanagari/400.css";
 import "@fontsource/noto-sans-devanagari/600.css";
 import "../design/indic/indic-fonts.css";
 // Navy + blaze (Buddy design system): re-points the Indic pigments, accent layer and scoped surface
 // tokens, and brings in the --bb-* palette. MUST be last so it wins over every sheet above.
 import "../styles/buddy-theme.css";
+// Paper + saffron (Redesign Brief): --sb-* tokens, day/night swap, no-green palette. Wins over everything above.
+import "../styles/sb-theme.css";
+import "../styles/sb-landing.css";
+import "../styles/sb-shell.css";
 
 export const metadata: Metadata = {
   title: "Study Buddy - AI tutor for every student",
@@ -55,6 +63,16 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#0A0F24' },
+    { media: '(prefers-color-scheme: dark)', color: '#0A0F24' },
+  ],
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -63,7 +81,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* Fonts are self-hosted via @fontsource (see imports above) — no
             render-blocking request to fonts.googleapis.com. */}
       </head>

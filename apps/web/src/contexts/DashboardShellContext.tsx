@@ -18,12 +18,17 @@ export interface ShellNavItem {
   primary?: boolean
   /** Short label the bottom tab bar uses in place of `name` when set. */
   shortName?: string
+  section?: string
+  description?: string
 }
 
 export interface ShellData {
   items: ShellNavItem[]
   brandName: string
   roleLabel: string
+  /** Signed-in user, for the More screen profile card. */
+  user?: { name: string; email: string; initials: string } | null
+  profilePath?: string
 }
 
 interface ShellCtx {
