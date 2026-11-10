@@ -12,7 +12,7 @@ export function safeValidate<T>(
     if (result.success)
   return { success: true, data: result.data };
 
-    const errors = result.error.errors.map(e =>
+    const errors = result.error.issues.map(e =>
         `[${context}] ${e.path.join('.')}: ${e.message}`
     );
 

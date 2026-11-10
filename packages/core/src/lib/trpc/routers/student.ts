@@ -1270,7 +1270,7 @@ export const studentRouter = createTRPCRouter({
       eventType: z.enum(['video_play','video_pause','video_seek','video_complete',
                          'video_speed_change','quiz_start','quiz_submit',
                          'session_start','session_end']),
-      metadata:  z.record(z.unknown()).optional(),
+      metadata:  z.record(z.string(), z.unknown()).optional(),
     }))
     .mutation(async ({ ctx, input }) => {
       const tenantId = ctx.tenantId!;

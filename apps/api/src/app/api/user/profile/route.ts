@@ -185,7 +185,7 @@ export async function POST(request: NextRequest) {
     console.error('[PROFILE POST] STACK:', error?.stack)
     console.error('[PROFILE POST] CODE:', error?.code)
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: 'Invalid profile data', details: error.errors }, { status: 400 })
+      return NextResponse.json({ error: 'Invalid profile data', details: error.issues }, { status: 400 })
     }
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
@@ -233,7 +233,7 @@ export async function PUT(request: NextRequest) {
   } catch (error) {
     console.error('Error updating user profile:', error)
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: 'Invalid profile data', details: error.errors }, { status: 400 })
+      return NextResponse.json({ error: 'Invalid profile data', details: error.issues }, { status: 400 })
     }
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }

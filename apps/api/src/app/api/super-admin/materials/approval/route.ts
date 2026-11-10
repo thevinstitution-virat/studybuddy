@@ -10,7 +10,7 @@ import type { MaterialApprovalRequest } from '@/types/google-drive'
 const ApprovalRequestSchema = z.object({
   materialId: z.string().uuid('Invalid material ID format'),
   action: z.enum(['approve', 'reject'], {
-    required_error: 'Action must be either "approve" or "reject"'
+    error: 'Action must be either "approve" or "reject"'
   }),
   comments: z.string().optional(),
   adminId: z.string().optional()
@@ -161,7 +161,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { success: false, error: 'Invalid request data', details: error.errors },
+        { success: false, error: 'Invalid request data', details: error.issues },
         { status: 400 }
       )
     }

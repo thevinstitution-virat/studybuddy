@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
   try {
     body = Body.parse(await req.json())
   } catch (e) {
-    return NextResponse.json({ error: 'Invalid data', details: (e as z.ZodError).errors }, { status: 400 })
+    return NextResponse.json({ error: 'Invalid data', details: (e as z.ZodError).issues }, { status: 400 })
   }
 
   // 1. Create the organization (creator/super_admin becomes owner).

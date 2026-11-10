@@ -203,7 +203,7 @@ export class MetadataValidationError extends Error {
     public zodError: z.ZodError,
     public rawMetadata: any
   ) {
-    const issues = zodError.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ');
+    const issues = zodError.issues.map(e => `${e.path.join('.')}: ${e.message}`).join(', ');
     super(`Chunk ${chunkId} validation failed: ${issues}`);
     this.name = 'MetadataValidationError';
   }

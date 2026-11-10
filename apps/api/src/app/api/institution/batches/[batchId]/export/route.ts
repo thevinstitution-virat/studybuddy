@@ -81,7 +81,7 @@ export const GET = withOrgContext(async (req: NextRequest, ctx: any, orgContext:
       csvRows.push([
         `"${student.name.replace(/"/g, '""')}"`,
         student.email,
-        student.status,
+        student.status ?? '',
         student.enrolledAt ? student.enrolledAt.toISOString().split('T')[0] : '',
         `${progressPct}%`
       ]);

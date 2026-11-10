@@ -63,7 +63,7 @@ export const POST = withOrgContext(async (req: NextRequest, ctx: any, orgContext
     logger.error("Failed to send invitation", error);
 
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: "Invalid data", details: error.errors }, { status: 400 });
+      return NextResponse.json({ error: "Invalid data", details: error.issues }, { status: 400 });
     }
 
     // BetterAuth may throw specific errors
@@ -113,7 +113,7 @@ async function handleBulkInvite(body: any, orgContext: OrgRouteContext) {
         // @ts-ignore
     logger.error("Bulk invitation failed", error);
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: "Invalid data", details: error.errors }, { status: 400 });
+      return NextResponse.json({ error: "Invalid data", details: error.issues }, { status: 400 });
     }
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }

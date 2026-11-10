@@ -35,7 +35,7 @@ export const POST = withOrgContext(async (req: NextRequest, ctx: any, orgContext
     logger.error("Failed to create institution API", error);
 
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: "Invalid data", details: error.errors }, { status: 400 });
+      return NextResponse.json({ error: "Invalid data", details: error.issues }, { status: 400 });
     }
 
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });

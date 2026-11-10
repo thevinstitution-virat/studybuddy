@@ -150,7 +150,7 @@ const EnvSchema = z.object({
     if (v === undefined || v.trim() === '') return {} as Record<string, 'zero' | 'half' | 'full'>;
     let raw: unknown;
     try { raw = JSON.parse(v); } catch { ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'must be JSON like {"science":"half"}' }); return z.NEVER; }
-    const parsed = z.record(z.enum(['zero', 'half', 'full'])).safeParse(raw);
+    const parsed = z.record(z.string(), z.enum(['zero', 'half', 'full'])).safeParse(raw);
     if (!parsed.success) { ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'every value must be zero, half or full' }); return z.NEVER; }
     return Object.fromEntries(Object.entries(parsed.data).map(([k, x]) => [k.trim().toLowerCase(), x])) as Record<string, 'zero' | 'half' | 'full'>;
   }),

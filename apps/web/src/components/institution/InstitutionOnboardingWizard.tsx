@@ -9,8 +9,9 @@ import {
 import { api } from '@/lib/trpc/client'
 import { completeOnboardingSchema } from '@/lib/trpc/routers/institutionProfiles'
 import { toast } from 'sonner'
+import type { z } from 'zod'
 
-type ProfileData = typeof completeOnboardingSchema._type
+type ProfileData = z.infer<typeof completeOnboardingSchema>
 
 const PRESET_COLORS = [
   '#6366f1', // Indigo (default)

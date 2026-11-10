@@ -10,7 +10,7 @@ const half = z.number().min(0).max(100).refine((x) => Math.abs(x * 2 - Math.roun
 const note = z.string().trim().max(2000).optional();
 
 export const TranscribePayload = z.object({ text: z.string().max(20_000) }).strict();
-export const BlindMarkPayload = z.object({ byPoint: z.record(half), note }).strict();
+export const BlindMarkPayload = z.object({ byPoint: z.record(z.string(), half), note }).strict();
 export const KeyAuditPayload = z.object({
   points: z.array(z.object({ id: z.string().min(1).max(20), verdict: z.enum(['correct', 'partly_correct', 'wrong', 'not_in_source']), note })).min(1).max(50),
   missing: z.array(z.string().trim().min(1).max(1000)).max(20),

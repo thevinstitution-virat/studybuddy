@@ -29,7 +29,7 @@ Rule for launch: a user must never reach a screen that returns invented data. Ei
   - `POST /api/feedback/submit`, `GET /api/feedback/stats`, `/api/experiments/*`, `/api/ground-truth/*`, `/api/ragas/*`, `/api/performance/profile`, `/api/quiz/*`, `/api/curricutimer/schedule`: no auth.
   - Diagnostics open to the world: `/api/test/*`, `/api/test-ocr`, `/api/test-multi-modal`, `/api/dictionary/test*`, `/api/health/agents`, `/api/health/workers`. They disclose DB state, feature flags and upstream status. `/api/debug-sentry` throws a test error on demand (spams the error tracker).
 - **C2. Razorpay webhook falls back to the secret `'dummy_webhook_secret'`** when `RAZORPAY_WEBHOOK_SECRET` is unset (it is unset on this stack), so a forged webhook would verify. Payments are not integrated yet, but this must be removed before they are.
-- **C3. Vulnerable dependencies** (`npm audit --omit=dev`: 6 critical, 23 high, 57 moderate): `next` 15.3.9 (SSRF via middleware redirects, image-optimizer cache confusion; fixed in 15.5.29), `better-auth` (<=1.7.6), `dompurify` (<=3.4.16, XSS bypasses, and it sanitises AI output), `jspdf` (<=4.2.0), `proxy-addr` (IP spoofing, undermines rate limiting).
+- **C3. Vulnerable dependencies. RESOLVED in Phase 0 / 0b (now 0 critical, 0 high; 17 moderate, 1 low remain).** At audit time (`npm audit --omit=dev`: 6 critical, 23 high, 57 moderate): `next` 15.3.9 (SSRF via middleware redirects, image-optimizer cache confusion; fixed in 15.5.29), `better-auth` (<=1.7.6), `dompurify` (<=3.4.16, XSS bypasses, and it sanitises AI output), `jspdf` (<=4.2.0), `proxy-addr` (IP spoofing, undermines rate limiting).
 
 ### High / Medium
 - **H1.** Web container holds server secrets it does not need (OpenAI, Resend, Azure, Google client secret). Least privilege: only the API should have them.
@@ -111,3 +111,12 @@ Roles cannot be set by clients (`role` is `input:false`; super_admin only for th
 5. Staged invite (founding cohort) before public launch.
 
 **Launch gate (all must be true):** no unauthenticated data routes; payments verified end to end; Gyankosh answers with citations from real content; every visible feature is real; backups restored once; legal pages live; critical/high dependency advisories closed.
+
+
+## 6. Phase 0 status (2026-11-10, PR #4)
+
+Done: open API routes closed or deleted; `user/progress` scoped to the session user; Razorpay webhook fail-closed; mock Razorpay orders refused in production; CSP + no `X-Powered-By`; server secrets blanked on the web service; mock data removed from Materials and Shabdakosh; Mitram / Productivity / Quiz / Sarvagya hidden; nightly Postgres + Qdrant backups with a restore test (125 tables restored); `scripts/security-smoke.sh` regression check.
+
+Dependencies: critical 6 -> 0 and high 23 -> 0 (moderate 57 -> 17). Upgrades: next 15.5.29, better-auth 1.7.19, dompurify 3.4.17, jspdf 4.2.1, zod 3 -> 4.6.7 (all workspaces + root), openai 4 -> 7.55, @hookform/resolvers 3 -> 5, tiptap 3.33, sharp 0.35.5 and postcss 8.5.32 via overrides. Removed: `minio` (unused) and `@xenova/transformers` (ONNX reranker was already off in production because it crashed the process; the reranker now fails closed to the dense/RRF order). zod 4 migration: `z.record` key types, `.errors` -> `.issues`, `required_error` -> `error`, `_type` -> `z.infer`. Type-error counts did not rise (API 21 = 21, web 141 vs 142).
+
+Known gaps left for later phases: 8 older jest suites fail to start (module-path mapping in the monorepo jest config, unrelated to the upgrades) and 3 formatting tests fail; the remaining 17 moderate advisories; script-src in the CSP; end-to-end runtime verification of zod 4 against a live database after deploy.

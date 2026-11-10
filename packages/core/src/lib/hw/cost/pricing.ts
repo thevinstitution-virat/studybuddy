@@ -26,7 +26,7 @@ const Rate = z.object({
 
 const PriceTable = z.object({
   inr_per_usd: z.number().positive(),
-  models: z.record(Rate),
+  models: z.record(z.string(), Rate),
 });
 
 export type PriceTable = z.infer<typeof PriceTable>;

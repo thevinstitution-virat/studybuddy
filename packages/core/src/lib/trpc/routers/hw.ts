@@ -97,7 +97,7 @@ const questionInput = z.object({
   answerLines: z.number().int().min(1).max(200).optional(),
   // Roadmap 5.2: where the question comes from, and the passage it is about. The answer key is built from these (and the textbook).
   origin: z.enum(['textbook_exercise', 'board_paper', 'custom']).optional(),
-  originRef: z.record(z.string().trim().max(200)).refine((o) => Object.keys(o).length <= 8, 'too many fields').optional(),
+  originRef: z.record(z.string(), z.string().trim().max(200)).refine((o) => Object.keys(o).length <= 8, 'too many fields').optional(),
   passage: z.string().max(20_000).nullable().optional(),
 });
 
@@ -221,7 +221,7 @@ export const hwRouter = createTRPCRouter({
         mode,
         typedText: z.string().max(50_000).nullable().optional(),
         timeSpentMs: z.number().int().min(0).max(24 * 3600 * 1000),
-        typingStats: z.record(z.unknown()).optional(),
+        typingStats: z.record(z.string(), z.unknown()).optional(),
       }))
       .mutation(({ ctx, input }) => run(ctx, (a) => submissions.saveAnswer(a, input.submissionId, input.questionId, input))),
     submit: protectedProcedure.input(z.object({ submissionId: id }))
