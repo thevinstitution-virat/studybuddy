@@ -3,7 +3,10 @@
  * Uses cross-encoder models to re-score retrieved chunks for better relevance
  */
 
-import { pipeline, Pipeline } from '@xenova/transformers';
+// Security (Phase 0b): the ONNX stack (@xenova/transformers -> onnxruntime-web, sharp, protobufjs) was removed
+// because of high-severity advisories, and reranking has been off in production anyway (see below). Re-enable
+// reranking via a separate isolated worker/service, not by re-adding this dependency to the API process.
+type Pipeline = any;
 
 /**
  * Cross-encoder reranking runs an ONNX model through @xenova/transformers.
@@ -92,11 +95,9 @@ export class CrossEncoderReranker {
         console.log(`🔄 Loading cross-encoder model: ${this.modelName}...`);
         const startTime = Date.now();
 
-        // Load the feature extraction pipeline for cross-encoder
-        // @ts-ignore
-        this.model = await pipeline('feature-extraction', this.modelName, {
-          quantized: true, // Use quantized model for faster inference
-        });
+        // Reachable only with ENABLE_CROSS_ENCODER_RERANK=true. The in-process ONNX runtime is gone, so fail loudly
+        // and let callers fall back to the dense/RRF ordering (they already catch and do exactly that).
+        throw new Error('Cross-encoder reranking is not available: the in-process ONNX runtime was removed (Phase 0b).');
 
         const loadTime = Date.now() - startTime;
         console.log(`✅ Cross-encoder model loaded in ${loadTime}ms`);

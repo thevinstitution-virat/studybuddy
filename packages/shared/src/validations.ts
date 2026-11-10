@@ -63,7 +63,7 @@ export const VectorEmbeddingSchema = z.object({
   contentId: z.string().uuid(),
   pineconeId: z.string(),
   subject: z.string().optional(),
-  metadata: z.record(z.any()).optional(),
+  metadata: z.record(z.string(), z.any()).optional(),
 })
 
 // Content validation
@@ -181,7 +181,7 @@ export const ActivityLogSchema = z.object({
     "profile_updated"
   ]),
   activityDescription: z.string(),
-  metadata: z.record(z.any()).optional(),
+  metadata: z.record(z.string(), z.any()).optional(),
 })
 
 export type TeacherRegistration = z.infer<typeof TeacherRegistrationSchema>

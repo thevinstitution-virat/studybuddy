@@ -54,6 +54,22 @@ services:
       SENTRY_DSN: ${NEXT_PUBLIC_SENTRY_DSN:-}
       SENTRY_ENVIRONMENT: production
       TZ: Asia/Kolkata
+      # Least privilege (Phase 0): Coolify injects every app-level variable into every service, but the web
+      # service is only a UI + proxy to the API and must not hold server secrets. Blank them here.
+      OPENAI_API_KEY: ""
+      OPENROUTER_API_KEY: ""
+      GEMINI_API_KEY: ""
+      RESEND_API_KEY: ""
+      AZURE_TRANSLATOR_KEY: ""
+      GOOGLE_DRIVE_CLIENT_SECRET: ""
+      BETTER_AUTH_SECRET: ""
+      JWT_SECRET: ""
+      ENCRYPTION_KEY: ""
+      HW_CRON_SECRET: ""
+      R2_ACCESS_KEY_ID: ""
+      R2_SECRET_ACCESS_KEY: ""
+      DATABASE_URL: ""
+      REDIS_URL: ""
     depends_on:
       api:
         condition: service_started

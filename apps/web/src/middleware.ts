@@ -65,6 +65,16 @@ export async function middleware(req: NextRequest) {
     }
   }
 
+  // ── 1b. Unfinished services stay dark (Phase 0) ────────────────────────────
+  // Mitram, Productivity, Sarvagya and Quiz still run on mock or undeployed back ends; a user must never meet
+  // invented data. Switch on in a non-production environment with NEXT_PUBLIC_ENABLE_UNFINISHED=true.
+  if (process.env.NEXT_PUBLIC_ENABLE_UNFINISHED !== 'true') {
+    const unfinished = ['/dashboard/user/mitram', '/dashboard/user/productivity', '/dashboard/sarvagya', '/dashboard/super-admin/sarvagya']
+    if (unfinished.some((p) => pathname === p || pathname.startsWith(p + '/'))) {
+      return NextResponse.redirect(new URL('/dashboard', req.url))
+    }
+  }
+
   // ── 2. Public routes — no auth required ───────────────────────────────────
   const isPublic = PUBLIC_PREFIXES.some((p) => pathname.startsWith(p)) || pathname === '/';
   if (isPublic) {

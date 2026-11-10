@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { connectionManager } from '@/lib/ai/rag/connection-manager'
+import { requirePlatformStaff } from '@/lib/auth/require-platform-staff'
 
 export const runtime = 'nodejs'
 
@@ -19,6 +20,8 @@ async function probe() {
 }
 
 export async function GET() {
+  const __guard = await requirePlatformStaff()
+  if (!__guard.ok) return __guard.response
   try {
     return await probe()
   } catch {
@@ -31,5 +34,7 @@ export async function GET() {
 
 // POST kept for manual re-checks; same minimal payload as GET.
 export async function POST() {
+  const __guard = await requirePlatformStaff()
+  if (!__guard.ok) return __guard.response
   return GET()
 }

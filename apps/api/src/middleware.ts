@@ -27,8 +27,27 @@ function applyCors(headers: Headers, origin: string | null): Headers {
   return headers
 }
 
+// ── Phase 0 lock-down: edge blocklists (defence in depth; the routes are also removed / guarded) ────────────
+// The API host is public, and the web app's middleware does not sit in front of it.
+const NEVER_IN_PRODUCTION = ['/api/debug', '/api/dev', '/api/test', '/api/ragas', '/api/experiments', '/api/ground-truth', '/api/scan-books']
+// Services that still run on in-memory mock data. They stay dark until they are built on real tables
+// (set ENABLE_UNFINISHED_FEATURES=true to switch them on in a non-production environment).
+const UNFINISHED = ['/api/mitram', '/api/curricutimer', '/api/quiz']
+const startsWithAny = (path: string, prefixes: string[]) => prefixes.some((p) => path === p || path.startsWith(p + '/') || path.startsWith(p + '-'))
+
 export function middleware(req: NextRequest) {
   const origin = req.headers.get('origin')
+  const path = req.nextUrl.pathname
+
+  if (process.env.NODE_ENV === 'production') {
+    const hidden =
+      startsWithAny(path, NEVER_IN_PRODUCTION) ||
+      (process.env.ENABLE_UNFINISHED_FEATURES !== 'true' && startsWithAny(path, UNFINISHED))
+    if (hidden) {
+      // 404, not 403: don't confirm the route exists.
+      return NextResponse.json({ error: 'Not found' }, { status: 404, headers: applyCors(new Headers(), origin) })
+    }
+  }
 
   if (req.method === 'OPTIONS') {
     return new NextResponse(null, { status: 204, headers: applyCors(new Headers(), origin) })

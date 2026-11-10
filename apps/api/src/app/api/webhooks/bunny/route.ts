@@ -2,13 +2,17 @@ import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/db'
 import * as schema from '@/db/schema'
 import { eq } from 'drizzle-orm'
+import { timingSafeEqual } from 'node:crypto'
 
 export async function POST(req: NextRequest) {
   try {
     const url = new URL(req.url)
     const accessKey = req.headers.get('AccessKey') || url.searchParams.get('key')
     
-    if (accessKey !== process.env.BUNNY_LIBRARY_API_KEY) {
+    const expectedKey = process.env.BUNNY_LIBRARY_API_KEY
+    const ok = !!expectedKey && !!accessKey && accessKey.length === expectedKey.length &&
+      timingSafeEqual(Buffer.from(accessKey), Buffer.from(expectedKey))
+    if (!ok) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 

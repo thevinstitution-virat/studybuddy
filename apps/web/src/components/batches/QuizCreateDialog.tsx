@@ -50,7 +50,7 @@ export function QuizCreateDialog({
 }) {
   const utils = api.useUtils();
 
-  const form = useForm<FormValues>({
+  const form = useForm<z.input<typeof formSchema>, unknown, FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: '',
@@ -112,7 +112,7 @@ export function QuizCreateDialog({
     if (quizId) {
       updateMut.mutate({ quizId, ...values });
     } else {
-      createMut.mutate({ batchId, ...values });
+      createMut.mutate({ batchId, ...values, timeLimitMinutes: values.timeLimitMinutes ?? null, passingScore: values.passingScore ?? null });
     }
   }
 

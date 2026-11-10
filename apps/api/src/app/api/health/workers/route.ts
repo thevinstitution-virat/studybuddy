@@ -9,8 +9,11 @@
  */
 
 import { NextResponse } from 'next/server';
+import { requirePlatformStaff } from '@/lib/auth/require-platform-staff'
 
 export async function GET() {
+  const __guard = await requirePlatformStaff()
+  if (!__guard.ok) return __guard.response
     try {
         // Dynamic import with a timeout guard — prevents hanging when Redis is down.
         // ioredis retries indefinitely by default; we race against a 3-second deadline.

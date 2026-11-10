@@ -15,6 +15,7 @@ import {
   type SubmitFeedbackResponse,
 } from '@/lib/validation/feedback-schemas';
 import { v4 as uuidv4 } from 'uuid';
+import { requireUser } from '@/lib/auth/require-user'
 
 export const runtime = 'nodejs';
 
@@ -23,6 +24,8 @@ export const runtime = 'nodejs';
 // ============================================================================
 
 export async function POST(req: NextRequest) {
+  const __guard = await requireUser()
+  if (!__guard.ok) return __guard.response
   const startTime = Date.now();
   let connection;
 

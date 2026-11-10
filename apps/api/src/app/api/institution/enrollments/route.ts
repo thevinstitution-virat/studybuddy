@@ -85,7 +85,7 @@ export const POST = withOrgContext(async (req: NextRequest, ctx: any, orgContext
         // @ts-ignore
     logger.error("Failed to enroll student", error);
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: "Invalid data", details: error.errors }, { status: 400 });
+      return NextResponse.json({ error: "Invalid data", details: error.issues }, { status: 400 });
     }
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
@@ -182,7 +182,7 @@ async function handleBulkEnroll(body: any, orgContext: OrgRouteContext) {
         // @ts-ignore
     logger.error("Bulk enrollment failed", error);
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: "Invalid CSV data", details: error.errors }, { status: 400 });
+      return NextResponse.json({ error: "Invalid CSV data", details: error.issues }, { status: 400 });
     }
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }

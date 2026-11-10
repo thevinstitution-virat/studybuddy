@@ -53,7 +53,7 @@ export const EvalItemSchema = z.object({
     id: z.string().min(1),
     text: z.string().min(1),
     marks: positiveHalf,
-    ref: z.record(z.unknown()).optional(),
+    ref: z.record(z.string(), z.unknown()).optional(),
     passageText: z.string().optional(),
   }),
   media: z.object({ ink: z.string().nullable().optional(), render: z.string().nullable().optional(), photo: z.string().nullable().optional() }).default({}),
@@ -65,14 +65,14 @@ export const EvalItemSchema = z.object({
     points: z.array(KeyPoint).min(1),
   }).nullable().optional(),
   referenceMarks: z.object({
-    byPoint: z.record(halfGrid),
+    byPoint: z.record(z.string(), halfGrid),
     total: halfGrid,
     how: z.enum(['by_construction', 'single_teacher', 'double_marked', 'adjudicated']),
     /**
      * Expected marks under each partial-credit rule (docs/hw-eval/verdicts.md), only where the rules differ (near_miss).
      * byPoint/total above are the `zero` rule's, so every metric written before the rule existed reads the same.
      */
-    byRule: z.record(z.enum(['zero', 'half', 'full']), z.object({ byPoint: z.record(halfGrid), total: halfGrid })).optional(),
+    byRule: z.record(z.enum(['zero', 'half', 'full']), z.object({ byPoint: z.record(z.string(), halfGrid), total: halfGrid })).optional(),
   }).nullable().optional(),
   mutation: z.object({
     type: z.enum(MUTATION_TYPES),

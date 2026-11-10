@@ -53,11 +53,11 @@ export const hwEvalRouter = createTRPCRouter({
   queue: protectedProcedure.query(({ ctx }) => run(ctx, (a) => work.myQueue(a))),
   /** Idempotent: records the start only the first time. */
   open: protectedProcedure.input(z.object({ assignmentId: id })).query(({ ctx, input }) => run(ctx, (a) => work.openAssignment(a, input.assignmentId))),
-  submit: protectedProcedure.input(z.object({ assignmentId: id, payload: z.record(z.unknown()), timeMs }))
+  submit: protectedProcedure.input(z.object({ assignmentId: id, payload: z.record(z.string(), z.unknown()), timeMs }))
     .mutation(({ ctx, input }) => run(ctx, (a) => work.submitAssignment(a, input))),
   adjudications: protectedProcedure.query(({ ctx }) => run(ctx, (a) => work.adjudicationQueue(a))),
   openAdjudication: protectedProcedure.input(z.object({ taskId: id })).query(({ ctx, input }) => run(ctx, (a) => work.openAdjudication(a, input.taskId))),
-  adjudicate: protectedProcedure.input(z.object({ taskId: id, payload: z.record(z.unknown()), reason: z.string().max(2000), timeMs }))
+  adjudicate: protectedProcedure.input(z.object({ taskId: id, payload: z.record(z.string(), z.unknown()), reason: z.string().max(2000), timeMs }))
     .mutation(({ ctx, input }) => run(ctx, (a) => work.submitAdjudication(a, input))),
   copies: protectedProcedure.query(({ ctx }) => run(ctx, (a) => copyQueue(a))),
 

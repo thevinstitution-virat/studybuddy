@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { MenuRouter } from '@/lib/ai/menu/menu-router'
+import { requirePlatformStaff } from '@/lib/auth/require-platform-staff'
 
 /**
  * Health Check Endpoint for Agent Initialization
@@ -24,6 +25,8 @@ import { MenuRouter } from '@/lib/ai/menu/menu-router'
  *   }
  */
 export async function GET() {
+  const __guard = await requirePlatformStaff()
+  if (!__guard.ok) return __guard.response
   try {
     // Initialize MenuRouter to check agent availability
     const menuRouter = new MenuRouter()

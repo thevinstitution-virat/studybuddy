@@ -9,6 +9,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 
 const nextConfig: NextConfig = {
+  // Phase 0: don't advertise the framework.
+  poweredByHeader: false,
   // NOTE: `output: 'standalone'` is intentionally NOT used here. In this
   // npm-workspace monorepo, standalone tracing can't see the hoisted root
   // node_modules from apps/web, and the fix (outputFileTracingRoot) conflicts
@@ -67,6 +69,8 @@ const nextConfig: NextConfig = {
           { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' },
           { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
+          // Non-breaking CSP directives only (no script-src yet: MathJax / Google / Sentry need an audited allowlist, Phase 3).
+          { key: 'Content-Security-Policy', value: "object-src 'none'; base-uri 'self'; frame-ancestors 'self'; upgrade-insecure-requests" },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           {
             key: 'Permissions-Policy',

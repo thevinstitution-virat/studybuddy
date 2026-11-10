@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
 
     // Parse preferences and format response
     const formattedTeachers = teachers.map(teacher => {
-      let preferences = {}
+      let preferences: any = {}
       try {
         preferences = teacher.preferences ? JSON.parse(teacher.preferences) : {}
       } catch (e) {

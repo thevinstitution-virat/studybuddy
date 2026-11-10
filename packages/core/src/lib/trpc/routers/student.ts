@@ -321,6 +321,11 @@ export const studentRouter = createTRPCRouter({
         if (process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_ID !== 'dummy') {
           razorpayOrder = await razorpay.orders.create(orderOptions);
         } else {
+          // SECURITY (Phase 0): a mock order is only for local development. In production a missing gateway must
+          // fail, never fabricate an order.
+          if (process.env.NODE_ENV === 'production') {
+            throw new TRPCError({ code: 'SERVICE_UNAVAILABLE' as never, message: 'Payments are not available yet.' });
+          }
           razorpayOrder = { id: 'order_mock_' + crypto.randomUUID() };
         }
       } catch (error: any) {
@@ -467,6 +472,9 @@ export const studentRouter = createTRPCRouter({
         if (razorpay && process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_ID !== 'dummy') {
           newRazorpayOrder = await razorpay.orders.create(orderOptions);
         } else {
+          if (process.env.NODE_ENV === 'production') {
+            throw new TRPCError({ code: 'SERVICE_UNAVAILABLE' as never, message: 'Payments are not available yet.' });
+          }
           newRazorpayOrder = { id: 'order_mock_' + crypto.randomUUID() };
         }
       } catch (error) {
@@ -1262,7 +1270,7 @@ export const studentRouter = createTRPCRouter({
       eventType: z.enum(['video_play','video_pause','video_seek','video_complete',
                          'video_speed_change','quiz_start','quiz_submit',
                          'session_start','session_end']),
-      metadata:  z.record(z.unknown()).optional(),
+      metadata:  z.record(z.string(), z.unknown()).optional(),
     }))
     .mutation(async ({ ctx, input }) => {
       const tenantId = ctx.tenantId!;
