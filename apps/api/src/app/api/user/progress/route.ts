@@ -3,6 +3,8 @@ import { db } from '@/db/index';
 import { eq, sql, desc, gte } from 'drizzle-orm';
 import { aiTutorUsage } from '@/db/schema';
 import { Langfuse } from 'langfuse';
+import { requireUser } from '@/lib/auth/require-user';
+import { and } from 'drizzle-orm';
 
 const langfuse = new Langfuse({
     publicKey: process.env.LANGFUSE_PUBLIC_KEY,
@@ -12,12 +14,12 @@ const langfuse = new Langfuse({
 
 export async function GET(req: NextRequest) {
     try {
-        const { searchParams } = new URL(req.url);
-        const userId = searchParams.get('userId');
-
-        if (!userId) {
-            return NextResponse.json({ error: 'Missing userId parameter' }, { status: 400 });
-        }
+        // SECURITY (Phase 0): this route used to trust ?userId= with no login, so anyone could read any
+        // user's activity (and the chart below was not even filtered by user). It now serves the
+        // signed-in user only; a userId in the query is ignored.
+        const guard = await requireUser();
+        if (!guard.ok) return guard.response;
+        const userId = guard.userId;
 
         // 1. Fetch data from DB: Total queries and weekly activity
         const sevenDaysAgo = new Date();
@@ -35,7 +37,7 @@ export async function GET(req: NextRequest) {
             dayStr: sql<string>`DATE(${aiTutorUsage.date})`,
             count: sql<number>`SUM(${aiTutorUsage.questionsAsked})`,
         }).from(aiTutorUsage)
-            .where(gte(aiTutorUsage.date, sevenDaysAgo))
+            .where(and(eq(aiTutorUsage.userId, userId), gte(aiTutorUsage.date, sevenDaysAgo)))
             .groupBy(sql`DATE(${aiTutorUsage.date})`)
             .orderBy(sql`DATE(${aiTutorUsage.date})`);
 

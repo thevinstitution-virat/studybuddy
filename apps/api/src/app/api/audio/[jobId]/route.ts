@@ -8,11 +8,14 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { audioGenerationQueue } from '@/lib/queues';
+import { requireUser } from '@/lib/auth/require-user'
 
 export async function GET(
     _req: NextRequest,
     { params }: { params: Promise<{ jobId: string }> }
 ) {
+  const __guard = await requireUser()
+  if (!__guard.ok) return __guard.response
     const { jobId } = await params;
 
     try {

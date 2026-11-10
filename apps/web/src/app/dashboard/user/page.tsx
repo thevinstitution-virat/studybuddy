@@ -24,8 +24,6 @@ const TOOLS: { icon: string; tone: Tone; name: string; sub: string; href: string
   { icon: 'sanchika', tone: 'saf', name: 'Sanchika', sub: 'Notes and flashcards', href: '/dashboard/user/sanchika' },
   { icon: 'materials', tone: 'stone', name: 'Materials', sub: 'NCERT resources', href: '/dashboard/user/materials' },
   { icon: 'shabdakosh', tone: 'rose', name: 'Shabdakosh', sub: 'English ⇄ हिन्दी', href: '/dashboard/user/dictionary' },
-  { icon: 'mitram', tone: 'lav', name: 'Mitram', sub: 'Aptitude insight', href: '/dashboard/user/mitram' },
-  { icon: 'productivity', tone: 'butter', name: 'Productivity', sub: 'Plan and focus', href: '/dashboard/user/productivity' },
 ]
 
 function greeting(d: Date) {

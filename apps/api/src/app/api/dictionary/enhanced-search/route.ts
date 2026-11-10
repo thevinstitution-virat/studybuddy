@@ -5,8 +5,11 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { enhancedDictionary } from '@/lib/services/enhanced-dictionary'
+import { requireUser } from '@/lib/auth/require-user'
 
 export async function GET(request: NextRequest) {
+  const __guard = await requireUser()
+  if (!__guard.ok) return __guard.response
   try {
     const { searchParams } = new URL(request.url)
     const query = searchParams.get('q')
@@ -57,6 +60,8 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  const __guard = await requireUser()
+  if (!__guard.ok) return __guard.response
   try {
     const { word } = await request.json()
 

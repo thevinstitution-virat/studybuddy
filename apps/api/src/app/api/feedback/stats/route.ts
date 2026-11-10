@@ -5,6 +5,7 @@
  * Returns aggregated feedback statistics with filtering options
  */
 
+import { requirePlatformStaff } from '@/lib/auth/require-platform-staff'
 import { NextRequest, NextResponse } from 'next/server';
 import { getConnection } from '@/lib/db/connection';
 import {
@@ -21,6 +22,8 @@ export const runtime = 'nodejs';
 // ============================================================================
 
 export async function GET(req: NextRequest) {
+  const __guard = await requirePlatformStaff()
+  if (!__guard.ok) return __guard.response
   const startTime = Date.now();
   let connection;
 

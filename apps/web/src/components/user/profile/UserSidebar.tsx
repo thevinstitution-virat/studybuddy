@@ -101,25 +101,10 @@ export default function UserSidebar({ user }: UserSidebarProps) {
           shortName: 'Ink',
         })]
       : []),
-    createNavigationItem('Sarvagya', '/dashboard/sarvagya', Search, {
-      description: 'AI Research Assistant',
-      featured: true,
-      section: 'AI & Research',
-    }),
-    createNavigationItem('Mitram', '/dashboard/user/mitram', Heart, {
-      description: 'Psychological & Aptitude Assessment',
-      featured: true,
-      section: 'AI & Research',
-    }),
 
     // Tools & Reference
     createNavigationItem('Shabdakosh', '/dashboard/user/dictionary', Bookmark, {
       description: 'English-Hindi Dictionary',
-      featured: true,
-      section: 'Tools & Reference',
-    }),
-    createNavigationItem('Productivity Tools', '/dashboard/user/productivity', Rocket, {
-      description: 'Revolutionary study features',
       featured: true,
       section: 'Tools & Reference',
     }),

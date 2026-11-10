@@ -70,7 +70,6 @@ export const PLATFORM_NAV: DashboardNavItem[] = [
   { section: 'Content & Knowledge', name: 'Live Classes', href: '/dashboard/super-admin/live-classes', icon: Video, description: 'Global live classes' },
 
   // AI & Infrastructure
-  { section: 'AI & Infrastructure', name: 'Sarvagya AI', href: '/dashboard/super-admin/sarvagya', icon: Brain, description: 'Document-AI microservice', gradient: ' ' },
   { section: 'AI & Infrastructure', name: 'Vector DB', href: '/dashboard/super-admin/database', icon: Database, description: 'AI knowledge base' },
   { section: 'AI & Infrastructure', name: 'Performance', href: '/dashboard/super-admin/performance', icon: Activity, description: 'System monitoring' },
 
@@ -140,14 +139,11 @@ export const STUDENT_NAV: DashboardNavItem[] = [
   { name: 'My Courses', href: '/dashboard/student', icon: MonitorPlay, description: 'Video lectures & live classes', featured: true, gradient: ' ' },
   { name: 'My Progress', href: '/dashboard/student/progress', icon: LineChart, description: 'Track your learning', featured: true, gradient: ' ' },
   { name: 'AI Tutor', href: '/dashboard/user/ai-tutor', icon: Brain, description: 'Chat with your AI teacher', featured: true, gradient: ' ' },
-  { name: 'Sarvagya', href: '/dashboard/sarvagya', icon: Search, description: 'AI research assistant', featured: true, gradient: ' ' },
   { name: 'Study Materials', href: '/dashboard/user/materials', icon: BookOpen, description: 'Course content', featured: true, gradient: ' ' },
   { name: 'Assignments', href: '/dashboard/student/assignments', icon: FileText, description: 'Written answers for your teacher', featured: true, gradient: ' ' },
   { name: 'Practest', href: '/dashboard/user/practest', icon: FileText, description: 'AI assessment engine', featured: true, gradient: ' ' },
   { name: 'Sanchika', href: '/dashboard/user/sanchika', icon: FolderTree, description: 'Smart notes workspace', featured: true, gradient: ' ' },
   { name: 'Dictionary', href: '/dashboard/user/dictionary', icon: Bookmark, description: 'English-Hindi dictionary', featured: true, gradient: ' ' },
-  { name: 'Mitram', href: '/dashboard/user/mitram', icon: Heart, description: 'Focus & aptitude', featured: true, gradient: ' ' },
-  { name: 'Productivity', href: '/dashboard/user/productivity', icon: Rocket, description: 'Study tools', featured: true, gradient: ' ' },
   { name: 'Subscription', href: '/dashboard/user/pricing', icon: CreditCard, description: 'Plan & billing', gradient: 'from-slate-400 to-slate-500' },
   { name: 'Profile', href: '/dashboard/user/profile', icon: User, description: 'Settings & preferences', gradient: ' ' },
   { name: 'Payment History', href: '/dashboard/student/purchases', icon: Receipt, description: 'Receipts for paid batches', gradient: ' ' },

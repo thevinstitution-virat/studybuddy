@@ -3,6 +3,7 @@
  * Creates the missing dictionary_words table and populates it with essential vocabulary
  */
 
+import { requirePlatformOwner } from '@/lib/auth/require-platform-staff'
 import { NextRequest, NextResponse } from 'next/server'
 import { 
   migrateDictionaryTable, 
@@ -11,6 +12,8 @@ import {
 } from '@/lib/db/migrate-dictionary'
 
 export async function GET(request: NextRequest) {
+  const __guard = await requirePlatformOwner()
+  if (!__guard.ok) return __guard.response
   try {
     console.log('🔍 Checking dictionary table status...')
     
@@ -43,6 +46,8 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  const __guard = await requirePlatformOwner()
+  if (!__guard.ok) return __guard.response
   try {
     const { action } = await request.json()
     

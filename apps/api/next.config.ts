@@ -15,6 +15,8 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  // Phase 0: don't advertise the framework.
+  poweredByHeader: false,
   // Security headers on every API response. CSP is omitted on purpose — this is
   // a headless JSON API with no HTML/inline scripts to constrain. Mirrors the web
   // app's set (apps/web/next.config.ts); X-Frame-Options is DENY here because API
@@ -27,6 +29,8 @@ const nextConfig: NextConfig = {
           { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' },
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
+          // JSON API: nothing here should ever be rendered, framed or scripted.
+          { key: 'Content-Security-Policy', value: "default-src 'none'; frame-ancestors 'none'" },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           {
             key: 'Permissions-Policy',

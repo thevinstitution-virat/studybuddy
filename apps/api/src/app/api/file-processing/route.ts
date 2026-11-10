@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { writeFile, unlink } from 'fs/promises'
 import { join } from 'path'
 import { v4 as uuidv4 } from 'uuid'
+import { requireUser } from '@/lib/auth/require-user'
 // Legacy dependency removed: pdf-parse
 
 // File processing configuration
@@ -32,6 +33,8 @@ interface ProcessingResult {
 }
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  const __guard = await requireUser()
+  if (!__guard.ok) return __guard.response
   const startTime = Date.now()
 
   try {
@@ -175,6 +178,8 @@ async function ensureTmpDirectory(): Promise<void> {
 
 // Health check endpoint
 export async function GET(): Promise<NextResponse> {
+  const __guard = await requireUser()
+  if (!__guard.ok) return __guard.response
   return NextResponse.json({
     status: 'healthy',
     supportedTypes: Object.keys(ALLOWED_TYPES),

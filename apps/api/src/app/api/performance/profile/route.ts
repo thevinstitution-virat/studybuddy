@@ -15,6 +15,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { executeQuery } from '@/lib/db/connection'
 import { v4 as uuidv4 } from 'uuid'
+import { requireUser } from '@/lib/auth/require-user'
 
 interface PerformanceProfile {
   feedbackId: string
@@ -44,6 +45,8 @@ interface PerformanceProfile {
 }
 
 export async function POST(req: NextRequest) {
+  const __guard = await requireUser()
+  if (!__guard.ok) return __guard.response
   try {
     // Parse request body
     const profile: PerformanceProfile = await req.json()

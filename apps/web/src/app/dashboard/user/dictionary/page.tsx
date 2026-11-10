@@ -1,6 +1,6 @@
 'use client'
 
-import { PageHeader } from '@/components/sb'
+import { EmptyState, PageHeader } from '@/components/sb'
 import React, { useState, useEffect, useRef } from 'react'
 import { api } from '@/lib/trpc/client'
 import {
@@ -274,42 +274,6 @@ function QuizTab() {
   }
 
   return null
-}
-
-// Mock data
-const mockRecentWords = [
-  {
-    id: 1,
-    word: 'Serendipity',
-    hindiTranslation: 'संयोग से मिली खुशी',
-    partOfSpeech: 'noun',
-    difficultyLevel: 'advanced',
-    lastReviewed: '2 hours ago'
-  },
-  {
-    id: 2,
-    word: 'Ephemeral',
-    hindiTranslation: 'क्षणिक',
-    partOfSpeech: 'adjective',
-    difficultyLevel: 'intermediate',
-    lastReviewed: '1 day ago'
-  }
-]
-
-const mockWordOfDay = {
-  word: 'Resilience',
-  hindiTranslation: 'लचीलापन, सहनशीलता',
-  devanagariScript: 'रेज़िलिएंस',
-  partOfSpeech: 'noun',
-  englishDefinition: 'The ability to recover quickly from difficulties; mental or emotional strength.',
-  examples: [
-    {
-      english: 'Her resilience helped her overcome the challenges.',
-      hindi: 'उसकी सहनशीलता ने उसे चुनौतियों से पार पाने में मदद की।'
-    }
-  ],
-  culturalContext: 'In Indian philosophy, resilience is often associated with the concept of "धैर्य" (patience) and inner strength.',
-  amarkoshaCategory: 'Mental Qualities'
 }
 
 // Audio Player Component
@@ -675,7 +639,7 @@ export default function DictionaryPage() {
       if (results.length === 0 && isOnline) {
         try {
           console.log('🌐 Using Microsoft Translator...')
-          const translatorResponse = await fetch('/api/dictionary/test-translator', {
+          const translatorResponse = await fetch('/api/dictionary/translate', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -1502,150 +1466,12 @@ export default function DictionaryPage() {
 
           {/* Enhanced Word of Day Tab */}
           <TabsContent value="word-of-day" className="space-y-8">
-            <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20">
-              <div className="mb-8">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg">
-                    <Globe className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
-                      Word of the Day
-                    </h3>
-                    <p className="text-muted-foreground">
-                      Expand your vocabulary with today's featured word
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-8">
-                <div className="text-center space-y-4 p-8 bg-sb-surface-2  to-primary/10  dark:to-primary/15 rounded-2xl border border-sb-saffron">
-                  <div className="w-16 h-16 mx-auto bg-sb-surface-2 from-[#E5283A] to-[#FF6B35] rounded-2xl flex items-center justify-center shadow-lg mb-4">
-                    <Crown className="h-8 w-8 text-white" />
-                  </div>
-                  <h2 className="text-4xl font-bold text-foreground">
-                    {mockWordOfDay.word}
-                  </h2>
-                  <p className="text-2xl font-semibold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
-                    {mockWordOfDay.hindiTranslation}
-                  </p>
-                  <p className="text-lg text-muted-foreground">
-                    {mockWordOfDay.devanagariScript}
-                  </p>
-                  <Badge className={`${getDifficultyColor('intermediate')} px-4 py-2 rounded-xl font-semibold`}>
-                    {mockWordOfDay.partOfSpeech}
-                  </Badge>
-                </div>
-
-                <div className="grid md:grid-cols-1 gap-6">
-                  <div className="bg-white/60 p-6 rounded-2xl">
-                    <h4 className="text-lg font-bold text-foreground mb-3 flex items-center">
-                      <BookOpen className="h-5 w-5 mr-2 text-sb-saffron-deep" />
-                      Definition
-                    </h4>
-                    <p className="text-foreground leading-relaxed">{mockWordOfDay.englishDefinition}</p>
-                  </div>
-
-                  <div className="bg-white/60 p-6 rounded-2xl">
-                    <h4 className="text-lg font-bold text-foreground mb-3 flex items-center">
-                      <Sparkles className="h-5 w-5 mr-2 text-primary" />
-                      Example
-                    </h4>
-                    <div className="bg-sb-surface-2 from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 p-4 rounded-xl border border-primary/20">
-                      <p className="text-foreground mb-2">{mockWordOfDay.examples[0].english}</p>
-                      <p className="text-lg font-semibold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
-                        {mockWordOfDay.examples[0].hindi}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="bg-white/60 p-6 rounded-2xl">
-                    <h4 className="text-lg font-bold text-foreground mb-3 flex items-center">
-                      <Globe className="h-5 w-5 mr-2 text-sb-saffron-deep" />
-                      Cultural Context
-                    </h4>
-                    <p className="text-foreground leading-relaxed">{mockWordOfDay.culturalContext}</p>
-                  </div>
-
-                  <div className="flex items-center justify-center gap-4 pt-4">
-                    <Button
-                      variant="outline"
-                      className="px-6 py-3 h-12 rounded-xl border-sb-saffron hover:border-sb-saffron hover:bg-sb-saffron-tint text-sb-saffron-deep font-semibold transition-all duration-200 transform hover:scale-105 active:scale-95 flex items-center justify-center"
-                    >
-                      <Volume2 className="h-5 w-5 mr-2" />
-                      <span>Pronunciation</span>
-                    </Button>
-                    <Button
-                      className="px-6 py-3 h-12 bg-sb-surface-2 from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
-                    >
-                      <Heart className="h-5 w-5 mr-2" />
-                      <span>Add to Learning</span>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <EmptyState icon="shabdakosh" title="Word of the day is coming soon" body="A new word, with Hindi meaning and examples, will appear here once the word list is loaded." />
           </TabsContent>
 
           {/* Enhanced Recent Words Tab */}
           <TabsContent value="recent" className="space-y-8">
-            {/* Cache Statistics */}
-            <CacheStats className="mb-8" />
-
-            <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20">
-              <div className="mb-8">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-sb-surface-2 from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
-                    <BookOpen className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
-                      Recently Learned Words
-                    </h3>
-                    <p className="text-muted-foreground">
-                      Words you've studied recently
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                {mockRecentWords.map((word, index) => (
-                  <div key={word.id} className="p-6 bg-sb-surface-2 from-white to-muted/40 dark:from-[var(--navy-deep)] dark:to-[var(--slate-blue)] border border-border/50 rounded-2xl hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-sb-surface-2 from-primary to-primary/80 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                          {index + 1}
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-3 mb-2">
-                            <h4 className="text-xl font-bold text-foreground">{word.word}</h4>
-                            <Badge className={`${getDifficultyColor(word.difficultyLevel)} px-3 py-1 rounded-xl font-medium`}>
-                              {word.partOfSpeech}
-                            </Badge>
-                          </div>
-                          <p className="text-lg font-semibold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]   mb-1">
-                            {word.hindiTranslation}
-                          </p>
-                          <p className="text-sm text-muted-foreground flex items-center">
-                            <Target className="h-4 w-4 mr-1" />
-                            Last reviewed: {word.lastReviewed}
-                          </p>
-                        </div>
-                      </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="w-12 h-12 p-0 rounded-xl hover:bg-primary/10 hover:text-primary transition-all duration-200 transform hover:scale-105 active:scale-95 flex items-center justify-center"
-                      >
-                        <Volume2 className="h-5 w-5" />
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <EmptyState icon="shabdakosh" title="No recent words yet" body="Words you search will show up here so you can review them." />
           </TabsContent>
 
           {/* Enhanced Quiz Tab */}

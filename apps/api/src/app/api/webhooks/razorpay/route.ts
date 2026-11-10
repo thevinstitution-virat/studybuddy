@@ -13,17 +13,17 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Missing signature' }, { status: 400 });
     }
 
-    const expectedSignature = crypto
-      .createHmac('sha256', process.env.RAZORPAY_WEBHOOK_SECRET || 'dummy_webhook_secret')
-      .update(bodyText)
-      .digest('hex');
-
-    if (expectedSignature !== signature) {
-      // For local testing without a real webhook, we might bypass this,
-      // but in production, we MUST fail on invalid signature.
-      if (process.env.NODE_ENV === 'production') {
-        return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
-      }
+    // SECURITY (Phase 0): fail closed. There is no default secret, and an invalid signature is rejected in
+    // every environment (it used to fall back to 'dummy_webhook_secret' and skip the check outside production).
+    const secret = process.env.RAZORPAY_WEBHOOK_SECRET;
+    if (!secret) {
+      console.error('razorpay webhook: RAZORPAY_WEBHOOK_SECRET is not configured; rejecting');
+      return NextResponse.json({ error: 'Webhook not configured' }, { status: 503 });
+    }
+    const expected = Buffer.from(crypto.createHmac('sha256', secret).update(bodyText).digest('hex'));
+    const provided = Buffer.from(signature);
+    if (expected.length !== provided.length || !crypto.timingSafeEqual(expected, provided)) {
+      return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
     }
 
     const payload = JSON.parse(bodyText);

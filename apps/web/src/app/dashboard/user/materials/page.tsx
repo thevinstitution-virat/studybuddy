@@ -165,25 +165,9 @@ export default function MaterialsPage() {
   const availableSubjects = ['Mathematics', 'Science', 'English', 'Hindi', 'Social Studies']
 
   const fetchMaterials = async () => {
-    // Mock data for demonstration
-    const mockMaterials: MaterialItem[] = [
-      {
-        id: '1',
-        title: 'Advanced Mathematics Notes',
-        description: 'Comprehensive notes covering algebra, geometry, and calculus',
-        subject: 'Mathematics',
-        type: 'notes',
-        fileUrl: '/materials/math-notes.pdf',
-        fileSize: 2048000,
-        downloadCount: 156,
-        tags: ['algebra', 'geometry', 'calculus'],
-        metadata: {
-          difficulty: 'medium',
-          duration: '2 hours',
-          author: 'Dr. Smith'
-        }
-      }
-    ]
+    // Phase 0: the invented sample material is gone. Real materials arrive with the materials API in Phase 1;
+    // until then students see the empty state.
+    const mockMaterials: MaterialItem[] = []
 
     setDashboardState(prev => ({
       ...prev,
