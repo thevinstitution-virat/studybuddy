@@ -9,12 +9,12 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground hover:bg-primary/90",
+          "bg-[image:var(--sb-grad-primary)] text-[#0A0F24] shadow-[var(--sb-shadow-gloss)] hover:-translate-y-px hover:brightness-105",
         // Hero brand action: animated orange→indigo→blue gradient with a soft glow
         gradient:
-          "bg-primary text-primary-foreground hover:bg-primary/90",
+          "bg-[image:var(--sb-grad-primary)] text-[#0A0F24] shadow-[var(--sb-shadow-gloss)] hover:-translate-y-px hover:brightness-105",
         brand:
-          "bg-primary text-primary-foreground hover:bg-primary/90",
+          "bg-[image:var(--sb-grad-ai)] text-white shadow-[var(--sb-shadow-gloss-ai)] hover:-translate-y-px hover:brightness-110",
         destructive:
           "border-[1.5px] border-destructive bg-transparent text-destructive hover:bg-destructive/10",
         outline:
@@ -26,7 +26,7 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         success:
-          "bg-primary text-primary-foreground hover:bg-primary/90",
+          "bg-[image:var(--sb-grad-stage)] text-white shadow-[var(--sb-shadow-stage)] hover:-translate-y-px",
       },
       size: {
         default: "h-12 px-5 py-2",

@@ -54,6 +54,18 @@
   /* shape + floating-layer shadows (cards are flat) */
   --sb-r-card: 24px; --sb-r-hero: 30px; --sb-r-input: 16px; --sb-r-fab: 19px;
   --sb-float: #FFFFFF;   /* floating layers: speed-dial pills, snackbars on paper */
+  /* Book Buddy-grade depth: glossy saffron primary, stage + AI gradients, layered card shadows */
+  --sb-grad-primary: linear-gradient(180deg, #FFC067 0%, #FF9933 55%, #EE7A0C 100%);
+  --sb-grad-stage: linear-gradient(150deg, #16224A 0%, #0A0F24 70%);
+  --sb-grad-ai: linear-gradient(160deg, #4C6FFF 0%, #3B5BDB 45%, #1E3A8A 100%);
+  --sb-grad-sky: linear-gradient(180deg, #FFE3C8 0%, #FFF2DB 100%);
+  --sb-shadow-gloss: inset 0 1px 0 rgba(255,255,255,.6), inset 0 -2px 0 rgba(150,70,0,.22), 0 12px 24px -10px rgba(255,153,51,.75);
+  --sb-shadow-gloss-ai: inset 0 1px 0 rgba(255,255,255,.45), 0 12px 22px -8px rgba(59,91,219,.85);
+  --sb-shadow-card: 0 1px 0 var(--sb-line), 0 18px 40px -26px rgba(6,10,30,.5);
+  --sb-shadow-card-hover: 0 1px 0 var(--sb-line), 0 30px 50px -26px rgba(6,10,30,.5);
+  --sb-shadow-stage: inset 0 1px 0 rgba(255,255,255,.1), 0 30px 60px -30px rgba(10,15,36,.8);
+  --sb-glass: rgba(255,255,255,.72);
+  --sb-glow-stage: radial-gradient(circle, rgba(255,153,51,.30), rgba(59,91,219,.26) 45%, transparent 70%);
   --sb-shadow-fab: 0 16px 30px -14px #0A0F24AA;
   --sb-shadow-sheet: 0 -20px 40px -20px #0A0F2466;
   --sb-shadow-snack: 0 18px 40px -16px #0A0F24AA;
@@ -112,17 +124,17 @@
   --bb-hover: var(--sb-surface-2);
   --bb-on-accent: #0A0F24;
   /* gradients are retired (brief: no gradients except the highlighter) — flat fills */
-  --bb-grad-primary: linear-gradient(var(--sb-primary), var(--sb-primary));
-  --bb-grad-stage: linear-gradient(var(--sb-navy), var(--sb-navy));
-  --bb-grad-navy: linear-gradient(var(--sb-navy), var(--sb-navy));
-  --bb-grad-cobalt: linear-gradient(var(--sb-sky-ink), var(--sb-sky-ink));
-  --bb-grad-ai-card: linear-gradient(var(--sb-lav-ink), var(--sb-lav-ink));
-  --bb-grad-progress: linear-gradient(var(--sb-saffron), var(--sb-saffron));
+  --bb-grad-primary: var(--sb-grad-primary);
+  --bb-grad-stage: var(--sb-grad-stage);
+  --bb-grad-navy: var(--sb-grad-stage);
+  --bb-grad-cobalt: var(--sb-grad-ai);
+  --bb-grad-ai-card: var(--sb-grad-ai);
+  --bb-grad-progress: linear-gradient(90deg, #FFC067, #FF9933);
   --bb-glow-stage: radial-gradient(circle, #FF99332E, transparent 70%);
-  --bb-sheen: none;
-  --bb-shadow-glow-blaze: none;
-  --bb-shadow-glow-cobalt: none;
-  --bb-shadow-gloss: none;
+  --bb-sheen: linear-gradient(180deg, rgba(255,255,255,.14), transparent 45%);
+  --bb-shadow-glow-blaze: var(--sb-shadow-gloss);
+  --bb-shadow-glow-cobalt: var(--sb-shadow-gloss-ai);
+  --bb-shadow-gloss: var(--sb-shadow-gloss);
   --bb-focus-ring: 0 0 0 2px var(--sb-paper), 0 0 0 4px var(--sb-saffron);
   --bb-font-display: var(--sb-font-display);
   --bb-font-ui: var(--sb-font-ui);
@@ -221,6 +233,9 @@
   --sb-frame: #2A3358;
   --sb-float: #232C52;
   --sb-shadow-fab: 0 16px 30px -14px #000000CC;
+  --sb-shadow-card: 0 1px 0 var(--sb-line), 0 18px 40px -26px rgba(0,0,0,.7);
+  --sb-shadow-card-hover: 0 1px 0 var(--sb-line), 0 30px 50px -24px rgba(0,0,0,.9);
+  --sb-glass: rgba(19,26,51,.72);
   --sb-shadow-sheet: 0 -20px 40px -20px #000000AA;
   --sb-shadow-snack: 0 18px 40px -16px #000000CC;
   --sb-shadow-float: 0 20px 40px -24px #000000CC;
@@ -298,15 +313,16 @@ h1, h2, h3, h4 { font-family: var(--sb-font-display); letter-spacing: -0.02em; }
 
 /* Primary action = navy (saffron in dark). Accent-on-navy = saffron. */
 .dcl .btn-primary, .dcd .btn-primary, .dcs .btn-primary, .btn-primary {
-  background: var(--sb-primary);
-  color: var(--sb-primary-fg);
-  box-shadow: none;
+  background: var(--sb-grad-primary);
+  color: #0A0F24;
+  box-shadow: var(--sb-shadow-gloss);
   border-radius: 16px;
   font-weight: 800;
 }
 .dcl .btn-primary:hover, .dcd .btn-primary:hover, .dcs .btn-primary:hover:not(:disabled), .btn-primary:hover:not(:disabled) {
-  background: var(--sb-primary-hover);
-  box-shadow: none;
+  background: var(--sb-grad-primary);
+  box-shadow: var(--sb-shadow-gloss), 0 18px 30px -12px rgba(255,153,51,.55);
+  transform: translateY(-1px);
 }
 .dcl .grad, .dcd .grad { background-image: none; color: var(--sb-saffron-deep); -webkit-text-fill-color: currentColor; }
 
@@ -358,24 +374,24 @@ h1, h2, h3, h4 { font-family: var(--sb-font-display); letter-spacing: -0.02em; }
 
 /* ---- legacy utilities: flatten the gradient / glass / lift helpers that older pages still use ---- */
 :root, .dark { --dc-grad: linear-gradient(var(--sb-primary), var(--sb-primary)); --dc-grad-br: linear-gradient(var(--sb-primary), var(--sb-primary)); --dc-grad-cool: linear-gradient(var(--sb-navy), var(--sb-navy)); --dc-grad-warm: linear-gradient(var(--sb-saffron), var(--sb-saffron)); }
-/* primary CTAs written as bg-[image:var(--bb-grad-primary)] + text-white: saffron in night mode needs navy text */
-.dark [class*='--bb-grad-primary'], .dark [class*='--dc-grad'] { color: #0A0F24 !important; }
+/* primary CTAs written as bg-[image:var(--bb-grad-primary)] + text-white: the saffron gloss needs navy text */
+[class*='--bb-grad-primary'], [class*='--dc-grad'] { color: #0A0F24 !important; }
 .dc-gradient-text, .dc-gradient-text-cool, .dc-gradient-text-warm {
   background: none !important; background-image: none !important; -webkit-text-fill-color: currentColor !important; color: var(--sb-saffron-deep) !important;
 }
 .dc-glass-card { background: var(--sb-surface) !important; backdrop-filter: none !important; border: 1px solid var(--sb-line) !important; box-shadow: none !important; }
 .dc-gradient-border::before { display: none !important; }
 .dc-gradient-border { border: 1px solid var(--sb-line) !important; background: var(--sb-surface) !important; }
-.dc-hover-lift:hover { transform: none !important; box-shadow: none !important; }
+.dc-hover-lift:hover { transform: translateY(-3px); box-shadow: var(--sb-shadow-card-hover); }
 
 /* scoped dashboard / student sheets: flat cards, 16px buttons, saffron chips, navy active pills */
-.dcd .card, .dcs .card { box-shadow: none; border-radius: 24px; border-color: var(--sb-line); }
-.dcd .card.lift:hover, .dcs .card.lift:hover { transform: none; box-shadow: none; border-color: var(--sb-ink); }
+.dcd .card, .dcs .card { box-shadow: var(--sb-shadow-card); border-radius: 28px; border-color: var(--sb-line); }
+.dcd .card.lift:hover, .dcs .card.lift:hover { transform: translateY(-3px); box-shadow: var(--sb-shadow-card-hover); border-color: var(--sb-line); }
 .dcd .btn, .dcs .btn { border-radius: 16px; font-weight: 800; min-height: 44px; }
-.dcd .btn-primary, .dcs .btn-primary { transform: none !important; }
+
 .dcd .btn-ghost, .dcs .btn-ghost { border: 1.5px solid var(--sb-ink); color: var(--sb-ink); background: transparent; }
 .dcd .btn-ghost:hover, .dcs .btn-ghost:hover { background: color-mix(in srgb, var(--sb-ink) 6%, transparent); color: var(--sb-ink); border-color: var(--sb-ink); }
-.dcd .pill.on, .dcs .pill.on { background: var(--sb-navy); color: #fff; border-color: transparent; box-shadow: none; }
+.dcd .pill.on, .dcs .pill.on { background: var(--sb-grad-stage); color: #fff; border-color: transparent; box-shadow: var(--sb-shadow-stage); }
 .dcd .pill, .dcs .pill { border-radius: 999px; font-weight: 700; }
 .dcd .pill:hover, .dcs .pill:hover { border-color: var(--sb-ink); color: var(--sb-ink); }
 .dcd .eyebrow, .dcs .eyebrow { background: var(--sb-saffron-tint); color: var(--sb-saffron-deep); border: none; }
@@ -404,5 +420,5 @@ h1, h2, h3, h4 { font-family: var(--sb-font-display); letter-spacing: -0.02em; }
 
 /* .chip (filter pills in the student sheets): navy when on, saffron-tint hover */
 .dcs .chip, .dcd .chip { border-radius: 999px; font-weight: 700; border: 1.5px solid var(--sb-line); background: var(--sb-surface); color: var(--sb-ink); }
-.dcs .chip.on, .dcd .chip.on { background: var(--sb-navy); color: #fff; border-color: transparent; box-shadow: none; }
+.dcs .chip.on, .dcd .chip.on { background: var(--sb-grad-stage); color: #fff; border-color: transparent; box-shadow: var(--sb-shadow-stage); }
 .dcs .chip:hover:not(.on), .dcd .chip:hover:not(.on) { border-color: var(--sb-ink); color: var(--sb-ink); }
