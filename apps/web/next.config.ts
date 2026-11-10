@@ -1,5 +1,6 @@
 import type { NextConfig } from 'next'
 import { withSentryConfig } from '@sentry/nextjs'
+import path from 'path'
 
 // Bundle analyzer setup
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -89,6 +90,12 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ['mysql2', 'pdf-parse', 'tesseract.js', 'pdf2pic'],
   ...(process.env.TURBOPACK !== '1' ? {
     webpack(config, { isServer, dev }) {
+      // Redesign: every `lucide-react` import renders its Phosphor equivalent (src/lib/icons/lucide-shim.tsx).
+      // `$` = exact match only, so the shim's own deep import of real lucide is not re-aliased.
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'lucide-react$': path.resolve(process.cwd(), 'src/lib/icons/lucide-shim.tsx'),
+      };
       // Ensure UMD/global wrappers use a Node-safe global
       if (isServer) {
         config.output = config.output || {};

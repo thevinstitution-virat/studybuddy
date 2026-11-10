@@ -6,15 +6,15 @@ const cardVariants = cva("text-card-foreground", {
   variants: {
     variant: {
       // Default premium surface: soft hairline border + layered shadow w/ inset highlight
-      default: "rounded-2xl border border-border/70 bg-card shadow-elev-2",
-      elevated: "rounded-2xl border border-border/60 bg-card shadow-elev-3",
-      glass: "rounded-2xl dc-glass-card",
-      gradient: "rounded-2xl dc-gradient-border",
-      plain: "rounded-2xl bg-card",
-      outline: "rounded-2xl border border-border bg-transparent",
+      default: "rounded-3xl border border-border bg-card",
+      elevated: "rounded-3xl border border-border bg-card",
+      glass: "rounded-3xl border border-border bg-card",
+      gradient: "rounded-3xl border border-border bg-card",
+      plain: "rounded-3xl bg-card",
+      outline: "rounded-3xl border border-border bg-transparent",
     },
     interactive: {
-      true: "dc-hover-lift cursor-pointer",
+      true: "cursor-pointer transition-transform duration-200 active:scale-[0.98]",
       false: "",
     },
   },
@@ -55,7 +55,7 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "text-xl font-semibold leading-tight tracking-tight",
+      "font-display text-xl font-bold leading-tight tracking-tight",
       className
     )}
     {...props}
