@@ -138,3 +138,11 @@ Open:
 - **Per-IP limits.** The burst limit is per session. A per-IP limit needs the real client IP, and the web app proxies API calls, so every user would share one address; it has to be done at the proxy (Traefik).
 - **16 moderate advisories**, none in code that handles user input at runtime: `esbuild` / `drizzle-kit` (dev server only), `@sentry/*` via `glob` (build time), `@tailwindcss/typography` (build time), `googleapis` / `uuid` (fix is a major upgrade), `fast-copy` via `pino-pretty`. KaTeX (low) has no non-breaking fix.
 - Legal pages and guardian consent (content needed from the owner).
+
+## 8. Sign-in limits were one counter for the whole site (2026-11-10)
+
+Found on live after PR #9. better-auth limits each client address to 8 sign-ins, 5 sign-ups and 120 other auth calls (session checks included) per minute. The web app proxied `/api` to the API's PUBLIC host, so the API saw the web container as the client for every visitor: after one machine used its 8 sign-in tries, a first attempt from a different machine got 429. Anyone could lock all users out of signing in with 8 bad attempts a minute, and one busy classroom would have hit the caps by itself. Calls made straight to the API host were already counted per real address, and forged `X-Forwarded-For` headers did not get round either path.
+
+Fix: the web proxy now calls the API on the stack's private network (`API_URL: http://api:3000` in `docker-compose.coolify.yml`), so the API receives the `X-Forwarded-For` that the edge proxy set from the real visitor.
+
+Still open here: there is no per-account lockout, CAPTCHA or two-factor sign-in, and a school behind one public address shares one counter (8 sign-ins a minute for the whole lab). The limits in `packages/core/src/auth/index.ts` need a decision before a school pilot.
