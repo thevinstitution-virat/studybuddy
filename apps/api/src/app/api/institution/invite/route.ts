@@ -1,3 +1,4 @@
+import { defaultAppUrl } from '@/lib/hw/eval-tools/invite-content'
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { headers } from "next/headers";
@@ -51,8 +52,10 @@ export const POST = withOrgContext(async (req: NextRequest, ctx: any, orgContext
     });
 
     // A copyable joining link (works even if email delivery isn't configured).
+    // Built from the configured web address, not from this request: the request reaches the API on an internal
+    // host name (and before that on the API's own host), and /accept-invitation is a page of the web app.
     const inviteId = result?.id ?? result?.invitation?.id;
-    const inviteLink = inviteId ? `${req.nextUrl.origin}/accept-invitation/${inviteId}` : null;
+    const inviteLink = inviteId ? `${defaultAppUrl().replace(/\/$/, '')}/accept-invitation/${inviteId}` : null;
 
     return NextResponse.json({
       success: true,

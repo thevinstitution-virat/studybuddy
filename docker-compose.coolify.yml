@@ -37,7 +37,13 @@ services:
       context: .
       dockerfile: apps/web/Dockerfile
       args:
-        API_URL: https://api.studybuddy.vinstitution.com
+        # The web app proxies every /api call to this address (next.config.ts rewrites, baked in at BUILD time).
+        # It is the API container on this stack's private network, NOT the public API host. Going out through
+        # the public host made the API see the web container as the client for every visitor, so better-auth's
+        # per-address limits (8 sign-ins a minute, 120 session checks a minute) were one counter shared by the
+        # whole site. Called directly, the API receives the X-Forwarded-For that the proxy set from the real
+        # visitor. `api` is this compose file's service name; 3000 is the port the api service listens on.
+        API_URL: http://api:3000
         NEXT_PUBLIC_API_URL: https://api.studybuddy.vinstitution.com
         NEXT_PUBLIC_APP_URL: https://studybuddy.vinstitution.com
         NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${NEXT_PUBLIC_GOOGLE_CLIENT_ID:-}
@@ -48,7 +54,7 @@ services:
       NODE_ENV: production
       PORT: "3000"
       HOSTNAME: 0.0.0.0
-      API_URL: https://api.studybuddy.vinstitution.com
+      API_URL: http://api:3000
       NEXT_PUBLIC_APP_URL: https://studybuddy.vinstitution.com
       NEXT_PUBLIC_FEDERATION_ENABLED: "false"
       SENTRY_DSN: ${NEXT_PUBLIC_SENTRY_DSN:-}
