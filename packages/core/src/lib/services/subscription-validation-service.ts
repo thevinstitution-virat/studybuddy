@@ -183,9 +183,11 @@ export class SubscriptionValidationService {
         .limit(1)
 
       if (!usage) {
-        // First question of the day
-        console.log(`✅ First question of the day for user ${userId}, limit: ${limit}`)
-        return { allowed: true, remaining: limit - 1, limit }
+        // Nothing asked yet today, so the whole allowance is left. This used to return limit - 1, which made
+        // every screen that shows the quota (dashboard, tutor header, pricing) claim one question was already
+        // used on a fresh day, and disagreed with the branch below, which reports what is left BEFORE asking.
+        console.log(`✅ No questions asked yet today for user ${userId}, limit: ${limit}`)
+        return { allowed: true, remaining: limit, limit }
       }
 
       const remaining = limit - (usage.questionsAsked || 0)

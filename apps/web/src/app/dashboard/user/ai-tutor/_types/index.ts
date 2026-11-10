@@ -1,8 +1,14 @@
+import type { LucideIcon } from 'lucide-react'
+
 export interface QuickReply {
     id: string
     text: string
     value: string
+    /** Name of an icon in the tutor's icon map, or a short text glyph such as a class number. */
     icon?: string
+    /** An icon component (same type QuickReplyCard renders), for replies built from the subject and menu configs. */
+    Icon?: LucideIcon
+    action?: string
 }
 
 export interface Message {

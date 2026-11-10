@@ -96,7 +96,9 @@ export function getPool(): Pool {
   if (!globalForPool.__dcpPgPool) {
     const config = getDbConfig()
     console.log(`[DB] Connecting (pg) to ${config.host}:${config.port}/${config.database} as ${config.user}`)
-    globalForPool.__dcpPgPool = new Pool(config)
+    // Without a timeout a caller waits on an exhausted pool forever and the request just hangs. Fail after
+    // 10 seconds instead, so a leaked connection shows up as an error in the logs.
+    globalForPool.__dcpPgPool = new Pool({ ...config, connectionTimeoutMillis: 10_000 })
   }
   return globalForPool.__dcpPgPool
 }
@@ -116,9 +118,10 @@ export interface CompatConnection {
   pg: PoolClient
 }
 
-function wrap(client: PoolClient): CompatConnection {
-  const run = async (sql: string, params?: any[]): Promise<[any[], any]> => {
-    const res = await client.query(toPg(sql), params)
+/** mysql2-style `[rows, fields]` runner over anything with pg's `.query()` (a pool or one of its clients). */
+function makeRun(target: Pick<Pool, 'query'> | Pick<PoolClient, 'query'>) {
+  return async (sql: string, params?: any[]): Promise<[any[], any]> => {
+    const res = await (target as Pool).query(toPg(sql), params)
     // mysql2 returns [rows, fields]; for INSERT/UPDATE/DELETE the "rows" object
     // also carries affectedRows. Emulate that so `[result]` callers keep working.
     const rowsWithMeta: any = res.rows
@@ -129,6 +132,32 @@ function wrap(client: PoolClient): CompatConnection {
     ;(rowsWithMeta as any).insertId = res.rows?.[0]?.id ?? 0
     return [rowsWithMeta, res.fields]
   }
+}
+
+/** The query half of a CompatConnection, with nothing to give back. */
+export interface PooledConnection {
+  query: (sql: string, params?: any[]) => Promise<[any[], any]>
+  execute: (sql: string, params?: any[]) => Promise<[any[], any]>
+  /** No-op: nothing is held. Present so code written for getConnection() keeps working. */
+  release: () => void
+}
+
+/**
+ * A mysql2-compatible handle that never holds a pool client: each statement goes through pool.query(),
+ * which checks a client out and returns it by itself. Use this for one-off statements.
+ *
+ * getConnection() below hands out a client the caller MUST release. Several services did not, so every
+ * call leaked one of the pool's connections; once all were gone, anything waiting on the pool hung for
+ * good (the tutor stopped answering after about `max` questions). Reach for getConnection() only when the
+ * statements have to share one session, and prefer withTransaction() for that.
+ */
+export function getPooledConnection(): PooledConnection {
+  const run = makeRun(getPool())
+  return { query: run, execute: run, release: () => {} }
+}
+
+function wrap(client: PoolClient): CompatConnection {
+  const run = makeRun(client)
   return {
     query: run,
     execute: run,
