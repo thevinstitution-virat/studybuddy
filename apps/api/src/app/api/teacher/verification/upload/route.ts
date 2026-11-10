@@ -7,6 +7,7 @@
  * B2C Feature: Part of the progressive verification system
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server'
@@ -217,7 +218,7 @@ export async function POST(request: NextRequest) {
       {
         success: false,
         error: 'Failed to upload document',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: publicErrorDetails(error)
       },
       { status: 500 }
     )
@@ -298,7 +299,7 @@ export async function GET(request: NextRequest) {
       {
         success: false,
         error: 'Failed to fetch documents',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: publicErrorDetails(error)
       },
       { status: 500 }
     )

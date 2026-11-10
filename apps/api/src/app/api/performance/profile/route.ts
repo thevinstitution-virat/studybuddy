@@ -12,6 +12,7 @@
  * - Stores data in performance_profiling table
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server'
 import { executeQuery } from '@/lib/db/connection'
 import { v4 as uuidv4 } from 'uuid'
@@ -94,7 +95,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         error: 'Internal server error',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: publicErrorDetails(error)
       },
       { status: 500 }
     )

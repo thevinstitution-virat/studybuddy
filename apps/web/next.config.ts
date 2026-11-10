@@ -8,8 +8,48 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 
+// ── Content-Security-Policy ─────────────────────────────────────────────────────────────────────────────────
+// script-src is an allowlist of where scripts may LOAD from:
+//   'self'                         the app's own bundles
+//   cdn.jsdelivr.net               MathJax (components/providers/MathJaxScripts.tsx) and the parts it lazy-loads
+//   www.youtube.com                the YouTube iframe API (components/student/YouTubeEmbed.tsx)
+//   checkout.razorpay.com          Razorpay checkout (hooks/useRazorpay.ts)
+//                                  (payments are not built yet: test checkout under this policy when they are)
+// Adding a third-party script anywhere in the app means adding its host here, or the browser blocks it.
+//
+// What this does and does not buy:
+//   + a script tag pointing at any other host is refused, so injected markup cannot pull in an attacker's file
+//   + script-src-attr 'none' refuses inline event handlers (onerror=, onclick=), the usual way injected HTML runs
+//   - 'unsafe-inline' is still needed: Next's own bootstrap scripts are inline and the pages are statically
+//     rendered, so they cannot carry a per-request nonce. An injected inline <script> element is therefore not
+//     stopped by this policy. Closing that needs nonces + 'strict-dynamic', which makes every page dynamic.
+// 'unsafe-eval' is granted only to `next dev` (React refresh needs it). 'wasm-unsafe-eval' lets WebAssembly
+// compile without allowing eval of strings.
+const SCRIPT_SRC = [
+  "'self'",
+  "'unsafe-inline'",
+  "'wasm-unsafe-eval'",
+  ...(process.env.NODE_ENV === 'production' ? [] : ["'unsafe-eval'"]),
+  'https://cdn.jsdelivr.net',
+  'https://www.youtube.com',
+  'https://checkout.razorpay.com',
+].join(' ')
+
+const CONTENT_SECURITY_POLICY = [
+  `script-src ${SCRIPT_SRC}`,
+  "script-src-attr 'none'",
+  "worker-src 'self' blob:",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "frame-ancestors 'self'",
+  'upgrade-insecure-requests',
+].join('; ')
+
 const nextConfig: NextConfig = {
   // Phase 0: don't advertise the framework.
+  // NOTE: this is read when the server STARTS, not when it is built. The Docker image used to ship without
+  // any Next config, so `next start` fell back to the default and sent "X-Powered-By: Next.js" on every page.
+  // The image now carries next.config.runtime.js as its next.config.js; keep the two in step.
   poweredByHeader: false,
   // NOTE: `output: 'standalone'` is intentionally NOT used here. In this
   // npm-workspace monorepo, standalone tracing can't see the hoisted root
@@ -69,8 +109,7 @@ const nextConfig: NextConfig = {
           { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' },
           { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
-          // Non-breaking CSP directives only (no script-src yet: MathJax / Google / Sentry need an audited allowlist, Phase 3).
-          { key: 'Content-Security-Policy', value: "object-src 'none'; base-uri 'self'; frame-ancestors 'self'; upgrade-insecure-requests" },
+          { key: 'Content-Security-Policy', value: CONTENT_SECURITY_POLICY },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           {
             key: 'Permissions-Policy',

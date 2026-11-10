@@ -1,3 +1,4 @@
+import { publicErrorMessage } from '@/lib/http/public-error'
 import { legacyIngestionDisabled } from '@/lib/library/search';
 import { LEGACY_INGESTION_GONE } from '@/lib/library/legacy-lanes';
 import { NextRequest, NextResponse } from 'next/server'
@@ -206,7 +207,7 @@ export async function POST(request: NextRequest) {
       })
     } catch (err) {
       return NextResponse.json(
-        { success: false, error: err instanceof Error ? err.message : 'Ingest failed', contentItemId },
+        { success: false, error: publicErrorMessage(err, 'Ingest failed'), contentItemId },
         { status: 500 },
       )
     }
@@ -234,7 +235,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('❌ trio-ingest failed:', error)
     return NextResponse.json(
-      { success: false, error: error instanceof Error ? error.message : 'Ingestion failed' },
+      { success: false, error: publicErrorMessage(error, 'Ingestion failed') },
       { status: 500 },
     )
   }

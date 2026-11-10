@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Security smoke test: run against a deployed API host after every deploy.
 #   scripts/security-smoke.sh https://api.studybuddy.vinstitution.com
+#   scripts/security-smoke.sh https://api.host https://web.host   (web host defaults to the API host minus "api.")
 # Read-only (GET / HEAD, plus POSTs with an empty body that must be rejected). Exits non-zero if anything that
 # must be closed is reachable. Phase 0 lock-down regression guard.
 set -u
@@ -51,6 +52,21 @@ echo "== headers"
 h=$(curl -sI --max-time 20 "$HOST/api/health")
 echo "$h" | grep -qi '^content-security-policy:' && echo "ok    CSP present" || { echo "FAIL  CSP missing"; fail=1; }
 echo "$h" | grep -qi '^x-powered-by:' && { echo "FAIL  X-Powered-By still sent"; fail=1; } || echo "ok    no X-Powered-By"
+
+# The WEB host has its own headers. Only the API was checked before, which is how "X-Powered-By: Next.js"
+# stayed on every page while this script passed. Second argument, or derived by dropping the "api." label.
+WEB="${2:-${HOST/:\/\/api./://}}"
+if [[ "$WEB" != "$HOST" ]]; then
+  echo "== web host headers ($WEB)"
+  for p in / /sign-in; do
+    w=$(curl -sI --max-time 20 "$WEB$p")
+    echo "$w" | grep -qi '^x-powered-by:' && { echo "FAIL  $p  X-Powered-By still sent"; fail=1; } || echo "ok    $p  no X-Powered-By"
+    echo "$w" | grep -i '^content-security-policy:' | grep -q "script-src" && echo "ok    $p  CSP has script-src" || { echo "FAIL  $p  CSP has no script-src"; fail=1; }
+    echo "$w" | grep -i '^content-security-policy:' | grep -q "script-src-attr 'none'" && echo "ok    $p  inline event handlers blocked" || { echo "FAIL  $p  CSP lacks script-src-attr 'none'"; fail=1; }
+  done
+else
+  echo "skip  web host headers (pass the web URL as the second argument)"
+fi
 
 [[ $fail -eq 0 ]] && echo "ALL CHECKS PASSED" || echo "SECURITY SMOKE FAILED"
 exit $fail

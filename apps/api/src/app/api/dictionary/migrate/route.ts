@@ -3,6 +3,7 @@
  * Creates the missing dictionary_words table and populates it with essential vocabulary
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { requirePlatformOwner } from '@/lib/auth/require-platform-staff'
 import { NextRequest, NextResponse } from 'next/server'
 import { 
@@ -40,7 +41,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: false,
       error: 'Failed to check dictionary table status',
-      details: error.message
+      details: publicErrorDetails(error)
     }, { status: 500 })
   }
 }
@@ -113,7 +114,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: false,
       error: 'Dictionary migration failed',
-      details: error.message
+      details: publicErrorDetails(error)
     }, { status: 500 })
   }
 }

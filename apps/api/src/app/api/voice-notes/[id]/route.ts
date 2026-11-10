@@ -1,3 +1,4 @@
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
@@ -74,7 +75,7 @@ export async function DELETE(
     return NextResponse.json(
       {
         error: 'Failed to delete voice note',
-        details: error instanceof Error ? error.message : 'Unknown error',
+        details: publicErrorDetails(error),
       },
       { status: 500 }
     );
@@ -134,7 +135,7 @@ export async function PUT(
     return NextResponse.json(
       {
         error: 'Failed to update voice note',
-        details: error instanceof Error ? error.message : 'Unknown error',
+        details: publicErrorDetails(error),
       },
       { status: 500 }
     );

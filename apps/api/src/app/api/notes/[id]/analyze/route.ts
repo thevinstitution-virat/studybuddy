@@ -14,6 +14,7 @@
  * Caching: Results cached in note_insights table
  */
 
+import { publicErrorMessage } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
@@ -162,7 +163,7 @@ export async function POST(
     return NextResponse.json(
       { 
         success: false, 
-        error: error instanceof Error ? error.message : 'Internal server error' 
+        error: publicErrorMessage(error, 'Internal server error') 
       },
       { status: 500 }
     );

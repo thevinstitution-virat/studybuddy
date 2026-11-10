@@ -7,6 +7,7 @@
  * - Used by frontend to display subscription status and remaining questions
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
@@ -126,7 +127,7 @@ export async function GET(request: NextRequest) {
         success: false,
         error: 'INTERNAL_ERROR',
         message: 'Failed to fetch subscription details',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: publicErrorDetails(error)
       },
       { status: 500 }
     );
@@ -206,7 +207,7 @@ export async function OPTIONS(request: NextRequest) {
         success: false,
         error: 'INTERNAL_ERROR',
         message: 'Failed to fetch available content',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: publicErrorDetails(error)
       },
       { status: 500 }
     );

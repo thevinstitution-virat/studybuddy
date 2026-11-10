@@ -5,6 +5,7 @@
  * Returns aggregated feedback statistics with filtering options
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { requirePlatformStaff } from '@/lib/auth/require-platform-staff'
 import { NextRequest, NextResponse } from 'next/server';
 import { getConnection } from '@/lib/db/connection';
@@ -236,7 +237,7 @@ export async function GET(req: NextRequest) {
       {
         success: false,
         error: 'Failed to fetch feedback statistics',
-        details: error instanceof Error ? error.message : 'Unknown error',
+        details: publicErrorDetails(error),
       },
       { status: 500 }
     );

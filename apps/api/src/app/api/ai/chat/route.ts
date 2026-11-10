@@ -1,3 +1,4 @@
+import { publicErrorMessage } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
 import { headers } from 'next/headers'
@@ -614,7 +615,7 @@ async function handlePost(req: NextRequest) {
         metadata: {
           duration: requestDuration,
           success: false,
-          error: error instanceof Error ? error.message : 'Unknown error'
+          error: publicErrorMessage(error, 'Unknown error')
         },
         timestamp: new Date()
       }).catch(() => { })

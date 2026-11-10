@@ -6,6 +6,7 @@
  * Migrated to Drizzle ORM (Phase 4)
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server'
@@ -76,7 +77,7 @@ export async function GET(req: NextRequest) {
       {
         success: false,
         error: 'Failed to fetch answer feedback',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: publicErrorDetails(error)
       },
       { status: 500 }
     )

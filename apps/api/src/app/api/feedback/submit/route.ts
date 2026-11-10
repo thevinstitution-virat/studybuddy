@@ -5,6 +5,7 @@
  * Collects user feedback on AI-generated answers and creates quality alerts
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server';
 import { getConnection } from '@/lib/db/connection';
 import { db } from '@/db';
@@ -100,7 +101,7 @@ export async function POST(req: NextRequest) {
       {
         success: false,
         error: 'Failed to submit feedback',
-        details: error instanceof Error ? error.message : 'Unknown error',
+        details: publicErrorDetails(error),
       },
       { status: 500 }
     );

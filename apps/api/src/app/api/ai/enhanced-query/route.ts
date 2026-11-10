@@ -3,6 +3,7 @@
  * Provides 100% textbook-fidelity responses with source citations
  */
 
+import { publicErrorDetails, publicErrorMessage } from '@/lib/http/public-error'
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
@@ -138,7 +139,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       status: 'error',
       message: 'Internal server error',
-      error_details: error instanceof Error ? error.message : 'Unknown error'
+      error_details: publicErrorDetails(error)
     }, { status: 500 });
   }
 }
@@ -179,7 +180,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({
       service: 'Enhanced Query API',
       status: 'error',
-      error: error instanceof Error ? error.message : 'Unknown error'
+      error: publicErrorMessage(error, 'Unknown error')
     }, { status: 500 });
   }
 }

@@ -1,3 +1,4 @@
+import { publicErrorMessage } from '@/lib/http/public-error'
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server'
@@ -94,7 +95,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json(
       { 
         success: false, 
-        error: error instanceof Error ? error.message : 'OCR processing failed' 
+        error: publicErrorMessage(error, 'OCR processing failed') 
       },
       { status: 500 }
     )
@@ -162,7 +163,7 @@ export async function GET(): Promise<NextResponse> {
       { 
         status: 'error',
         message: 'Health check failed',
-        error: error instanceof Error ? error.message : 'Unknown error'
+        error: publicErrorMessage(error, 'Unknown error')
       },
       { status: 500 }
     )

@@ -120,3 +120,21 @@ Done: open API routes closed or deleted; `user/progress` scoped to the session u
 Dependencies: critical 6 -> 0 and high 23 -> 0 (moderate 57 -> 17). Upgrades: next 15.5.29, better-auth 1.7.19, dompurify 3.4.17, jspdf 4.2.1, zod 3 -> 4.6.7 (all workspaces + root), openai 4 -> 7.55, @hookform/resolvers 3 -> 5, tiptap 3.33, sharp 0.35.5 and postcss 8.5.32 via overrides. Removed: `minio` (unused) and `@xenova/transformers` (ONNX reranker was already off in production because it crashed the process; the reranker now fails closed to the dense/RRF order). zod 4 migration: `z.record` key types, `.errors` -> `.issues`, `required_error` -> `error`, `_type` -> `z.infer`. Type-error counts did not rise (API 21 = 21, web 141 vs 142).
 
 Known gaps left for later phases: 8 older jest suites fail to start (module-path mapping in the monorepo jest config, unrelated to the upgrades) and 3 formatting tests fail; the remaining 17 moderate advisories; script-src in the CSP; end-to-end runtime verification of zod 4 against a live database after deploy.
+
+## 7. Second hardening pass (2026-11-10, after PR #8)
+
+Closed:
+- **Role self-assignment (new finding).** `POST /api/assign-role` wrote the `role` from the request body to the caller's account (`{ manualAssignment: true, role: "admin" }`); only `super_admin` was refused. It needs an organisation membership to reach, so it was not exploitable on live (no organisations exist yet), but any student of the first school to join could have made themselves an institution admin or teacher. The role is now server-decided and an existing role is never changed here. The email-alias persona guess (M1) is removed with it.
+- **H2 `X-Powered-By`.** The web image shipped without a Next config, so `next start` ran on defaults and sent the header on every page (the smoke script only checked the API host). The image now carries `next.config.runtime.js`; the smoke script checks the web host too.
+- **H2 CSP `script-src`.** Host allowlist (`'self'`, jsdelivr for MathJax, YouTube, Razorpay) plus `script-src-attr 'none'`, which blocks inline event handlers. `'unsafe-inline'` remains for script elements (see Open).
+- **H3 burst limit.** 30 write requests per minute per session across the model, OCR, speech and translate endpoints (API middleware, in memory).
+- **M3 ink SVG.** Sanitised with DOMPurify (SVG profile) before it is rendered or re-saved.
+- **M4 verbose errors.** 48 route files no longer return `error.message` on unexpected errors in production (`lib/http/public-error.ts`). Super-admin routes keep the full text: the caller is the owner and needs it to debug ingestion.
+- **M2** was already fixed in Phase 0 (the Bunny webhook compares with `timingSafeEqual`).
+- **mermaid 11.16.0 -> 11.17.2** (prototype pollution, CSS injection, two DoS advisories). It renders model output.
+
+Open:
+- **Nonce-based CSP.** `'unsafe-inline'` is still allowed for script elements because pages are statically rendered. Removing it needs per-request nonces and `'strict-dynamic'`, which makes every page dynamic.
+- **Per-IP limits.** The burst limit is per session. A per-IP limit needs the real client IP, and the web app proxies API calls, so every user would share one address; it has to be done at the proxy (Traefik).
+- **16 moderate advisories**, none in code that handles user input at runtime: `esbuild` / `drizzle-kit` (dev server only), `@sentry/*` via `glob` (build time), `@tailwindcss/typography` (build time), `googleapis` / `uuid` (fix is a major upgrade), `fast-copy` via `pino-pretty`. KaTeX (low) has no non-breaking fix.
+- Legal pages and guardian consent (content needed from the owner).

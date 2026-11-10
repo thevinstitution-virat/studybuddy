@@ -4,6 +4,7 @@
  * POST /api/notes/folders - Create a new folder
  */
 
+import { publicErrorDetails } from '@/lib/http/public-error'
 import { executeQuery, executeUpdate } from '@/lib/db/connection';
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
@@ -71,7 +72,7 @@ export async function GET(req: NextRequest) {
     } catch (error) {
         console.error('❌ Error fetching folders:', error);
         return NextResponse.json(
-            { error: 'Failed to fetch folders', details: error instanceof Error ? error.message : 'Unknown error' },
+            { error: 'Failed to fetch folders', details: publicErrorDetails(error) },
             { status: 500 }
         );
     }
@@ -165,7 +166,7 @@ export async function POST(req: NextRequest) {
     } catch (error) {
         console.error('❌ Error creating folder:', error);
         return NextResponse.json(
-            { error: 'Failed to create folder', details: error instanceof Error ? error.message : 'Unknown error' },
+            { error: 'Failed to create folder', details: publicErrorDetails(error) },
             { status: 500 }
         );
     }

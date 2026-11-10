@@ -3,6 +3,7 @@
  * Handles all AI tutor requests with proper middleware, orchestration, and error handling
  */
 
+import { publicErrorMessage } from '@/lib/http/public-error'
 import { NextRequest, NextResponse } from 'next/server';
 import { initializeApplication, getOrchestrator, getContainer } from '@/lib/bootstrap/app-initializer';
 import { SERVICE_NAMES } from '@/lib/di/service-registry';
@@ -173,7 +174,7 @@ export async function POST(req: NextRequest) {
         eventType: 'chat_error',
         userId: 'unknown',
         metadata: {
-          error: error instanceof Error ? error.message : 'Unknown error',
+          error: publicErrorMessage(error, 'Unknown error'),
           requestId
         },
         timestamp: new Date()
@@ -186,7 +187,7 @@ export async function POST(req: NextRequest) {
       {
         error: 'Internal server error',
         requestId,
-        message: error instanceof Error ? error.message : 'Unknown error'
+        message: publicErrorMessage(error, 'Unknown error')
       },
       { status: 500 }
     );
@@ -215,7 +216,7 @@ export async function GET() {
     return NextResponse.json(
       {
         status: 'unhealthy',
-        error: error instanceof Error ? error.message : 'Unknown error'
+        error: publicErrorMessage(error, 'Unknown error')
       },
       { status: 503 }
     );

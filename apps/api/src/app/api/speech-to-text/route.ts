@@ -1,3 +1,4 @@
+import { publicErrorMessage } from '@/lib/http/public-error'
 import { auth } from '@/auth';
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server'
@@ -68,7 +69,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       {
         success: false,
         error: 'Speech-to-text feature disabled',
-        message: error instanceof Error ? error.message : 'Service not available'
+        message: publicErrorMessage(error, 'Service not available')
       },
       { status: 501 }
     )
@@ -127,7 +128,7 @@ export async function GET(): Promise<NextResponse> {
       { 
         status: 'error',
         message: 'Health check failed',
-        error: error instanceof Error ? error.message : 'Unknown error'
+        error: publicErrorMessage(error, 'Unknown error')
       },
       { status: 500 }
     )

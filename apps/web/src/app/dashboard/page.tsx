@@ -57,7 +57,10 @@ export default async function DashboardPage() {
   } catch (err) {
     if (isNextRedirectError(err)) throw err; // redirect() throws internally — let it propagate
     // Network error or /api/me unreachable: fail closed, not open.
-    redirect('/sign-in');
+    // The marker matters. The session cookie is still there, so a bare /sign-in is bounced straight back
+    // here by the middleware, this fetch fails again, and the browser ends in ERR_TOO_MANY_REDIRECTS for as
+    // long as the API is unreachable (a restart, a deploy). With the marker the sign-in form is shown.
+    redirect('/sign-in?session=expired');
   }
 
   redirect(dashboard);
