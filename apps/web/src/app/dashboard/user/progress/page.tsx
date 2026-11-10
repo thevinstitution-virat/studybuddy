@@ -8,8 +8,9 @@ import { BrainCircuit, Clock, Trophy, Target } from 'lucide-react';
 interface ProgressMetrics {
     totalQueries: number;
     studyTimeMinutes: number;
-    topicsMastered: number;
-    averageConfidence: number;
+    activeDays: number;
+    /** null until the tutor has reported real confidence scores for this student. */
+    averageConfidence: number | null;
     agentUsage: { name: string; count: number }[];
     weeklyActivity: { day: string; queries: number }[];
 }
@@ -35,7 +36,8 @@ export default function StudentProgressDashboard() {
 
         const fetchMetrics = async () => {
             try {
-                const res = await fetch(`/api/user/progress?userId=${session.user.id}`);
+                // The API serves the signed-in user only; it ignores any userId in the query.
+                const res = await fetch('/api/user/progress');
                 if (!res.ok)
   throw new Error('Failed to load progress data');
                 const data = await res.json();
@@ -74,9 +76,12 @@ export default function StudentProgressDashboard() {
 
     const kpis = [
         { Icon: BrainCircuit, value: String(metrics.totalQueries), label: 'Total queries', hint: 'Questions asked to AI Tutor', grad: GC },
-        { Icon: Clock, value: `${Math.round(metrics.studyTimeMinutes)} min`, label: 'Active study time', hint: 'Based on session duration', grad: GP },
-        { Icon: Target, value: `${Math.round(metrics.averageConfidence * 100)}%`, label: 'Agent confidence', hint: 'Average AI response certainty', grad: GW },
-        { Icon: Trophy, value: String(metrics.topicsMastered), label: 'Topics explored', hint: 'Distinct NCERT concepts', grad: GT },
+        { Icon: Clock, value: `${Math.round(metrics.studyTimeMinutes)} min`, label: 'Estimated study time', hint: 'About 2.5 minutes per question', grad: GP },
+        { Icon: Trophy, value: `${metrics.activeDays ?? 0} / 7`, label: 'Active days', hint: 'Days you asked a question this week', grad: GT },
+        // Shown only when real scores exist; never a placeholder percentage.
+        ...(typeof metrics.averageConfidence === 'number'
+            ? [{ Icon: Target, value: `${Math.round(metrics.averageConfidence * 100)}%`, label: 'Agent confidence', hint: 'Average AI response certainty', grad: GW }]
+            : []),
     ];
     const maxAgent = Math.max(1, ...metrics.agentUsage.map(a => a.count));
 
@@ -141,7 +146,7 @@ export default function StudentProgressDashboard() {
                             ))}
                             {metrics.agentUsage.length === 0 && (
                                 <div style={{ textAlign: 'center', color: 'var(--muted)', padding: '32px 0', fontStyle: 'italic' }}>
-                                    No specialised agents used yet. Try asking the AI Tutor a specific subject question!
+                                    Nothing here yet. Ask Gyankosh a question and your usage will show up.
                                 </div>
                             )}
                         </div>

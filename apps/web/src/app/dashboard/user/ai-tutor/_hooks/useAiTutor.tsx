@@ -336,7 +336,7 @@ export function useAiTutor() {
     let autoClass: string | undefined
     if (subscription.purchased_class) {
       autoClass = `Class ${subscription.purchased_class}`
-    } else if (!access.has_all_classes && access.classes.length === 1) {
+    } else if (!access.has_all_classes && access.classes && access.classes.length === 1) {
       autoClass = `Class ${access.classes[0]}`
     } else if (access.has_all_classes) {
       // Full access user - default to Class 9 (available in vector database)
@@ -1816,7 +1816,8 @@ Feel free to ask me any questions related to your studies. I'll provide detailed
     }
 
     // ── Phase-based lookups ───────────────────────────────────────────────────
-    switch (phase) {
+    // Older callers still pass phases that are not in the ConversationState union ("initial", "streaming").
+    switch (phase as string) {
       case "initial":
       case "initial_greeting":
       case "awaiting_role_selection":
@@ -1887,7 +1888,7 @@ Feel free to ask me any questions related to your studies. I'll provide detailed
       let autoClass: string | undefined
       if (subscription.purchased_class) {
         autoClass = `Class ${subscription.purchased_class}`
-      } else if (!access.has_all_classes && access.classes.length === 1) {
+      } else if (!access.has_all_classes && access.classes && access.classes.length === 1) {
         autoClass = `Class ${access.classes[0]}`
       } else if (access.has_all_classes) {
         autoClass = 'Class 9'

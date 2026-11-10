@@ -63,9 +63,14 @@ export async function GET(req: NextRequest) {
         // 2. Fetch rich analytics from Langfuse API via Metrics API or raw traces
         // For direct real-world usage we summarize latest traces associated with this user
         let agentUsageMap: Record<string, number> = {};
-        let averageConfidence = 0.85; // Default fallback
-        let studyTimeMinutes = totalQueries * 2.5; // Roughly 2.5 min per query average
-        let topicsMastered = Math.floor(totalQueries / 10);
+        // No invented numbers: confidence is null until real scores exist (it used to default to 0.85, so a
+        // brand-new student saw "85% agent confidence" with zero questions asked).
+        let averageConfidence: number | null = null;
+        // An estimate, and the page labels it as one (about 2.5 minutes per question).
+        const studyTimeMinutes = totalQueries * 2.5;
+        // Days in the last 7 with at least one question. Replaces "topics mastered", which was just
+        // totalQueries / 10 presented as "distinct NCERT concepts".
+        const activeDays = weeklyActivity.filter((d: { queries: number }) => d.queries > 0).length;
 
         try {
             if (process.env.LANGFUSE_SECRET_KEY) {
@@ -112,10 +117,12 @@ export async function GET(req: NextRequest) {
             metrics: {
                 totalQueries,
                 studyTimeMinutes,
-                topicsMastered,
+                activeDays,
                 averageConfidence,
                 weeklyActivity,
-                agentUsage: agentUsage.length > 0 ? agentUsage : [{ name: 'general', count: totalQueries }]
+                // Without per-agent data the total is shown under one "general" row; with no questions at
+                // all the list is empty and the page shows its empty state.
+                agentUsage: agentUsage.length > 0 ? agentUsage : totalQueries > 0 ? [{ name: 'general', count: totalQueries }] : []
             }
         });
 

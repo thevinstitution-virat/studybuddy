@@ -16,7 +16,9 @@ let getConnection: any;
 
 try {
   const dbModule = require('@/lib/db/connection');
-  getConnection = dbModule.getConnection || dbModule.default;
+  // The pooled handle, not getConnection(): these methods never released the client they checked out,
+  // so each call leaked one of the pool's connections.
+  getConnection = dbModule.getPooledConnection || dbModule.default;
 } catch (error) {
   console.warn('⚠️ Database connection not found');
   getConnection = null;

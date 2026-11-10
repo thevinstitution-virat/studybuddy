@@ -4,7 +4,7 @@
  */
 
 import crypto from 'crypto';
-import { getConnection } from '@/lib/db/connection';
+import { getPooledConnection } from '@/lib/db/connection';
 
 export interface PreGeneratedAnswer {
   id: string;
@@ -48,6 +48,9 @@ export function generateQuestionHash(
   return crypto.createHash('sha256').update(hashString).digest('hex');
 }
 
+/** Set when the lookup finds the table does not exist, so later questions skip the query. */
+let tableMissing = false;
+
 /**
  * Look up a pre-generated answer by question hash
  */
@@ -57,10 +60,11 @@ export async function findPreGeneratedAnswer(
   subject: string,
   board: string = 'CBSE'
 ): Promise<PreGeneratedAnswer | null> {
+  if (tableMissing) return null;
   try {
     const questionHash = generateQuestionHash(question, grade, subject, board);
 
-    const connection = await getConnection();
+    const connection = getPooledConnection();
     const [rows] = await connection.query<any[]>(
       `SELECT * FROM pre_generated_answers WHERE question_hash = ? LIMIT 1`,
       [questionHash]
@@ -82,6 +86,13 @@ export async function findPreGeneratedAnswer(
 
     return answer;
   } catch (error) {
+    if ((error as { code?: string })?.code === '42P01') {
+      // The table has not been created on this deployment (migration 006). Say so once and stop asking,
+      // rather than running a failing query and logging a stack trace on every tutor question.
+      tableMissing = true;
+      console.warn('pre_generated_answers table is missing; pre-generated answer lookup is off until restart');
+      return null;
+    }
     console.error('❌ Error finding pre-generated answer:', error);
     return null;
   }
@@ -92,7 +103,7 @@ export async function findPreGeneratedAnswer(
  */
 export async function recordPreGeneratedAnswerHit(questionHash: string): Promise<void> {
   try {
-    const connection = await getConnection();
+    const connection = getPooledConnection();
     await connection.query(
       `UPDATE pre_generated_answers 
        SET hit_count = hit_count + 1, 
@@ -116,7 +127,7 @@ export async function getPreGeneratedAnswersStats(): Promise<{
   mostPopular: Array<{ question: string; hits: number }>;
 }> {
   try {
-    const connection = await getConnection();
+    const connection = getPooledConnection();
 
     // Get total count and total hits
     const [statsRows] = await connection.query<any[]>(
@@ -163,7 +174,7 @@ export async function getPreGeneratedAnswersStats(): Promise<{
  */
 export async function deletePreGeneratedAnswer(id: string): Promise<boolean> {
   try {
-    const connection = await getConnection();
+    const connection = getPooledConnection();
     const [result] = await connection.query<any>(
       `DELETE FROM pre_generated_answers WHERE id = ?`,
       [id]
@@ -184,7 +195,7 @@ export async function updatePreGeneratedAnswer(
   updates: Partial<Pick<PreGeneratedAnswer, 'answer' | 'key_terms' | 'difficulty_level'>>
 ): Promise<boolean> {
   try {
-    const connection = await getConnection();
+    const connection = getPooledConnection();
 
     const updateFields: string[] = [];
     const updateValues: any[] = [];
@@ -252,7 +263,7 @@ export async function listPreGeneratedAnswers(options: {
     } = options;
 
     const offset = (page - 1) * limit;
-    const connection = await getConnection();
+    const connection = getPooledConnection();
 
     // Build WHERE clause
     const whereConditions: string[] = [];
