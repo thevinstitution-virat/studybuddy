@@ -18,7 +18,7 @@ import { Icon } from '@/components/ui/Icon'
 import { Brand } from '@/components/sb/Brand'
 import { ThemeToggle } from '@/components/sb/ThemeToggle'
 import { LandingFooter } from '@/components/landing/LandingFooter'
-import { StudyBuddyHero3D } from '@/components/landing/StudyBuddyHero3D'
+import { HeroSection } from '@/components/landing/HeroSection'
 
 const D = 'var(--sb-font-display)'
 const HAND = 'var(--sb-font-hand)'
@@ -146,18 +146,11 @@ export function StudyBuddyLanding() {
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [day, setDay] = useState(0)
-  const [heroTab, setHeroTab] = useState(0)
-  const [picked, setPicked] = useState(false)
-  const [demo, setDemo] = useState(0)
   const [aud, setAud] = useState(0)
   const [faqTab, setFaqTab] = useState(0)
   const [open, setOpen] = useState(0)
   const [menu, setMenu] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const pickedRef = useRef(false)
-  const heroTabRef = useRef(0)
-  pickedRef.current = picked
-  heroTabRef.current = heroTab
 
   useEffect(() => setMounted(true), [])
 
@@ -172,20 +165,13 @@ export function StudyBuddyLanding() {
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
-    // Hero: without a tap, alternate Gyankosh / InkBuddy every 7s; after a tap, stop switching.
-    const t = setInterval(() => {
-      if (pickedRef.current) { if (heroTabRef.current === 0) setDemo((d) => (d + 1) % 3); return }
-      if (heroTabRef.current === 0) setHeroTab(1)
-      else { setHeroTab(0); setDemo((d) => (d + 1) % 3) }
-    }, 7000)
-    return () => { window.removeEventListener('scroll', onScroll); clearInterval(t) }
+    return () => { window.removeEventListener('scroll', onScroll) }
   }, [])
 
   const dark = mounted && resolvedTheme === 'dark'
   const dd = DAY[day]
   const tone = dark ? dd.dark : dd.light
   const onDark = tone.fg === '#FFFFFF' || tone.fg === '#F2F3F8'
-  const demoData = DEMOS[demo]
   const A = AUD[aud]
 
   const goDay = (i: number) => {
@@ -195,216 +181,53 @@ export function StudyBuddyLanding() {
 
   return (
     <div className="sbl" id="top">
-      {/* ───────── nav (glass over the dark stage) ───────── */}
-      <nav style={{ position: 'sticky', top: 0, zIndex: 50, background: 'rgba(10,15,36,.93)', backdropFilter: 'blur(22px) saturate(1.5)', WebkitBackdropFilter: 'blur(22px) saturate(1.5)', borderBottom: '1px solid rgba(255,255,255,.08)', color: '#fff' }}>
-        <div className="sbl-navrow" style={{ maxWidth: 1360, margin: '0 auto', height: 68, padding: '0 clamp(20px,4vw,64px)', display: 'flex', alignItems: 'center', gap: 24 }}>
-          <Brand href="#top" onNavy />
-          <div className="sbl-desk" style={{ gap: 28, marginLeft: 12, fontWeight: 600, fontSize: 15, whiteSpace: 'nowrap', color: '#C9CCDD' }}>
-            <a className="sbl-nav-link" href="#proof">Gyankosh</a><a className="sbl-nav-link" href="#inkbuddy">InkBuddy</a><a className="sbl-nav-link" href="#day">A day</a><a className="sbl-nav-link" href="#features">Features</a>
-            <a className="sbl-nav-link" href="#for">Parents &amp; schools</a><a className="sbl-nav-link" href="#pricing">Pricing</a>
+      {/* ───────── nav ───────── */}
+      <nav style={{ position: 'sticky', top: 0, zIndex: 50, background: 'var(--sb-glass)', backdropFilter: 'blur(22px) saturate(1.5)', WebkitBackdropFilter: 'blur(22px) saturate(1.5)', borderBottom: '1px solid var(--sb-line)' }}>
+        <div className="sbl-navrow" style={{ maxWidth: 1200, margin: '0 auto', height: 68, padding: '0 20px', display: 'flex', alignItems: 'center', gap: 24 }}>
+          <Brand href="#top" />
+          <div className="sbl-desk" style={{ gap: 28, marginLeft: 12, fontWeight: 600, fontSize: 15, whiteSpace: 'nowrap' }}>
+            <a className="sbl-link" href="#proof">Gyankosh</a><a className="sbl-link" href="#inkbuddy">InkBuddy</a><a className="sbl-link" href="#features">Features</a>
+            <a className="sbl-link" href="#for">Parents &amp; schools</a><a className="sbl-link" href="#pricing">Pricing</a>
           </div>
           <span style={{ flex: 1 }} />
-          <ThemeToggle onNavy />
-          <Link className="sbl-desk sbl-nav-link" href="/sign-in" style={{ fontWeight: 700, fontSize: 15, whiteSpace: 'nowrap', color: '#fff' }}>Sign in</Link>
-          <Link className="sbl-btn-primary sbl-nav-cta" href="/sign-up" style={{ display: 'flex', alignItems: 'center', gap: 6, height: 44, padding: '0 20px', borderRadius: 999, fontWeight: 800, fontSize: 14.5, whiteSpace: 'nowrap' }}>
-            Get started<Icon name="arrow" size={16} weight="bold" />
+          <ThemeToggle />
+          <Link className="sbl-desk sbl-link" href="/sign-in" style={{ fontWeight: 700, fontSize: 15, whiteSpace: 'nowrap' }}>Sign in</Link>
+          <Link className="sbl-nav-cta" href="/sign-up" style={{ display: 'flex', alignItems: 'center', gap: 6, height: 44, padding: '0 18px', borderRadius: 14, background: 'var(--sb-grad-stage)', color: '#fff', boxShadow: 'var(--sb-shadow-stage)', fontWeight: 800, fontSize: 14.5, whiteSpace: 'nowrap' }}>
+            Start free<Icon name="arrow" size={16} weight="bold" color="#FF9933" />
           </Link>
           <span className="sbl-mob">
             <button onClick={() => setMenu((m) => !m)} aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu}
-              style={{ width: 44, height: 44, borderRadius: 14, border: '1px solid rgba(255,255,255,.18)', background: 'rgba(255,255,255,.06)', color: '#fff', display: 'grid', placeItems: 'center', cursor: 'pointer' }}>
+              style={{ width: 44, height: 44, borderRadius: 14, border: '1px solid var(--sb-line)', background: 'var(--sb-surface)', display: 'grid', placeItems: 'center', cursor: 'pointer' }}>
               <Icon name={menu ? 'x' : 'menu'} size={22} />
             </button>
           </span>
         </div>
         {menu && (
-          <div className="sbl-mob" style={{ borderTop: '1px solid rgba(255,255,255,.08)', padding: '10px 20px 20px', flexDirection: 'column', animation: 'sbIn .3s both' }}>
+          <div className="sbl-mob" style={{ borderTop: '1px solid var(--sb-line)', padding: '10px 20px 20px', flexDirection: 'column', animation: 'sbIn .3s both' }}>
             {NAV.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setMenu(false)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 4px', borderBottom: '1px solid rgba(255,255,255,.08)', fontFamily: D, fontWeight: 700, fontSize: 22 }}>
-                {l.label}<Icon name="arrow-up-right" size={20} color="#FF9933" />
+              <a key={l.href} href={l.href} onClick={() => setMenu(false)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 4px', borderBottom: '1px solid var(--sb-line)', fontFamily: D, fontWeight: 700, fontSize: 22 }}>
+                {l.label}<Icon name="arrow-up-right" size={20} color="var(--sb-saffron-deep)" />
               </a>
             ))}
-            <Link href="/sign-in" style={{ marginTop: 14, height: 50, borderRadius: 15, border: '1.5px solid rgba(255,255,255,.4)', display: 'grid', placeItems: 'center', fontWeight: 700 }}>Sign in</Link>
+            <Link href="/sign-in" style={{ marginTop: 14, height: 50, borderRadius: 15, border: '1.5px solid var(--sb-ink)', display: 'grid', placeItems: 'center', fontWeight: 700 }}>Sign in</Link>
           </div>
         )}
       </nav>
 
       <main>
-        {/* ───────── hero: dark stage, glow, 3D book ───────── */}
-        <section className="sbl-stage" style={{ position: 'relative', overflow: 'hidden', background: '#0A0F24', color: '#fff', backgroundImage: 'linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px)', backgroundSize: '56px 56px' }}>
-          <div aria-hidden style={{ position: 'absolute', right: -160, top: -40, width: 860, height: 860, borderRadius: '50%', background: 'radial-gradient(circle,rgba(255,153,51,.30) 0%,rgba(59,91,219,.26) 42%,transparent 70%)', pointerEvents: 'none' }} />
-          <div aria-hidden style={{ position: 'absolute', left: -200, bottom: -260, width: 640, height: 640, borderRadius: '50%', background: 'radial-gradient(circle,rgba(59,91,219,.22),transparent 68%)', pointerEvents: 'none' }} />
-          <div style={{ position: 'relative', maxWidth: 1360, margin: '0 auto', padding: 'clamp(28px,5vw,64px) clamp(20px,4vw,64px) clamp(48px,7vw,96px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,480px),1fr))', gap: 'clamp(24px,4vw,48px)', alignItems: 'center' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 24, animation: 'sbIn .6s both', minWidth: 0 }}>
-              <span style={{ alignSelf: 'flex-start', display: 'flex', alignItems: 'center', gap: 9, padding: '8px 16px', borderRadius: 999, border: '1px solid rgba(255,255,255,.14)', background: 'rgba(255,255,255,.04)', fontSize: 13.5, fontWeight: 600, color: '#C9CCDD', whiteSpace: 'nowrap' }}>
-                <span aria-hidden style={{ width: 8, height: 8, borderRadius: '50%', background: '#FF9933', boxShadow: '0 0 12px #FF9933' }} />2026 · Founding students onboarding now
-              </span>
-              <h1 style={{ fontWeight: 800, fontSize: 'clamp(42px,6.2vw,82px)', lineHeight: 0.98, letterSpacing: '-.045em', textWrap: 'balance' as CSSProperties['textWrap'] }}>
-                Learn it with <span className="sb-gradtext">Gyankosh.</span><br />Prove it with <span className="sb-gradtext">InkBuddy.</span>
-              </h1>
-              <p style={{ margin: 0, maxWidth: 560, fontSize: 'clamp(17px,1.8vw,20px)', lineHeight: 1.6, color: '#C9CCDD', textWrap: 'pretty' as CSSProperties['textWrap'] }}>
-                <b style={{ color: '#fff' }}>Virat Gyankosh</b> answers your doubts from your NCERT textbook and shows the page. <b style={{ color: '#fff' }}>InkBuddy</b> checks the answers you write by hand and gives marks and feedback, like a board examiner. CBSE and ICSE, Classes 6–12.
-              </p>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,240px),1fr))', gap: 12, maxWidth: 580 }}>
-                {[{ name: 'Virat Gyankosh', line: 'Ask any doubt. See the page.', icon: 'sparkle' }, { name: 'InkBuddy', line: 'Write by hand. Get marked.', icon: 'pen-nib' }].map((p, i) => {
-                  const on = i === heroTab
-                  return (
-                    <button key={p.name} className="sbl-press" onClick={() => { setHeroTab(i); setPicked(true); document.getElementById('see')?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }} aria-pressed={on}
-                      style={{ position: 'relative', overflow: 'hidden', textAlign: 'left', display: 'flex', gap: 12, alignItems: 'center', padding: '13px 15px', borderRadius: 22, border: `1px solid ${on ? 'rgba(255,255,255,.3)' : 'rgba(255,255,255,.14)'}`, background: on ? 'linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.06))' : 'rgba(255,255,255,.05)', backdropFilter: 'blur(14px)', cursor: 'pointer', transition: 'background .3s,border-color .3s,transform .15s', boxShadow: on ? '0 18px 40px -20px rgba(255,153,51,.5)' : 'none' }}>
-                      <span style={{ width: 48, height: 48, borderRadius: 16, background: on ? 'var(--sb-grad-primary)' : 'rgba(255,255,255,.1)', color: on ? '#0A0F24' : '#FFD9A8', display: 'grid', placeItems: 'center', flex: 'none', transition: 'all .3s', boxShadow: on ? 'var(--sb-shadow-gloss)' : 'none' }}><Icon name={p.icon} size={25} weight="duotone" /></span>
-                      <span style={{ minWidth: 0, flex: 1 }}>
-                        <span style={{ display: 'block', fontWeight: 800, fontSize: 15.5, color: '#fff' }}>{p.name}</span>
-                        <span style={{ display: 'block', fontSize: 13, color: '#A9AEC6', marginTop: 1 }}>{p.line}</span>
-                      </span>
-                      <Icon name="arrow" size={16} weight="bold" color={on ? '#FF9933' : '#7F85A3'} />
-                      <span style={{ position: 'absolute', left: 0, bottom: 0, height: 3, width: on ? '100%' : '0%', background: 'var(--sb-grad-primary)', transition: 'width 7s linear' }} />
-                    </button>
-                  )
-                })}
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
-                <Link className="sbl-btn-primary" href="/sign-up" style={{ display: 'flex', alignItems: 'center', gap: 10, height: 58, padding: '0 30px', borderRadius: 999, fontWeight: 800, fontSize: 17, whiteSpace: 'nowrap' }}>
-                  Start 7-day free trial<Icon name="arrow" size={18} weight="bold" />
-                </Link>
-                <a className="sbl-btn-glass" href="#see" style={{ display: 'flex', alignItems: 'center', gap: 10, height: 58, padding: '0 28px', borderRadius: 999, fontWeight: 700, fontSize: 17, whiteSpace: 'nowrap' }}>
-                  <Icon name="play" size={22} weight="fill" color="#FF9933" />See a real answer
-                </a>
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 20px', fontSize: 13.5, fontWeight: 600, color: '#A9AEC6' }}>
-                {['No credit card', '15 free questions', 'Works on any phone'].map((t) => (
-                  <span key={t} style={{ display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}><Icon name="check" size={16} weight="bold" color="#FF9933" />{t}</span>
-                ))}
-              </div>
-            </div>
-            <div style={{ minWidth: 0, display: 'flex', justifyContent: 'center' }}>
-              <StudyBuddyHero3D className="mx-auto w-full" />
-            </div>
-          </div>
-        </section>
+        <HeroSection />
 
         {/* ───────── trust strip ───────── */}
-        <div style={{ borderTop: '1px solid rgba(255,255,255,.06)', background: '#070B1C', color: '#C9CCDD', overflow: 'hidden' }}>
+        <div style={{ borderTop: '1px solid var(--sb-line)', borderBottom: '1px solid var(--sb-line)', background: 'var(--sb-surface)', overflow: 'hidden' }}>
           <div style={{ display: 'flex', width: 'max-content', animation: 'sbMarq 40s linear infinite' }}>
             {[...STRIP, ...STRIP].map((s, i) => (
               <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '18px 28px', fontWeight: 700, fontSize: 15, whiteSpace: 'nowrap' }}>
-                <Icon name={s.icon} size={22} weight="duotone" color="#FF9933" />{s.t}
-                <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'rgba(255,255,255,.18)', marginLeft: 28 }} />
+                <Icon name={s.icon} size={22} weight="duotone" color="var(--sb-saffron-deep)" />{s.t}
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--sb-line)', marginLeft: 28 }} />
               </span>
             ))}
           </div>
         </div>
-
-        {/* ───────── see it work: the phone on a dark stage ───────── */}
-        <section id="see" style={{ position: 'relative', overflow: 'hidden', background: 'var(--sb-grad-stage)', color: '#fff' }}>
-          <div aria-hidden style={{ position: 'absolute', left: '50%', top: -200, width: 900, height: 900, transform: 'translateX(-50%)', borderRadius: '50%', background: 'radial-gradient(circle,rgba(255,153,51,.18),rgba(59,91,219,.18) 45%,transparent 70%)', pointerEvents: 'none' }} />
-          <div style={{ position: 'relative', maxWidth: 1360, margin: '0 auto', padding: 'clamp(64px,8vw,110px) clamp(20px,4vw,64px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,460px),1fr))', gap: 'clamp(32px,5vw,72px)', alignItems: 'center' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-              <div style={{ ...kick, color: '#FF9933' }}>See it work</div>
-              <h2 style={{ ...h2, margin: 0 }}>Ask it. Check the page. <span className="sb-gradtext">Write it by hand.</span></h2>
-              <p style={{ margin: 0, maxWidth: 520, fontSize: 17, lineHeight: 1.6, color: '#C9CCDD' }}>This is what a real session looks like on a phone: a question in Hindi or English, an answer with its textbook page, and a handwritten answer marked like the board exam.</p>
-              {[{ icon: 'book-open-text', t: 'Every answer shows its chapter and page', d: 'Open the book and check it yourself.' }, { icon: 'translate', t: 'Hindi and English, typed or spoken', d: 'Ask in whichever language you think in.' }, { icon: 'pen-nib', t: 'Marks for every point you wrote', d: 'See exactly where a mark was lost.' }].map((x) => (
-                <div key={x.t} style={{ display: 'flex', gap: 14, alignItems: 'center', padding: '14px 16px', borderRadius: 22, border: '1px solid rgba(255,255,255,.12)', background: 'rgba(255,255,255,.05)', backdropFilter: 'blur(14px)' }}>
-                  <Tile size={46} bg="var(--sb-grad-primary)" fg="#0A0F24" icon={x.icon} radius={15} />
-                  <span><span style={{ display: 'block', fontWeight: 800, fontSize: 15.5 }}>{x.t}</span><span style={{ display: 'block', fontSize: 13.5, color: '#A9AEC6' }}>{x.d}</span></span>
-                </div>
-              ))}
-            </div>
-          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', padding: '20px 0' }}>
-            <span aria-hidden style={{ position: 'absolute', left: '50%', top: '50%', width: 'min(110%,560px)', aspectRatio: '1', transform: 'translate(-50%,-50%)', borderRadius: '50%', border: '1.5px solid #FF99332E' }} />
-            <span aria-hidden style={{ position: 'absolute', left: '50%', top: '50%', width: 'min(84%,430px)', aspectRatio: '1', margin: 'calc(min(84%,430px) / -2) 0 0 calc(min(84%,430px) / -2)', borderRadius: '50%', border: '1.5px dashed #FF993366', animation: 'sbSpin 60s linear infinite' }} />
-            <div style={{ position: 'relative', width: 320, maxWidth: '100%', height: 640, borderRadius: 44, border: '9px solid var(--sb-frame)', background: 'var(--sb-paper)', overflow: 'hidden', boxShadow: '0 50px 90px -40px #0A0F2488' }}>
-              <div style={{ height: 38, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 22px', fontSize: 12.5, fontWeight: 700 }}>
-                <span>9:41</span><span style={{ display: 'flex', gap: 5 }}><Icon name="signal" size={14} weight="fill" /><Icon name="wifi-high" size={14} weight="fill" /><Icon name="battery" size={14} weight="fill" /></span>
-              </div>
-              <div style={{ height: 48, display: 'flex', alignItems: 'center', gap: 8, padding: '0 14px', borderBottom: '1px solid var(--sb-line)' }}>
-                <span style={{ width: 30, height: 30, borderRadius: 10, background: '#0A0F24', color: '#FF9933', display: 'grid', placeItems: 'center' }}><Icon name={heroTab === 0 ? 'sparkle' : 'pen-nib'} size={16} weight="fill" /></span>
-                <span style={{ flex: 1, fontFamily: D, fontWeight: 700, fontSize: 16 }}>{heroTab === 0 ? 'Virat Gyankosh' : 'InkBuddy'}</span>
-                <span style={{ padding: '4px 9px', borderRadius: 999, background: 'var(--sb-saffron-tint)', color: 'var(--sb-saffron-deep)', fontSize: 11, fontWeight: 800 }}>{heroTab === 0 ? demoData.lang : '3 marks'}</span>
-              </div>
-
-              {heroTab === 0 ? (
-                <>
-                  <div key={'d' + demo} style={{ padding: '14px 12px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-                    <div style={{ ...bubbleUser, maxWidth: '84%', animation: 'sbPop .35s both', transformOrigin: 'bottom right' }}>{demoData.q}</div>
-                    <div style={{ display: 'flex', gap: 8, alignItems: 'center', animation: 'sbIn .3s .4s both' }}>
-                      <span style={{ width: 26, height: 26, borderRadius: 9, background: '#0A0F24', color: '#FF9933', display: 'grid', placeItems: 'center' }}><Icon name="sparkle" size={14} weight="fill" /></span>
-                      <span style={{ display: 'flex', gap: 4 }}>{[0, 0.15, 0.3].map((d) => <span key={d} style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--sb-ink)', animation: `sbDot 1.1s ${d}s infinite` }} />)}</span>
-                      <span style={{ fontSize: 11.5, color: 'var(--sb-muted)' }}>Searching your textbooks…</span>
-                    </div>
-                    <div style={{ background: 'var(--sb-surface)', border: '1px solid var(--sb-line)', borderRadius: '5px 18px 18px 18px', padding: '12px 13px', fontSize: 13.5, lineHeight: 1.55, animation: 'sbIn .45s 1.5s both' }}>
-                      {demoData.a}
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginTop: 10 }}>
-                        <Chip bg="var(--sb-lav)" fg="var(--sb-lav-ink)" icon="book-open-text">{demoData.cite}</Chip>
-                        <Chip bg="var(--sb-stone)" fg="var(--sb-stone-ink)" icon="stack">{demoData.bloom}</Chip>
-                      </div>
-                    </div>
-                    <div style={{ display: 'flex', gap: 6, animation: 'sbIn .4s 2s both' }}>
-                      <span style={{ padding: '8px 11px', borderRadius: 999, border: '1px solid var(--sb-line)', background: 'var(--sb-surface)', fontSize: 11.5, fontWeight: 700 }}>Explain simpler</span>
-                      <span style={{ padding: '8px 11px', borderRadius: 999, background: 'var(--sb-saffron-tint)', color: 'var(--sb-saffron-deep)', fontSize: 11.5, fontWeight: 800 }}>Quiz me</span>
-                    </div>
-                  </div>
-                  <div style={{ position: 'absolute', left: 10, right: 10, bottom: 76, display: 'flex', alignItems: 'center', gap: 4, background: 'var(--sb-surface)', border: '1.5px solid var(--sb-ink)', borderRadius: 24, padding: '4px 4px 4px 14px' }}>
-                    <span style={{ flex: 1, color: 'var(--sb-muted)', fontSize: 13 }}>Ask about any chapter…</span>
-                    <span style={{ padding: '0 8px', display: 'grid', placeItems: 'center' }}><Icon name="mic" size={19} /></span>
-                    <span style={{ width: 36, height: 36, borderRadius: '50%', background: '#FF9933', color: '#0A0F24', display: 'grid', placeItems: 'center' }}><Icon name="send" size={16} weight="bold" /></span>
-                  </div>
-                </>
-              ) : (
-                <div key="ink" style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 10, animation: 'sbIn .4s both' }}>
-                  <div style={{ background: 'var(--sb-surface)', border: '1px solid var(--sb-line)', borderRadius: 16, padding: '10px 12px' }}>
-                    <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: '.06em', color: 'var(--sb-muted)' }}>SCIENCE IX · CH 10 · 3 MARKS</div>
-                    <div style={{ fontWeight: 800, fontSize: 14, marginTop: 3 }}>Why does ice float on water?</div>
-                  </div>
-                  <div className="sbl-notebook" style={{ position: 'relative', overflow: 'hidden', transform: 'rotate(-1.2deg)', backgroundImage: 'linear-gradient(#1F3A8A1A 1px,transparent 1px)', backgroundSize: '100% 24px', backgroundPosition: '0 6px', borderRadius: 6, padding: '8px 12px 10px 30px', boxShadow: '0 10px 22px -16px #0A0F24' }}>
-                    <span style={{ position: 'absolute', left: 20, top: 0, bottom: 0, width: 1, background: '#FF993399' }} />
-                    <div style={{ fontFamily: HAND, fontSize: 15, lineHeight: '24px' }}>Ice floats because when water freezes it expands, so its density decreases. Ice is lighter than water.</div>
-                    <span style={{ position: 'absolute', left: 4, top: 8, fontFamily: HAND, fontWeight: 700, fontSize: 15, color: '#B45309', animation: 'sbPop .3s 1.6s both' }}>✓</span>
-                    <span style={{ position: 'absolute', left: 4, top: 32, fontFamily: HAND, fontWeight: 700, fontSize: 15, color: '#B45309', animation: 'sbPop .3s 1.9s both' }}>✓</span>
-                    <span style={{ position: 'absolute', left: 0, right: 0, height: 2, background: '#FF9933', boxShadow: '0 0 12px 3px #FF993388', animation: 'sbScan 1.4s .2s ease-in-out both' }} />
-                  </div>
-                  <div style={{ background: 'var(--sb-grad-stage)', color: '#fff', borderRadius: 18, padding: '12px 13px', display: 'flex', flexDirection: 'column', gap: 8, animation: 'sbIn .4s 1.7s both' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.06em', color: '#FF9933' }}>INKBUDDY MARKS</span>
-                      <span style={{ fontFamily: D, fontWeight: 700, fontSize: 24 }}>2.5<span style={{ fontSize: 14, color: '#A9AEC6' }}> / 3</span></span>
-                    </div>
-                    {['Water expands on freezing', 'Density decreases'].map((t) => (
-                      <span key={t} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12.5 }}><Icon name="check" size={14} weight="bold" color="#FF9933" />{t}</span>
-                    ))}
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12.5, color: '#FFB4AE' }}><Icon name="minus" size={14} weight="bold" />Why? Open hexagonal lattice (−0.5)</span>
-                  </div>
-                  <div style={{ display: 'flex', gap: 6, animation: 'sbIn .4s 2.1s both' }}>
-                    <Chip bg="var(--sb-lav)" fg="var(--sb-lav-ink)" icon="book-open-text" style={{ padding: '6px 10px' }}>Revise p.132</Chip>
-                    <Chip bg="var(--sb-saffron-tint)" fg="var(--sb-saffron-deep)" style={{ padding: '6px 10px', fontWeight: 800 }}>Try again</Chip>
-                  </div>
-                </div>
-              )}
-
-              {/* Android bottom bar */}
-              <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, background: '#0A0F24', borderRadius: '22px 22px 0 0', padding: '7px 4px 16px', display: 'flex' }}>
-                {[['home', 'Home'], ['learn', 'Learn'], ['tutor', 'Tutor'], ['progress', 'Progress'], ['more', 'More']].map(([ic, lb]) => {
-                  const on = lb === 'Tutor'
-                  return (
-                    <span key={lb} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, color: on ? '#fff' : '#9AA0BC' }}>
-                      <span style={{ width: 48, height: 28, borderRadius: 14, background: on ? '#FF9933' : 'transparent', color: on ? '#0A0F24' : 'inherit', display: 'grid', placeItems: 'center' }}><Icon name={ic} size={20} active={on} /></span>
-                      <span style={{ fontSize: 10, fontWeight: 700 }}>{lb}</span>
-                    </span>
-                  )
-                })}
-              </div>
-            </div>
-            <div className="sbl-desk-block">
-              <div style={{ position: 'absolute', left: 0, top: '18%', display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px 10px 10px', borderRadius: 18, background: 'var(--sb-surface)', border: '1px solid var(--sb-line)', boxShadow: 'var(--sb-shadow-float)', animation: 'sbFloat 5s ease-in-out infinite' }}>
-                <span style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--sb-saffron-tint)', color: 'var(--sb-saffron-deep)', display: 'grid', placeItems: 'center' }}><Icon name="fire" size={22} weight="fill" /></span>
-                <span><span style={{ display: 'block', fontWeight: 800, fontSize: 16 }}>12 days</span><span style={{ fontSize: 12, color: 'var(--sb-muted)' }}>study streak</span></span>
-              </div>
-              <div style={{ position: 'absolute', right: 0, bottom: '20%', display: 'flex', flexDirection: 'column', gap: 8, padding: '14px 16px', borderRadius: 20, background: 'var(--sb-grad-stage)', color: '#fff', boxShadow: '0 20px 40px -20px #0A0F24AA', animation: 'sbFloat 6s 1s ease-in-out infinite' }}>
-                <span style={{ fontSize: 11.5, fontWeight: 800, color: '#FF9933', letterSpacing: '.06em', whiteSpace: 'nowrap' }}>PRACTEST · PHYSICS</span>
-                <span style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}><span style={{ fontFamily: D, fontWeight: 700, fontSize: 30 }}>4/5</span><span style={{ fontSize: 12.5, color: '#A9AEC6' }}>+1 level</span></span>
-                <span style={{ display: 'flex', gap: 4 }}>{[1, 1, 1, 1, 0].map((on, i) => <span key={i} style={{ width: 22, height: 6, borderRadius: 6, background: on ? '#FF9933' : '#FFFFFF33' }} />)}</span>
-              </div>
-            </div>
-          </div>
-          </div>
-        </section>
 
         {/* ───────── a day with Study Buddy ───────── */}
         <section id="day" className="sbl-day-bg" style={{ position: 'relative', background: tone.bg, color: tone.fg }}>
