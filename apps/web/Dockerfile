@@ -33,7 +33,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends python3 make g+
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 ENV HUSKY=0 NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production
-COPY --from=deps /app/node_modules ./node_modules
+# Copy the WHOLE installed tree (root + each workspace's own node_modules). npm nests a package under a
+# workspace when versions differ (e.g. better-auth, zod); copying only the root node_modules loses them.
+COPY --from=deps /app ./
 COPY . .
 
 # NEXT_PUBLIC_* must exist at build time to be baked into the client bundle.
@@ -89,6 +91,8 @@ RUN groupadd --system --gid 1001 nodejs && useradd --system --uid 1001 --gid nod
 # so Node's module resolution walk-up from apps/web finds it. Do NOT flatten.
 COPY --from=pruner --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=pruner --chown=nextjs:nodejs /app/packages ./packages
+# npm nests some packages (better-auth, @tiptap, ...) under the workspace itself; the web app needs its own copy.
+COPY --from=pruner --chown=nextjs:nodejs /app/apps/web/node_modules ./apps/web/node_modules
 COPY --from=pruner --chown=nextjs:nodejs /app/package.json ./package.json
 COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next ./apps/web/.next
 COPY --from=builder --chown=nextjs:nodejs /app/apps/web/public ./apps/web/public

@@ -23,7 +23,9 @@ FROM node:20-alpine AS builder
 RUN apk add --no-cache libc6-compat python3 make g++
 WORKDIR /app
 ENV HUSKY=0 NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production
-COPY --from=deps /app/node_modules ./node_modules
+# Copy the WHOLE installed tree (root + each workspace's own node_modules). npm nests a package under a
+# workspace when versions differ (e.g. better-auth, zod); copying only the root node_modules loses them.
+COPY --from=deps /app ./
 COPY . .
 
 # next build imports every route to collect page data, and OpenAIService.getInstance() runs at
