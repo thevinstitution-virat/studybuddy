@@ -68,7 +68,7 @@ export default function LearningAnalytics({ className = '' }: LearningAnalyticsP
         type: 'achievement',
         title: 'Vocabulary Master!',
         description: `You've mastered ${learningProgress.masteredWords} words. Keep up the excellent work!`,
-        icon: <Award className="h-5 w-5 text-yellow-500" />,
+        icon: <Award className="h-5 w-5 text-sb-butter-ink" />,
         action: 'View mastered words'
       })
     }
@@ -78,7 +78,7 @@ export default function LearningAnalytics({ className = '' }: LearningAnalyticsP
         type: 'achievement',
         title: 'Week Streak!',
         description: `${learningProgress.streakDays} days of consistent learning. You're on fire!`,
-        icon: <Zap className="h-5 w-5 text-orange-500" />,
+        icon: <Zap className="h-5 w-5 text-sb-saffron-deep" />,
         action: 'Keep the streak going'
       })
     }
@@ -89,7 +89,7 @@ export default function LearningAnalytics({ className = '' }: LearningAnalyticsP
         type: 'suggestion',
         title: 'Review Time',
         description: `${favoriteStats.needsReview.length} words need review to improve retention.`,
-        icon: <RefreshCw className="h-5 w-5 text-blue-500" />,
+        icon: <RefreshCw className="h-5 w-5 text-sb-sky-ink" />,
         action: 'Start reviewing'
       })
     }
@@ -99,7 +99,7 @@ export default function LearningAnalytics({ className = '' }: LearningAnalyticsP
         type: 'suggestion',
         title: 'Weekly Goal',
         description: `You're ${learningProgress.weeklyGoal - learningProgress.weeklyProgress} words behind your weekly goal.`,
-        icon: <Target className="h-5 w-5 text-purple-500" />,
+        icon: <Target className="h-5 w-5 text-sb-lav-ink" />,
         action: 'Study more words'
       })
     }
@@ -110,7 +110,7 @@ export default function LearningAnalytics({ className = '' }: LearningAnalyticsP
         type: 'milestone',
         title: 'Century Club!',
         description: `You've learned ${stats.totalWordsLearned} words total. Amazing progress!`,
-        icon: <Brain className="h-5 w-5 text-green-500" />,
+        icon: <Brain className="h-5 w-5 text-sb-saffron-deep" />,
         action: 'Celebrate achievement'
       })
     }
@@ -166,10 +166,10 @@ export default function LearningAnalytics({ className = '' }: LearningAnalyticsP
 
   const getInsightColor = (type: LearningInsight['type']) => {
     switch (type) {
-      case 'achievement': return 'border-l-yellow-500 bg-yellow-50 dark:bg-yellow-900/20'
-      case 'suggestion': return 'border-l-blue-500 bg-blue-50 dark:bg-blue-900/20'
-      case 'milestone': return 'border-l-green-500 bg-green-50 dark:bg-green-900/20'
-      case 'warning': return 'border-l-red-500 bg-red-50 dark:bg-red-900/20'
+      case 'achievement': return 'border-l-yellow-500 bg-sb-butter '
+      case 'suggestion': return 'border-l-blue-500 bg-sb-sky '
+      case 'milestone': return 'border-l-green-500 bg-sb-saffron-tint '
+      case 'warning': return 'border-l-red-500 bg-sb-rose '
       default: return 'border-l-gray-500 bg-background/20'
     }
   }
@@ -177,13 +177,13 @@ export default function LearningAnalytics({ className = '' }: LearningAnalyticsP
   return (
     <div className={`space-y-6 ${className}`}>
       {/* Analytics Header */}
-      <Card className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 border-purple-200/50 dark:border-purple-700/50">
+      <Card className="bg-sb-surface-2     border-sb-lav ">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="flex items-center space-x-2">
-                <BarChart3 className="h-5 w-5 text-purple-500" />
-                <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                <BarChart3 className="h-5 w-5 text-sb-lav-ink" />
+                <span className="text-sb-saffron-deep    ">
                   Learning Analytics
                 </span>
               </CardTitle>
@@ -208,25 +208,25 @@ export default function LearningAnalytics({ className = '' }: LearningAnalyticsP
           {/* Key Metrics */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+              <div className="text-2xl font-bold text-sb-lav-ink ">
                 {stats.totalWordsLearned}
               </div>
               <div className="text-sm text-muted-foreground">Words Learned</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+              <div className="text-2xl font-bold text-sb-lav-ink ">
                 {learningProgress.streakDays}
               </div>
               <div className="text-sm text-muted-foreground">Day Streak</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <div className="text-2xl font-bold text-sb-sky-ink ">
                 {cacheStats.cacheHitRate}%
               </div>
               <div className="text-sm text-muted-foreground">Cache Hit Rate</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+              <div className="text-2xl font-bold text-sb-saffron-deep ">
                 {Math.round((learningProgress.weeklyProgress / learningProgress.weeklyGoal) * 100)}%
               </div>
               <div className="text-sm text-muted-foreground">Weekly Goal</div>
@@ -240,7 +240,7 @@ export default function LearningAnalytics({ className = '' }: LearningAnalyticsP
         <Card className="bg-white/90 backdrop-blur-xl border-border/50">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <Brain className="h-5 w-5 text-orange-500" />
+              <Brain className="h-5 w-5 text-sb-saffron-deep" />
               <span>Learning Insights</span>
               <Badge variant="secondary">{learningInsights.length}</Badge>
             </CardTitle>
@@ -292,7 +292,7 @@ export default function LearningAnalytics({ className = '' }: LearningAnalyticsP
           <Card className="bg-white/90 backdrop-blur-xl border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <TrendingUp className="h-5 w-5 text-green-500" />
+                <TrendingUp className="h-5 w-5 text-sb-saffron-deep" />
                 <span>Learning Progress</span>
               </CardTitle>
             </CardHeader>
@@ -328,7 +328,7 @@ export default function LearningAnalytics({ className = '' }: LearningAnalyticsP
                   {favoriteStats.recentlyAdded.slice(0, 5).map((word, index) => (
                     <div key={index} className="flex items-center justify-between p-2 bg-muted/40 rounded-lg">
                       <div className="flex items-center space-x-2">
-                        <BookOpen className="h-4 w-4 text-blue-500" />
+                        <BookOpen className="h-4 w-4 text-sb-sky-ink" />
                         <span className="font-medium">{word.word}</span>
                         <Badge variant="outline" className="text-xs">
                           {word.masteryLevel}
@@ -350,51 +350,51 @@ export default function LearningAnalytics({ className = '' }: LearningAnalyticsP
           <Card className="bg-white/90 backdrop-blur-xl border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <Activity className="h-5 w-5 text-blue-500" />
+                <Activity className="h-5 w-5 text-sb-sky-ink" />
                 <span>Learning Patterns</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                  <div className="p-4 bg-sb-sky  rounded-lg">
                     <div className="flex items-center space-x-2 mb-2">
-                      <Clock className="h-4 w-4 text-blue-500" />
+                      <Clock className="h-4 w-4 text-sb-sky-ink" />
                       <span className="font-medium">Most Active Time</span>
                     </div>
-                    <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                    <p className="text-2xl font-bold text-sb-sky-ink ">
                       {learningPatterns.mostActiveHour}
                     </p>
                   </div>
                   
-                  <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                  <div className="p-4 bg-sb-saffron-tint  rounded-lg">
                     <div className="flex items-center space-x-2 mb-2">
-                      <Target className="h-4 w-4 text-green-500" />
+                      <Target className="h-4 w-4 text-sb-saffron-deep" />
                       <span className="font-medium">Preferred Difficulty</span>
                     </div>
-                    <p className="text-2xl font-bold text-green-600 dark:text-green-400">
+                    <p className="text-2xl font-bold text-sb-saffron-deep ">
                       {learningPatterns.preferredDifficulty}
                     </p>
                   </div>
                 </div>
 
                 <div className="space-y-4">
-                  <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                  <div className="p-4 bg-sb-lav  rounded-lg">
                     <div className="flex items-center space-x-2 mb-2">
-                      <Brain className="h-4 w-4 text-purple-500" />
+                      <Brain className="h-4 w-4 text-sb-lav-ink" />
                       <span className="font-medium">Strongest Category</span>
                     </div>
-                    <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                    <p className="text-2xl font-bold text-sb-lav-ink ">
                       {learningPatterns.strongestCategory}
                     </p>
                   </div>
                   
-                  <div className="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                  <div className="p-4 bg-sb-saffron-tint  rounded-lg">
                     <div className="flex items-center space-x-2 mb-2">
-                      <TrendingUp className="h-4 w-4 text-orange-500" />
+                      <TrendingUp className="h-4 w-4 text-sb-saffron-deep" />
                       <span className="font-medium">Improvement Area</span>
                     </div>
-                    <p className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                    <p className="text-2xl font-bold text-sb-saffron-deep ">
                       {learningPatterns.improvementArea}
                     </p>
                   </div>
@@ -409,28 +409,28 @@ export default function LearningAnalytics({ className = '' }: LearningAnalyticsP
           <Card className="bg-white/90 backdrop-blur-xl border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <Zap className="h-5 w-5 text-yellow-500" />
+                <Zap className="h-5 w-5 text-sb-butter-ink" />
                 <span>Performance Metrics</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-lg">
-                  <div className="text-3xl font-bold text-yellow-600 dark:text-yellow-400 mb-2">
+                <div className="text-center p-4 bg-sb-surface-2     rounded-lg">
+                  <div className="text-3xl font-bold text-sb-butter-ink  mb-2">
                     {cacheStats.totalSearchHistory}
                   </div>
                   <div className="text-sm text-muted-foreground">Total Searches</div>
                 </div>
                 
-                <div className="text-center p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg">
-                  <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                <div className="text-center p-4 bg-sb-surface-2     rounded-lg">
+                  <div className="text-3xl font-bold text-sb-saffron-deep  mb-2">
                     {learningProgress.totalReviews}
                   </div>
                   <div className="text-sm text-muted-foreground">Total Reviews</div>
                 </div>
                 
-                <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg">
-                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                <div className="text-center p-4 bg-sb-surface-2     rounded-lg">
+                  <div className="text-3xl font-bold text-sb-sky-ink  mb-2">
                     {Math.round(learningProgress.averageAccuracy)}%
                   </div>
                   <div className="text-sm text-muted-foreground">Accuracy Rate</div>
@@ -445,7 +445,7 @@ export default function LearningAnalytics({ className = '' }: LearningAnalyticsP
           <Card className="bg-white/90 backdrop-blur-xl border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <Target className="h-5 w-5 text-purple-500" />
+                <Target className="h-5 w-5 text-sb-lav-ink" />
                 <span>Learning Goals</span>
               </CardTitle>
             </CardHeader>

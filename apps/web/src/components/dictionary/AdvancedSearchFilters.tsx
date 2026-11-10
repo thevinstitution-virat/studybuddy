@@ -68,9 +68,9 @@ const partOfSpeechOptions = [
 ]
 
 const difficultyOptions = [
-  { value: 'easy', label: 'Easy', color: 'bg-green-100 text-green-800 border-green-300' },
-  { value: 'medium', label: 'Medium', color: 'bg-yellow-100 text-yellow-800 border-yellow-300' },
-  { value: 'hard', label: 'Hard', color: 'bg-red-100 text-red-800 border-red-300' }
+  { value: 'easy', label: 'Easy', color: 'bg-sb-saffron-tint text-sb-saffron-deep border-sb-saffron' },
+  { value: 'medium', label: 'Medium', color: 'bg-sb-butter text-sb-butter-ink border-sb-butter' },
+  { value: 'hard', label: 'Hard', color: 'bg-sb-rose text-sb-rose-ink border-sb-danger' }
 ]
 
 const sortOptions = [
@@ -141,12 +141,12 @@ export default function AdvancedSearchFilters({
         <Button
           variant="outline"
           onClick={onToggleVisibility}
-          className="flex items-center space-x-2 bg-white/80 backdrop-blur-xl border-border/50 hover:bg-gradient-to-r hover:from-orange-50 hover:to-blue-50 dark:hover:from-orange-900/20 dark:hover:to-blue-900/20"
+          className="flex items-center space-x-2 bg-white/80 backdrop-blur-xl border-border/50 hover:bg-sb-surface-2    "
         >
           <Filter className="h-4 w-4" />
           <span>Advanced Filters</span>
           {getActiveFilterCount() > 0 && (
-            <Badge variant="secondary" className="ml-2 bg-orange-100 text-orange-800">
+            <Badge variant="secondary" className="ml-2 bg-sb-saffron-tint text-sb-saffron-deep">
               {getActiveFilterCount()}
             </Badge>
           )}
@@ -166,7 +166,7 @@ export default function AdvancedSearchFilters({
             <div className="flex items-center justify-between">
               <div>
                 <CardTitle className="flex items-center space-x-2">
-                  <Settings className="h-5 w-5 text-orange-500" />
+                  <Settings className="h-5 w-5 text-sb-saffron-deep" />
                   <span>Search Filters & Sorting</span>
                 </CardTitle>
                 <CardDescription>
@@ -266,8 +266,8 @@ export default function AdvancedSearchFilters({
                     onClick={() => toggleArrayFilter('partOfSpeech', option.value)}
                     className={`justify-start h-auto p-3 ${
                       localFilters.partOfSpeech.includes(option.value)
-                        ? 'bg-gradient-to-r from-orange-500 to-blue-500 text-white'
-                        : 'hover:bg-gradient-to-r hover:from-orange-50 hover:to-blue-50 dark:hover:from-orange-900/20 dark:hover:to-blue-900/20'
+                        ? 'bg-sb-navy   text-white'
+                        : 'hover:bg-sb-surface-2    '
                     }`}
                   >
                     <span className="mr-2">{option.icon}</span>
@@ -289,7 +289,7 @@ export default function AdvancedSearchFilters({
                     onClick={() => toggleArrayFilter('difficultyLevel', option.value)}
                     className={`${
                       localFilters.difficultyLevel.includes(option.value)
-                        ? 'bg-gradient-to-r from-orange-500 to-blue-500 text-white'
+                        ? 'bg-sb-navy   text-white'
                         : `hover:${option.color}`
                     }`}
                   >
@@ -309,10 +309,10 @@ export default function AdvancedSearchFilters({
                     id="hasAudio"
                     checked={localFilters.hasAudio}
                     onChange={(e) => updateFilter('hasAudio', e.target.checked)}
-                    className="h-4 w-4 rounded border-input text-blue-500 focus:ring-blue-500"
+                    className="h-4 w-4 rounded border-input text-sb-sky-ink focus:ring-sb-sky"
                   />
                   <label htmlFor="hasAudio" className="flex items-center space-x-2 text-sm cursor-pointer">
-                    <Volume2 className="h-4 w-4 text-blue-500" />
+                    <Volume2 className="h-4 w-4 text-sb-sky-ink" />
                     <span>Has Audio Pronunciation</span>
                   </label>
                 </div>
@@ -322,10 +322,10 @@ export default function AdvancedSearchFilters({
                     id="hasHindi"
                     checked={localFilters.hasHindiTranslation}
                     onChange={(e) => updateFilter('hasHindiTranslation', e.target.checked)}
-                    className="h-4 w-4 rounded border-input text-orange-500 focus:ring-orange-500"
+                    className="h-4 w-4 rounded border-input text-sb-saffron-deep focus:ring-sb-saffron"
                   />
                   <label htmlFor="hasHindi" className="flex items-center space-x-2 text-sm cursor-pointer">
-                    <Globe className="h-4 w-4 text-orange-500" />
+                    <Globe className="h-4 w-4 text-sb-saffron-deep" />
                     <span>Has Hindi Translation</span>
                   </label>
                 </div>
@@ -343,7 +343,7 @@ export default function AdvancedSearchFilters({
                   max={1000}
                   min={1}
                   step={10}
-                  className="w-full accent-orange-500"
+                  className="w-full accent-sb-saffron"
                 />
                 <div className="flex justify-between text-xs text-muted-foreground mt-1">
                   <span>Most Common ({localFilters.frequencyRange[0]})</span>
@@ -364,8 +364,8 @@ export default function AdvancedSearchFilters({
                     onClick={() => toggleArrayFilter('source', option.value)}
                     className={`justify-start h-auto p-3 ${
                       localFilters.source.includes(option.value)
-                        ? 'bg-gradient-to-r from-orange-500 to-blue-500 text-white'
-                        : 'hover:bg-gradient-to-r hover:from-orange-50 hover:to-blue-50 dark:hover:from-orange-900/20 dark:hover:to-blue-900/20'
+                        ? 'bg-sb-navy   text-white'
+                        : 'hover:bg-sb-surface-2    '
                     }`}
                   >
                     <span className="mr-2">{option.icon}</span>

@@ -1,5 +1,6 @@
 'use client'
 
+import { PageHeader } from '@/components/sb'
 import React, { useState, useEffect } from 'react'
 import {
   Search,
@@ -31,12 +32,12 @@ interface DashboardState {
 }
 
 const TYPE_GRAD: Record<string, string> = {
-  notes: 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))',
-  summaries: 'linear-gradient(135deg,var(--teal-light),var(--peacock-teal))',
-  mind_maps: 'linear-gradient(135deg,var(--lotus-deep),var(--lotus-pink))',
+  notes: 'var(--sb-navy)',
+  summaries: 'var(--sb-navy)',
+  mind_maps: 'var(--sb-navy)',
   quizzes: 'var(--bb-grad-primary)',
-  textbooks: 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))',
-  reference: 'linear-gradient(135deg,var(--turmeric),var(--gold))',
+  textbooks: 'var(--sb-navy)',
+  reference: 'var(--sb-navy)',
 }
 
 // Material Card Component
@@ -152,9 +153,9 @@ export default function MaterialsPage() {
   const getTypeColor = (type: string) => {
     const colors = {
       notes: 'bg-primary/10 text-primary',
-      summaries: 'bg-green-50 text-green-600',
+      summaries: 'bg-sb-saffron-tint text-sb-saffron-deep',
       mind_maps: 'bg-primary/10 text-primary',
-      quizzes: 'bg-orange-50 text-orange-600',
+      quizzes: 'bg-sb-saffron-tint text-sb-saffron-deep',
       textbooks: 'bg-primary/10 text-primary',
       reference: 'bg-muted/40 text-muted-foreground'
     }
@@ -211,12 +212,7 @@ export default function MaterialsPage() {
     <div className="dcs">
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10 }}>
-          <div>
-            <h1 style={{ margin: 0, fontSize: 'clamp(20px,2.4vw,26px)', fontWeight: 800, color: 'var(--ink)' }}>Study Materials</h1>
-            <p style={{ margin: '4px 0 0', fontSize: 13, color: 'var(--muted)' }}>
-              {userProfile ? `Access your ${userProfile.board} Class ${userProfile.class} materials` : 'Access your study materials'}
-            </p>
-          </div>
+          <PageHeader kicker="NCERT-aligned" icon="materials" tone="stone" title="Study" highlight="Materials" description={userProfile ? `Access your ${userProfile.board} Class ${userProfile.class} materials` : 'Access your study materials'} />
           {userProfile && (
             <div style={{ display: 'flex', gap: 8 }}>
               <span className="tag" style={{ background: 'var(--chip-bg)', color: 'var(--accent-text)' }}>{userProfile.board} · Class {userProfile.class}</span>
@@ -275,7 +271,7 @@ export default function MaterialsPage() {
           </div>
         ) : dashboardState.error ? (
           <div className="card" style={{ padding: 32, textAlign: 'center' }}>
-            <span className="plinth" style={{ width: 56, height: 56, margin: '0 auto 14px', background: 'linear-gradient(135deg,#FF5468,#E5283A 55%,#B0182A)' }}>
+            <span className="plinth" style={{ width: 56, height: 56, margin: '0 auto 14px', background: 'var(--sb-navy)' }}>
               <FileText className="h-7 w-7" />
             </span>
             <h3 style={{ fontSize: 16, fontWeight: 800, color: 'var(--ink)', margin: '0 0 6px' }}>Error loading materials</h3>
@@ -284,7 +280,7 @@ export default function MaterialsPage() {
           </div>
         ) : dashboardState.filteredMaterials.length === 0 ? (
           <div className="card" style={{ padding: 32, textAlign: 'center' }}>
-            <span className="plinth" style={{ width: 56, height: 56, margin: '0 auto 14px', background: 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))' }}>
+            <span className="plinth" style={{ width: 56, height: 56, margin: '0 auto 14px', background: 'var(--sb-navy)' }}>
               <BookOpen className="h-7 w-7" />
             </span>
             <h3 style={{ fontSize: 16, fontWeight: 800, color: 'var(--ink)', margin: '0 0 6px' }}>No materials found</h3>

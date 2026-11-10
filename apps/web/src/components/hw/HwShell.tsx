@@ -3,6 +3,7 @@
 // Page frame for every Handwritten Assignments screen: title, language switch, and the
 // feature gate (switched off / not in an institution) so no page renders half-working.
 
+import { PageHeader, Skeleton } from '@/components/sb'
 import type { ReactNode } from 'react'
 import { Loader2, AlertTriangle } from 'lucide-react'
 import { api } from '@/lib/trpc/client'
@@ -25,9 +26,9 @@ export function HwLanguageToggle() {
 
 export function HwMessage({ tone = 'info', children }: { tone?: 'info' | 'error'; children: ReactNode }) {
   return (
-    <Card className={tone === 'error' ? 'border-red-300 dark:border-red-800' : undefined}>
+    <Card className={tone === 'error' ? 'border-sb-danger ' : undefined}>
       <CardContent className="flex items-start gap-3 py-6 text-sm">
-        {tone === 'error' && <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-red-600" aria-hidden />}
+        {tone === 'error' && <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-sb-rose-ink" aria-hidden />}
         <div>{children}</div>
       </CardContent>
     </Card>
@@ -37,8 +38,10 @@ export function HwMessage({ tone = 'info', children }: { tone?: 'info' | 'error'
 export function HwLoading() {
   const { t } = useHwT()
   return (
-    <div className="flex items-center gap-2 py-12 text-sm text-muted-foreground" role="status">
-      <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> {t('common.loading')}
+    <div className="space-y-3 py-4" role="status" aria-label={t('common.loading')}>
+      <Skeleton height={72} />
+      <Skeleton height={72} />
+      <Skeleton height={72} />
     </div>
   )
 }
@@ -75,17 +78,15 @@ export function HwShell({ titleKey = 'app.title', title, subtitle, actions, role
   else if (!roles.includes(status.data.role as never)) body = <HwMessage>{t('app.noAccess')}</HwMessage>
 
   return (
-    <div className="mx-auto w-full max-w-6xl space-y-6 px-4 py-6 sm:px-6">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="min-w-0">
-          <h1 className="text-2xl font-bold tracking-tight">{title ?? t(titleKey)}</h1>
-          <p className="mt-1 text-sm text-muted-foreground">{subtitle ?? t('app.subtitle')}</p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          {actions}
-          <HwLanguageToggle />
-        </div>
-      </div>
+    <div className="mx-auto w-full max-w-6xl space-y-6">
+      <PageHeader
+        kicker="Virat Evaluator"
+        icon="evaluation"
+        tone="sky"
+        title={title ?? t(titleKey)}
+        description={subtitle ?? t('app.subtitle')}
+        action={<div className="flex flex-wrap items-center gap-2">{actions}<HwLanguageToggle /></div>}
+      />
       {body}
     </div>
   )

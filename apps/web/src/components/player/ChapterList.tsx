@@ -23,7 +23,7 @@ export function ChapterList({ chapters, activeChapterIdx, currentTime, onChapter
   return (
     <div className="flex flex-col h-full">
       <div className="px-4 py-3 border-b border-border dark:border-slate-800 bg-muted/40 dark:bg-slate-900 flex items-center gap-2">
-        <Bookmark className="w-4 h-4 text-indigo-500" />
+        <Bookmark className="w-4 h-4 text-sb-lav-ink" />
         <span className="font-semibold text-sm text-foreground dark:text-slate-300">Chapters</span>
         <span className="ml-auto text-xs text-muted-foreground bg-muted dark:bg-slate-800 px-2 py-0.5 rounded-full">{chapters.length}</span>
       </div>
@@ -38,14 +38,14 @@ export function ChapterList({ chapters, activeChapterIdx, currentTime, onChapter
               onClick={() => onChapterClick(chapter.startSeconds)}
               className={`w-full text-left px-4 py-3 flex items-start gap-3 transition-all border-l-2 ${
                 isActive
-                  ? 'bg-indigo-50 dark:bg-indigo-500/10 border-indigo-500 text-indigo-800 dark:text-indigo-200'
+                  ? 'bg-sb-lav  border-sb-lav text-sb-lav-ink '
                   : isPast
-                  ? 'border-emerald-300 dark:border-emerald-700 text-muted-foreground dark:text-muted-foreground hover:bg-muted/40 dark:hover:bg-slate-900'
+                  ? 'border-sb-saffron  text-muted-foreground dark:text-muted-foreground hover:bg-muted/40 dark:hover:bg-slate-900'
                   : 'border-transparent text-muted-foreground dark:text-muted-foreground hover:bg-muted/40 dark:hover:bg-slate-900'
               }`}
             >
               {isActive ? (
-                <PlayCircle className="w-4 h-4 mt-0.5 text-indigo-500 shrink-0 animate-pulse" />
+                <PlayCircle className="w-4 h-4 mt-0.5 text-sb-lav-ink shrink-0 animate-pulse" />
               ) : (
                 <span className="w-4 h-4 mt-0.5 shrink-0 text-xs font-bold text-center text-muted-foreground">
                   {idx + 1}
@@ -55,7 +55,7 @@ export function ChapterList({ chapters, activeChapterIdx, currentTime, onChapter
                 <p className={`text-sm leading-snug ${isActive ? 'font-semibold' : 'font-medium'} truncate`}>
                   {chapter.title}
                 </p>
-                <p className={`text-xs mt-0.5 ${isActive ? 'text-indigo-500' : 'text-muted-foreground'}`}>
+                <p className={`text-xs mt-0.5 ${isActive ? 'text-sb-lav-ink' : 'text-muted-foreground'}`}>
                   {formatSeconds(chapter.startSeconds)}
                 </p>
               </div>

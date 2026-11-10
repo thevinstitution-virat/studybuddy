@@ -406,7 +406,7 @@ export function VoiceRecordingButton({
           disabled={disabled}
           className={cn(
             getButtonSize(),
-            'p-0 rounded-xl bg-red-500 hover:bg-red-600 border-red-400 shadow-md hover:shadow-lg transition-all duration-200',
+            'p-0 rounded-xl bg-sb-danger hover:bg-sb-danger border-sb-danger shadow-md hover:shadow-lg transition-all duration-200',
             className
           )}
         >
@@ -419,7 +419,7 @@ export function VoiceRecordingButton({
           disabled={disabled}
           className={cn(
             getButtonSize(),
-            'p-0 rounded-xl bg-gradient-to-r from-green-500 to-green-600 border-green-400 shadow-md hover:shadow-lg transition-all duration-200',
+            'p-0 rounded-xl bg-sb-navy   border-sb-saffron shadow-md hover:shadow-lg transition-all duration-200',
             className
           )}
         >
@@ -445,10 +445,10 @@ export function VoiceRecordingButton({
         className={cn(
           getButtonSize(),
           'p-0 rounded-xl relative overflow-hidden transition-all duration-200 select-none',
-          state === 'idle' && 'bg-white/90 border-orange-200/60 hover:border-blue-400 backdrop-blur-sm shadow-sm hover:shadow-md',
-          state === 'recording' && 'bg-gradient-to-r from-red-500 to-red-600 border-red-400 shadow-lg',
-          state === 'processing' && 'bg-gradient-to-r from-blue-500 to-blue-600 border-blue-400',
-          state === 'error' && 'bg-gradient-to-r from-red-500 to-red-600 border-red-400',
+          state === 'idle' && 'bg-white/90 border-sb-saffron hover:border-sb-sky backdrop-blur-sm shadow-sm hover:shadow-md',
+          state === 'recording' && 'bg-sb-navy   border-sb-danger shadow-lg',
+          state === 'processing' && 'bg-sb-navy   border-sb-sky',
+          state === 'error' && 'bg-sb-navy   border-sb-danger',
           slideDistance > slideThreshold / 2 && state === 'recording' && 'bg-gray-400',
           className
         )}
@@ -534,7 +534,7 @@ export function VoiceRecordingButton({
             exit={{ opacity: 0, x: -10 }}
             className="flex items-center space-x-2"
           >
-            <div className="text-sm font-mono text-red-600 bg-red-50 px-2 py-1 rounded-md border border-red-200">
+            <div className="text-sm font-mono text-sb-rose-ink bg-sb-rose px-2 py-1 rounded-md border border-sb-danger">
               {formatTime(recordingTime)}
             </div>
 
@@ -545,8 +545,8 @@ export function VoiceRecordingButton({
                 className={cn(
                   "text-xs px-2 py-1 rounded-md transition-colors duration-200",
                   slideDistance > slideThreshold / 2
-                    ? "bg-red-100 text-red-700 border border-red-300"
-                    : "bg-yellow-100 text-yellow-700 border border-yellow-300"
+                    ? "bg-sb-rose text-sb-rose-ink border border-sb-danger"
+                    : "bg-sb-butter text-sb-butter-ink border border-sb-butter"
                 )}
               >
                 {slideDistance > slideThreshold / 2 ? "Release to cancel" : "Slide to cancel"}
@@ -563,7 +563,7 @@ export function VoiceRecordingButton({
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -10 }}
-            className="text-sm text-blue-600 bg-blue-50 px-2 py-1 rounded-md border border-blue-200"
+            className="text-sm text-sb-sky-ink bg-sb-sky px-2 py-1 rounded-md border border-sb-sky"
           >
             Processing...
           </motion.div>

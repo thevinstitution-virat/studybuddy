@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { HwError, HwLoading } from '@/components/hw/HwShell'
 import { STATUS_LABEL, inr, ist } from './format'
 
-const STATE: Record<string, string> = { pass: 'text-emerald-700', fail: 'text-red-700', insufficient: 'text-amber-700', not_applicable: 'text-muted-foreground' }
+const STATE: Record<string, string> = { pass: 'text-sb-saffron-deep', fail: 'text-sb-rose-ink', insufficient: 'text-sb-butter-ink', not_applicable: 'text-muted-foreground' }
 
 export function RunsTab() {
   const q = api.hwEval.admin.runsAndGates.useQuery()

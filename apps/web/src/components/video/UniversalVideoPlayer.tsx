@@ -73,14 +73,14 @@ export function UniversalVideoPlayer({ videoAsset }: Props) {
   if (isBunny && isEmbedLoading) {
     return (
       <div className="flex aspect-video w-full items-center justify-center rounded-xl border border-slate-800 bg-slate-950">
-        <Loader2 className="h-8 w-8 animate-spin text-indigo-500" />
+        <Loader2 className="h-8 w-8 animate-spin text-sb-lav-ink" />
       </div>
     );
   }
 
   if (isBunny && (embedError || !embedData)) {
     return (
-      <div className="flex aspect-video w-full flex-col items-center justify-center gap-4 rounded-xl border border-slate-800 bg-slate-950 p-6 text-center text-red-500">
+      <div className="flex aspect-video w-full flex-col items-center justify-center gap-4 rounded-xl border border-slate-800 bg-slate-950 p-6 text-center text-sb-rose-ink">
         <p className="max-w-md text-sm">Failed to load video.{embedError ? ` ${embedError.message}` : ''}</p>
       </div>
     );
@@ -93,7 +93,7 @@ export function UniversalVideoPlayer({ videoAsset }: Props) {
 
     if (!hlsUrl) {
       return (
-        <div className="flex aspect-video w-full items-center justify-center rounded-xl border border-slate-800 bg-slate-950 p-6 text-center text-red-500">
+        <div className="flex aspect-video w-full items-center justify-center rounded-xl border border-slate-800 bg-slate-950 p-6 text-center text-sb-rose-ink">
           <p className="text-sm">Embed data received but HLS URL field is missing. Check getVideoEmbed return shape.</p>
         </div>
       );
@@ -125,7 +125,7 @@ export function UniversalVideoPlayer({ videoAsset }: Props) {
   // ── Unknown provider ──────────────────────────────────────────────────────────
 
   return (
-    <div className="flex aspect-video w-full items-center justify-center rounded-xl border border-slate-800 bg-slate-950 p-6 text-center text-red-500">
+    <div className="flex aspect-video w-full items-center justify-center rounded-xl border border-slate-800 bg-slate-950 p-6 text-center text-sb-rose-ink">
       <p className="text-sm">Unsupported video provider: {videoAsset.provider}</p>
     </div>
   );

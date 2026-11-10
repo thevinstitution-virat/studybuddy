@@ -23,11 +23,11 @@ type EnrollmentStatus = 'active' | 'suspended' | 'completed';
 const STATUS_CONFIG: Record<EnrollmentStatus, { label: string; className: string }> = {
   active: {
     label:     'Active',
-    className: 'bg-emerald-100 text-emerald-800 border-transparent dark:bg-emerald-950 dark:text-emerald-300',
+    className: 'bg-sb-saffron-tint text-sb-saffron-deep border-transparent  ',
   },
   suspended: {
     label:     'Suspended',
-    className: 'bg-amber-100 text-amber-800 border-transparent dark:bg-amber-950 dark:text-amber-300',
+    className: 'bg-sb-butter text-sb-butter-ink border-transparent  ',
   },
   completed: {
     label:     'Completed',

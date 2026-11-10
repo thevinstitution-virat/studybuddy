@@ -53,12 +53,12 @@ export const EnhancedLandingPage: React.FC = () => {
   }
 
   const platformFeatures = [
-    { icon: Brain, title: "AI-Powered Tutoring System", description: "Advanced conversational AI with role-based responses, CBSE curriculum alignment, and intelligent RAG search", color: "from-purple-500 to-indigo-600", highlight: "AI Powered", glowColor: "shadow-purple-500/25" },
-    { icon: Database, title: "e-Learning Practest Engine", description: "Comprehensive assessment system with adaptive testing, intelligent question generation, and detailed analytics", color: "from-blue-500 to-cyan-500", highlight: "Smart Testing", glowColor: "shadow-blue-500/25" },
-    { icon: Search, title: "Enhanced Question Bank", description: "Hierarchical topic organization with Board to Class to Subject to Chapter structure and metadata tagging", color: "from-green-500 to-emerald-500", highlight: "Organized Content", glowColor: "shadow-green-500/25" },
-    { icon: Cpu, title: "Computer Adaptive Testing", description: "CAT algorithms that adjust difficulty based on performance for optimal learning progression", color: "from-orange-500 to-red-500", highlight: "Adaptive Learning", glowColor: "shadow-orange-500/25" },
-    { icon: BarChart3, title: "Advanced Analytics", description: "Comprehensive performance tracking with Bloom's taxonomy classification and learning insights", color: "from-pink-500 to-rose-500", highlight: "Deep Insights", glowColor: "shadow-pink-500/25" },
-    { icon: Globe, title: "Multi-Modal Learning", description: "Support for all learning styles with visual, auditory, and kinesthetic content delivery methods", color: "from-teal-500 to-blue-500", highlight: "Universal Access", glowColor: "shadow-teal-500/25" }
+    { icon: Brain, title: "AI-Powered Tutoring System", description: "Advanced conversational AI with role-based responses, CBSE curriculum alignment, and intelligent RAG search", color: " ", highlight: "AI Powered", glowColor: "" },
+    { icon: Database, title: "e-Learning Practest Engine", description: "Comprehensive assessment system with adaptive testing, intelligent question generation, and detailed analytics", color: " ", highlight: "Smart Testing", glowColor: "" },
+    { icon: Search, title: "Enhanced Question Bank", description: "Hierarchical topic organization with Board to Class to Subject to Chapter structure and metadata tagging", color: " ", highlight: "Organized Content", glowColor: "" },
+    { icon: Cpu, title: "Computer Adaptive Testing", description: "CAT algorithms that adjust difficulty based on performance for optimal learning progression", color: " ", highlight: "Adaptive Learning", glowColor: "" },
+    { icon: BarChart3, title: "Advanced Analytics", description: "Comprehensive performance tracking with Bloom's taxonomy classification and learning insights", color: " ", highlight: "Deep Insights", glowColor: "" },
+    { icon: Globe, title: "Multi-Modal Learning", description: "Support for all learning styles with visual, auditory, and kinesthetic content delivery methods", color: " ", highlight: "Universal Access", glowColor: "" }
   ]
 
   useEffect(() => {
@@ -124,24 +124,24 @@ export const EnhancedLandingPage: React.FC = () => {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-        <div ref={heroRef} className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900" />
+        <div ref={heroRef} className="absolute inset-0 bg-sb-surface-2    dark:from-gray-900  " />
         <div className="absolute inset-0 bg-white/30 dark:bg-black/20 backdrop-blur-sm" />
 
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <div className="mb-6 mt-8">
-            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-orange-500/10 to-blue-500/10 rounded-full border border-orange-200/50 dark:border-blue-200/20 mb-6 backdrop-blur-sm">
-              <Zap className="h-4 w-4 text-orange-500 mr-2 animate-pulse" />
+            <div className="inline-flex items-center px-4 py-2 bg-sb-surface-2   rounded-full border border-sb-saffron  mb-6 backdrop-blur-sm">
+              <Zap className="h-4 w-4 text-sb-saffron-deep mr-2 animate-pulse" />
               <span className="text-sm font-medium text-foreground">Powered by Advanced AI & Machine Learning</span>
             </div>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6">
-            <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">Study Buddy</span>
+            <span className="text-sb-saffron-deep    ">Study Buddy</span>
             <br />
             <span className="text-4xl md:text-5xl">Next-Gen Learning Platform</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 italic underline decoration-orange-500 decoration-2 underline-offset-4">
+          <p className="text-xl md:text-2xl text-muted-foreground mb-8 italic underline decoration-sb-saffron decoration-2 underline-offset-4">
             AI-Powered • Adaptive • Comprehensive
           </p>
 
@@ -164,10 +164,10 @@ export const EnhancedLandingPage: React.FC = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
             {[
-              { label: 'AI Models', value: '5+', icon: Brain, color: 'text-purple-500' },
-              { label: 'Question Bank', value: '50K+', icon: Database, color: 'text-blue-500' },
-              { label: 'Success Rate', value: '98%', icon: Target, color: 'text-green-500' },
-              { label: 'Learning Paths', value: '1000+', icon: TrendingUp, color: 'text-orange-500' }
+              { label: 'AI Models', value: '5+', icon: Brain, color: 'text-sb-lav-ink' },
+              { label: 'Question Bank', value: '50K+', icon: Database, color: 'text-sb-sky-ink' },
+              { label: 'Success Rate', value: '98%', icon: Target, color: 'text-sb-saffron-deep' },
+              { label: 'Learning Paths', value: '1000+', icon: TrendingUp, color: 'text-sb-saffron-deep' }
             ].map((stat, index) => (
               <div key={index} className="text-center p-4 bg-white/20 backdrop-blur-md rounded-xl border border-white/30 hover:bg-white/30 dark:hover:bg-gray-800/30 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
                 <stat.icon className={`h-8 w-8 mx-auto mb-2 ${stat.color} animate-pulse`} />
@@ -179,7 +179,7 @@ export const EnhancedLandingPage: React.FC = () => {
         </div>
 
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown className="w-6 h-6 text-muted-foreground hover:text-orange-500 transition-colors duration-300" />
+          <ChevronDown className="w-6 h-6 text-muted-foreground hover:text-sb-saffron-deep transition-colors duration-300" />
         </div>
       </section>
 
@@ -188,7 +188,7 @@ export const EnhancedLandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Platform <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">Features</span>
+              Platform <span className="text-sb-saffron-deep    ">Features</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Discover the cutting-edge technology that powers personalized learning experiences
@@ -198,13 +198,13 @@ export const EnhancedLandingPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {platformFeatures.map((feature, index) => (
               <div key={index} className={`relative p-8 bg-card rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-border group overflow-hidden`}>
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                <div className={`absolute inset-0 bg-sb-surface-2 ${feature.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
                 <div className="relative z-10">
-                  <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${feature.color} rounded-xl mb-6 shadow-lg ${feature.glowColor}`}>
+                  <div className={`inline-flex items-center justify-center w-16 h-16 bg-sb-surface-2 ${feature.color} rounded-xl mb-6 shadow-lg ${feature.glowColor}`}>
                     <feature.icon className="h-8 w-8 text-white" />
                   </div>
                   <div className="mb-4">
-                    <span className={`inline-block px-3 py-1 text-xs font-semibold bg-gradient-to-r ${feature.color} text-white rounded-full mb-2`}>
+                    <span className={`inline-block px-3 py-1 text-xs font-semibold bg-sb-surface-2 ${feature.color} text-white rounded-full mb-2`}>
                       {feature.highlight}
                     </span>
                     <h3 className="text-xl font-bold text-foreground">{feature.title}</h3>
@@ -222,7 +222,7 @@ export const EnhancedLandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Simple, <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">Transparent Pricing</span>
+              Simple, <span className="text-sb-saffron-deep    ">Transparent Pricing</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Choose the perfect plan for your learning journey. All plans include access to our advanced AI tutor.
@@ -231,9 +231,9 @@ export const EnhancedLandingPage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {/* Free Trial Plan */}
-            <div className="relative p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-border">
+            <div className="relative p-6 bg-sb-surface-2 from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-border">
               <div className="absolute top-4 right-4">
-                <span className="inline-block px-3 py-1 text-xs font-semibold bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-full">
+                <span className="inline-block px-3 py-1 text-xs font-semibold bg-sb-navy from-gray-500 to-gray-600 text-white rounded-full">
                   Try Free
                 </span>
               </div>
@@ -248,24 +248,24 @@ export const EnhancedLandingPage: React.FC = () => {
               </div>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start text-sm text-foreground">
-                  <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                  <Check className="h-5 w-5 text-sb-saffron-deep mr-2 flex-shrink-0" />
                   <span>15 questions total</span>
                 </li>
                 <li className="flex items-start text-sm text-foreground">
-                  <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                  <Check className="h-5 w-5 text-sb-saffron-deep mr-2 flex-shrink-0" />
                   <span>All boards & classes</span>
                 </li>
                 <li className="flex items-start text-sm text-foreground">
-                  <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                  <Check className="h-5 w-5 text-sb-saffron-deep mr-2 flex-shrink-0" />
                   <span>No credit card required</span>
                 </li>
               </ul>
             </div>
 
             {/* Basic Plan */}
-            <div className="relative p-6 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-blue-200 dark:border-blue-700">
+            <div className="relative p-6 bg-sb-surface-2     rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-sb-sky ">
               <div className="mb-4">
-                <BookOpen className="h-10 w-10 text-blue-600 dark:text-blue-400 mb-3" />
+                <BookOpen className="h-10 w-10 text-sb-sky-ink  mb-3" />
                 <h3 className="text-2xl font-bold text-foreground mb-2">Basic</h3>
                 <div className="flex items-baseline mb-2">
                   <span className="text-4xl font-bold text-foreground">₹249</span>
@@ -275,29 +275,29 @@ export const EnhancedLandingPage: React.FC = () => {
               </div>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start text-sm text-foreground">
-                  <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                  <Check className="h-5 w-5 text-sb-saffron-deep mr-2 flex-shrink-0" />
                   <span>30 questions per day</span>
                 </li>
                 <li className="flex items-start text-sm text-foreground">
-                  <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                  <Check className="h-5 w-5 text-sb-saffron-deep mr-2 flex-shrink-0" />
                   <span>1 board, 1 class</span>
                 </li>
                 <li className="flex items-start text-sm text-foreground">
-                  <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                  <Check className="h-5 w-5 text-sb-saffron-deep mr-2 flex-shrink-0" />
                   <span>Email support</span>
                 </li>
               </ul>
             </div>
 
             {/* Classic Plan - Popular */}
-            <div className="relative p-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-green-400 dark:border-green-600">
+            <div className="relative p-6 bg-sb-surface-2     rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-sb-saffron ">
               <div className="absolute top-4 right-4">
-                <span className="inline-block px-3 py-1 text-xs font-semibold bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-full">
+                <span className="inline-block px-3 py-1 text-xs font-semibold bg-sb-navy   text-white rounded-full">
                   Popular
                 </span>
               </div>
               <div className="mb-4">
-                <MessageSquare className="h-10 w-10 text-green-600 dark:text-green-400 mb-3" />
+                <MessageSquare className="h-10 w-10 text-sb-saffron-deep  mb-3" />
                 <h3 className="text-2xl font-bold text-foreground mb-2">Classic</h3>
                 <div className="flex items-baseline mb-2">
                   <span className="text-4xl font-bold text-foreground">₹499</span>
@@ -307,29 +307,29 @@ export const EnhancedLandingPage: React.FC = () => {
               </div>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start text-sm text-foreground">
-                  <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                  <Check className="h-5 w-5 text-sb-saffron-deep mr-2 flex-shrink-0" />
                   <span>60 questions per day</span>
                 </li>
                 <li className="flex items-start text-sm text-foreground">
-                  <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                  <Check className="h-5 w-5 text-sb-saffron-deep mr-2 flex-shrink-0" />
                   <span>1 board, 1 class</span>
                 </li>
                 <li className="flex items-start text-sm text-foreground">
-                  <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                  <Check className="h-5 w-5 text-sb-saffron-deep mr-2 flex-shrink-0" />
                   <span>Priority support</span>
                 </li>
               </ul>
             </div>
 
             {/* Pro Plan - Best Value */}
-            <div className="relative p-6 bg-gradient-to-br from-orange-50 to-blue-50 dark:from-orange-900/20 dark:to-blue-900/20 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-orange-400 dark:border-orange-600">
+            <div className="relative p-6 bg-sb-surface-2     rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-sb-saffron ">
               <div className="absolute top-4 right-4">
-                <span className="inline-block px-3 py-1 text-xs font-semibold bg-gradient-to-r from-orange-500 to-blue-600 text-white rounded-full">
+                <span className="inline-block px-3 py-1 text-xs font-semibold bg-sb-navy   text-white rounded-full">
                   Best Value
                 </span>
               </div>
               <div className="mb-4">
-                <Crown className="h-10 w-10 text-orange-600 dark:text-orange-400 mb-3" />
+                <Crown className="h-10 w-10 text-sb-saffron-deep  mb-3" />
                 <h3 className="text-2xl font-bold text-foreground mb-2">Pro</h3>
                 <div className="flex items-baseline mb-2">
                   <span className="text-4xl font-bold text-foreground">₹999</span>
@@ -339,15 +339,15 @@ export const EnhancedLandingPage: React.FC = () => {
               </div>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start text-sm text-foreground">
-                  <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                  <Check className="h-5 w-5 text-sb-saffron-deep mr-2 flex-shrink-0" />
                   <span>150 questions per day</span>
                 </li>
                 <li className="flex items-start text-sm text-foreground">
-                  <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                  <Check className="h-5 w-5 text-sb-saffron-deep mr-2 flex-shrink-0" />
                   <span>1 board, ALL classes</span>
                 </li>
                 <li className="flex items-start text-sm text-foreground">
-                  <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                  <Check className="h-5 w-5 text-sb-saffron-deep mr-2 flex-shrink-0" />
                   <span>Early access to features</span>
                 </li>
               </ul>
@@ -358,7 +358,7 @@ export const EnhancedLandingPage: React.FC = () => {
           <div className="text-center">
             <a
               href="/pricing"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-orange-500 to-blue-600 hover:from-orange-600 hover:to-blue-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-sb-navy     text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
               View Full Pricing Details
               <ArrowRight className="h-5 w-5" />
@@ -371,7 +371,7 @@ export const EnhancedLandingPage: React.FC = () => {
       </section>
 
       {/* Data Counters Section / About Section */}
-      <section id="about" ref={countersRef} className="py-20 bg-gradient-to-br from-orange-500 to-blue-600">
+      <section id="about" ref={countersRef} className="py-20 bg-sb-navy  ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -406,7 +406,7 @@ export const EnhancedLandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Student <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">Success Stories</span>
+              Student <span className="text-sb-saffron-deep    ">Success Stories</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Hear from students who transformed their learning journey with Study Buddy
@@ -414,18 +414,18 @@ export const EnhancedLandingPage: React.FC = () => {
           </div>
 
           <div className="relative max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 md:p-12 shadow-lg">
+            <div className="bg-sb-surface-2   dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 md:p-12 shadow-lg">
               <div className="text-center">
                 <div className="flex justify-center mb-6">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
+                    <Star key={i} className="h-6 w-6 text-sb-butter-ink fill-current" />
                   ))}
                 </div>
                 <blockquote className="text-xl md:text-2xl text-foreground mb-8 italic leading-relaxed">
                   "{testimonials[currentTestimonial].quote}"
                 </blockquote>
                 <div className="flex items-center justify-center space-x-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-16 h-16 bg-sb-navy   rounded-full flex items-center justify-center text-white font-bold text-xl">
                     {testimonials[currentTestimonial].name.charAt(0)}
                   </div>
                   <div className="text-left">
@@ -446,7 +446,7 @@ export const EnhancedLandingPage: React.FC = () => {
                   key={index}
                   onClick={() => setCurrentTestimonial(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentTestimonial ? 'bg-orange-500' : 'bg-gray-300 dark:bg-gray-600'
+                    index === currentTestimonial ? 'bg-sb-navy' : 'bg-gray-300 dark:bg-gray-600'
                   }`}
                 />
               ))}
@@ -460,7 +460,7 @@ export const EnhancedLandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Frequently Asked <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">Questions</span>
+              Frequently Asked <span className="text-sb-saffron-deep    ">Questions</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Get answers to common questions about Study Buddy
@@ -476,7 +476,7 @@ export const EnhancedLandingPage: React.FC = () => {
                   onClick={() => setActiveFaqCategory(category)}
                   className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 capitalize ${
                     activeFaqCategory === category
-                      ? 'bg-gradient-to-r from-orange-500 to-blue-600 text-white shadow-lg'
+                      ? 'bg-sb-navy   text-white shadow-lg'
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
@@ -511,7 +511,7 @@ export const EnhancedLandingPage: React.FC = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-700">
+      <section className="py-20 bg-sb-navy  ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -533,7 +533,7 @@ export const EnhancedLandingPage: React.FC = () => {
                 />
                 <button
                   type="submit"
-                  className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-muted transition-colors duration-300 flex items-center gap-2"
+                  className="px-8 py-4 bg-white text-sb-sky-ink font-semibold rounded-xl hover:bg-muted transition-colors duration-300 flex items-center gap-2"
                 >
                   <Send className="h-5 w-5" />
                   Subscribe
@@ -551,7 +551,7 @@ export const EnhancedLandingPage: React.FC = () => {
             {/* Company Info */}
             <div className="lg:col-span-2">
               <div className="flex items-center mb-6">
-                <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-blue-600 rounded-lg flex items-center justify-center mr-3">
+                <div className="w-10 h-10 bg-sb-navy   rounded-lg flex items-center justify-center mr-3">
                   <GraduationCap className="h-6 w-6 text-white" />
                 </div>
                 <span className="text-2xl font-bold">Study Buddy</span>
@@ -561,7 +561,7 @@ export const EnhancedLandingPage: React.FC = () => {
               </p>
               <div className="flex space-x-4">
                 {[Facebook, Twitter, Instagram, Linkedin, Youtube].map((Icon, index) => (
-                  <a key={index} href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gradient-to-br hover:from-orange-500 hover:to-blue-600 transition-all duration-300">
+                  <a key={index} href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-sb-navy   transition-all duration-300">
                     <Icon className="h-5 w-5" />
                   </a>
                 ))}
@@ -585,15 +585,15 @@ export const EnhancedLandingPage: React.FC = () => {
               <h3 className="text-lg font-semibold mb-6">Contact Info</h3>
               <div className="space-y-4">
                 <div className="flex items-center">
-                  <Mail className="h-5 w-5 text-orange-500 mr-3" />
+                  <Mail className="h-5 w-5 text-sb-saffron-deep mr-3" />
                   <span className="text-muted-foreground/60">support@mydigiclassroom.com</span>
                 </div>
                 <div className="flex items-center">
-                  <Phone className="h-5 w-5 text-orange-500 mr-3" />
+                  <Phone className="h-5 w-5 text-sb-saffron-deep mr-3" />
                   <span className="text-muted-foreground/60">+91 9310959596</span>
                 </div>
                 <div className="flex items-start">
-                  <MapPin className="h-5 w-5 text-orange-500 mr-3 mt-1" />
+                  <MapPin className="h-5 w-5 text-sb-saffron-deep mr-3 mt-1" />
                   <span className="text-muted-foreground/60">Connaught Place, New Delhi, India</span>
                 </div>
               </div>

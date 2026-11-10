@@ -1,3 +1,4 @@
+import { PageHeader } from '@/components/sb'
 import { redirect } from 'next/navigation';
 import { db } from '@/db';
 import * as schema from '@/db/schema';
@@ -30,7 +31,7 @@ export default async function StudentCertificatesPage() {
   return (
     <div className="p-6 max-w-5xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">My Certificates</h1>
+        <PageHeader kicker="Achievements" icon="certificates" tone="saf" title="My" highlight="Certificates" />
       </div>
 
       {rows.length === 0 ? (

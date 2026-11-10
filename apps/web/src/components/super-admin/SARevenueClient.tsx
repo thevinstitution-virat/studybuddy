@@ -121,7 +121,7 @@ export function SARevenueClient() {
                   cursor={{ fill: 'rgba(0,0,0,0.05)' }}
                 />
                 <Bar dataKey="platformFeePaise" stackId="a" fill="#6366f1" radius={[0,0,0,0]} />
-                <Bar dataKey="institutionPaise"  stackId="a" fill="#14b8a6" radius={[4,4,0,0]} />
+                <Bar dataKey="institutionPaise"  stackId="a" fill="var(--sb-saffron-deep)" radius={[4,4,0,0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -151,7 +151,7 @@ export function SARevenueClient() {
                   <tr key={org.orgId} className="border-b last:border-0 hover:bg-muted/20 transition-colors">
                     <td className="px-4 py-3 font-medium">{org.orgName}</td>
                     <td className="px-4 py-3 text-right tabular-nums">{formatPaise(Number(org.totalRevenuePaise))}</td>
-                    <td className="px-4 py-3 text-right tabular-nums text-indigo-600">{formatPaise(Number(org.platformFeePaise))}</td>
+                    <td className="px-4 py-3 text-right tabular-nums text-sb-lav-ink">{formatPaise(Number(org.platformFeePaise))}</td>
                     <td className="px-4 py-3 text-right tabular-nums text-muted-foreground">{org.paymentCount}</td>
                   </tr>
                 ))}

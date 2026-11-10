@@ -231,7 +231,7 @@ export default function PDFViewer({
                 variant="ghost"
                 size="sm"
                 onClick={handleBookmark}
-                className={isBookmarked ? 'text-yellow-600' : ''}
+                className={isBookmarked ? 'text-sb-butter-ink' : ''}
               >
                 <BookmarkIcon className="h-4 w-4" />
               </Button>
@@ -281,7 +281,7 @@ export default function PDFViewer({
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sb-sky mx-auto mb-4"></div>
                   <p className="text-muted-foreground">Loading PDF...</p>
                 </div>
               </div>
@@ -290,7 +290,7 @@ export default function PDFViewer({
             {error && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center max-w-md mx-auto p-6">
-                  <div className="text-red-500 mb-4">
+                  <div className="text-sb-rose-ink mb-4">
                     <DocumentArrowDownIcon className="h-16 w-16 mx-auto" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">

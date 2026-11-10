@@ -91,7 +91,7 @@ export default function UserTable({
                   type="checkbox"
                   checked={selectedUsers.length === users.length && users.length > 0}
                   onChange={(e) => handleSelectAll(e.target.checked)}
-                  className="rounded border-input text-blue-600 focus:ring-blue-500"
+                  className="rounded border-input text-sb-sky-ink focus:ring-sb-sky"
                 />
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
@@ -148,7 +148,7 @@ export default function UserTable({
                     type="checkbox"
                     checked={selectedUsers.includes(user.id)}
                     onChange={(e) => handleSelectUser(user.id, e.target.checked)}
-                    className="rounded border-input text-blue-600 focus:ring-blue-500"
+                    className="rounded border-input text-sb-sky-ink focus:ring-sb-sky"
                   />
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
@@ -183,9 +183,9 @@ export default function UserTable({
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-foreground">{user.email}</div>
                   {user.emailVerified ? (
-                    <div className="text-xs text-green-600">✓ Verified</div>
+                    <div className="text-xs text-sb-saffron-deep">✓ Verified</div>
                   ) : (
-                    <div className="text-xs text-red-600">✗ Unverified</div>
+                    <div className="text-xs text-sb-rose-ink">✗ Unverified</div>
                   )}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
@@ -211,7 +211,7 @@ export default function UserTable({
                   <div className="flex space-x-2">
                     <button
                       onClick={() => onUserEdit(user)}
-                      className="text-blue-600 hover:text-blue-900"
+                      className="text-sb-sky-ink hover:text-sb-sky-ink"
                     >
                       Edit
                     </button>
@@ -219,7 +219,7 @@ export default function UserTable({
                     {user.role !== 'super_admin' && (
                       <button
                         onClick={() => onUserDelete(user.id)}
-                        className="text-red-600 hover:text-red-900"
+                        className="text-sb-rose-ink hover:text-sb-rose-ink"
                       >
                         Delete
                       </button>

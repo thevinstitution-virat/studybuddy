@@ -56,14 +56,14 @@ export default function UserFilters({
         <div className="flex items-center space-x-2">
           <button
             onClick={() => setShowAdvanced(!showAdvanced)}
-            className="text-sm text-blue-600 hover:text-blue-800"
+            className="text-sm text-sb-sky-ink hover:text-sb-sky-ink"
           >
             {showAdvanced ? 'Hide' : 'Show'} Advanced
           </button>
           {hasActiveFilters && (
             <button
               onClick={onReset}
-              className="text-sm text-red-600 hover:text-red-800"
+              className="text-sm text-sb-rose-ink hover:text-sb-rose-ink"
             >
               Clear All
             </button>
@@ -84,7 +84,7 @@ export default function UserFilters({
               placeholder="Search by name, email, or ID..."
               value={filters.search}
               onChange={(e) => handleSearchChange(e.target.value)}
-              className="w-full px-3 py-2 pl-10 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 pl-10 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
             />
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <span className="text-muted-foreground">🔍</span>
@@ -100,7 +100,7 @@ export default function UserFilters({
           <select
             value={filters.role}
             onChange={(e) => handleRoleChange(e.target.value)}
-            className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
           >
             <option value="all">All Roles</option>
             {USER_ROLES.map(role => (
@@ -119,7 +119,7 @@ export default function UserFilters({
           <select
             value={filters.status}
             onChange={(e) => handleStatusChange(e.target.value)}
-            className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
           >
             <option value="all">All Statuses</option>
             {USER_STATUSES.map(status => (
@@ -139,7 +139,7 @@ export default function UserFilters({
             <select
               value={filters.sortBy}
               onChange={(e) => handleSortChange(e.target.value, filters.sortOrder)}
-              className="flex-1 px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
             >
               <option value="createdAt">Registration Date</option>
               <option value="name">Name</option>
@@ -149,7 +149,7 @@ export default function UserFilters({
             </select>
             <button
               onClick={() => handleSortChange(filters.sortBy, filters.sortOrder === 'asc' ? 'desc' : 'asc')}
-              className="px-3 py-2 border border-input rounded-md hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 py-2 border border-input rounded-md hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-sb-sky"
               title={`Sort ${filters.sortOrder === 'asc' ? 'Descending' : 'Ascending'}`}
             >
               {filters.sortOrder === 'asc' ? '↑' : '↓'}
@@ -177,7 +177,7 @@ export default function UserFilters({
                     from: e.target.value ? new Date(e.target.value) : null
                   }
                 })}
-                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
               />
             </div>
 
@@ -194,7 +194,7 @@ export default function UserFilters({
                     to: e.target.value ? new Date(e.target.value) : null
                   }
                 })}
-                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
               />
             </div>
 
@@ -204,7 +204,7 @@ export default function UserFilters({
                 Email Status
               </label>
               <select
-                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
               >
                 <option value="all">All</option>
                 <option value="verified">Verified</option>
@@ -222,11 +222,11 @@ export default function UserFilters({
             <span className="text-sm font-medium text-foreground">Active filters:</span>
             
             {filters.search && (
-              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
+              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-sb-sky text-sb-sky-ink">
                 Search: "{filters.search}"
                 <button
                   onClick={() => handleSearchChange('')}
-                  className="ml-1 text-blue-600 hover:text-blue-800"
+                  className="ml-1 text-sb-sky-ink hover:text-sb-sky-ink"
                 >
                   ×
                 </button>
@@ -234,11 +234,11 @@ export default function UserFilters({
             )}
             
             {filters.role !== 'all' && (
-              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
+              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-sb-saffron-tint text-sb-saffron-deep">
                 Role: {filters.role}
                 <button
                   onClick={() => handleRoleChange('all')}
-                  className="ml-1 text-green-600 hover:text-green-800"
+                  className="ml-1 text-sb-saffron-deep hover:text-sb-saffron-deep"
                 >
                   ×
                 </button>
@@ -246,11 +246,11 @@ export default function UserFilters({
             )}
             
             {filters.status !== 'all' && (
-              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-800">
+              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-sb-lav text-sb-lav-ink">
                 Status: {filters.status}
                 <button
                   onClick={() => handleStatusChange('all')}
-                  className="ml-1 text-purple-600 hover:text-purple-800"
+                  className="ml-1 text-sb-lav-ink hover:text-sb-lav-ink"
                 >
                   ×
                 </button>

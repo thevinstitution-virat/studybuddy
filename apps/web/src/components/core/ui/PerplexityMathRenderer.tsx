@@ -223,17 +223,17 @@ export default function PerplexityMathRenderer({
     >
       {/* Progressive loading indicator */}
       {enableProgressiveLoading && loadingProgress < 100 && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg">
+        <div className="absolute inset-0 flex items-center justify-center bg-sb-surface-2     rounded-lg">
           <div className="text-center">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-100 dark:bg-purple-800 rounded-full mb-3 animate-pulse">
-              <span className="text-purple-600 dark:text-purple-300 text-xl">📐</span>
+            <div className="inline-flex items-center justify-center w-12 h-12 bg-sb-lav  rounded-full mb-3 animate-pulse">
+              <span className="text-sb-lav-ink  text-xl">📐</span>
             </div>
-            <div className="text-sm text-purple-600 dark:text-purple-300 font-medium">
+            <div className="text-sm text-sb-lav-ink  font-medium">
               Rendering formulas...
             </div>
-            <div className="w-32 h-2 bg-purple-200 dark:bg-purple-700 rounded-full mt-2 overflow-hidden">
+            <div className="w-32 h-2 bg-sb-lav  rounded-full mt-2 overflow-hidden">
               <div 
-                className="h-full bg-purple-500 transition-all duration-300 ease-out"
+                className="h-full bg-sb-navy transition-all duration-300 ease-out"
                 style={{ width: `${loadingProgress}%` }}
               />
             </div>
@@ -305,26 +305,26 @@ export function PerplexityMathTest() {
   }
 
   return (
-    <div className="p-6 border rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
+    <div className="p-6 border rounded-lg bg-sb-surface-2    ">
       <h3 className="font-semibold mb-4 text-center">🎯 Perplexity-Level Formula Display Test</h3>
 
       <div className="space-y-6">
         <div className="formula-container">
-          <h4 className="font-medium text-purple-800 dark:text-purple-200 mb-2">📐 Advanced Mathematics:</h4>
+          <h4 className="font-medium text-sb-lav-ink  mb-2">📐 Advanced Mathematics:</h4>
           <p>Quadratic formula: {`\\[ x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a} \\]`}</p>
           <p>Integral calculus: {`\\[ \\int_{a}^{b} f(x) \\, dx = F(b) - F(a) \\]`}</p>
           <p>Matrix determinant: {`\\[ \\det(A) = \\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad - bc \\]`}</p>
         </div>
 
         <div className="physics-formula">
-          <h4 className="font-medium text-blue-800 dark:text-blue-200 mb-2">⚡ Physics Equations:</h4>
+          <h4 className="font-medium text-sb-sky-ink  mb-2">⚡ Physics Equations:</h4>
           <p>Einstein&apos;s mass-energy: {`\\[ E = mc^2 \\]`}</p>
           <p>Newton&apos;s second law: {`\\[ \\vec{F} = m\\vec{a} \\]`}</p>
           <p>Wave equation: {`\\[ \\frac{\\partial^2 u}{\\partial t^2} = c^2 \\frac{\\partial^2 u}{\\partial x^2} \\]`}</p>
         </div>
 
         <div className="chemistry-formula">
-          <h4 className="font-medium text-green-800 dark:text-green-200 mb-2">🧪 Chemistry Reactions:</h4>
+          <h4 className="font-medium text-sb-saffron-deep  mb-2">🧪 Chemistry Reactions:</h4>
           <p>Combustion: {`\\[ \\ce{CH4 + 2O2 -> CO2 + 2H2O} \\]`}</p>
           <p>Acid-base: {`\\[ \\ce{HCl + NaOH -> NaCl + H2O} \\]`}</p>
           <p>Redox reaction: {`\\[ \\ce{Zn + Cu^{2+} -> Zn^{2+} + Cu} \\]`}</p>

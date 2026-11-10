@@ -5,6 +5,7 @@
 
 'use client'
 
+import { PageHeader } from '@/components/sb'
 import React, { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -90,7 +91,7 @@ export default function MitramDashboard() {
           duration: 15,
           icon: Brain,
           color: 'from-primary to-primary/80',
-          glowColor: 'shadow-purple-500/25',
+          glowColor: '',
           ageRange: [5, 15],
           available: true,
           completed: false
@@ -101,8 +102,8 @@ export default function MitramDashboard() {
           description: 'Perseverance and passion assessment for long-term goals and academic success.',
           duration: 20,
           icon: Heart,
-          color: 'from-red-500 to-primary/80',
-          glowColor: 'shadow-red-500/25',
+          color: ' to-primary/80',
+          glowColor: '',
           ageRange: [8, 18],
           available: true,
           completed: true,
@@ -115,8 +116,8 @@ export default function MitramDashboard() {
           description: 'Decision-making style assessment under various academic and life scenarios.',
           duration: 25,
           icon: Lightbulb,
-          color: 'from-yellow-500 to-orange-600',
-          glowColor: 'shadow-yellow-500/25',
+          color: ' ',
+          glowColor: '',
           ageRange: [12, 18],
           available: true,
           completed: false
@@ -127,8 +128,8 @@ export default function MitramDashboard() {
           description: 'Bad habit identification and change readiness assessment for better learning.',
           duration: 6,
           icon: Settings,
-          color: 'from-green-500 to-emerald-600',
-          glowColor: 'shadow-green-500/25',
+          color: ' ',
+          glowColor: '',
           ageRange: [10, 18],
           available: true,
           completed: false
@@ -139,8 +140,8 @@ export default function MitramDashboard() {
           description: 'Cognitive abilities assessment covering verbal, quantitative, and nonverbal domains.',
           duration: 15,
           icon: Puzzle,
-          color: 'from-primary to-cyan-600',
-          glowColor: 'shadow-blue-500/25',
+          color: 'from-primary ',
+          glowColor: '',
           ageRange: [6, 18],
           available: true,
           completed: false
@@ -320,11 +321,11 @@ export default function MitramDashboard() {
         <div className="container mx-auto px-4 py-8 max-w-7xl">
           <div className="flex items-center justify-center min-h-[60vh]">
             <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-12 shadow-xl border border-white/20 text-center">
-              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-[#E5283A] to-[#FF6B35] rounded-2xl flex items-center justify-center shadow-lg animate-pulse">
+              <div className="w-20 h-20 mx-auto mb-6 bg-sb-surface-2 from-[#E5283A] to-[#FF6B35] rounded-2xl flex items-center justify-center shadow-lg animate-pulse">
                 <Sparkles className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-2xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+                <span className="text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                   Loading Mitram Dashboard...
                 </span>
               </h3>
@@ -360,11 +361,11 @@ export default function MitramDashboard() {
         <div className="container mx-auto px-4 py-8 max-w-7xl">
           <div className="flex items-center justify-center min-h-[60vh]">
             <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-12 shadow-xl border border-white/20 text-center max-w-2xl">
-              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="w-20 h-20 mx-auto mb-6 bg-sb-surface-2 from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
                 <Brain className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-3xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+                <span className="text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                   Assessment Module: {module?.name}
                 </span>
               </h3>
@@ -379,7 +380,7 @@ export default function MitramDashboard() {
                   setActiveModule(null)
                   setCurrentAssessment(null)
                 }}
-                className="px-8 py-3 h-12 bg-gradient-to-r from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
+                className="px-8 py-3 h-12 bg-sb-surface-2 from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
               >
                 <ArrowRight className="h-5 w-5 mr-2 rotate-180" />
                 <span>Back to Dashboard</span>
@@ -395,40 +396,24 @@ export default function MitramDashboard() {
     <div className="dcs">
       <div className="container mx-auto px-4 py-8 max-w-7xl space-y-8">
         {/* Enhanced Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500/10 to-primary/10 backdrop-blur-sm border border-orange-200/30 rounded-2xl px-6 py-3 mb-6">
-            <Sparkles className="h-5 w-5 text-orange-500" />
-            <span className="text-sm font-medium bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
-              AI-Powered Psychological Assessment Platform
-            </span>
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent flex items-center justify-center gap-4">
-              <Brain className="h-12 w-12 text-orange-500" />
-              मित्रम् (Mitram)
-            </span>
-          </h1>
-          
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            Your comprehensive psychological and aptitude assessment companion designed for Indian students
-          </p>
+        <div className="mb-8">
+          <PageHeader kicker="AI-powered assessment" icon="mitram" tone="lav" title="मित्रम्" highlight="Mitram" description="Your comprehensive psychological and aptitude assessment companion designed for Indian students." />
         </div>
 
         {/* Enhanced Sanskrit Shloka Card */}
         <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20">
           <div className="text-center mb-6">
-            <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg">
+            <div className="w-16 h-16 mx-auto mb-4 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg">
               <BookOpen className="h-8 w-8 text-white" />
             </div>
             <h2 className="text-2xl font-bold mb-2">
-              <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+              <span className="text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                 Sanskrit Wisdom
               </span>
             </h2>
           </div>
 
-          <div className="bg-gradient-to-r from-orange-50/50 to-primary/10 dark:from-orange-900/20 dark:to-primary/15 rounded-2xl p-8 border border-orange-200/30">
+          <div className="bg-sb-surface-2  to-primary/10  dark:to-primary/15 rounded-2xl p-8 border border-sb-saffron">
             <div className="text-center space-y-6">
               <div className="text-xl font-bold text-foreground leading-relaxed">
                 पापान्निवारयति योजयते हिताय गुह्यं च गूहति गुणान् प्रकटीकरोति ।<br />
@@ -456,11 +441,11 @@ export default function MitramDashboard() {
         {notifications.length > 0 && (
           <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/20">
             <div className="text-center">
-              <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 mx-auto mb-4 bg-sb-navy   rounded-xl flex items-center justify-center">
                 <Zap className="h-6 w-6 text-white" />
               </div>
               <h4 className="text-lg font-bold mb-2">
-                <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+                <span className="text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                   {notifications.length} New Notification{notifications.length > 1 ? 's' : ''}
                 </span>
               </h4>
@@ -476,11 +461,11 @@ export default function MitramDashboard() {
           <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20">
             <div className="mb-8">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
+                <div className="w-12 h-12 bg-sb-surface-2 from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
                   <BarChart3 className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+                  <h2 className="text-2xl font-bold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                     Your Assessment Journey
                   </h2>
                   <p className="text-muted-foreground">
@@ -491,36 +476,36 @@ export default function MitramDashboard() {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="text-center p-6 bg-gradient-to-r from-primary/10 to-cyan-50 dark:from-primary dark:to-cyan-950 rounded-2xl border border-primary/20 hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
-                <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-primary to-cyan-500 rounded-xl flex items-center justify-center">
+              <div className="text-center p-6 bg-sb-surface-2 from-primary/10  dark:from-primary  rounded-2xl border border-primary/20 hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
+                <div className="w-12 h-12 mx-auto mb-3 bg-sb-surface-2 from-primary  rounded-xl flex items-center justify-center">
                   <Trophy className="h-6 w-6 text-white" />
                 </div>
-                <div className="text-3xl font-bold bg-gradient-to-r from-primary to-cyan-600 bg-clip-text text-transparent">{userProgress.totalAssessments}</div>
+                <div className="text-3xl font-bold text-sb-saffron-deep from-primary   ">{userProgress.totalAssessments}</div>
                 <div className="text-sm font-medium text-primary">Assessments</div>
               </div>
 
-              <div className="text-center p-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 rounded-2xl border border-green-200/30 hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
-                <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+              <div className="text-center p-6 bg-sb-surface-2     rounded-2xl border border-sb-saffron hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
+                <div className="w-12 h-12 mx-auto mb-3 bg-sb-navy   rounded-xl flex items-center justify-center">
                   <Target className="h-6 w-6 text-white" />
                 </div>
-                <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{userProgress.averageScore}</div>
-                <div className="text-sm font-medium text-green-700 dark:text-green-300">Avg Score</div>
+                <div className="text-3xl font-bold text-sb-saffron-deep    ">{userProgress.averageScore}</div>
+                <div className="text-sm font-medium text-sb-saffron-deep ">Avg Score</div>
               </div>
 
-              <div className="text-center p-6 bg-gradient-to-r from-primary/10 to-primary/10 dark:from-primary dark:to-primary rounded-2xl border border-primary/20 hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
-                <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-primary to-primary/80 rounded-xl flex items-center justify-center">
+              <div className="text-center p-6 bg-sb-surface-2 from-primary/10 to-primary/10 dark:from-primary dark:to-primary rounded-2xl border border-primary/20 hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
+                <div className="w-12 h-12 mx-auto mb-3 bg-sb-surface-2 from-primary to-primary/80 rounded-xl flex items-center justify-center">
                   <Star className="h-6 w-6 text-white" />
                 </div>
-                <div className="text-lg font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">{userProgress.strongestArea}</div>
+                <div className="text-lg font-bold text-sb-saffron-deep from-primary to-primary/80  ">{userProgress.strongestArea}</div>
                 <div className="text-sm font-medium text-primary">Strongest</div>
               </div>
 
-              <div className="text-center p-6 bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-950 dark:to-red-950 rounded-2xl border border-orange-200/30 hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
-                <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
+              <div className="text-center p-6 bg-sb-surface-2     rounded-2xl border border-sb-saffron hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
+                <div className="w-12 h-12 mx-auto mb-3 bg-sb-navy   rounded-xl flex items-center justify-center">
                   <TrendingUp className="h-6 w-6 text-white" />
                 </div>
-                <div className="text-lg font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">{userProgress.overallTrend}</div>
-                <div className="text-sm font-medium text-orange-700 dark:text-orange-300">Trend</div>
+                <div className="text-lg font-bold text-sb-saffron-deep    ">{userProgress.overallTrend}</div>
+                <div className="text-sm font-medium text-sb-saffron-deep ">Trend</div>
               </div>
             </div>
           </div>
@@ -530,11 +515,11 @@ export default function MitramDashboard() {
         <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20">
           <div className="mb-8">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-primary/100 to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-sb-surface-2 from-primary/100 to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
                 <Cpu className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+                <h2 className="text-2xl font-bold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                   Assessment Modules
                 </h2>
                 <p className="text-muted-foreground">
@@ -549,9 +534,9 @@ export default function MitramDashboard() {
               const IconComponent = module.icon
               return (
                 <div key={module.id} className={`relative p-8 bg-card rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-border group overflow-hidden`}>
-                  <div className={`absolute inset-0 bg-gradient-to-br ${module.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                  <div className={`absolute inset-0 bg-sb-surface-2 ${module.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
                   <div className="relative z-10">
-                    <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${module.color} rounded-xl mb-6 shadow-lg ${module.glowColor}`}>
+                    <div className={`inline-flex items-center justify-center w-16 h-16 bg-sb-surface-2 ${module.color} rounded-xl mb-6 shadow-lg ${module.glowColor}`}>
                       <IconComponent className="h-8 w-8 text-white" />
                     </div>
                     <div className="mb-4">
@@ -560,7 +545,7 @@ export default function MitramDashboard() {
                           {module.name}
                         </h3>
                         {module.completed && (
-                          <div className="flex items-center space-x-1 text-green-600 dark:text-green-400">
+                          <div className="flex items-center space-x-1 text-sb-saffron-deep ">
                             <CheckCircle className="h-5 w-5" />
                             <span className="text-sm font-medium">Completed</span>
                           </div>
@@ -583,12 +568,12 @@ export default function MitramDashboard() {
                     </div>
 
                     {module.completed && module.lastScore && (
-                      <div className="flex items-center justify-between p-3 bg-green-50 dark:bg-green-900/20 rounded-lg mb-4">
-                        <div className="flex items-center space-x-2 text-green-700 dark:text-green-400">
+                      <div className="flex items-center justify-between p-3 bg-sb-saffron-tint  rounded-lg mb-4">
+                        <div className="flex items-center space-x-2 text-sb-saffron-deep ">
                           <Trophy className="h-4 w-4" />
                           <span className="font-medium">Last Score: {module.lastScore}%</span>
                         </div>
-                        <span className="text-xs text-green-600 dark:text-green-400">
+                        <span className="text-xs text-sb-saffron-deep ">
                           {formatLastTaken(module.lastTaken)}
                         </span>
                       </div>
@@ -597,7 +582,7 @@ export default function MitramDashboard() {
                     <Button
                       onClick={() => handleStartAssessment(module.id)}
                       disabled={!module.available}
-                      className="w-full bg-gradient-to-r from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                      className="w-full bg-sb-surface-2 from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                     >
                       <div className="flex items-center justify-center space-x-2">
                         <span>{module.completed ? 'Retake Assessment' : 'Start Assessment'}</span>
@@ -616,11 +601,11 @@ export default function MitramDashboard() {
           <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20">
             <div className="mb-8">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg">
+                <div className="w-12 h-12 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg">
                   <Award className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+                  <h2 className="text-2xl font-bold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                     Recent Assessment Results
                   </h2>
                   <p className="text-muted-foreground">
@@ -632,12 +617,12 @@ export default function MitramDashboard() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {userProgress.moduleBreakdown.map((result: any, index: number) => (
-                <div key={index} className="p-6 bg-gradient-to-r from-white to-muted/40 dark:from-[var(--navy-deep)] dark:to-[var(--slate-blue)] border border-border/50 rounded-2xl hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
-                  <div className="w-10 h-10 mb-4 bg-gradient-to-r from-primary to-primary/80 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                <div key={index} className="p-6 bg-sb-surface-2 from-white to-muted/40 dark:from-[var(--navy-deep)] dark:to-[var(--slate-blue)] border border-border/50 rounded-2xl hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
+                  <div className="w-10 h-10 mb-4 bg-sb-surface-2 from-primary to-primary/80 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
                     {index + 1}
                   </div>
                   <h4 className="text-lg font-bold text-foreground mb-2">{result.module}</h4>
-                  <div className="text-3xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent mb-2">{result.average}</div>
+                  <div className="text-3xl font-bold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]   mb-2">{result.average}</div>
                   <div className="text-sm text-muted-foreground">{result.interpretation}</div>
                 </div>
               ))}
@@ -648,16 +633,16 @@ export default function MitramDashboard() {
         {/* Enhanced Educational Context */}
         <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20">
           <div className="text-center space-y-6">
-            <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center shadow-lg">
+            <div className="w-20 h-20 mx-auto mb-6 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg">
               <BookOpen className="h-10 w-10 text-white" />
             </div>
             <h3 className="text-3xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+              <span className="text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                 Designed for Indian Students
               </span>
             </h3>
             <div className="max-w-3xl mx-auto">
-              <div className="bg-gradient-to-r from-orange-50/50 to-primary/10 dark:from-orange-900/20 dark:to-primary/15 rounded-2xl p-8 border border-orange-200/30">
+              <div className="bg-sb-surface-2  to-primary/10  dark:to-primary/15 rounded-2xl p-8 border border-sb-saffron">
                 <p className="text-foreground leading-relaxed text-lg">
                   Mitram assessments are culturally adapted for Indian educational contexts,
                   incorporating CBSE/ICSE curriculum alignment, bilingual support, and

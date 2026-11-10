@@ -280,9 +280,9 @@ export function MultiModalInput({
       {/* Main Input Area */}
       <Card 
         className={cn(
-          "bg-white/90 backdrop-blur-sm border-orange-200/60 transition-all duration-200",
-          isDragOver && "border-blue-400 bg-blue-50/50",
-          "hover:border-blue-400 hover:shadow-md"
+          "bg-white/90 backdrop-blur-sm border-sb-saffron transition-all duration-200",
+          isDragOver && "border-sb-sky bg-sb-sky",
+          "hover:border-sb-sky hover:shadow-md"
         )}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -291,7 +291,7 @@ export function MultiModalInput({
         <CardContent className="p-4">
           {/* Header toolbar (e.g. tutor selector) — slim row above the input */}
           {headerSlot && (
-            <div className="mb-2.5 flex items-center justify-between gap-2 border-b border-orange-100/60 pb-2.5">
+            <div className="mb-2.5 flex items-center justify-between gap-2 border-b border-sb-saffron pb-2.5">
               {headerSlot}
             </div>
           )}
@@ -303,11 +303,11 @@ export function MultiModalInput({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute inset-0 bg-blue-100/80 backdrop-blur-sm border-2 border-dashed border-blue-400 rounded-xl flex items-center justify-center z-10"
+                className="absolute inset-0 bg-sb-sky backdrop-blur-sm border-2 border-dashed border-sb-sky rounded-xl flex items-center justify-center z-10"
               >
                 <div className="text-center">
-                  <Upload className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                  <p className="text-blue-700 font-medium">Drop file here to analyze</p>
+                  <Upload className="h-8 w-8 text-sb-sky-ink mx-auto mb-2" />
+                  <p className="text-sb-sky-ink font-medium">Drop file here to analyze</p>
                 </div>
               </motion.div>
             )}
@@ -342,7 +342,7 @@ export function MultiModalInput({
                   size="sm"
                   onClick={() => fileInputRef.current?.click()}
                   disabled={disabled || !!uploadedFile}
-                  className="h-11 w-11 p-0 rounded-xl border-orange-200/60 hover:border-blue-400 bg-white/90 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-200"
+                  className="h-11 w-11 p-0 rounded-xl border-sb-saffron hover:border-sb-sky bg-white/90 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-200"
                 >
                   <Paperclip className="h-4 w-4 text-muted-foreground" />
                 </Button>
@@ -383,7 +383,7 @@ export function MultiModalInput({
                     <Button
                       onClick={handleSubmit}
                       disabled={!value.trim() || disabled}
-                      className="h-11 w-11 p-0 rounded-xl bg-gradient-to-r from-orange-500 to-blue-600 hover:from-orange-600 hover:to-blue-700 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                      className="h-11 w-11 p-0 rounded-xl bg-sb-navy     shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                     >
                       <Send className="h-4 w-4 text-white" />
                     </Button>

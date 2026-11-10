@@ -49,23 +49,23 @@ export default function JoinInstitutionPanel({ requestedClass, requestedBoard }:
   return (
     <div className="rounded-2xl border border-white/20 bg-white/90 p-8 shadow-xl backdrop-blur-xl">
       <div className="mb-6 flex items-center gap-3">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-600 shadow-lg"><Building2 className="h-6 w-6 text-white" /></div>
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sb-navy   shadow-lg"><Building2 className="h-6 w-6 text-white" /></div>
         <div>
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">Your Institution</h2>
+          <h2 className="text-2xl font-bold text-sb-saffron-deep    ">Your Institution</h2>
           <p className="text-muted-foreground">Join your school/college or stay independent</p>
         </div>
       </div>
 
       {loading ? (
-        <div className="py-6 text-center"><Loader2 className="mx-auto h-6 w-6 animate-spin text-blue-500" /></div>
+        <div className="py-6 text-center"><Loader2 className="mx-auto h-6 w-6 animate-spin text-sb-sky-ink" /></div>
       ) : member ? (
-        <div className="flex items-center gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 dark:border-emerald-900/40 dark:bg-emerald-950/30">
-          <CheckCircle2 className="h-6 w-6 text-emerald-500" />
+        <div className="flex items-center gap-3 rounded-xl border border-sb-saffron bg-sb-saffron-tint p-4  ">
+          <CheckCircle2 className="h-6 w-6 text-sb-saffron-deep" />
           <div><p className="font-semibold text-foreground">{member.name}</p><p className="text-sm text-muted-foreground">You&apos;re a member of this institution.</p></div>
         </div>
       ) : pending ? (
-        <div className="flex items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-900/40 dark:bg-amber-950/30">
-          <Clock className="h-6 w-6 text-amber-500" />
+        <div className="flex items-center gap-3 rounded-xl border border-sb-butter bg-sb-butter p-4  ">
+          <Clock className="h-6 w-6 text-sb-butter-ink" />
           <div><p className="font-semibold text-foreground">Request pending — {pending.name}</p><p className="text-sm text-muted-foreground">Waiting for the institution admin to approve.</p></div>
         </div>
       ) : institutions.length === 0 ? (
@@ -82,13 +82,13 @@ export default function JoinInstitutionPanel({ requestedClass, requestedBoard }:
               <p className="px-2 py-3 text-center text-sm text-muted-foreground">No matches.</p>
             ) : filtered.map((inst) => (
               <button key={inst.id} type="button" onClick={() => setSelected(inst.id)}
-                className={`flex w-full items-center gap-3 rounded-xl border p-3 text-left transition-colors ${selected === inst.id ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-border/50 hover:bg-muted/50'}`}>
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 text-white"><Building2 className="h-4 w-4" /></div>
+                className={`flex w-full items-center gap-3 rounded-xl border p-3 text-left transition-colors ${selected === inst.id ? 'border-sb-sky bg-sb-sky ' : 'border-border/50 hover:bg-muted/50'}`}>
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-sb-navy   text-white"><Building2 className="h-4 w-4" /></div>
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-medium text-foreground">{inst.name}</p>
                   {inst.type && <p className="text-xs capitalize text-muted-foreground">{String(inst.type).replace('_', ' ')}</p>}
                 </div>
-                {selected === inst.id && <CheckCircle2 className="h-5 w-5 text-blue-500" />}
+                {selected === inst.id && <CheckCircle2 className="h-5 w-5 text-sb-sky-ink" />}
               </button>
             ))}
           </div>

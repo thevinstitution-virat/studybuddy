@@ -21,7 +21,9 @@ import { useSidebar } from '@/contexts/SidebarContext'
 import { useDashboardShell } from '@/contexts/DashboardShellContext'
 import { authClient } from '@/auth/client'
 import { LogOut } from 'lucide-react'
-import MandalaMark from '@/components/dashboard/MandalaMark'
+import { BrandTile } from '@/components/sb/Brand'
+import { Icon as SbIcon } from '@/components/ui/Icon'
+import { navIconName } from '@/components/sb/shell/roles'
 
 export interface NavigationItem {
   name: string
@@ -89,9 +91,11 @@ export default function BaseSidebar({
   const navSig = navigation.map((n) => `${n.href}|${n.badge ?? ''}`).join(',')
   useEffect(() => {
     shell?.setData({
-      items: navigation.map((n) => ({ name: n.name, href: n.href, icon: n.icon, badge: n.badge, primary: n.primary, shortName: n.shortName })),
+      items: navigation.map((n) => ({ name: n.name, href: n.href, icon: n.icon, badge: n.badge, primary: n.primary, shortName: n.shortName, section: n.section, description: n.description })),
       brandName,
       roleLabel: brandSubtitle,
+      user: user ? { name: [user.firstName, user.lastName].filter(Boolean).join(' ') || 'Guest', email: user.emailAddress ?? '', initials: `${user.firstName?.[0] ?? ''}${user.lastName?.[0] ?? ''}`.toUpperCase() || 'U' } : null,
+      profilePath,
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navSig, brandName, brandSubtitle])
@@ -120,7 +124,7 @@ export default function BaseSidebar({
           borderBottom: '1px solid var(--line-soft)',
         }}
       >
-        <MandalaMark size={36} />
+        <BrandTile size={36} />
         <div>
           <div className="deva" style={{ fontSize: 19, lineHeight: 1 }}>{brandName}</div>
           <div
@@ -163,7 +167,9 @@ export default function BaseSidebar({
                     aria-current={isActive ? 'page' : undefined}
                     className={`navitem ${isActive ? 'active' : ''}`}
                   >
-                    <Icon className="h-[21px] w-[21px] shrink-0" />
+                    {navIconName(item.name)
+                      ? <SbIcon name={navIconName(item.name)!} size={21} active={isActive} />
+                      : <Icon className="h-[21px] w-[21px] shrink-0" />}
                     <span>{item.name}</span>
                     {item.badge != null && item.badge !== '' && (
                       <span
@@ -201,7 +207,7 @@ export default function BaseSidebar({
                 className="plinth"
                 style={{
                   width: 38, height: 38,
-                  background: 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))',
+                  background: 'var(--sb-saffron)', color: '#0A0F24',
                   fontFamily: 'var(--font-body)', fontWeight: 800, fontSize: 14,
                 }}
               >

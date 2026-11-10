@@ -122,7 +122,7 @@ export default function TeacherNoticesPage() {
                     <Button 
                       variant="ghost" 
                       size="icon" 
-                      className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                      className="text-sb-rose-ink hover:text-sb-rose-ink hover:bg-sb-rose"
                       onClick={() => {
                         if(confirm('Delete this notice?')) deleteNotice.mutate({ id: notice.id })
                       }}

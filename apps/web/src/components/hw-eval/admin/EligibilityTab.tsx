@@ -40,7 +40,7 @@ function Detail({ groupKey, effective, runningHash }: { groupKey: string; effect
               <li key={g.id} className="flex flex-wrap items-center gap-2">
                 <Badge variant={tone(g.verdict)}>{STATUS_LABEL[g.verdict] ?? g.verdict}</Badge>
                 <span className="text-xs text-muted-foreground">{ist(g.importedAt)} · {g.datasetVersions.join(', ')}</span>
-                {g.productionFingerprint === runningHash ? <span className="text-xs text-emerald-700">measured on the setup running now</span> : <span className="text-xs text-amber-700">measured on a different setup</span>}
+                {g.productionFingerprint === runningHash ? <span className="text-xs text-sb-saffron-deep">measured on the setup running now</span> : <span className="text-xs text-sb-butter-ink">measured on a different setup</span>}
               </li>
             ))}
           </ul>

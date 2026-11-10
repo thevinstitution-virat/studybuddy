@@ -436,12 +436,12 @@ const SubjectBadge = React.forwardRef<HTMLSpanElement, SubjectBadgeProps>(
   ({ className, subject, variant = "default", ...props }, ref) => {
     const getSubjectColors = () => {
       const colors = {
-        mathematics: "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700",
-        science: "bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700",
-        literature: "bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-700",
-        history: "bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-700",
+        mathematics: "bg-sb-sky text-sb-sky-ink border-sb-sky   ",
+        science: "bg-sb-saffron-tint text-sb-saffron-deep border-sb-saffron   ",
+        literature: "bg-sb-lav text-sb-lav-ink border-sb-lav   ",
+        history: "bg-sb-saffron-tint text-sb-saffron-deep border-sb-saffron   ",
         sanskrit: "bg-vg-sanskrit-100 text-vg-sanskrit-800 border-vg-sanskrit-200 dark:bg-vg-sanskrit-900/30 dark:text-vg-sanskrit-300 dark:border-vg-sanskrit-700",
-        english: "bg-indigo-100 text-indigo-800 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-700"
+        english: "bg-sb-lav text-sb-lav-ink border-sb-lav   "
       }
       return colors[subject]
     }

@@ -88,9 +88,9 @@ export default function InteractiveWordCard({
 
   const getDifficultyColor = (level?: string) => {
     switch (level?.toLowerCase()) {
-      case 'easy': return 'bg-green-100 text-green-800 border-green-300 dark:bg-green-900/20 dark:text-green-300'
-      case 'medium': return 'bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900/20 dark:text-yellow-300'
-      case 'hard': return 'bg-red-100 text-red-800 border-red-300 dark:bg-red-900/20 dark:text-red-300'
+      case 'easy': return 'bg-sb-saffron-tint text-sb-saffron-deep border-sb-saffron  '
+      case 'medium': return 'bg-sb-butter text-sb-butter-ink border-sb-butter  '
+      case 'hard': return 'bg-sb-rose text-sb-rose-ink border-sb-danger  '
       default: return 'bg-muted text-foreground border-input/20 dark:text-muted-foreground/60'
     }
   }
@@ -177,7 +177,7 @@ export default function InteractiveWordCard({
           <div className="flex-1">
             <div className="flex items-center space-x-3 mb-2">
               <CardTitle 
-                className="text-2xl font-bold cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="text-2xl font-bold cursor-pointer hover:text-sb-sky-ink  transition-colors"
                 onClick={() => onWordClick?.(wordData.word)}
               >
                 {wordData.word}
@@ -220,7 +220,7 @@ export default function InteractiveWordCard({
                     const audio = new Audio(wordData.audioUrl)
                     audio.play().catch(console.error)
                   }}
-                  className="h-8 w-8 p-0 text-blue-500 hover:text-blue-600"
+                  className="h-8 w-8 p-0 text-sb-sky-ink hover:text-sb-sky-ink"
                 >
                   <Volume2 className="h-4 w-4" />
                 </Button>
@@ -230,7 +230,7 @@ export default function InteractiveWordCard({
                 variant="ghost"
                 size="sm"
                 onClick={handleFavoriteToggle}
-                className={`h-8 w-8 p-0 ${isWordFavorite ? 'text-red-500 hover:text-red-600' : 'text-muted-foreground hover:text-red-500'}`}
+                className={`h-8 w-8 p-0 ${isWordFavorite ? 'text-sb-rose-ink hover:text-sb-rose-ink' : 'text-muted-foreground hover:text-sb-rose-ink'}`}
               >
                 <Heart className={`h-4 w-4 ${isWordFavorite ? 'fill-current' : ''}`} />
               </Button>
@@ -239,18 +239,18 @@ export default function InteractiveWordCard({
                 variant="ghost"
                 size="sm"
                 onClick={handleCopy}
-                className="h-8 w-8 p-0 text-muted-foreground hover:text-blue-500"
+                className="h-8 w-8 p-0 text-muted-foreground hover:text-sb-sky-ink"
               >
-                {copied ? <CheckCircle className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+                {copied ? <CheckCircle className="h-4 w-4 text-sb-saffron-deep" /> : <Copy className="h-4 w-4" />}
               </Button>
 
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={handleShare}
-                className="h-8 w-8 p-0 text-muted-foreground hover:text-green-500"
+                className="h-8 w-8 p-0 text-muted-foreground hover:text-sb-saffron-deep"
               >
-                {shared ? <CheckCircle className="h-4 w-4 text-green-500" /> : <Share2 className="h-4 w-4" />}
+                {shared ? <CheckCircle className="h-4 w-4 text-sb-saffron-deep" /> : <Share2 className="h-4 w-4" />}
               </Button>
 
               {!compact && (
@@ -273,10 +273,10 @@ export default function InteractiveWordCard({
         {wordData.hindiTranslation && (
           <div className="mb-4">
             <div className="flex items-center space-x-2 mb-2">
-              <Globe className="h-4 w-4 text-orange-500" />
+              <Globe className="h-4 w-4 text-sb-saffron-deep" />
               <span className="text-sm font-medium text-muted-foreground">Hindi Translation</span>
             </div>
-            <p className="text-xl font-semibold bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">
+            <p className="text-xl font-semibold text-sb-saffron-deep    ">
               {wordData.hindiTranslation}
             </p>
             {wordData.devanagariScript && (
@@ -290,7 +290,7 @@ export default function InteractiveWordCard({
         {/* English Definition */}
         <div className="mb-4">
           <div className="flex items-center space-x-2 mb-2">
-            <BookOpen className="h-4 w-4 text-blue-500" />
+            <BookOpen className="h-4 w-4 text-sb-sky-ink" />
             <span className="text-sm font-medium text-muted-foreground">Definition</span>
           </div>
           <p className="text-foreground leading-relaxed">
@@ -305,20 +305,20 @@ export default function InteractiveWordCard({
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {wordData.frequencyRank && (
                 <div className="text-center">
-                  <div className="text-lg font-bold text-purple-600 dark:text-purple-400">
+                  <div className="text-lg font-bold text-sb-lav-ink ">
                     #{wordData.frequencyRank}
                   </div>
                   <div className="text-xs text-muted-foreground">Frequency Rank</div>
                 </div>
               )}
               <div className="text-center">
-                <div className="text-lg font-bold text-green-600 dark:text-green-400">
+                <div className="text-lg font-bold text-sb-saffron-deep ">
                   {wordData.word.length}
                 </div>
                 <div className="text-xs text-muted-foreground">Letters</div>
               </div>
               <div className="text-center">
-                <div className="text-lg font-bold text-blue-600 dark:text-blue-400">
+                <div className="text-lg font-bold text-sb-sky-ink ">
                   {wordData.word.split('').filter(c => 'aeiouAEIOU'.includes(c)).length}
                 </div>
                 <div className="text-xs text-muted-foreground">Vowels</div>

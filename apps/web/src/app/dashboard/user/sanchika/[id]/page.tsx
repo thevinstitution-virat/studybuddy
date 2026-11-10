@@ -580,21 +580,21 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
                     onClick={() => { handleToggleFavorite(); setShowMoreMenu(false); }}
                     className="menu-item"
                   >
-                    <Star className={`h-4 w-4 ${note.is_favorite ? 'fill-yellow-400 text-yellow-400' : ''}`} />
+                    <Star className={`h-4 w-4 ${note.is_favorite ? 'fill-sb-butter-ink text-sb-butter-ink' : ''}`} />
                     <span>{note.is_favorite ? 'Remove from favorites' : 'Add to favorites'}</span>
                   </button>
                   <button
                     onClick={() => { handleTogglePin(); setShowMoreMenu(false); }}
                     className="menu-item"
                   >
-                    <Pin className={`h-4 w-4 ${note.is_pinned ? 'fill-blue-500 text-primary' : ''}`} />
+                    <Pin className={`h-4 w-4 ${note.is_pinned ? 'fill-sb-sky-ink text-primary' : ''}`} />
                     <span>{note.is_pinned ? 'Unpin note' : 'Pin note'}</span>
                   </button>
                   <button
                     onClick={() => { setAutoSaveEnabled(!autoSaveEnabled); setShowMoreMenu(false); }}
                     className="menu-item"
                   >
-                    <Settings className={`h-4 w-4 ${autoSaveEnabled ? 'text-green-500' : ''}`} />
+                    <Settings className={`h-4 w-4 ${autoSaveEnabled ? 'text-sb-saffron-deep' : ''}`} />
                     <span>Auto-save: {autoSaveEnabled ? 'ON' : 'OFF'}</span>
                   </button>
                   <div className="menu-divider" />
@@ -969,7 +969,7 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
           display: flex;
           flex-direction: column;
           min-height: 100vh;
-          background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+          background: var(--sb-surface-2);
           background-attachment: fixed;
           animation: fadeIn 0.3s ease-out;
         }
@@ -983,7 +983,7 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
         .note-editor-container.error {
           justify-content: center;
           align-items: center;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: var(--sb-navy);
         }
 
         .spinner {
@@ -1094,7 +1094,7 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
         .status-dot.saved .dot-saved {
           width: 10px;
           height: 10px;
-          background: #10b981;
+          background: var(--sb-saffron-deep);
           border-radius: 50%;
           display: block;
         }
@@ -1116,7 +1116,7 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
           align-items: center;
           gap: 6px;
           padding: 8px 16px;
-          background: linear-gradient(135deg, #f97316 0%, #3b82f6 100%);
+          background: var(--sb-navy);
           color: white;
           border: none;
           border-radius: 8px;
@@ -1291,7 +1291,7 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
           font-size: 13px;
           font-weight: 600;
           padding: 6px 12px;
-          background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+          background: var(--sb-surface-2);
           border-radius: 20px;
           animation: pulse 2s infinite;
         }
@@ -1382,7 +1382,7 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
         }
 
         .btn-primary {
-          background: linear-gradient(135deg, #f97316 0%, #3b82f6 100%);
+          background: var(--sb-navy);
           color: white;
           box-shadow: 0 2px 8px rgba(249, 115, 22, 0.25);
         }
@@ -1467,7 +1467,7 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
           flex: 1;
           overflow-y: auto;
           padding: 32px 24px;
-          background: linear-gradient(135deg, #fafbfc 0%, #f0f4f8 100%);
+          background: var(--sb-surface-2);
         }
 
         .tab-content {
@@ -1530,7 +1530,7 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
         }
 
         .mode-button.active {
-          background: linear-gradient(135deg, #f97316 0%, #3b82f6 100%);
+          background: var(--sb-navy);
           border-color: transparent;
           color: white;
           box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
@@ -1558,7 +1558,7 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
           color: #1f2937;
           font-size: 32px;
           font-weight: 700;
-          background: linear-gradient(135deg, #f97316 0%, #3b82f6 100%);
+          background: var(--sb-navy);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -1601,7 +1601,7 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
         }
 
         .form-label-gradient {
-          background: linear-gradient(135deg, #f97316 0%, #3b82f6 100%);
+          background: var(--sb-navy);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -1638,7 +1638,7 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
           align-items: center;
           gap: 8px;
           padding: 8px 16px;
-          background: linear-gradient(135deg, #f97316 0%, #3b82f6 100%);
+          background: var(--sb-navy);
           color: white;
           border-radius: 20px;
           font-size: 13px;
@@ -1680,7 +1680,7 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
           align-items: center;
           gap: 10px;
           padding: 14px 20px;
-          background: linear-gradient(135deg, #f97316 0%, #3b82f6 100%);
+          background: var(--sb-navy);
           color: white;
           border: none;
           border-radius: 12px;
@@ -1709,7 +1709,7 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
           align-items: center;
           gap: 12px;
           padding: 12px 16px;
-          background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+          background: var(--sb-surface-2);
           border-radius: 10px;
           border: 2px solid #d1d5db;
         }
@@ -1740,7 +1740,7 @@ export default function NoteViewEditPage({ params }: NoteViewEditPageProps) {
         }
 
         .metadata-info {
-          background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+          background: var(--sb-surface-2);
           padding: 16px;
           border-radius: 12px;
           font-size: 14px;

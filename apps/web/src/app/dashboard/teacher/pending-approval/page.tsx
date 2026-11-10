@@ -68,7 +68,7 @@ export default function TeacherPendingApprovalPage() {
       <div className="flex items-center justify-center min-h-screen">
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle className="text-red-600">Error</CardTitle>
+            <CardTitle className="text-sb-rose-ink">Error</CardTitle>
             <CardDescription>Unable to load teacher status</CardDescription>
           </CardHeader>
         </Card>
@@ -79,27 +79,27 @@ export default function TeacherPendingApprovalPage() {
   const getStatusIcon = () => {
     switch (status.approvalStatus) {
       case 'pending':
-        return <Clock className="h-16 w-16 text-yellow-500" />
+        return <Clock className="h-16 w-16 text-sb-butter-ink" />
       case 'approved':
-        return <CheckCircle className="h-16 w-16 text-green-500" />
+        return <CheckCircle className="h-16 w-16 text-sb-saffron-deep" />
       case 'rejected':
-        return <XCircle className="h-16 w-16 text-red-500" />
+        return <XCircle className="h-16 w-16 text-sb-rose-ink" />
     }
   }
 
   const getStatusColor = () => {
     switch (status.approvalStatus) {
       case 'pending':
-        return 'bg-yellow-50 border-yellow-200'
+        return 'bg-sb-butter border-sb-butter'
       case 'approved':
-        return 'bg-green-50 border-green-200'
+        return 'bg-sb-saffron-tint border-sb-saffron'
       case 'rejected':
-        return 'bg-red-50 border-red-200'
+        return 'bg-sb-rose border-sb-danger'
     }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/10 to-primary/15 py-12 px-4">
+    <div className="min-h-screen bg-sb-surface-2 from-primary/10 to-primary/15 py-12 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Status Card */}
         <Card className={`mb-6 ${getStatusColor()}`}>
@@ -147,8 +147,8 @@ export default function TeacherPendingApprovalPage() {
               <div className="bg-card rounded-lg p-6">
                 <h3 className="font-semibold text-lg mb-2">Reason for Rejection</h3>
                 <p className="text-foreground">{status.data.rejectionReason}</p>
-                <div className="mt-4 p-4 bg-yellow-50 rounded-lg">
-                  <p className="text-sm text-yellow-800">
+                <div className="mt-4 p-4 bg-sb-butter rounded-lg">
+                  <p className="text-sm text-sb-butter-ink">
                     If you believe this is an error, please contact support at support@digiclassroom.com
                   </p>
                 </div>

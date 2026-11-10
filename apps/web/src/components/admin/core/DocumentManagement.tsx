@@ -182,9 +182,9 @@ export default function DocumentManagement() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground">Total Books</p>
-              <p className="text-3xl font-bold text-blue-600">{stats?.totalBooks || 0}</p>
+              <p className="text-3xl font-bold text-sb-sky-ink">{stats?.totalBooks || 0}</p>
             </div>
-            <BookOpen className="h-12 w-12 text-blue-500 opacity-20" />
+            <BookOpen className="h-12 w-12 text-sb-sky-ink opacity-20" />
           </div>
         </div>
 
@@ -192,9 +192,9 @@ export default function DocumentManagement() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground">Total Chunks</p>
-              <p className="text-3xl font-bold text-green-600">{stats?.totalPoints || 0}</p>
+              <p className="text-3xl font-bold text-sb-saffron-deep">{stats?.totalPoints || 0}</p>
             </div>
-            <FileText className="h-12 w-12 text-green-500 opacity-20" />
+            <FileText className="h-12 w-12 text-sb-saffron-deep opacity-20" />
           </div>
         </div>
 
@@ -202,9 +202,9 @@ export default function DocumentManagement() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground">Subjects</p>
-              <p className="text-3xl font-bold text-purple-600">{stats?.uniqueSubjects || 0}</p>
+              <p className="text-3xl font-bold text-sb-lav-ink">{stats?.uniqueSubjects || 0}</p>
             </div>
-            <Database className="h-12 w-12 text-purple-500 opacity-20" />
+            <Database className="h-12 w-12 text-sb-lav-ink opacity-20" />
           </div>
         </div>
 
@@ -212,9 +212,9 @@ export default function DocumentManagement() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground">Class Levels</p>
-              <p className="text-3xl font-bold text-orange-600">{stats?.uniqueClassLevels || 0}</p>
+              <p className="text-3xl font-bold text-sb-saffron-deep">{stats?.uniqueClassLevels || 0}</p>
             </div>
-            <BookOpen className="h-12 w-12 text-orange-500 opacity-20" />
+            <BookOpen className="h-12 w-12 text-sb-saffron-deep opacity-20" />
           </div>
         </div>
       </div>
@@ -223,8 +223,8 @@ export default function DocumentManagement() {
       {message && (
         <div className={`p-4 rounded-lg flex items-center gap-3 ${
           message.type === 'success' 
-            ? 'bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-200 border border-green-200 dark:border-green-800'
-            : 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200 border border-red-200 dark:border-red-800'
+            ? 'bg-sb-saffron-tint  text-sb-saffron-deep  border border-sb-saffron '
+            : 'bg-sb-rose  text-sb-rose-ink  border border-sb-danger '
         }`}>
           {message.type === 'success' ? (
             <CheckCircle className="h-5 w-5" />
@@ -246,7 +246,7 @@ export default function DocumentManagement() {
               placeholder="Search books..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-input rounded-lg focus:ring-2 focus:ring-blue-500 dark:text-white"
+              className="w-full pl-10 pr-4 py-2 border border-input rounded-lg focus:ring-2 focus:ring-sb-sky dark:text-white"
             />
           </div>
 
@@ -255,7 +255,7 @@ export default function DocumentManagement() {
             <select
               value={filterClass}
               onChange={(e) => setFilterClass(e.target.value)}
-              className="px-4 py-2 border border-input rounded-lg focus:ring-2 focus:ring-blue-500 dark:text-white"
+              className="px-4 py-2 border border-input rounded-lg focus:ring-2 focus:ring-sb-sky dark:text-white"
             >
               <option value="">All Classes</option>
               {stats?.classLevels?.map(cls => (
@@ -266,7 +266,7 @@ export default function DocumentManagement() {
             <select
               value={filterSubject}
               onChange={(e) => setFilterSubject(e.target.value)}
-              className="px-4 py-2 border border-input rounded-lg focus:ring-2 focus:ring-blue-500 dark:text-white"
+              className="px-4 py-2 border border-input rounded-lg focus:ring-2 focus:ring-sb-sky dark:text-white"
             >
               <option value="">All Subjects</option>
               {stats?.subjects?.map(subj => (
@@ -280,7 +280,7 @@ export default function DocumentManagement() {
             <button
               onClick={handleExportCSV}
               disabled={filteredBooks.length === 0}
-              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              className="px-4 py-2 bg-sb-navy text-white rounded-lg hover:bg-sb-navy disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
             >
               <Download className="h-4 w-4" />
               Export CSV
@@ -288,7 +288,7 @@ export default function DocumentManagement() {
 
             <button
               onClick={() => { mutateBooks(); mutateStats(); }}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
+              className="px-4 py-2 bg-sb-navy text-white rounded-lg hover:bg-sb-navy flex items-center gap-2"
             >
               <RefreshCw className="h-4 w-4" />
               Refresh
@@ -297,7 +297,7 @@ export default function DocumentManagement() {
             <button
               onClick={handleClearDatabase}
               disabled={clearingDatabase || books.length === 0}
-              className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              className="px-4 py-2 bg-sb-danger text-white rounded-lg hover:bg-sb-danger disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
             >
               {clearingDatabase ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -314,13 +314,13 @@ export default function DocumentManagement() {
       <div className="bg-card rounded-xl shadow-lg border border-border overflow-hidden">
         {booksLoading ? (
           <div className="p-12 text-center">
-            <Loader2 className="h-12 w-12 animate-spin mx-auto text-blue-500 mb-4" />
+            <Loader2 className="h-12 w-12 animate-spin mx-auto text-sb-sky-ink mb-4" />
             <p className="text-muted-foreground">Loading books...</p>
           </div>
         ) : booksError ? (
           <div className="p-12 text-center">
-            <AlertTriangle className="h-12 w-12 mx-auto text-red-500 mb-4" />
-            <p className="text-red-600 dark:text-red-400">Failed to load books</p>
+            <AlertTriangle className="h-12 w-12 mx-auto text-sb-rose-ink mb-4" />
+            <p className="text-sb-rose-ink ">Failed to load books</p>
           </div>
         ) : filteredBooks.length === 0 ? (
           <div className="p-12 text-center">
@@ -347,7 +347,7 @@ export default function DocumentManagement() {
                   <tr key={book.bookId} className="hover:bg-muted/50">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <BookOpen className="h-5 w-5 text-blue-500 mr-3" />
+                        <BookOpen className="h-5 w-5 text-sb-sky-ink mr-3" />
                         <div>
                           <div className="text-sm font-medium text-foreground">{book.bookTitle}</div>
                           <div className="text-xs text-muted-foreground">{book.language}</div>
@@ -362,10 +362,10 @@ export default function DocumentManagement() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex gap-2">
                         {book.hasFormulas && (
-                          <span className="px-2 py-1 text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200 rounded">Formulas</span>
+                          <span className="px-2 py-1 text-xs bg-sb-lav  text-sb-lav-ink  rounded">Formulas</span>
                         )}
                         {book.hasTables && (
-                          <span className="px-2 py-1 text-xs bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 rounded">Tables</span>
+                          <span className="px-2 py-1 text-xs bg-sb-saffron-tint  text-sb-saffron-deep  rounded">Tables</span>
                         )}
                       </div>
                     </td>
@@ -373,7 +373,7 @@ export default function DocumentManagement() {
                       <button
                         onClick={() => handleDeleteBook(book.bookId, book.bookTitle)}
                         disabled={deletingBook === book.bookId}
-                        className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                        className="text-sb-rose-ink hover:text-sb-rose-ink   disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                       >
                         {deletingBook === book.bookId ? (
                           <Loader2 className="h-4 w-4 animate-spin" />

@@ -113,7 +113,7 @@ function SetupRoleClient() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/10 to-primary/15 dark:from-[var(--night-ink)] dark:to-[var(--navy-deep)] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-sb-surface-2 from-primary/10 to-primary/15 dark:from-[var(--night-ink)] dark:to-[var(--navy-deep)] flex items-center justify-center p-4">
       <div className="max-w-2xl w-full bg-card rounded-2xl shadow-xl p-8">
         {/* Header */}
         <div className="text-center mb-8">
@@ -126,7 +126,7 @@ function SetupRoleClient() {
 
           {/* Error message */}
           {error && (
-            <div className="flex items-center justify-center gap-2 mb-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-400 rounded-lg">
+            <div className="flex items-center justify-center gap-2 mb-4 p-3 bg-sb-butter  text-sb-butter-ink  rounded-lg">
               <ExclamationTriangleIcon className="h-5 w-5" />
               <span className="text-sm">{getErrorMessage()}</span>
             </div>
@@ -194,7 +194,7 @@ function SetupRoleClient() {
 
           {/* Error Display */}
           {assignmentError && (
-            <div className="flex items-center gap-2 p-3 bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-400 rounded-lg">
+            <div className="flex items-center gap-2 p-3 bg-sb-rose  text-sb-rose-ink  rounded-lg">
               <ExclamationTriangleIcon className="h-5 w-5" />
               <span className="text-sm">{assignmentError}</span>
             </div>

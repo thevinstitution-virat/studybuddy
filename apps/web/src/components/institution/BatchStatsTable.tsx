@@ -43,9 +43,9 @@ export function BatchStatsTable({ data, isLoading }: BatchStatsTableProps) {
   const toggleSort = () => setSortDirection(prev => prev === 'desc' ? 'asc' : 'desc');
 
   const getCompletionColor = (pct: number) => {
-    if (pct >= 75) return 'text-green-600 dark:text-green-500 font-semibold';
-    if (pct >= 40) return 'text-amber-600 dark:text-amber-500 font-semibold';
-    return 'text-red-600 dark:text-red-500 font-semibold';
+    if (pct >= 75) return 'text-sb-saffron-deep  font-semibold';
+    if (pct >= 40) return 'text-sb-butter-ink  font-semibold';
+    return 'text-sb-rose-ink  font-semibold';
   };
 
   return (

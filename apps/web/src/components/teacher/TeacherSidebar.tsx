@@ -33,7 +33,7 @@ export default function TeacherSidebar() {
       brandName="Study Buddy"
       brandSubtitle="Teacher Portal"
       brandIcon={GraduationCap}
-      brandColor="bg-green-600"
+      brandColor="bg-sb-navy"
       theme="light"
       profilePath="/dashboard/user/profile"
       showLogout

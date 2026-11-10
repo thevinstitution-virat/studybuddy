@@ -1,5 +1,6 @@
 'use client'
 
+import { PageHeader } from '@/components/sb'
 import React, { useState, useEffect, useRef } from 'react'
 import { api } from '@/lib/trpc/client'
 import {
@@ -96,11 +97,11 @@ function QuizTab() {
   if (quizState === 'category') {
     return (
       <div className="p-8 text-center">
-        <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
+        <div className="w-20 h-20 mx-auto mb-6 bg-sb-surface-2 from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
           <Trophy className="h-10 w-10 text-white" />
         </div>
         <h2 className="text-3xl font-bold mb-4">
-          <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+          <span className="text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
             Choose Quiz Category
           </span>
         </h2>
@@ -110,7 +111,7 @@ function QuizTab() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
           <Button
             onClick={() => handleCategorySelect({ category: 'general', questionCount: 10 })}
-            className="p-6 h-auto bg-gradient-to-r from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
+            className="p-6 h-auto bg-sb-surface-2 from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
           >
             <div className="text-center">
               <div className="text-lg font-bold">General Vocabulary</div>
@@ -119,7 +120,7 @@ function QuizTab() {
           </Button>
           <Button
             onClick={() => handleCategorySelect({ category: 'advanced', questionCount: 15 })}
-            className="p-6 h-auto bg-gradient-to-r from-primary to-primary/80 hover:from-primary hover:to-primary/80 text-white rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
+            className="p-6 h-auto bg-sb-surface-2 from-primary to-primary/80 hover:from-primary hover:to-primary/80 text-white rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
           >
             <div className="text-center">
               <div className="text-lg font-bold">Advanced Words</div>
@@ -134,11 +135,11 @@ function QuizTab() {
   if (quizState === 'active' && currentSession) {
     return (
       <div className="p-8 text-center">
-        <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-primary to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg animate-pulse">
+        <div className="w-20 h-20 mx-auto mb-6 bg-sb-surface-2 from-primary  rounded-2xl flex items-center justify-center shadow-lg animate-pulse">
           <Target className="h-10 w-10 text-white" />
         </div>
         <h2 className="text-3xl font-bold mb-4">
-          <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+          <span className="text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
             Quiz in Progress
           </span>
         </h2>
@@ -147,7 +148,7 @@ function QuizTab() {
         </p>
         <Button
           onClick={() => handleQuizComplete({ score: 85, totalQuestions: 10, accuracy: 85, timeElapsed: 300 })}
-          className="px-8 py-3 h-12 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
+          className="px-8 py-3 h-12 bg-sb-navy     text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
         >
           <span>Complete Quiz (Demo)</span>
         </Button>
@@ -159,11 +160,11 @@ function QuizTab() {
     return (
       <div className="p-8">
         <div className="text-center mb-8">
-          <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg">
+          <div className="w-20 h-20 mx-auto mb-6 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg">
             <Trophy className="h-10 w-10 text-white" />
           </div>
           <h2 className="text-3xl font-bold mb-3">
-            <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+            <span className="text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
               🎉 Quiz Completed!
             </span>
           </h2>
@@ -173,35 +174,35 @@ function QuizTab() {
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-          <div className="text-center p-6 bg-gradient-to-r from-primary/10 to-cyan-50 dark:from-primary dark:to-cyan-950 rounded-2xl border border-primary/20">
-            <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-primary to-cyan-500 rounded-xl flex items-center justify-center">
+          <div className="text-center p-6 bg-sb-surface-2 from-primary/10  dark:from-primary  rounded-2xl border border-primary/20">
+            <div className="w-12 h-12 mx-auto mb-3 bg-sb-surface-2 from-primary  rounded-xl flex items-center justify-center">
               <Award className="h-6 w-6 text-white" />
             </div>
-            <div className="text-3xl font-bold bg-gradient-to-r from-primary to-cyan-600 bg-clip-text text-transparent">{quizResult.score}</div>
+            <div className="text-3xl font-bold text-sb-saffron-deep from-primary   ">{quizResult.score}</div>
             <div className="text-sm font-medium text-primary">Score</div>
           </div>
-          <div className="text-center p-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 rounded-2xl border border-green-200/30">
-            <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+          <div className="text-center p-6 bg-sb-surface-2     rounded-2xl border border-sb-saffron">
+            <div className="w-12 h-12 mx-auto mb-3 bg-sb-navy   rounded-xl flex items-center justify-center">
               <Target className="h-6 w-6 text-white" />
             </div>
-            <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{quizResult.accuracy}%</div>
-            <div className="text-sm font-medium text-green-700 dark:text-green-300">Accuracy</div>
+            <div className="text-3xl font-bold text-sb-saffron-deep    ">{quizResult.accuracy}%</div>
+            <div className="text-sm font-medium text-sb-saffron-deep ">Accuracy</div>
           </div>
-          <div className="text-center p-6 bg-gradient-to-r from-primary/10 to-primary/10 dark:from-primary dark:to-primary rounded-2xl border border-primary/20">
-            <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-primary to-primary/80 rounded-xl flex items-center justify-center">
+          <div className="text-center p-6 bg-sb-surface-2 from-primary/10 to-primary/10 dark:from-primary dark:to-primary rounded-2xl border border-primary/20">
+            <div className="w-12 h-12 mx-auto mb-3 bg-sb-surface-2 from-primary to-primary/80 rounded-xl flex items-center justify-center">
               <BookOpen className="h-6 w-6 text-white" />
             </div>
-            <div className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">{quizResult.totalQuestions}</div>
+            <div className="text-3xl font-bold text-sb-saffron-deep from-primary to-primary/80  ">{quizResult.totalQuestions}</div>
             <div className="text-sm font-medium text-primary">Questions</div>
           </div>
-          <div className="text-center p-6 bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-950 dark:to-red-950 rounded-2xl border border-orange-200/30">
-            <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
+          <div className="text-center p-6 bg-sb-surface-2     rounded-2xl border border-sb-saffron">
+            <div className="w-12 h-12 mx-auto mb-3 bg-sb-navy   rounded-xl flex items-center justify-center">
               <Zap className="h-6 w-6 text-white" />
             </div>
-            <div className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+            <div className="text-3xl font-bold text-sb-saffron-deep    ">
               {Math.floor(quizResult.timeElapsed / 60)}:{(quizResult.timeElapsed % 60).toString().padStart(2, '0')}
             </div>
-            <div className="text-sm font-medium text-orange-700 dark:text-orange-300">Time</div>
+            <div className="text-sm font-medium text-sb-saffron-deep ">Time</div>
           </div>
         </div>
 
@@ -224,19 +225,19 @@ function QuizTab() {
           </Button>
           <Button
             onClick={() => setQuizState('category')}
-            className="px-6 py-3 h-12 bg-gradient-to-r from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
+            className="px-6 py-3 h-12 bg-sb-surface-2 from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
           >
             <GraduationCap className="h-5 w-5 mr-2" />
             <span>Choose New Category</span>
           </Button>
         </div>
 
-        <div className="text-center p-8 bg-gradient-to-r from-orange-50/50 to-primary/10 dark:from-orange-900/20 dark:to-primary/15 rounded-2xl border border-orange-200/30">
-          <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center">
+        <div className="text-center p-8 bg-sb-surface-2  to-primary/10  dark:to-primary/15 rounded-2xl border border-sb-saffron">
+          <div className="w-16 h-16 mx-auto mb-4 bg-sb-navy   rounded-2xl flex items-center justify-center">
             <Crown className="h-8 w-8 text-white" />
           </div>
           <h3 className="text-xl font-bold mb-3">
-            <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+            <span className="text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
               🌟 Great Job! Keep Learning!
             </span>
           </h3>
@@ -251,11 +252,11 @@ function QuizTab() {
   if (quizState === 'review' && quizResult) {
     return (
       <div className="p-8 text-center">
-        <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-primary/100 to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
+        <div className="w-20 h-20 mx-auto mb-6 bg-sb-surface-2 from-primary/100 to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
           <BookOpen className="h-10 w-10 text-white" />
         </div>
         <h2 className="text-3xl font-bold mb-4">
-          <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+          <span className="text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
             Quiz Review
           </span>
         </h2>
@@ -264,7 +265,7 @@ function QuizTab() {
         </p>
         <Button
           onClick={handleCloseReview}
-          className="px-8 py-3 h-12 bg-gradient-to-r from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
+          className="px-8 py-3 h-12 bg-sb-surface-2 from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
         >
           <span>Back to Results</span>
         </Button>
@@ -387,7 +388,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioUrl, word }) => {
       disabled={isLoading}
       className={`p-2 h-8 w-8 rounded-full transition-all duration-200 ${
         hasError
-          ? 'hover:bg-red-100 dark:hover:bg-red-900'
+          ? 'hover:bg-sb-rose '
           : 'hover:bg-primary/15'
       } ${isPlaying ? 'bg-primary/15' : ''}`}
       title={hasError ? 'Audio unavailable - click for text-to-speech' : 'Play pronunciation'}
@@ -395,7 +396,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioUrl, word }) => {
       {isLoading ? (
         <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
       ) : hasError ? (
-        <Volume2 className="h-4 w-4 text-red-600" />
+        <Volume2 className="h-4 w-4 text-sb-rose-ink" />
       ) : isPlaying ? (
         <Pause className="h-4 w-4 text-primary" />
       ) : (
@@ -409,11 +410,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioUrl, word }) => {
 const getDifficultyColor = (difficulty: string) => {
   switch (difficulty?.toLowerCase()) {
     case 'easy':
-      return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+      return 'bg-sb-saffron-tint text-sb-saffron-deep  '
     case 'medium':
-      return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+      return 'bg-sb-butter text-sb-butter-ink  '
     case 'hard':
-      return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+      return 'bg-sb-rose text-sb-rose-ink  '
     default:
       return 'bg-muted text-foreground'
   }
@@ -423,13 +424,13 @@ const getDifficultyColor = (difficulty: string) => {
 const getFrequencyColor = (frequency: string) => {
   switch (frequency?.toLowerCase()) {
     case 'very common':
-      return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+      return 'bg-sb-saffron-tint text-sb-saffron-deep  '
     case 'common':
       return 'bg-primary/15 text-primary'
     case 'uncommon':
-      return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+      return 'bg-sb-butter text-sb-butter-ink  '
     case 'rare':
-      return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+      return 'bg-sb-rose text-sb-rose-ink  '
     default:
       return 'bg-muted text-foreground'
   }
@@ -769,9 +770,9 @@ export default function DictionaryPage() {
 
   const getDifficultyColor = (level: string) => {
     switch (level) {
-      case 'beginner': return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
-      case 'intermediate': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300'
-      case 'advanced': return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
+      case 'beginner': return 'bg-sb-saffron-tint text-sb-saffron-deep  '
+      case 'intermediate': return 'bg-sb-butter text-sb-butter-ink  '
+      case 'advanced': return 'bg-sb-rose text-sb-rose-ink  '
       default: return 'bg-muted text-foreground dark:text-muted-foreground/60'
     }
   }
@@ -783,9 +784,9 @@ export default function DictionaryPage() {
         <div className="mb-12">
           <div className="text-center mb-8">
             <div className="flex flex-col items-center space-y-3 mb-6">
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500/10 to-primary/10 backdrop-blur-sm border border-orange-200/30 rounded-2xl px-6 py-3">
-                <Sparkles className="h-5 w-5 text-orange-500" />
-                <span className="text-sm font-medium bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+              <div className="inline-flex items-center space-x-2 bg-sb-navy  to-primary/10 backdrop-blur-sm border border-sb-saffron rounded-2xl px-6 py-3">
+                <Sparkles className="h-5 w-5 text-sb-saffron-deep" />
+                <span className="text-sm font-medium text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                   AI-Powered Dictionary & Translation
                 </span>
               </div>
@@ -793,75 +794,66 @@ export default function DictionaryPage() {
               {/* Offline Status Indicator */}
               <div className={`inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-medium transition-all duration-300 ${
                 isOnline
-                  ? 'bg-green-100/80 text-green-800 border border-green-200/50'
-                  : 'bg-amber-100/80 text-amber-800 border border-amber-200/50'
+                  ? 'bg-sb-saffron-tint text-sb-saffron-deep border border-sb-saffron'
+                  : 'bg-sb-butter text-sb-butter-ink border border-sb-butter'
               }`}>
                 <div className={`w-2 h-2 rounded-full ${
-                  isOnline ? 'bg-green-500' : 'bg-amber-500'
+                  isOnline ? 'bg-sb-navy' : 'bg-sb-navy'
                 } ${isOnline ? 'animate-pulse' : ''}`} />
                 <span>{getOfflineStatusMessage()}</span>
                 {!isOnline && isOfflineReady && (
-                  <span className="ml-1 text-amber-600">({cachedWordsCount} words cached)</span>
+                  <span className="ml-1 text-sb-butter-ink">({cachedWordsCount} words cached)</span>
                 )}
               </div>
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent flex items-center justify-center gap-4">
-                <BookOpen className="h-12 w-12 text-orange-500" />
-                Shabdakosh Dictionary
-              </span>
-            </h1>
-            
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Professional Hindi translations with cultural context, vocabulary building, and interactive learning
-            </p>
+            <PageHeader kicker="English ⇄ हिन्दी" icon="shabdakosh" tone="rose" title="Shabdakosh" highlight="Dictionary" description="Professional Hindi translations with cultural context, vocabulary building and interactive learning." />
           </div>
         </div>
 
         {/* Enhanced Main Content Tabs */}
         <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full space-y-8">
           <div className="flex justify-center mb-8">
-            <div className="inline-flex items-center justify-center bg-white/80 backdrop-blur-md rounded-2xl p-3 shadow-lg border border-orange-200/30">
+            <div className="inline-flex max-w-full items-center justify-center overflow-x-auto rounded-full border border-border bg-card p-2">
               <TabsList className="grid grid-cols-6 bg-transparent gap-1 items-center">
                 <TabsTrigger
                   value="search"
-                  className="rounded-xl text-sm font-semibold px-4 py-2.5 h-11 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-primary/80 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-orange-50 transition-all duration-200 flex items-center justify-center"
+                  className="rounded-xl text-sm font-semibold px-4 py-2.5 h-11 data-[state=active]:bg-sb-navy  data-[state=active]:to-primary/80 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-sb-saffron-tint transition-all duration-200 flex items-center justify-center"
                 >
                   <Search className="h-4 w-4 mr-2" />
                   <span>Search</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="word-of-day"
-                  className="rounded-xl text-sm font-semibold px-4 py-2.5 h-11 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-primary/80 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-orange-50 transition-all duration-200 flex items-center justify-center"
+                  className="rounded-xl text-sm font-semibold px-4 py-2.5 h-11 data-[state=active]:bg-sb-navy  data-[state=active]:to-primary/80 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-sb-saffron-tint transition-all duration-200 flex items-center justify-center"
                 >
                   <Globe className="h-4 w-4 mr-2" />
                   <span>Word of Day</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="recent"
-                  className="rounded-xl text-sm font-semibold px-4 py-2.5 h-11 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-primary/80 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-orange-50 transition-all duration-200 flex items-center justify-center"
+                  className="rounded-xl text-sm font-semibold px-4 py-2.5 h-11 data-[state=active]:bg-sb-navy  data-[state=active]:to-primary/80 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-sb-saffron-tint transition-all duration-200 flex items-center justify-center"
                 >
                   <BookOpen className="h-4 w-4 mr-2" />
                   <span>Recent</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="quiz"
-                  className="rounded-xl text-sm font-semibold px-4 py-2.5 h-11 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-primary/80 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-orange-50 transition-all duration-200 flex items-center justify-center"
+                  className="rounded-xl text-sm font-semibold px-4 py-2.5 h-11 data-[state=active]:bg-sb-navy  data-[state=active]:to-primary/80 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-sb-saffron-tint transition-all duration-200 flex items-center justify-center"
                 >
                   <Trophy className="h-4 w-4 mr-2" />
                   <span>Quiz</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="favorites"
-                  className="rounded-xl text-sm font-semibold px-4 py-2.5 h-11 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-primary/80 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-orange-50 transition-all duration-200 flex items-center justify-center"
+                  className="rounded-xl text-sm font-semibold px-4 py-2.5 h-11 data-[state=active]:bg-sb-navy  data-[state=active]:to-primary/80 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-sb-saffron-tint transition-all duration-200 flex items-center justify-center"
                 >
                   <Heart className="h-4 w-4 mr-2" />
                   <span>Favorites</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="analytics"
-                  className="rounded-xl text-sm font-semibold px-4 py-2.5 h-11 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-primary/80 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-orange-50 transition-all duration-200 flex items-center justify-center"
+                  className="rounded-xl text-sm font-semibold px-4 py-2.5 h-11 data-[state=active]:bg-sb-navy  data-[state=active]:to-primary/80 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-sb-saffron-tint transition-all duration-200 flex items-center justify-center"
                 >
                   <BarChart3 className="h-4 w-4 mr-2" />
                   <span>Analytics</span>
@@ -875,11 +867,11 @@ export default function DictionaryPage() {
             {/* Enhanced Search Box */}
             <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20">
               <div className="text-center mb-8">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-[#E5283A] to-[#FF6B35] rounded-2xl flex items-center justify-center shadow-lg">
+                <div className="w-16 h-16 mx-auto mb-4 bg-sb-surface-2 from-[#E5283A] to-[#FF6B35] rounded-2xl flex items-center justify-center shadow-lg">
                   <Search className="h-8 w-8 text-white" />
                 </div>
                 <h2 className="text-2xl md:text-3xl font-bold mb-3">
-                  <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+                  <span className="text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                     Word Treasury Search
                   </span>
                 </h2>
@@ -897,13 +889,13 @@ export default function DictionaryPage() {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && handleSearch(searchQuery)}
-                      className="pl-12 h-14 text-base bg-muted/40 backdrop-blur-sm border-border/50 rounded-xl focus:ring-2 focus:ring-orange-500 transition-all duration-200"
+                      className="pl-12 h-14 text-base bg-muted/40 backdrop-blur-sm border-border/50 rounded-xl focus:ring-2 focus:ring-sb-saffron transition-all duration-200"
                     />
                   </div>
                   <Button
                     onClick={() => handleSearch(searchQuery)}
                     disabled={isSearching || !searchQuery.trim()}
-                    className="h-14 px-8 bg-gradient-to-r from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
+                    className="h-14 px-8 bg-sb-surface-2 from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
                   >
                     {isSearching ? (
                       <>
@@ -935,9 +927,9 @@ export default function DictionaryPage() {
 
                 {/* Enhanced Quick Search Examples */}
                 {searchResults.length === 0 && !isSearching && (
-                  <div className="mt-8 p-6 bg-gradient-to-r from-orange-50/50 to-primary/10 dark:from-orange-900/20 dark:to-primary/15 rounded-2xl border border-orange-200/30 dark:border-orange-700/30">
+                  <div className="mt-8 p-6 bg-sb-surface-2  to-primary/10  dark:to-primary/15 rounded-2xl border border-sb-saffron ">
                     <div className="flex items-center space-x-2 mb-4">
-                      <Sparkles className="h-5 w-5 text-orange-500" />
+                      <Sparkles className="h-5 w-5 text-sb-saffron-deep" />
                       <h4 className="font-semibold text-foreground">Try these examples:</h4>
                     </div>
                     <div className="flex flex-wrap justify-center gap-3">
@@ -950,7 +942,7 @@ export default function DictionaryPage() {
                             setSearchQuery(example)
                             handleSearch(example)
                           }}
-                          className="px-4 py-2 h-10 rounded-xl border-orange-200 hover:border-orange-400 hover:bg-orange-50 text-orange-600 hover:text-orange-700 font-medium transition-all duration-200 transform hover:scale-105 active:scale-95 flex items-center justify-center"
+                          className="px-4 py-2 h-10 rounded-xl border-sb-saffron hover:border-sb-saffron hover:bg-sb-saffron-tint text-sb-saffron-deep hover:text-sb-saffron-deep font-medium transition-all duration-200 transform hover:scale-105 active:scale-95 flex items-center justify-center"
                         >
                           {example}
                         </Button>
@@ -958,7 +950,7 @@ export default function DictionaryPage() {
                     </div>
                     <div className="mt-4 p-4 bg-white/60 rounded-xl">
                       <p className="text-sm text-muted-foreground flex items-center">
-                        <Zap className="h-4 w-4 mr-2 text-orange-500" />
+                        <Zap className="h-4 w-4 mr-2 text-sb-saffron-deep" />
                         <strong>Pro tip:</strong> Search any English word to get professional Hindi translations with cultural context!
                       </p>
                     </div>
@@ -972,10 +964,10 @@ export default function DictionaryPage() {
               <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20">
                 <div className="mb-6">
                   <div className="flex items-center space-x-3 mb-2">
-                    <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+                    <div className="w-10 h-10 bg-sb-navy   rounded-xl flex items-center justify-center">
                       <Search className="h-5 w-5 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+                    <h3 className="text-xl font-bold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                       Search Results for "{searchQuery}"
                     </h3>
                   </div>
@@ -985,7 +977,7 @@ export default function DictionaryPage() {
                 </div>
                 <div className="space-y-4">
                   {searchResults.map((word: any) => (
-                    <div key={word.id || word.word} className="p-6 bg-gradient-to-r from-white to-muted/40 dark:from-[var(--navy-deep)] dark:to-[var(--slate-blue)] border border-border/50 rounded-2xl hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
+                    <div key={word.id || word.word} className="p-6 bg-sb-surface-2 from-white to-muted/40 dark:from-[var(--navy-deep)] dark:to-[var(--slate-blue)] border border-border/50 rounded-2xl hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
                           <div className="flex items-center space-x-3 mb-2">
@@ -994,12 +986,12 @@ export default function DictionaryPage() {
                               {word.partOfSpeech}
                             </Badge>
                             {word.source === 'external_api' && (
-                              <Badge className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 text-green-600 border-green-200 px-3 py-1 rounded-xl">
+                              <Badge className="bg-sb-navy   text-sb-saffron-deep border-sb-saffron px-3 py-1 rounded-xl">
                                 External
                               </Badge>
                             )}
                           </div>
-                          <p className="text-lg font-semibold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent mb-2">
+                          <p className="text-lg font-semibold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]   mb-2">
                             {word.hindiTranslation}
                           </p>
                           <p className="text-muted-foreground mb-2">{word.englishDefinition}</p>
@@ -1050,7 +1042,7 @@ export default function DictionaryPage() {
             {searchQuery && searchResults.length === 0 && !isSearching && (
               <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20">
                 <div className="text-center py-12">
-                  <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-muted to-muted dark:from-[var(--slate-blue)] dark:to-[var(--slate-night)] rounded-2xl flex items-center justify-center">
+                  <div className="w-20 h-20 mx-auto mb-6 bg-sb-surface-2 from-muted to-muted dark:from-[var(--slate-blue)] dark:to-[var(--slate-night)] rounded-2xl flex items-center justify-center">
                     <Search className="h-10 w-10 text-muted-foreground" />
                   </div>
                   <h3 className="text-xl font-bold text-foreground mb-3">
@@ -1068,10 +1060,10 @@ export default function DictionaryPage() {
               <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-primary/80 rounded-2xl flex items-center justify-center">
+                    <div className="w-12 h-12 bg-sb-surface-2 from-primary to-primary/80 rounded-2xl flex items-center justify-center">
                       <BookOpen className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+                    <h3 className="text-2xl font-bold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                       Enhanced Word Information
                     </h3>
                   </div>
@@ -1087,7 +1079,7 @@ export default function DictionaryPage() {
                 {/* Enhanced Word Content */}
                 <div className="space-y-6">
                   {/* Word Header */}
-                  <div className="p-6 bg-gradient-to-r from-primary/10 to-primary/10 dark:from-primary/10 dark:to-primary/15 rounded-xl">
+                  <div className="p-6 bg-sb-surface-2 from-primary/10 to-primary/10 dark:from-primary/10 dark:to-primary/15 rounded-xl">
                     <div className="flex items-center justify-between mb-4">
                       <h4 className="text-3xl font-bold text-foreground">
                         {enhancedWordData.word}
@@ -1133,16 +1125,16 @@ export default function DictionaryPage() {
 
                   {/* Meanings */}
                   {enhancedWordData.meanings && enhancedWordData.meanings.length > 0 && (
-                    <div className="p-6 bg-gradient-to-r from-green-50/50 to-emerald-50/50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl">
+                    <div className="p-6 bg-sb-surface-2     rounded-xl">
                       <h5 className="text-xl font-bold text-foreground mb-4 flex items-center">
-                        <BookOpen className="h-5 w-5 mr-2 text-green-600" />
+                        <BookOpen className="h-5 w-5 mr-2 text-sb-saffron-deep" />
                         Meanings & Definitions
                       </h5>
                       <div className="space-y-4">
                         {enhancedWordData.meanings.map((meaning: any, index: number) => (
-                          <div key={index} className="border-l-4 border-green-500 pl-4">
+                          <div key={index} className="border-l-4 border-sb-saffron pl-4">
                             <div className="flex items-center space-x-2 mb-2">
-                              <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded text-sm font-medium">
+                              <span className="px-2 py-1 bg-sb-saffron-tint  text-sb-saffron-deep  rounded text-sm font-medium">
                                 {meaning.partOfSpeech}
                               </span>
                             </div>
@@ -1160,14 +1152,14 @@ export default function DictionaryPage() {
 
                   {/* Translations */}
                   {enhancedWordData.translations && (
-                    <div className="p-6 bg-gradient-to-r from-orange-50/50 to-red-50/50 dark:from-orange-900/20 dark:to-red-900/20 rounded-xl">
+                    <div className="p-6 bg-sb-surface-2     rounded-xl">
                       <h5 className="text-xl font-bold text-foreground mb-4 flex items-center">
-                        <Globe className="h-5 w-5 mr-2 text-orange-600" />
+                        <Globe className="h-5 w-5 mr-2 text-sb-saffron-deep" />
                         Hindi Translation
                       </h5>
                       <div className="space-y-3">
                         <div className="flex items-center space-x-3">
-                          <span className="text-2xl font-bold text-orange-600">
+                          <span className="text-2xl font-bold text-sb-saffron-deep">
                             {enhancedWordData.translations.hindi}
                           </span>
                           {enhancedWordData.translations.romanized && (
@@ -1181,7 +1173,7 @@ export default function DictionaryPage() {
                             <span className="text-sm text-muted-foreground mb-2 block">Alternative translations:</span>
                             <div className="flex flex-wrap gap-2">
                               {enhancedWordData.translations.alternates.map((alt: string, index: number) => (
-                                <span key={index} className="px-2 py-1 bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 rounded text-sm">
+                                <span key={index} className="px-2 py-1 bg-sb-saffron-tint  text-sb-saffron-deep  rounded text-sm">
                                   {alt}
                                 </span>
                               ))}
@@ -1198,7 +1190,7 @@ export default function DictionaryPage() {
                     <div className="grid md:grid-cols-2 gap-6">
                       {/* Synonyms */}
                       {enhancedWordData.synonyms && (enhancedWordData.synonyms.english?.length > 0 || enhancedWordData.synonyms.hindi?.length > 0) && (
-                        <div className="p-6 bg-gradient-to-r from-primary/10 to-cyan-50/50 dark:from-primary/10 dark:to-cyan-900/20 rounded-xl">
+                        <div className="p-6 bg-sb-surface-2 from-primary/10  dark:from-primary/10  rounded-xl">
                           <h5 className="text-xl font-bold text-foreground mb-4 flex items-center">
                             <ArrowRight className="h-5 w-5 mr-2 text-primary" />
                             Synonyms
@@ -1221,7 +1213,7 @@ export default function DictionaryPage() {
                                 <span className="text-sm text-muted-foreground mb-2 block">Hindi:</span>
                                 <div className="flex flex-wrap gap-2">
                                   {enhancedWordData.synonyms.hindi.map((syn: string, index: number) => (
-                                    <span key={index} className="px-3 py-1 bg-cyan-100 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-200 rounded-full text-sm font-medium">
+                                    <span key={index} className="px-3 py-1 bg-sb-sky  text-sb-sky-ink  rounded-full text-sm font-medium">
                                       {syn}
                                     </span>
                                   ))}
@@ -1234,9 +1226,9 @@ export default function DictionaryPage() {
 
                       {/* Antonyms */}
                       {enhancedWordData.antonyms && (enhancedWordData.antonyms.english?.length > 0 || enhancedWordData.antonyms.hindi?.length > 0) && (
-                        <div className="p-6 bg-gradient-to-r from-red-50/50 to-primary/10 dark:from-red-900/20 dark:to-primary/15 rounded-xl">
+                        <div className="p-6 bg-sb-surface-2  to-primary/10  dark:to-primary/15 rounded-xl">
                           <h5 className="text-xl font-bold text-foreground mb-4 flex items-center">
-                            <ArrowRight className="h-5 w-5 mr-2 text-red-600 rotate-180" />
+                            <ArrowRight className="h-5 w-5 mr-2 text-sb-rose-ink rotate-180" />
                             Antonyms
                           </h5>
                           <div className="space-y-3">
@@ -1245,7 +1237,7 @@ export default function DictionaryPage() {
                                 <span className="text-sm text-muted-foreground mb-2 block">English:</span>
                                 <div className="flex flex-wrap gap-2">
                                   {enhancedWordData.antonyms.english.map((ant: string, index: number) => (
-                                    <span key={index} className="px-3 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded-full text-sm font-medium">
+                                    <span key={index} className="px-3 py-1 bg-sb-rose  text-sb-rose-ink  rounded-full text-sm font-medium">
                                       {ant}
                                     </span>
                                   ))}
@@ -1272,9 +1264,9 @@ export default function DictionaryPage() {
 
                   {/* Indian Context */}
                   {enhancedWordData.indianContext && (
-                    <div className="p-6 bg-gradient-to-r from-amber-50/50 to-yellow-50/50 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-xl">
+                    <div className="p-6 bg-sb-surface-2     rounded-xl">
                       <h5 className="text-xl font-bold text-foreground mb-4 flex items-center">
-                        <Book className="h-5 w-5 mr-2 text-amber-600" />
+                        <Book className="h-5 w-5 mr-2 text-sb-butter-ink" />
                         Indian Cultural Context
                       </h5>
                       <div className="space-y-4">
@@ -1292,7 +1284,7 @@ export default function DictionaryPage() {
                             <h6 className="font-semibold text-foreground mb-2">Indian Context Examples:</h6>
                             <div className="space-y-2">
                               {enhancedWordData.indianContext.examples.map((example: string, index: number) => (
-                                <div key={index} className="p-3 bg-amber-100/50 dark:bg-amber-900/30 rounded-lg border-l-4 border-amber-500">
+                                <div key={index} className="p-3 bg-sb-butter  rounded-lg border-l-4 border-sb-butter">
                                   <p className="text-foreground text-sm italic">
                                     "{example}"
                                   </p>
@@ -1305,7 +1297,7 @@ export default function DictionaryPage() {
                         {enhancedWordData.indianContext.culturalNotes && (
                           <div>
                             <h6 className="font-semibold text-foreground mb-2">Cultural Notes:</h6>
-                            <p className="text-muted-foreground text-sm bg-yellow-100/50 dark:bg-yellow-900/30 p-3 rounded-lg">
+                            <p className="text-muted-foreground text-sm bg-sb-butter  p-3 rounded-lg">
                               💡 {enhancedWordData.indianContext.culturalNotes}
                             </p>
                           </div>
@@ -1316,7 +1308,7 @@ export default function DictionaryPage() {
 
                   {/* Etymology Section */}
                   {enhancedWordData.etymology && (
-                    <div className="p-6 bg-gradient-to-r from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 rounded-xl">
+                    <div className="p-6 bg-sb-surface-2 from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 rounded-xl">
                       <h5 className="text-xl font-bold text-foreground mb-4 flex items-center">
                         <History className="h-5 w-5 mr-2 text-primary" />
                         Etymology & Word Origin
@@ -1351,7 +1343,7 @@ export default function DictionaryPage() {
                         </div>
 
                         {/* Origin Story */}
-                        <div className="p-4 bg-gradient-to-r from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 rounded-lg border-l-4 border-primary">
+                        <div className="p-4 bg-sb-surface-2 from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 rounded-lg border-l-4 border-primary">
                           <h6 className="font-semibold text-foreground mb-2">Origin Story:</h6>
                           <p className="text-foreground leading-relaxed text-sm">
                             {enhancedWordData.etymology.origin}
@@ -1359,7 +1351,7 @@ export default function DictionaryPage() {
                         </div>
 
                         {/* Historical Development */}
-                        <div className="p-4 bg-gradient-to-r from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 rounded-lg border-l-4 border-primary">
+                        <div className="p-4 bg-sb-surface-2 from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 rounded-lg border-l-4 border-primary">
                           <h6 className="font-semibold text-foreground mb-2">Historical Development:</h6>
                           <p className="text-foreground leading-relaxed text-sm">
                             {enhancedWordData.etymology.historicalDevelopment}
@@ -1388,9 +1380,9 @@ export default function DictionaryPage() {
                     (enhancedWordData.proverbs.english?.length > 0 ||
                      enhancedWordData.proverbs.hindi?.length > 0 ||
                      enhancedWordData.proverbs.idioms?.length > 0) && (
-                    <div className="p-6 bg-gradient-to-r from-emerald-50/50 to-teal-50/50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-xl">
+                    <div className="p-6 bg-sb-surface-2     rounded-xl">
                       <h5 className="text-xl font-bold text-foreground mb-4 flex items-center">
-                        <Quote className="h-5 w-5 mr-2 text-emerald-600" />
+                        <Quote className="h-5 w-5 mr-2 text-sb-saffron-deep" />
                         Proverbs & Idioms
                       </h5>
                       <div className="space-y-6">
@@ -1398,13 +1390,13 @@ export default function DictionaryPage() {
                         {enhancedWordData.proverbs.english && enhancedWordData.proverbs.english.length > 0 && (
                           <div>
                             <h6 className="font-semibold text-foreground mb-3 flex items-center">
-                              <Book className="h-4 w-4 mr-2 text-emerald-600" />
+                              <Book className="h-4 w-4 mr-2 text-sb-saffron-deep" />
                               English Proverbs
                             </h6>
                             <div className="space-y-3">
                               {enhancedWordData.proverbs.english.map((proverb: any, index: number) => (
-                                <div key={index} className="p-4 bg-emerald-100/50 dark:bg-emerald-900/30 rounded-lg border-l-4 border-emerald-500">
-                                  <p className="font-medium text-emerald-800 dark:text-emerald-200 mb-2">
+                                <div key={index} className="p-4 bg-sb-saffron-tint  rounded-lg border-l-4 border-sb-saffron">
+                                  <p className="font-medium text-sb-saffron-deep  mb-2">
                                     "{proverb.proverb}"
                                   </p>
                                   <p className="text-foreground text-sm mb-1">
@@ -1423,13 +1415,13 @@ export default function DictionaryPage() {
                         {enhancedWordData.proverbs.hindi && enhancedWordData.proverbs.hindi.length > 0 && (
                           <div>
                             <h6 className="font-semibold text-foreground mb-3 flex items-center">
-                              <Globe className="h-4 w-4 mr-2 text-teal-600" />
+                              <Globe className="h-4 w-4 mr-2 text-sb-saffron-deep" />
                               Hindi Proverbs (हिंदी कहावतें)
                             </h6>
                             <div className="space-y-3">
                               {enhancedWordData.proverbs.hindi.map((proverb: any, index: number) => (
-                                <div key={index} className="p-4 bg-teal-100/50 dark:bg-teal-900/30 rounded-lg border-l-4 border-teal-500">
-                                  <p className="font-medium text-teal-800 dark:text-teal-200 mb-2 text-lg">
+                                <div key={index} className="p-4 bg-sb-saffron-tint  rounded-lg border-l-4 border-sb-saffron">
+                                  <p className="font-medium text-sb-saffron-deep  mb-2 text-lg">
                                     "{proverb.proverb}"
                                   </p>
                                   <p className="text-muted-foreground text-sm mb-1 italic">
@@ -1448,13 +1440,13 @@ export default function DictionaryPage() {
                         {enhancedWordData.proverbs.idioms && enhancedWordData.proverbs.idioms.length > 0 && (
                           <div>
                             <h6 className="font-semibold text-foreground mb-3 flex items-center">
-                              <MessageCircle className="h-4 w-4 mr-2 text-cyan-600" />
+                              <MessageCircle className="h-4 w-4 mr-2 text-sb-sky-ink" />
                               Common Idioms & Phrases
                             </h6>
                             <div className="space-y-3">
                               {enhancedWordData.proverbs.idioms.map((idiom: any, index: number) => (
-                                <div key={index} className="p-4 bg-cyan-100/50 dark:bg-cyan-900/30 rounded-lg border-l-4 border-cyan-500">
-                                  <p className="font-medium text-cyan-800 dark:text-cyan-200 mb-2">
+                                <div key={index} className="p-4 bg-sb-sky  rounded-lg border-l-4 border-sb-sky">
+                                  <p className="font-medium text-sb-sky-ink  mb-2">
                                     "{idiom.phrase}"
                                   </p>
                                   <p className="text-foreground text-sm mb-1">
@@ -1475,7 +1467,7 @@ export default function DictionaryPage() {
 
                   {/* Additional Information */}
                   {enhancedWordData.frequency && (
-                    <div className="p-6 bg-gradient-to-r from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 rounded-xl">
+                    <div className="p-6 bg-sb-surface-2 from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 rounded-xl">
                       <h5 className="text-xl font-bold text-foreground mb-4 flex items-center">
                         <MessageCircle className="h-5 w-5 mr-2 text-primary" />
                         Additional Information
@@ -1493,12 +1485,12 @@ export default function DictionaryPage() {
 
                   {/* Error Display */}
                   {enhancedWordData.error && (
-                    <div className="p-6 bg-gradient-to-r from-red-50/50 to-primary/10 dark:from-red-900/20 dark:to-primary/15 rounded-xl border border-red-200 dark:border-red-800">
-                      <div className="flex items-center space-x-2 text-red-600 dark:text-red-400">
+                    <div className="p-6 bg-sb-surface-2  to-primary/10  dark:to-primary/15 rounded-xl border border-sb-danger ">
+                      <div className="flex items-center space-x-2 text-sb-rose-ink ">
                         <AlertCircle className="h-5 w-5" />
                         <span className="font-medium">Error Loading Enhanced Data</span>
                       </div>
-                      <p className="text-red-700 dark:text-red-300 mt-2 text-sm">
+                      <p className="text-sb-rose-ink  mt-2 text-sm">
                         {enhancedWordData.error}
                       </p>
                     </div>
@@ -1513,11 +1505,11 @@ export default function DictionaryPage() {
             <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20">
               <div className="mb-8">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg">
+                  <div className="w-12 h-12 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg">
                     <Globe className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+                    <h3 className="text-2xl font-bold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                       Word of the Day
                     </h3>
                     <p className="text-muted-foreground">
@@ -1528,14 +1520,14 @@ export default function DictionaryPage() {
               </div>
 
               <div className="space-y-8">
-                <div className="text-center space-y-4 p-8 bg-gradient-to-r from-orange-50/50 to-primary/10 dark:from-orange-900/20 dark:to-primary/15 rounded-2xl border border-orange-200/30">
-                  <div className="w-16 h-16 mx-auto bg-gradient-to-r from-[#E5283A] to-[#FF6B35] rounded-2xl flex items-center justify-center shadow-lg mb-4">
+                <div className="text-center space-y-4 p-8 bg-sb-surface-2  to-primary/10  dark:to-primary/15 rounded-2xl border border-sb-saffron">
+                  <div className="w-16 h-16 mx-auto bg-sb-surface-2 from-[#E5283A] to-[#FF6B35] rounded-2xl flex items-center justify-center shadow-lg mb-4">
                     <Crown className="h-8 w-8 text-white" />
                   </div>
                   <h2 className="text-4xl font-bold text-foreground">
                     {mockWordOfDay.word}
                   </h2>
-                  <p className="text-2xl font-semibold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+                  <p className="text-2xl font-semibold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                     {mockWordOfDay.hindiTranslation}
                   </p>
                   <p className="text-lg text-muted-foreground">
@@ -1549,7 +1541,7 @@ export default function DictionaryPage() {
                 <div className="grid md:grid-cols-1 gap-6">
                   <div className="bg-white/60 p-6 rounded-2xl">
                     <h4 className="text-lg font-bold text-foreground mb-3 flex items-center">
-                      <BookOpen className="h-5 w-5 mr-2 text-orange-500" />
+                      <BookOpen className="h-5 w-5 mr-2 text-sb-saffron-deep" />
                       Definition
                     </h4>
                     <p className="text-foreground leading-relaxed">{mockWordOfDay.englishDefinition}</p>
@@ -1560,9 +1552,9 @@ export default function DictionaryPage() {
                       <Sparkles className="h-5 w-5 mr-2 text-primary" />
                       Example
                     </h4>
-                    <div className="bg-gradient-to-r from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 p-4 rounded-xl border border-primary/20">
+                    <div className="bg-sb-surface-2 from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 p-4 rounded-xl border border-primary/20">
                       <p className="text-foreground mb-2">{mockWordOfDay.examples[0].english}</p>
-                      <p className="text-lg font-semibold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+                      <p className="text-lg font-semibold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                         {mockWordOfDay.examples[0].hindi}
                       </p>
                     </div>
@@ -1570,7 +1562,7 @@ export default function DictionaryPage() {
 
                   <div className="bg-white/60 p-6 rounded-2xl">
                     <h4 className="text-lg font-bold text-foreground mb-3 flex items-center">
-                      <Globe className="h-5 w-5 mr-2 text-green-500" />
+                      <Globe className="h-5 w-5 mr-2 text-sb-saffron-deep" />
                       Cultural Context
                     </h4>
                     <p className="text-foreground leading-relaxed">{mockWordOfDay.culturalContext}</p>
@@ -1579,13 +1571,13 @@ export default function DictionaryPage() {
                   <div className="flex items-center justify-center gap-4 pt-4">
                     <Button
                       variant="outline"
-                      className="px-6 py-3 h-12 rounded-xl border-orange-200 hover:border-orange-400 hover:bg-orange-50 text-orange-600 font-semibold transition-all duration-200 transform hover:scale-105 active:scale-95 flex items-center justify-center"
+                      className="px-6 py-3 h-12 rounded-xl border-sb-saffron hover:border-sb-saffron hover:bg-sb-saffron-tint text-sb-saffron-deep font-semibold transition-all duration-200 transform hover:scale-105 active:scale-95 flex items-center justify-center"
                     >
                       <Volume2 className="h-5 w-5 mr-2" />
                       <span>Pronunciation</span>
                     </Button>
                     <Button
-                      className="px-6 py-3 h-12 bg-gradient-to-r from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
+                      className="px-6 py-3 h-12 bg-sb-surface-2 from-[#E5283A] to-[#FF6B35] hover:from-[#A93226] hover:to-[#E8551C] text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center"
                     >
                       <Heart className="h-5 w-5 mr-2" />
                       <span>Add to Learning</span>
@@ -1604,11 +1596,11 @@ export default function DictionaryPage() {
             <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20">
               <div className="mb-8">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
+                  <div className="w-12 h-12 bg-sb-surface-2 from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
                     <BookOpen className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent">
+                    <h3 className="text-2xl font-bold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
                       Recently Learned Words
                     </h3>
                     <p className="text-muted-foreground">
@@ -1620,10 +1612,10 @@ export default function DictionaryPage() {
 
               <div className="space-y-4">
                 {mockRecentWords.map((word, index) => (
-                  <div key={word.id} className="p-6 bg-gradient-to-r from-white to-muted/40 dark:from-[var(--navy-deep)] dark:to-[var(--slate-blue)] border border-border/50 rounded-2xl hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
+                  <div key={word.id} className="p-6 bg-sb-surface-2 from-white to-muted/40 dark:from-[var(--navy-deep)] dark:to-[var(--slate-blue)] border border-border/50 rounded-2xl hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-gradient-to-r from-primary to-primary/80 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                        <div className="w-12 h-12 bg-sb-surface-2 from-primary to-primary/80 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
                           {index + 1}
                         </div>
                         <div className="flex-1">
@@ -1633,7 +1625,7 @@ export default function DictionaryPage() {
                               {word.partOfSpeech}
                             </Badge>
                           </div>
-                          <p className="text-lg font-semibold bg-gradient-to-r from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D] bg-clip-text text-transparent mb-1">
+                          <p className="text-lg font-semibold text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]   mb-1">
                             {word.hindiTranslation}
                           </p>
                           <p className="text-sm text-muted-foreground flex items-center">

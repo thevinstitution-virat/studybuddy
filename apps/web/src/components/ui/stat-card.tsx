@@ -9,13 +9,13 @@ const ACCENTS: Record<Accent, { chip: string; bar: string; chipShadow: string }>
   // brand = this app's actual accent (turmeric in DGCL, saffron in PDLMS, etc.)
   // via the Indic tokens, not a hardcoded orange/blue that happened to look similar.
   brand:  { chip: 'from-[var(--accent-primary)] to-[var(--accent-strong)]', bar: 'from-[var(--gold)] via-[var(--accent-primary)] to-[var(--accent-strong)]', chipShadow: 'shadow-[0_8px_20px_-6px_rgb(var(--accent-strong-rgb)/0.5)]' },
-  orange: { chip: 'from-orange-400 to-orange-600', bar: 'from-orange-400 to-orange-600',               chipShadow: 'shadow-[0_8px_20px_-6px_rgba(249,115,22,0.5)]' },
-  blue:   { chip: 'from-blue-500 to-blue-700',     bar: 'from-blue-400 to-blue-600',                   chipShadow: 'shadow-[0_8px_20px_-6px_rgba(37,99,235,0.5)]' },
-  indigo: { chip: 'from-indigo-500 to-violet-600', bar: 'from-indigo-400 to-violet-600',               chipShadow: 'shadow-[0_8px_20px_-6px_rgba(99,102,241,0.5)]' },
-  violet: { chip: 'from-violet-500 to-fuchsia-600',bar: 'from-violet-400 to-fuchsia-600',              chipShadow: 'shadow-[0_8px_20px_-6px_rgba(139,92,246,0.5)]' },
-  green:  { chip: 'from-emerald-500 to-teal-600',  bar: 'from-emerald-400 to-teal-600',                chipShadow: 'shadow-[0_8px_20px_-6px_rgba(16,185,129,0.5)]' },
-  red:    { chip: 'from-rose-500 to-red-600',      bar: 'from-rose-400 to-red-600',                    chipShadow: 'shadow-[0_8px_20px_-6px_rgba(244,63,94,0.5)]' },
-  cyan:   { chip: 'from-cyan-400 to-sky-600',      bar: 'from-cyan-400 to-sky-600',                    chipShadow: 'shadow-[0_8px_20px_-6px_rgba(6,182,212,0.5)]' },
+  orange: { chip: ' ', bar: ' ',               chipShadow: 'shadow-[0_8px_20px_-6px_rgba(249,115,22,0.5)]' },
+  blue:   { chip: ' ',     bar: ' ',                   chipShadow: 'shadow-[0_8px_20px_-6px_rgba(37,99,235,0.5)]' },
+  indigo: { chip: ' ', bar: ' ',               chipShadow: 'shadow-[0_8px_20px_-6px_rgba(99,102,241,0.5)]' },
+  violet: { chip: ' ',bar: ' ',              chipShadow: 'shadow-[0_8px_20px_-6px_rgba(139,92,246,0.5)]' },
+  green:  { chip: ' ',  bar: ' ',                chipShadow: 'shadow-[0_8px_20px_-6px_rgba(16,185,129,0.5)]' },
+  red:    { chip: ' ',      bar: ' ',                    chipShadow: 'shadow-[0_8px_20px_-6px_rgba(244,63,94,0.5)]' },
+  cyan:   { chip: ' ',      bar: ' ',                    chipShadow: 'shadow-[0_8px_20px_-6px_rgba(6,182,212,0.5)]' },
 }
 
 interface StatCardProps {
@@ -41,8 +41,8 @@ export function StatCard({
 }: StatCardProps) {
   const a = ACCENTS[accent]
   const changeColors = {
-    positive: 'text-emerald-700 bg-emerald-100 dark:text-emerald-300 dark:bg-emerald-500/15',
-    negative: 'text-rose-700 bg-rose-100 dark:text-rose-300 dark:bg-rose-500/15',
+    positive: 'text-sb-saffron-deep bg-sb-saffron-tint  ',
+    negative: 'text-sb-rose-ink bg-sb-rose  ',
     neutral: 'text-muted-foreground bg-muted dark:bg-white/5',
   }
 
@@ -53,7 +53,7 @@ export function StatCard({
         className
       )}
     >
-      <span className={cn('absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r opacity-90', a.bar)} />
+      <span className={cn('absolute inset-x-0 top-0 h-[3px] bg-sb-surface-2 opacity-90', a.bar)} />
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="truncate text-[13px] font-medium text-muted-foreground">{title}</p>
@@ -61,7 +61,7 @@ export function StatCard({
         </div>
         <div
           className={cn(
-            'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white transition-transform duration-300 group-hover:scale-105',
+            'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sb-surface-2 text-white transition-transform duration-300 group-hover:scale-105',
             a.chip,
             a.chipShadow
           )}
@@ -102,16 +102,16 @@ export function MetricCard({
   color = 'orange',
 }: MetricCardProps) {
   const colorChip: Record<NonNullable<MetricCardProps['color']>, string> = {
-    orange: 'from-orange-400 to-orange-600',
-    blue: 'from-blue-500 to-blue-700',
-    green: 'from-emerald-500 to-teal-600',
-    red: 'from-rose-500 to-red-600',
-    purple: 'from-violet-500 to-fuchsia-600',
+    orange: ' ',
+    blue: ' ',
+    green: ' ',
+    red: ' ',
+    purple: ' ',
   }
 
   const trendColors = {
-    up: 'text-emerald-600 dark:text-emerald-400',
-    down: 'text-rose-600 dark:text-rose-400',
+    up: 'text-sb-saffron-deep ',
+    down: 'text-sb-rose-ink ',
     neutral: 'text-muted-foreground',
   }
 
@@ -120,7 +120,7 @@ export function MetricCard({
       <div className="flex items-center gap-3">
         <div
           className={cn(
-            'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm',
+            'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sb-surface-2 text-white shadow-sm',
             colorChip[color]
           )}
         >

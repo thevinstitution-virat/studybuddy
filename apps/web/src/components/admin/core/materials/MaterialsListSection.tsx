@@ -194,7 +194,7 @@ export default function MaterialsListSection({ className }: MaterialsListSection
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sb-sky mx-auto mb-4"></div>
           <p className="text-muted-foreground">Loading materials...</p>
         </div>
       </div>
@@ -385,7 +385,7 @@ export default function MaterialsListSection({ className }: MaterialsListSection
                             variant="ghost" 
                             size="sm"
                             onClick={() => handleApproval(material.id, 'approve')}
-                            className="text-green-600 hover:text-green-700"
+                            className="text-sb-saffron-deep hover:text-sb-saffron-deep"
                           >
                             <CheckCircleIcon className="h-4 w-4" />
                           </Button>
@@ -393,7 +393,7 @@ export default function MaterialsListSection({ className }: MaterialsListSection
                             variant="ghost" 
                             size="sm"
                             onClick={() => handleApproval(material.id, 'reject')}
-                            className="text-red-600 hover:text-red-700"
+                            className="text-sb-rose-ink hover:text-sb-rose-ink"
                           >
                             <XMarkIcon className="h-4 w-4" />
                           </Button>
@@ -403,7 +403,7 @@ export default function MaterialsListSection({ className }: MaterialsListSection
                         variant="ghost" 
                         size="sm"
                         onClick={() => handleDelete(material.id)}
-                        className="text-red-600 hover:text-red-700"
+                        className="text-sb-rose-ink hover:text-sb-rose-ink"
                       >
                         <TrashIcon className="h-4 w-4" />
                       </Button>

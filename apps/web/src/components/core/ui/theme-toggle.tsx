@@ -67,7 +67,7 @@ export function ThemeToggle({ className, size = 'md' }: SegmentedThemeToggleProp
       'relative flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium transition-all duration-300 cursor-pointer',
       'border-r border-border last:border-r-0',
       'hover:bg-muted/50',
-      'focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:z-10',
+      'focus:outline-none focus:ring-2 focus:ring-sb-saffron focus:z-10',
 
       // Size variants
       size === 'sm' && 'px-2 py-1 text-xs gap-1',
@@ -80,9 +80,9 @@ export function ThemeToggle({ className, size = 'md' }: SegmentedThemeToggleProp
 
       // Active state
       isActive && [
-        'bg-gradient-to-r from-orange-500 to-blue-500',
+        'bg-sb-navy  ',
         'text-white shadow-lg',
-        'hover:from-orange-600 hover:to-blue-600',
+        ' ',
         'transform scale-[1.02] z-10'
       ],
 
@@ -104,8 +104,8 @@ export function ThemeToggle({ className, size = 'md' }: SegmentedThemeToggleProp
       size === 'lg' && 'h-5 w-5',
 
       // Icon colors
-      !isActive && segmentId === 'light' && 'text-orange-500',
-      !isActive && segmentId === 'dark' && 'text-blue-500',
+      !isActive && segmentId === 'light' && 'text-sb-saffron-deep',
+      !isActive && segmentId === 'dark' && 'text-sb-sky-ink',
       !isActive && segmentId === 'system' && 'text-muted-foreground',
 
       // Active state - white icons
@@ -222,15 +222,15 @@ export function SimpleThemeToggle({ className }: { className?: string }) {
               'relative flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 cursor-pointer',
               'border-r border-border last:border-r-0',
               'hover:bg-muted/50',
-              'focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:z-10',
+              'focus:outline-none focus:ring-2 focus:ring-sb-saffron focus:z-10',
 
               isFirst && 'rounded-l-lg',
               isLast && 'rounded-r-lg',
 
               isActive && [
-                'bg-gradient-to-r from-orange-500 to-blue-500',
+                'bg-sb-navy  ',
                 'text-white shadow-lg',
-                'hover:from-orange-600 hover:to-blue-600',
+                ' ',
                 'transform scale-[1.02] z-10'
               ],
 
@@ -245,8 +245,8 @@ export function SimpleThemeToggle({ className }: { className?: string }) {
           >
             <Icon className={cn(
               'h-4 w-4 transition-all duration-300',
-              !isActive && segment.id === 'light' && 'text-orange-500',
-              !isActive && segment.id === 'dark' && 'text-blue-500',
+              !isActive && segment.id === 'light' && 'text-sb-saffron-deep',
+              !isActive && segment.id === 'dark' && 'text-sb-sky-ink',
               isActive && 'text-white'
             )} />
             <span className="hidden sm:inline">

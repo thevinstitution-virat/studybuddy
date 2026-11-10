@@ -14,10 +14,10 @@ interface ProgressMetrics {
     weeklyActivity: { day: string; queries: number }[];
 }
 
-const GC = 'linear-gradient(135deg,var(--peacock-teal),var(--indigo-deep))';
+const GC = 'var(--sb-navy)';
 const GP = 'var(--bb-grad-primary)';
-const GW = 'linear-gradient(135deg,var(--turmeric),var(--gold))';
-const GT = 'linear-gradient(135deg,var(--teal-light),var(--peacock-teal))';
+const GW = 'var(--sb-navy)';
+const GT = 'var(--sb-navy)';
 
 /**
  * Learning-progress dashboard — presentation ported to the .dcs Indic mock.
@@ -135,7 +135,7 @@ export default function StudentProgressDashboard() {
                                         <span style={{ color: 'var(--muted)' }}>{agent.count}</span>
                                     </div>
                                     <div style={{ height: 9, borderRadius: 999, background: 'var(--track)', overflow: 'hidden' }}>
-                                        <div style={{ height: '100%', borderRadius: 999, width: `${Math.max(5, (agent.count / maxAgent) * 100)}%`, background: 'linear-gradient(90deg,var(--teal-light),var(--peacock-teal))' }} />
+                                        <div style={{ height: '100%', borderRadius: 999, width: `${Math.max(5, (agent.count / maxAgent) * 100)}%`, background: 'var(--sb-navy)' }} />
                                     </div>
                                 </div>
                             ))}

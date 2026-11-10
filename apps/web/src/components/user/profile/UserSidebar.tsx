@@ -162,13 +162,13 @@ export default function UserSidebar({ user }: UserSidebarProps) {
   const getPersonaColor = () => {
     switch (persona) {
       case 'student':
-        return 'bg-blue-600'
+        return 'bg-sb-navy'
       case 'teacher':
-        return 'bg-green-600'
+        return 'bg-sb-navy'
       case 'guardian':
-        return 'bg-purple-600'
+        return 'bg-sb-navy'
       default:
-        return 'bg-blue-600'
+        return 'bg-sb-navy'
     }
   }
 

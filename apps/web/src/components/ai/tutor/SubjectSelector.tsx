@@ -102,14 +102,14 @@ export function SubjectSelector({ value, options, onChange, disabled = false, cl
               }}
               className={cn(
                 'flex cursor-pointer items-center gap-2.5 rounded-lg px-2 py-2',
-                isActive && 'bg-blue-50/70',
+                isActive && 'bg-sb-sky',
               )}
             >
-              <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-blue-100 text-blue-700">
+              <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-sb-sky text-sb-sky-ink">
                 <SubjectIcon className="h-3.5 w-3.5" />
               </span>
               <span className="flex-1 truncate text-sm font-medium text-foreground">{prettySubject(subject)}</span>
-              {isActive && <Check className="h-3.5 w-3.5 flex-shrink-0 text-blue-600" />}
+              {isActive && <Check className="h-3.5 w-3.5 flex-shrink-0 text-sb-sky-ink" />}
             </DropdownMenuItem>
           )
         })}

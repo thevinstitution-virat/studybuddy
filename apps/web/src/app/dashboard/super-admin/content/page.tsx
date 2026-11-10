@@ -41,31 +41,31 @@ function HealthWidget() {
     <div className="mb-8">
       <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-4 shadow border border-white/20">
         <div className="flex items-center gap-3 mb-2">
-          <Activity className="h-5 w-5 text-green-600" />
+          <Activity className="h-5 w-5 text-sb-saffron-deep" />
           <h3 className="font-semibold">Engine Health</h3>
         </div>
         {isLoading && <p className="text-sm text-muted-foreground">Checking...</p>}
-        {error && <p className="text-sm text-red-600">Health check failed</p>}
+        {error && <p className="text-sm text-sb-rose-ink">Health check failed</p>}
         {data?.health && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-            <div className="p-3 rounded-lg bg-green-50 dark:bg-green-900/20">
+            <div className="p-3 rounded-lg bg-sb-saffron-tint ">
               <div className="font-medium">Python</div>
               <div className="text-muted-foreground">{data.health.python?.version || 'Unknown'}</div>
-              <div className={data.health.python?.engine_import_ok ? 'text-green-600' : 'text-red-600'}>
+              <div className={data.health.python?.engine_import_ok ? 'text-sb-saffron-deep' : 'text-sb-rose-ink'}>
                 Engine import: {data.health.python?.engine_import_ok ? 'OK' : 'Fail'}
               </div>
             </div>
             <div className="p-3 rounded-lg bg-primary/10">
               <div className="font-medium">Config</div>
               <div className="text-muted-foreground truncate">{data.health.config?.path || 'Unknown'}</div>
-              <div className={data.health.config?.exists ? 'text-green-600' : 'text-red-600'}>
+              <div className={data.health.config?.exists ? 'text-sb-saffron-deep' : 'text-sb-rose-ink'}>
                 Exists: {data.health.config?.exists ? 'Yes' : 'No'}
               </div>
             </div>
             <div className="p-3 rounded-lg bg-primary/10 dark:bg-primary/15">
               <div className="font-medium">Qdrant</div>
               <div className="text-muted-foreground truncate">{data.health.qdrant?.url || 'Unknown'}</div>
-              <div className={data.health.qdrant?.ok ? 'text-green-600' : 'text-red-600'}>
+              <div className={data.health.qdrant?.ok ? 'text-sb-saffron-deep' : 'text-sb-rose-ink'}>
                 Status: {data.health.qdrant?.ok ? 'OK' : 'Fail'}
               </div>
             </div>
@@ -373,16 +373,16 @@ export default function UploadPage() {
       <div className="space-y-8">
         {/* Enhanced Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500/10 to-primary/10 backdrop-blur-sm border border-orange-200/30 rounded-2xl px-6 py-3 mb-6">
-            <BookOpen className="h-5 w-5 text-orange-500" />
-            <span className="text-sm font-medium bg-gradient-to-r from-orange-600 to-primary/80 bg-clip-text text-transparent">
+          <div className="inline-flex items-center space-x-2 bg-sb-surface-2  to-primary/10 backdrop-blur-sm border border-sb-saffron rounded-2xl px-6 py-3 mb-6">
+            <BookOpen className="h-5 w-5 text-sb-saffron-deep" />
+            <span className="text-sm font-medium text-sb-saffron-deep  to-primary/80  ">
               Content Management System
             </span>
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-orange-600 to-primary/80 bg-clip-text text-transparent flex items-center justify-center gap-4">
-              <Database className="h-12 w-12 text-orange-500" />
+            <span className="text-sb-saffron-deep  to-primary/80   flex items-center justify-center gap-4">
+              <Database className="h-12 w-12 text-sb-saffron-deep" />
               Intelligent PDF Upload
             </span>
           </h1>
@@ -400,8 +400,8 @@ export default function UploadPage() {
                 onClick={() => setActiveTab('upload')}
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center space-x-2 ${
                   activeTab === 'upload'
-                    ? 'bg-gradient-to-r from-orange-500 to-primary/80 text-white shadow-lg'
-                    : 'text-muted-foreground hover:text-orange-500 hover:bg-orange-50'
+                    ? 'bg-sb-navy  to-primary/80 text-white shadow-lg'
+                    : 'text-muted-foreground hover:text-sb-saffron-deep hover:bg-sb-saffron-tint'
                 }`}
               >
                 <Upload className="h-4 w-4" />
@@ -411,7 +411,7 @@ export default function UploadPage() {
                 onClick={() => setActiveTab('overview')}
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center space-x-2 ${
                   activeTab === 'overview'
-                    ? 'bg-gradient-to-r from-orange-500 to-primary/80 text-white shadow-lg'
+                    ? 'bg-sb-navy  to-primary/80 text-white shadow-lg'
                     : 'text-muted-foreground hover:text-primary hover:bg-primary/10'
                 }`}
               >
@@ -422,8 +422,8 @@ export default function UploadPage() {
                 onClick={() => setActiveTab('manage')}
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center space-x-2 ${
                   activeTab === 'manage'
-                    ? 'bg-gradient-to-r from-orange-500 to-primary/80 text-white shadow-lg'
-                    : 'text-muted-foreground hover:text-green-500 hover:bg-green-50'
+                    ? 'bg-sb-navy  to-primary/80 text-white shadow-lg'
+                    : 'text-muted-foreground hover:text-sb-saffron-deep hover:bg-sb-saffron-tint'
                 }`}
               >
                 <FolderOpen className="h-4 w-4" />
@@ -444,11 +444,11 @@ export default function UploadPage() {
           <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]">
             <div className="mb-8">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center shadow-lg">
+                <div className="w-12 h-12 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg">
                   <Upload className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-primary/80 bg-clip-text text-transparent">
+                  <h2 className="text-2xl font-bold text-sb-saffron-deep  to-primary/80  ">
                     Upload Textbook
                   </h2>
                   <p className="text-muted-foreground">
@@ -471,7 +471,7 @@ export default function UploadPage() {
                     onClick={() => setIngestMode(key)}
                     className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
                       ingestMode === key
-                        ? 'bg-gradient-to-r from-orange-500 to-primary/80 text-white shadow'
+                        ? 'bg-sb-navy  to-primary/80 text-white shadow'
                         : 'text-muted-foreground hover:text-foreground dark:hover:text-foreground'
                     }`}
                   >
@@ -488,7 +488,7 @@ export default function UploadPage() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {ingestMode === 'pdf' && (() => {
-                const selectCls = "w-full px-4 py-3 bg-muted/40 border border-border rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                const selectCls = "w-full px-4 py-3 bg-muted/40 border border-border rounded-xl focus:ring-2 focus:ring-sb-saffron focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 const labelCls = "block text-sm font-medium text-foreground mb-2"
 
                 const courses = formData.domain ? getCourses(formData.domain) : []
@@ -502,7 +502,7 @@ export default function UploadPage() {
                     {/* 1 + 2 — Domain & Course */}
                     <div className="grid gap-4 md:grid-cols-2">
                       <div>
-                        <label className={labelCls}><span className="flex items-center gap-2">🎯 Domain<span className="text-red-500">*</span></span></label>
+                        <label className={labelCls}><span className="flex items-center gap-2">🎯 Domain<span className="text-sb-rose-ink">*</span></span></label>
                         <select
                           value={formData.domain}
                           onChange={(e) => setFormData({ ...formData, domain: e.target.value, course: '', level: '', subject: '', book: '' })}
@@ -514,7 +514,7 @@ export default function UploadPage() {
                         </select>
                       </div>
                       <div>
-                        <label className={labelCls}><span className="flex items-center gap-2">📚 Course<span className="text-red-500">*</span></span></label>
+                        <label className={labelCls}><span className="flex items-center gap-2">📚 Course<span className="text-sb-rose-ink">*</span></span></label>
                         <select
                           value={formData.course}
                           onChange={(e) => setFormData({ ...formData, course: e.target.value, level: '', subject: '', book: '' })}
@@ -531,7 +531,7 @@ export default function UploadPage() {
                     {/* 3 + 4 — Level & Subject */}
                     <div className="grid gap-4 md:grid-cols-2">
                       <div>
-                        <label className={labelCls}><span className="flex items-center gap-2">🎓 Level<span className="text-red-500">*</span></span></label>
+                        <label className={labelCls}><span className="flex items-center gap-2">🎓 Level<span className="text-sb-rose-ink">*</span></span></label>
                         <select
                           value={formData.level}
                           onChange={(e) => setFormData({ ...formData, level: e.target.value, subject: '', book: '' })}
@@ -544,7 +544,7 @@ export default function UploadPage() {
                         </select>
                       </div>
                       <div>
-                        <label className={labelCls}><span className="flex items-center gap-2">🧭 Subject<span className="text-red-500">*</span></span></label>
+                        <label className={labelCls}><span className="flex items-center gap-2">🧭 Subject<span className="text-sb-rose-ink">*</span></span></label>
                         <select
                           value={formData.subject}
                           onChange={(e) => setFormData({ ...formData, subject: e.target.value, book: '' })}
@@ -561,7 +561,7 @@ export default function UploadPage() {
                     {/* 5 + 6 — Book & Medium */}
                     <div className="grid gap-4 md:grid-cols-2">
                       <div>
-                        <label className={labelCls}><span className="flex items-center gap-2">📖 Book<span className="text-red-500">*</span></span></label>
+                        <label className={labelCls}><span className="flex items-center gap-2">📖 Book<span className="text-sb-rose-ink">*</span></span></label>
                         <select
                           value={formData.book}
                           onChange={(e) => setFormData({ ...formData, book: e.target.value })}
@@ -574,7 +574,7 @@ export default function UploadPage() {
                         </select>
                       </div>
                       <div>
-                        <label className={labelCls}><span className="flex items-center gap-2">🌐 Medium<span className="text-red-500">*</span></span></label>
+                        <label className={labelCls}><span className="flex items-center gap-2">🌐 Medium<span className="text-sb-rose-ink">*</span></span></label>
                         <select
                           value={formData.medium}
                           onChange={(e) => setFormData({ ...formData, medium: e.target.value })}
@@ -595,7 +595,7 @@ export default function UploadPage() {
                         value={formData.bookTitle}
                         onChange={(e) => setFormData({ ...formData, bookTitle: e.target.value })}
                         placeholder="e.g., NCERT Economics Textbook (full title as printed)"
-                        className="w-full px-4 py-3 bg-muted/40 border border-border rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
+                        className="w-full px-4 py-3 bg-muted/40 border border-border rounded-xl focus:ring-2 focus:ring-sb-saffron focus:border-transparent transition-all duration-300"
                         required
                       />
                     </div>
@@ -619,7 +619,7 @@ export default function UploadPage() {
                     type="file"
                     accept={ingestMode === 'pdf' ? '.pdf' : '.md,text/markdown'}
                     onChange={(e) => setFormData({ ...formData, file: e.target.files?.[0] || null })}
-                    className="w-full px-4 py-3 bg-muted/40 border border-border rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100"
+                    className="w-full px-4 py-3 bg-muted/40 border border-border rounded-xl focus:ring-2 focus:ring-sb-saffron focus:border-transparent transition-all duration-300 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-sb-saffron-tint file:text-sb-saffron-deep hover:file:bg-sb-saffron-tint"
                     required
                   />
                 </div>
@@ -628,7 +628,7 @@ export default function UploadPage() {
               <button
                 type="submit"
                 disabled={isUploading}
-                className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
+                className="w-full bg-sb-navy     text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
               >
                 {isUploading ? (
                   <>
@@ -645,11 +645,11 @@ export default function UploadPage() {
 
               {/* Curated-lane audit trail: what was skipped / flagged */}
               {ingestMode === 'markdown' && mdSkipped.length > 0 && (
-                <div className="mt-4 rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 p-4">
-                  <p className="text-sm font-semibold text-amber-700 dark:text-amber-300 mb-2">
+                <div className="mt-4 rounded-xl border border-sb-butter  bg-sb-butter  p-4">
+                  <p className="text-sm font-semibold text-sb-butter-ink  mb-2">
                     Reviewer audit — {mdSkipped.length} item(s) skipped or flagged
                   </p>
-                  <ul className="list-disc pl-5 space-y-1 text-xs text-amber-800 dark:text-amber-200 max-h-40 overflow-y-auto">
+                  <ul className="list-disc pl-5 space-y-1 text-xs text-sb-butter-ink  max-h-40 overflow-y-auto">
                     {mdSkipped.map((s, i) => <li key={i}>{s}</li>)}
                   </ul>
                 </div>
@@ -683,7 +683,7 @@ export default function UploadPage() {
                 </div>
                 <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
                   <div
-                    className="bg-gradient-to-r from-orange-500 to-red-500 h-3 rounded-full transition-all duration-500 ease-out"
+                    className="bg-sb-navy   h-3 rounded-full transition-all duration-500 ease-out"
                     style={{ width: `${uploadProgress}%` }}
                   ></div>
                 </div>
@@ -694,11 +694,11 @@ export default function UploadPage() {
           {/* Results Panel */}
           <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-r from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-sb-surface-2 from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
                 <BarChart3 className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                <h2 className="text-2xl font-bold text-sb-saffron-deep from-primary to-primary/80  ">
                   Upload Results
                 </h2>
                 <p className="text-muted-foreground">
@@ -712,27 +712,27 @@ export default function UploadPage() {
                 {/* Status */}
                 <div className={`p-4 rounded-xl border-2 ${
                   result.success
-                    ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800'
-                    : 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
+                    ? 'bg-sb-saffron-tint  border-sb-saffron '
+                    : 'bg-sb-rose  border-sb-danger '
                 }`}>
                   <div className="flex items-center space-x-3">
                     {result.success ? (
-                      <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400" />
+                      <CheckCircle className="h-6 w-6 text-sb-saffron-deep " />
                     ) : (
-                      <AlertTriangle className="h-6 w-6 text-red-600 dark:text-red-400" />
+                      <AlertTriangle className="h-6 w-6 text-sb-rose-ink " />
                     )}
                     <div>
                       <h3 className={`font-semibold ${
                         result.success
-                          ? 'text-green-800 dark:text-green-200'
-                          : 'text-red-800 dark:text-red-200'
+                          ? 'text-sb-saffron-deep '
+                          : 'text-sb-rose-ink '
                       }`}>
                         {result.success ? 'Upload Successful!' : 'Upload Failed'}
                       </h3>
                       <p className={`text-sm ${
                         result.success
-                          ? 'text-green-700 dark:text-green-300'
-                          : 'text-red-700 dark:text-red-300'
+                          ? 'text-sb-saffron-deep '
+                          : 'text-sb-rose-ink '
                       }`}>
                         {result.message}
                       </p>
@@ -753,25 +753,25 @@ export default function UploadPage() {
                 {/* Statistics */}
                 {result.stats && (
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="p-4 bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 rounded-xl border border-orange-200/50 dark:border-orange-800/50">
-                      <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                    <div className="p-4 bg-sb-surface-2     rounded-xl border border-sb-saffron ">
+                      <div className="text-2xl font-bold text-sb-saffron-deep ">
                         {result.stats.totalPages}
                       </div>
-                      <div className="text-sm text-orange-700 dark:text-orange-300">Total Pages</div>
+                      <div className="text-sm text-sb-saffron-deep ">Total Pages</div>
                     </div>
-                    <div className="p-4 bg-gradient-to-br from-primary/10 to-primary/10 dark:from-primary/10 dark:to-primary/15 rounded-xl border border-primary/30">
+                    <div className="p-4 bg-sb-surface-2 from-primary/10 to-primary/10 dark:from-primary/10 dark:to-primary/15 rounded-xl border border-primary/30">
                       <div className="text-2xl font-bold text-primary">
                         {result.stats.totalChunks}
                       </div>
                       <div className="text-sm text-primary">Content Chunks</div>
                     </div>
-                    <div className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl border border-green-200/50 dark:border-green-800/50">
-                      <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                    <div className="p-4 bg-sb-surface-2     rounded-xl border border-sb-saffron ">
+                      <div className="text-2xl font-bold text-sb-saffron-deep ">
                         {result.stats.totalWords.toLocaleString()}
                       </div>
-                      <div className="text-sm text-green-700 dark:text-green-300">Total Words</div>
+                      <div className="text-sm text-sb-saffron-deep ">Total Words</div>
                     </div>
-                    <div className="p-4 bg-gradient-to-br from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 rounded-xl border border-primary/30">
+                    <div className="p-4 bg-sb-surface-2 from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 rounded-xl border border-primary/30">
                       <div className="text-2xl font-bold text-primary">
                         {Math.round(result.stats.processingTime / 1000)}s
                       </div>
@@ -783,23 +783,23 @@ export default function UploadPage() {
                 {/* Additional Statistics */}
                 {result.additionalStats && (
                   <div className="grid grid-cols-3 gap-4">
-                    <div className="p-4 bg-gradient-to-br from-cyan-50 to-teal-50 dark:from-cyan-900/20 dark:to-teal-900/20 rounded-xl border border-cyan-200/50 dark:border-cyan-800/50">
-                      <div className="text-2xl font-bold text-cyan-600 dark:text-cyan-400">
+                    <div className="p-4 bg-sb-surface-2     rounded-xl border border-sb-sky ">
+                      <div className="text-2xl font-bold text-sb-sky-ink ">
                         {result.additionalStats.tablesFound || 0}
                       </div>
-                      <div className="text-sm text-cyan-700 dark:text-cyan-300">Tables Found</div>
+                      <div className="text-sm text-sb-sky-ink ">Tables Found</div>
                     </div>
-                    <div className="p-4 bg-gradient-to-br from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 rounded-xl border border-primary/30">
+                    <div className="p-4 bg-sb-surface-2 from-primary/10 to-primary/10 dark:from-primary/15 dark:to-primary/15 rounded-xl border border-primary/30">
                       <div className="text-2xl font-bold text-primary">
                         {result.additionalStats.equationsFound || 0}
                       </div>
                       <div className="text-sm text-primary">Equations Found</div>
                     </div>
-                    <div className="p-4 bg-gradient-to-br from-rose-50 to-primary/10 dark:from-rose-900/20 dark:to-primary/15 rounded-xl border border-rose-200/50 dark:border-rose-800/50">
-                      <div className="text-2xl font-bold text-rose-600 dark:text-rose-400">
+                    <div className="p-4 bg-sb-surface-2  to-primary/10  dark:to-primary/15 rounded-xl border border-sb-rose ">
+                      <div className="text-2xl font-bold text-sb-rose-ink ">
                         {result.additionalStats.figuresFound || 0}
                       </div>
-                      <div className="text-sm text-rose-700 dark:text-rose-300">Figures Found</div>
+                      <div className="text-sm text-sb-rose-ink ">Figures Found</div>
                     </div>
                   </div>
                 )}
@@ -808,25 +808,25 @@ export default function UploadPage() {
                 {result.validationStats && (
                   <div className={`p-6 rounded-xl border-2 ${
                     result.validationStats.validationRate >= 0.95
-                      ? 'bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-800'
+                      ? 'bg-sb-surface-2     border-sb-saffron '
                       : result.validationStats.validationRate >= 0.90
-                      ? 'bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-900/20 dark:to-amber-900/20 border-yellow-200 dark:border-yellow-800'
-                      : 'bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 border-red-200 dark:border-red-800'
+                      ? 'bg-sb-surface-2     border-sb-butter '
+                      : 'bg-sb-surface-2     border-sb-danger '
                   }`}>
                     <div className="flex items-center space-x-3 mb-4">
                       {result.validationStats.validationRate >= 0.95 ? (
-                        <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400" />
+                        <CheckCircle className="h-6 w-6 text-sb-saffron-deep " />
                       ) : result.validationStats.validationRate >= 0.90 ? (
-                        <AlertTriangle className="h-6 w-6 text-yellow-600 dark:text-yellow-400" />
+                        <AlertTriangle className="h-6 w-6 text-sb-butter-ink " />
                       ) : (
-                        <AlertTriangle className="h-6 w-6 text-red-600 dark:text-red-400" />
+                        <AlertTriangle className="h-6 w-6 text-sb-rose-ink " />
                       )}
                       <h4 className={`font-bold text-lg ${
                         result.validationStats.validationRate >= 0.95
-                          ? 'text-green-800 dark:text-green-200'
+                          ? 'text-sb-saffron-deep '
                           : result.validationStats.validationRate >= 0.90
-                          ? 'text-yellow-800 dark:text-yellow-200'
-                          : 'text-red-800 dark:text-red-200'
+                          ? 'text-sb-butter-ink '
+                          : 'text-sb-rose-ink '
                       }`}>
                         Data Quality: {(result.validationStats.validationRate * 100).toFixed(1)}%
                       </h4>
@@ -834,13 +834,13 @@ export default function UploadPage() {
 
                     <div className="grid grid-cols-2 gap-4 mb-4">
                       <div className="p-3 bg-white/50 rounded-lg">
-                        <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                        <div className="text-2xl font-bold text-sb-saffron-deep ">
                           {result.validationStats.validCount}
                         </div>
                         <div className="text-sm text-muted-foreground">Valid Chunks</div>
                       </div>
                       <div className="p-3 bg-white/50 rounded-lg">
-                        <div className="text-2xl font-bold text-red-600 dark:text-red-400">
+                        <div className="text-2xl font-bold text-sb-rose-ink ">
                           {result.validationStats.invalidCount}
                         </div>
                         <div className="text-sm text-muted-foreground">Invalid Chunks</div>
@@ -855,7 +855,7 @@ export default function UploadPage() {
                         <ul className="text-xs text-muted-foreground space-y-1 max-h-32 overflow-y-auto">
                           {result.validationStats.invalidChunks.slice(0, 10).map((invalid, index) => (
                             <li key={index} className="flex items-start space-x-2">
-                              <span className="text-red-500">•</span>
+                              <span className="text-sb-rose-ink">•</span>
                               <span><strong>{invalid.chunkId}:</strong> {invalid.error}</span>
                             </li>
                           ))}
@@ -878,9 +878,9 @@ export default function UploadPage() {
 
                 {/* Errors */}
                 {result.errors && result.errors.length > 0 && (
-                  <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-xl border border-red-200 dark:border-red-800">
-                    <h4 className="font-semibold text-red-800 dark:text-red-200 mb-2">Errors</h4>
-                    <ul className="text-red-700 dark:text-red-300 text-sm space-y-1">
+                  <div className="p-4 bg-sb-rose  rounded-xl border border-sb-danger ">
+                    <h4 className="font-semibold text-sb-rose-ink  mb-2">Errors</h4>
+                    <ul className="text-sb-rose-ink  text-sm space-y-1">
                       {result.errors.map((error, index) => (
                         <li key={index}>• {error}</li>
                       ))}

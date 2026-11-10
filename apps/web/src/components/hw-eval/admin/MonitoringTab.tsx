@@ -71,7 +71,7 @@ export function MonitoringTab() {
           {!openAlerts.length ? <p>No open alerts.</p> : (
             <ul className="space-y-2">
               {openAlerts.map((a) => (
-                <li key={a.id} className={`rounded border p-2 ${a.severity === 'demote' ? 'border-red-300 bg-red-50' : 'border-amber-300 bg-amber-50'}`}>
+                <li key={a.id} className={`rounded border p-2 ${a.severity === 'demote' ? 'border-sb-danger bg-sb-rose' : 'border-sb-butter bg-sb-butter'}`}>
                   <div className="font-medium">{a.label} — {ALERT_LABEL[a.code] ?? a.code}</div>
                   <div>{pct(a.value, 1)} against a limit of {pct(a.threshold, 1)} ({a.sampleSize} in the sample). {a.demoted ? 'Taken out of “eligible” automatically.' : ''}</div>
                   <div className="text-xs text-muted-foreground">Raised {ist(a.raisedAt)}{a.emailedAt ? ` · emailed ${ist(a.emailedAt)}` : ' · not emailed yet'}</div>
@@ -138,7 +138,7 @@ export function MonitoringTab() {
                     <td className="py-1 pr-3 font-medium">{t.name}</td>
                     <td className="pr-3">{inr(t.usedPaise)}</td>
                     <td className="pr-3">{t.budgetPaise ? inr(t.budgetPaise) : 'none'}</td>
-                    <td className="pr-3">{t.fraction === null ? '–' : <span className={t.exhausted ? 'text-red-700' : t.warn ? 'text-amber-700' : ''}>{pct(t.fraction)}{t.exhausted ? ' · used up' : t.warn ? ' · over 80%' : ''}</span>}</td>
+                    <td className="pr-3">{t.fraction === null ? '–' : <span className={t.exhausted ? 'text-sb-rose-ink' : t.warn ? 'text-sb-butter-ink' : ''}>{pct(t.fraction)}{t.exhausted ? ' · used up' : t.warn ? ' · over 80%' : ''}</span>}</td>
                     <td className="pr-3">{t.projectedMonthPaise === null ? '–' : inr(t.projectedMonthPaise)}</td>
                   </tr>
                 ))}

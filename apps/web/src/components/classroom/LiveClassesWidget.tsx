@@ -54,10 +54,10 @@ export function LiveClassesWidget({ classId, isTeacher, tenantId }: { classId: s
   return (
     <div className="space-y-6">
       {isTeacher && (
-        <Card className="border-indigo-500/20 shadow-lg shadow-indigo-500/5">
+        <Card className="border-sb-lav shadow-lg ">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-indigo-500" />
+              <Calendar className="w-5 h-5 text-sb-lav-ink" />
               Schedule Live Class
             </CardTitle>
           </CardHeader>
@@ -91,7 +91,7 @@ export function LiveClassesWidget({ classId, isTeacher, tenantId }: { classId: s
                   />
                 </div>
               </div>
-              <Button type="submit" disabled={isScheduling} className="w-full bg-indigo-600 hover:bg-indigo-700">
+              <Button type="submit" disabled={isScheduling} className="w-full bg-sb-navy hover:bg-sb-navy">
                 {isScheduling && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 Create Zoom Meeting
               </Button>
@@ -130,13 +130,13 @@ export function LiveClassesWidget({ classId, isTeacher, tenantId }: { classId: s
                   </div>
                   <div>
                     {isTeacher ? (
-                      <Button asChild variant="default" className="bg-emerald-600 hover:bg-emerald-700">
+                      <Button asChild variant="default" className="bg-sb-navy hover:bg-sb-navy">
                         <a href={c.startUrl} target="_blank" rel="noopener noreferrer">
                           Start Meeting <ExternalLink className="ml-2 w-4 h-4" />
                         </a>
                       </Button>
                     ) : (
-                      <Button asChild variant="default" className="bg-indigo-600 hover:bg-indigo-700">
+                      <Button asChild variant="default" className="bg-sb-navy hover:bg-sb-navy">
                         <a href={c.joinUrl} target="_blank" rel="noopener noreferrer">
                           Join Class <ExternalLink className="ml-2 w-4 h-4" />
                         </a>

@@ -26,7 +26,7 @@ export default function InstitutionSidebar() {
       brandName="Study Buddy"
       brandSubtitle="Institution Admin"
       brandIcon={Building2}
-      brandColor="bg-violet-600"
+      brandColor="bg-sb-navy"
       theme="light"
       profilePath="/dashboard/institution/settings"
       showLogout

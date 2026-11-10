@@ -55,26 +55,26 @@ function NotificationItem({ notification, onRemove }: NotificationItemProps) {
   const getIcon = () => {
     switch (type) {
       case 'success':
-        return <CheckCircleIcon className="w-5 h-5 text-green-500" />
+        return <CheckCircleIcon className="w-5 h-5 text-sb-saffron-deep" />
       case 'error':
-        return <XCircleIcon className="w-5 h-5 text-red-500" />
+        return <XCircleIcon className="w-5 h-5 text-sb-rose-ink" />
       case 'warning':
-        return <ExclamationTriangleIcon className="w-5 h-5 text-yellow-500" />
+        return <ExclamationTriangleIcon className="w-5 h-5 text-sb-butter-ink" />
       case 'info':
-        return <InformationCircleIcon className="w-5 h-5 text-blue-500" />
+        return <InformationCircleIcon className="w-5 h-5 text-sb-sky-ink" />
     }
   }
 
   const getStyles = () => {
     switch (type) {
       case 'success':
-        return 'bg-green-50 border-green-200 dark:bg-green-900/20 dark:border-green-800'
+        return 'bg-sb-saffron-tint border-sb-saffron  '
       case 'error':
-        return 'bg-red-50 border-red-200 dark:bg-red-900/20 dark:border-red-800'
+        return 'bg-sb-rose border-sb-danger  '
       case 'warning':
-        return 'bg-yellow-50 border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-800'
+        return 'bg-sb-butter border-sb-butter  '
       case 'info':
-        return 'bg-blue-50 border-blue-200 dark:bg-blue-900/20 dark:border-blue-800'
+        return 'bg-sb-sky border-sb-sky  '
     }
   }
 

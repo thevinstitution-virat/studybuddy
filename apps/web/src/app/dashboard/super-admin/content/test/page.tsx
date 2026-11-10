@@ -13,15 +13,15 @@ export default function TestPage() {
           <div className="space-y-2 text-left">
             <div className="flex justify-between">
               <span>Server:</span>
-              <span className="text-green-600">✅ Running</span>
+              <span className="text-sb-saffron-deep">✅ Running</span>
             </div>
             <div className="flex justify-between">
               <span>Authentication:</span>
-              <span className="text-green-600">✅ Working</span>
+              <span className="text-sb-saffron-deep">✅ Working</span>
             </div>
             <div className="flex justify-between">
               <span>Routing:</span>
-              <span className="text-green-600">✅ Working</span>
+              <span className="text-sb-saffron-deep">✅ Working</span>
             </div>
           </div>
         </div>

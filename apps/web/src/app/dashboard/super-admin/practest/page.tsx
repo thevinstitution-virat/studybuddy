@@ -189,9 +189,9 @@ export default function PractestAdminPage() {
 
       {/* Error Alert */}
       {state.error && (
-        <Alert className="mb-6 border-red-200 bg-red-50">
-          <XCircleIcon className="h-4 w-4 text-red-600" />
-          <AlertDescription className="text-red-800">
+        <Alert className="mb-6 border-sb-danger bg-sb-rose">
+          <XCircleIcon className="h-4 w-4 text-sb-rose-ink" />
+          <AlertDescription className="text-sb-rose-ink">
             {state.error}
           </AlertDescription>
         </Alert>
@@ -228,8 +228,8 @@ export default function PractestAdminPage() {
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-green-100 rounded-lg">
-                    <CheckCircleIcon className="h-5 w-5 text-green-600" />
+                  <div className="p-2 bg-sb-saffron-tint rounded-lg">
+                    <CheckCircleIcon className="h-5 w-5 text-sb-saffron-deep" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Approved</p>
@@ -242,8 +242,8 @@ export default function PractestAdminPage() {
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-yellow-100 rounded-lg">
-                    <ClockIcon className="h-5 w-5 text-yellow-600" />
+                  <div className="p-2 bg-sb-butter rounded-lg">
+                    <ClockIcon className="h-5 w-5 text-sb-butter-ink" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Pending Review</p>
@@ -270,8 +270,8 @@ export default function PractestAdminPage() {
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-orange-100 rounded-lg">
-                    <UsersIcon className="h-5 w-5 text-orange-600" />
+                  <div className="p-2 bg-sb-saffron-tint rounded-lg">
+                    <UsersIcon className="h-5 w-5 text-sb-saffron-deep" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Active Users</p>

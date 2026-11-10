@@ -83,30 +83,30 @@ export default function TodaysProgress({ onStartQuiz, onViewStats }: TodaysProgr
 
   const getProgressColor = () => {
     if (todayProgress.percentage >= 100)
-  return "text-green-600"
+  return "text-sb-saffron-deep"
     if (todayProgress.percentage >= 75)
-  return "text-blue-600"
+  return "text-sb-sky-ink"
     if (todayProgress.percentage >= 50)
-  return "text-yellow-600"
+  return "text-sb-butter-ink"
     if (todayProgress.percentage >= 25)
-  return "text-orange-600"
+  return "text-sb-saffron-deep"
     return "text-muted-foreground"
   }
 
   const getProgressBgColor = () => {
     if (todayProgress.percentage >= 100)
-  return "from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-green-200 dark:border-green-800"
+  return "    border-sb-saffron "
     if (todayProgress.percentage >= 75)
-  return "from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 border-blue-200 dark:border-blue-800"
+  return "    border-sb-sky "
     if (todayProgress.percentage >= 50)
-  return "from-yellow-50 to-amber-50 dark:from-yellow-950 dark:to-amber-950 border-yellow-200 dark:border-yellow-800"
+  return "    border-sb-butter "
     if (todayProgress.percentage >= 25)
-  return "from-orange-50 to-red-50 dark:from-orange-950 dark:to-red-950 border-orange-200 dark:border-orange-800"
+  return "    border-sb-saffron "
     return "from-gray-50 to-slate-50 dark:from-gray-950 dark:to-slate-950 border-border dark:border-gray-800"
   }
 
   return (
-    <Card className={`bg-gradient-to-br ${getProgressBgColor()}`}>
+    <Card className={`bg-sb-surface-2 ${getProgressBgColor()}`}>
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
@@ -151,7 +151,7 @@ export default function TodaysProgress({ onStartQuiz, onViewStats }: TodaysProgr
         {/* Quick Stats Grid */}
         <div className="grid grid-cols-3 gap-4">
           <div className="text-center p-3 bg-white/50 rounded-lg border">
-            <BookOpenIcon className="h-6 w-6 mx-auto mb-1 text-blue-600" />
+            <BookOpenIcon className="h-6 w-6 mx-auto mb-1 text-sb-sky-ink" />
             <div className="text-lg font-bold text-foreground">
               {stats.todayWordsSearched}
             </div>
@@ -161,7 +161,7 @@ export default function TodaysProgress({ onStartQuiz, onViewStats }: TodaysProgr
           </div>
           
           <div className="text-center p-3 bg-white/50 rounded-lg border">
-            <TrophyIcon className="h-6 w-6 mx-auto mb-1 text-yellow-600" />
+            <TrophyIcon className="h-6 w-6 mx-auto mb-1 text-sb-butter-ink" />
             <div className="text-lg font-bold text-foreground">
               {stats.todayQuizzesCompleted}
             </div>
@@ -171,7 +171,7 @@ export default function TodaysProgress({ onStartQuiz, onViewStats }: TodaysProgr
           </div>
           
           <div className="text-center p-3 bg-white/50 rounded-lg border">
-            <FireIcon className="h-6 w-6 mx-auto mb-1 text-orange-600" />
+            <FireIcon className="h-6 w-6 mx-auto mb-1 text-sb-saffron-deep" />
             <div className="text-lg font-bold text-foreground">
               {streakInfo.current}
             </div>
@@ -186,7 +186,7 @@ export default function TodaysProgress({ onStartQuiz, onViewStats }: TodaysProgr
           {todayProgress.remaining > 0 && (
             <Button
               onClick={onStartQuiz}
-              className="flex-1 bg-green-600 hover:bg-green-700 text-white"
+              className="flex-1 bg-sb-navy hover:bg-sb-navy text-white"
             >
               <PlayIcon className="h-4 w-4 mr-2" />
               Practice Quiz ({todayProgress.remaining} to goal)
@@ -196,7 +196,7 @@ export default function TodaysProgress({ onStartQuiz, onViewStats }: TodaysProgr
           {todayProgress.percentage >= 100 && (
             <Button 
               onClick={onStartQuiz}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+              className="flex-1 bg-sb-navy hover:bg-sb-navy text-white"
             >
               <SparklesIcon className="h-4 w-4 mr-2" />
               Bonus Practice
@@ -221,22 +221,22 @@ export default function TodaysProgress({ onStartQuiz, onViewStats }: TodaysProgr
             </h4>
             <div className="flex flex-wrap gap-2">
               {todayProgress.percentage >= 100 && (
-                <Badge variant="default" className="bg-green-600 text-white">
+                <Badge variant="default" className="bg-sb-navy text-white">
                   🎯 Daily Goal Achieved
                 </Badge>
               )}
               {streakInfo.current >= 3 && (
-                <Badge variant="default" className="bg-orange-600 text-white">
+                <Badge variant="default" className="bg-sb-navy text-white">
                   🔥 {streakInfo.current}-Day Streak
                 </Badge>
               )}
               {streakInfo.current >= 7 && (
-                <Badge variant="default" className="bg-purple-600 text-white">
+                <Badge variant="default" className="bg-sb-navy text-white">
                   ⭐ Week Warrior
                 </Badge>
               )}
               {stats.todayQuizzesCompleted >= 3 && (
-                <Badge variant="default" className="bg-blue-600 text-white">
+                <Badge variant="default" className="bg-sb-navy text-white">
                   🏆 Quiz Master
                 </Badge>
               )}
@@ -259,9 +259,9 @@ export default function TodaysProgress({ onStartQuiz, onViewStats }: TodaysProgr
                     <div 
                       className={`w-full rounded-t ${
                         isToday 
-                          ? 'bg-green-500' 
+                          ? 'bg-sb-navy' 
                           : day.wordsLearned > 0 
-                            ? 'bg-blue-400' 
+                            ? 'bg-sb-navy' 
                             : 'bg-muted'
                       }`}
                       style={{ height: `${Math.min(height, 100)}%` }}

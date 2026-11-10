@@ -114,14 +114,14 @@ export default function ClassesManagement() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
-            <GraduationCap className="w-7 h-7 text-emerald-500" />
+            <GraduationCap className="w-7 h-7 text-sb-saffron-deep" />
             Classes & Sections
           </h1>
           <p className="text-muted-foreground mt-1">Manage the academic hierarchy for your institution</p>
         </div>
         <button
           onClick={() => setShowAddClassModal(true)}
-          className="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-medium shadow-md hover:shadow-lg transition-all"
+          className="flex items-center gap-2 px-5 py-2.5 bg-sb-navy hover:bg-sb-navy text-white rounded-xl text-sm font-medium shadow-md hover:shadow-lg transition-all"
         >
           <Plus className="w-4 h-4" /> Add Class
         </button>
@@ -139,7 +139,7 @@ export default function ClassesManagement() {
                   type="text"
                   value={newClassName}
                   onChange={(e) => setNewClassName(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-input bg-background text-foreground outline-none focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-4 py-2.5 rounded-xl border border-input bg-background text-foreground outline-none focus:ring-2 focus:ring-sb-saffron"
                   placeholder="e.g. Class 10"
                 />
               </div>
@@ -149,7 +149,7 @@ export default function ClassesManagement() {
                   type="number"
                   value={newClassLevel}
                   onChange={(e) => setNewClassLevel(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-input bg-background text-foreground outline-none focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-4 py-2.5 rounded-xl border border-input bg-background text-foreground outline-none focus:ring-2 focus:ring-sb-saffron"
                   placeholder="e.g. 10"
                 />
               </div>
@@ -158,7 +158,7 @@ export default function ClassesManagement() {
               <button onClick={() => setShowAddClassModal(false)} className="px-4 py-2 text-sm text-muted-foreground hover:bg-muted rounded-lg transition-colors">
                 Cancel
               </button>
-              <button onClick={handleAddClass} disabled={saving || !newClassName.trim()} className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-xl disabled:opacity-50 transition-colors">
+              <button onClick={handleAddClass} disabled={saving || !newClassName.trim()} className="px-5 py-2 bg-sb-navy hover:bg-sb-navy text-white text-sm font-medium rounded-xl disabled:opacity-50 transition-colors">
                 {saving ? 'Saving...' : 'Create'}
               </button>
             </div>
@@ -174,7 +174,7 @@ export default function ClassesManagement() {
           <p className="text-muted-foreground mb-6">Start by adding classes for your institution's academic structure.</p>
           <button
             onClick={() => setShowAddClassModal(true)}
-            className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-medium"
+            className="px-5 py-2.5 bg-sb-navy hover:bg-sb-navy text-white rounded-xl text-sm font-medium"
           >
             Create First Class
           </button>
@@ -186,7 +186,7 @@ export default function ClassesManagement() {
               {/* Class Header */}
               <div className="flex items-center justify-between px-6 py-4 bg-muted/40">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">
+                  <div className="w-10 h-10 rounded-xl bg-sb-saffron-tint  text-sb-saffron-deep  flex items-center justify-center font-bold text-sm">
                     {cls.level || '#'}
                   </div>
                   <div>
@@ -201,7 +201,7 @@ export default function ClassesManagement() {
                   >
                     <Plus className="w-3 h-3 inline mr-1" />Section
                   </button>
-                  <button onClick={() => handleDeleteClass(cls.id)} className="p-1.5 text-red-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+                  <button onClick={() => handleDeleteClass(cls.id)} className="p-1.5 text-sb-rose-ink hover:text-sb-rose-ink hover:bg-sb-rose  rounded-lg transition-colors">
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </div>

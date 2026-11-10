@@ -62,8 +62,8 @@ export function FolderTreeSidebar({
   const itemIdle =
     'text-foreground hover:bg-muted/60';
   const itemActive =
-    'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 font-medium';
-  const dropHi = 'ring-2 ring-blue-400 ring-inset bg-blue-50 dark:bg-blue-900/20';
+    'bg-sb-sky text-sb-sky-ink   font-medium';
+  const dropHi = 'ring-2 ring-sb-sky ring-inset bg-sb-sky ';
 
   const cls = (active: boolean, dropKey?: string) =>
     `${itemBase} ${active ? itemActive : itemIdle} ${dropKey && dropTargetId === dropKey ? dropHi : ''}`;
@@ -92,7 +92,7 @@ export function FolderTreeSidebar({
               onClick={onCreateFolder}
               title="New folder"
               aria-label="New folder"
-              className="p-1.5 rounded-md text-muted-foreground hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
+              className="p-1.5 rounded-md text-muted-foreground hover:text-sb-sky-ink hover:bg-sb-sky  transition-colors"
             >
               <FolderPlus className="h-4 w-4" />
             </button>
@@ -103,7 +103,7 @@ export function FolderTreeSidebar({
               onClick={onManageFolders}
               title="Manage folders"
               aria-label="Manage folders"
-              className="p-1.5 rounded-md text-muted-foreground hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
+              className="p-1.5 rounded-md text-muted-foreground hover:text-sb-sky-ink hover:bg-sb-sky  transition-colors"
             >
               <Settings2 className="h-4 w-4" />
             </button>
@@ -156,7 +156,7 @@ export function FolderTreeSidebar({
         <button
           type="button"
           onClick={onOpenGraph}
-          className="mt-3 w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-purple-700 dark:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900/20 border border-purple-100 dark:border-purple-900/40 transition-colors"
+          className="mt-3 w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-sb-lav-ink  hover:bg-sb-lav  border border-sb-lav  transition-colors"
         >
           <Network className="h-4 w-4" /> Graph view
         </button>

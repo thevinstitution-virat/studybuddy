@@ -88,7 +88,7 @@ export function Overview({ detail, onChanged }: { detail: Detail; onChanged: () 
           <CardContent>
             <ul className="space-y-2 text-sm">
               {ov.data.failedJobs.map((j, i) => (
-                <li key={i} className="rounded border border-red-200 p-2 dark:border-red-900">
+                <li key={i} className="rounded border border-sb-danger p-2 ">
                   <span className="font-medium">{j.kind}</span>: {j.error}
                 </li>
               ))}

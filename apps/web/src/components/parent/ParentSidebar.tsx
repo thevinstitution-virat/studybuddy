@@ -24,7 +24,7 @@ export default function ParentSidebar() {
       brandName="Study Buddy"
       brandSubtitle="Parent Portal"
       brandIcon={Heart}
-      brandColor="bg-purple-600"
+      brandColor="bg-sb-navy"
       theme="light"
       profilePath="/dashboard/parent/profile"
       showLogout

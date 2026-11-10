@@ -110,7 +110,7 @@ function ReceiptCard({
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-3 min-w-0">
             <div className="mt-0.5 shrink-0">
-              <CheckCircle2 className="h-5 w-5 text-green-500" />
+              <CheckCircle2 className="h-5 w-5 text-sb-saffron-deep" />
             </div>
             <div className="min-w-0">
               <p className="text-xs text-muted-foreground mb-0.5">{orgName}</p>
@@ -126,14 +126,14 @@ function ReceiptCard({
               {status === 'refunded' ? (
                 <Badge
                   variant="secondary"
-                  className="mt-1 block text-center bg-orange-50 text-orange-700 border-orange-200"
+                  className="mt-1 block text-center bg-sb-saffron-tint text-sb-saffron-deep border-sb-saffron"
                 >
                   Refunded
                 </Badge>
               ) : (
                 <Badge
                   variant="secondary"
-                  className="mt-1 block text-center bg-green-50 text-green-700 border-green-200"
+                  className="mt-1 block text-center bg-sb-saffron-tint text-sb-saffron-deep border-sb-saffron"
                 >
                   Paid
                 </Badge>
@@ -158,7 +158,7 @@ function ReceiptCard({
               title="Copy payment ID"
             >
               {copied ? (
-                <Check className="h-3 w-3 text-green-500" />
+                <Check className="h-3 w-3 text-sb-saffron-deep" />
               ) : (
                 <Copy className="h-3 w-3" />
               )}

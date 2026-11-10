@@ -28,9 +28,9 @@ const planBadge: Record<string, string> = {
   enterprise: 'bg-primary/15 text-primary',
 }
 const statusBadge: Record<string, string> = {
-  active: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300',
-  trial: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300',
-  suspended: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300',
+  active: 'bg-sb-saffron-tint text-sb-saffron-deep  ',
+  trial: 'bg-sb-butter text-sb-butter-ink  ',
+  suspended: 'bg-sb-rose text-sb-rose-ink  ',
   cancelled: 'bg-muted text-muted-foreground',
 }
 
@@ -74,7 +74,7 @@ function CompleteOnboardingDialog({ orgId, open, onClose, onSuccess }: { orgId: 
         </DialogHeader>
         <div className="space-y-4 py-4">
           <div className="space-y-2">
-            <Label htmlFor="phone">Contact Phone <span className="text-red-500">*</span></Label>
+            <Label htmlFor="phone">Contact Phone <span className="text-sb-rose-ink">*</span></Label>
             <Input id="phone" value={phone} onChange={e => setPhone(e.target.value)} placeholder="e.g. +1 234 567 8900" />
           </div>
           <div className="space-y-2">
@@ -154,7 +154,7 @@ export default function OrganizationsPage() {
         </div>
         <Link
           href="/dashboard/super-admin/onboarding"
-          className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-primary/80 px-4 py-2.5 font-semibold text-white shadow hover:shadow-lg"
+          className="inline-flex items-center gap-2 rounded-xl bg-sb-surface-2 from-primary to-primary/80 px-4 py-2.5 font-semibold text-white shadow hover:shadow-lg"
         >
           <Plus className="h-5 w-5" /> Onboard Institution
         </Link>
@@ -236,10 +236,10 @@ export default function OrganizationsPage() {
                     <td className="px-3 py-3 text-muted-foreground">{o.enabledFeatures}/{o.allowedFeatures}</td>
                     <td className="px-3 py-3">
                       {o.onboardingCompleted ? (
-                        <span className="inline-flex items-center gap-1 text-xs font-medium text-green-600"><CheckCircle2 className="h-3.5 w-3.5" /> Complete</span>
+                        <span className="inline-flex items-center gap-1 text-xs font-medium text-sb-saffron-deep"><CheckCircle2 className="h-3.5 w-3.5" /> Complete</span>
                       ) : (
                         <div className="flex items-center gap-2">
-                          <span className="inline-flex items-center gap-1 text-xs font-medium text-amber-600"><Clock className="h-3.5 w-3.5" /> Pending</span>
+                          <span className="inline-flex items-center gap-1 text-xs font-medium text-sb-butter-ink"><Clock className="h-3.5 w-3.5" /> Pending</span>
                           <Button 
                             variant="outline" 
                             size="sm" 

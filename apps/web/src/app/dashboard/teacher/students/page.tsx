@@ -232,7 +232,7 @@ export default function TeacherStudentsPage() {
                     {student.classId && (
                       <button
                         onClick={() => handleRemoveStudent(student.id, student.classId!)}
-                        className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        className="p-2 text-sb-rose-ink hover:bg-sb-rose rounded-lg transition-colors"
                         title="Remove from class"
                       >
                         <UserMinus className="h-4 w-4" />

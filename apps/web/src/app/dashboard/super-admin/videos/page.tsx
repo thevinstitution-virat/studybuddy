@@ -51,7 +51,7 @@ export default function SuperAdminVideosPage() {
           <span><strong>Global content</strong> — this video will be visible to all institutions.</span>
         </div>
       ) : (
-        <div className="flex items-center gap-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-300">
+        <div className="flex items-center gap-2 rounded-lg border border-sb-butter bg-sb-butter px-4 py-3 text-sm text-sb-butter-ink   ">
           <Building2 className="h-4 w-4 shrink-0" />
           {/* workingContext may expose orgName — fall back to tenantId */}
           <span>Uploading for institution: <strong>{(workingContext as any).label ?? workingContext.tenantId}</strong></span>

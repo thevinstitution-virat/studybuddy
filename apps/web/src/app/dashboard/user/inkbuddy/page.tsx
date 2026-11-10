@@ -16,6 +16,7 @@ import { Input } from '@/components/ui/input'
 import { Field, NativeSelect } from '@/components/hw/fields'
 import { HwError, HwLanguageToggle, HwLoading, HwMessage } from '@/components/hw/HwShell'
 import { marksLabel, useHwT, type HwKey } from '@/components/hw/strings'
+import { Chip, PageHeader } from '@/components/sb'
 
 const SUBJECTS: { value: string; key: HwKey }[] = [
   { value: 'Science', key: 'pr.sub.science' },
@@ -29,14 +30,8 @@ type Scope = { classLevel: number; subject: string; medium: 'en' | 'hi' }
 function Frame({ children }: { children: React.ReactNode }) {
   const { t } = useHwT()
   return (
-    <div className="mx-auto w-full max-w-4xl space-y-6 px-4 py-6 sm:px-6">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="min-w-0">
-          <h1 className="text-2xl font-bold tracking-tight">{t('pr.title')}</h1>
-          <p className="mt-1 text-sm text-muted-foreground">{t('pr.subtitle')}</p>
-        </div>
-        <HwLanguageToggle />
-      </div>
+    <div className="mx-auto w-full max-w-4xl space-y-6">
+      <PageHeader kicker="Virat Evaluator" icon="inkbuddy" tone="sky" title={t('pr.title')} description={t('pr.subtitle')} action={<HwLanguageToggle />} />
       {children}
     </div>
   )
@@ -94,7 +89,7 @@ function Finder({ scopes }: { scopes: Scope[] }) {
         {found.data?.available && found.data.questions.length > 0 && (
           <ul className="space-y-3">
             {found.data.questions.map((q) => (
-              <li key={q.ref} className="flex flex-wrap items-start justify-between gap-3 rounded-md border p-3">
+              <li key={q.ref} className="flex flex-wrap items-start justify-between gap-3 rounded-2xl border bg-card p-4">
                 <div className="min-w-0 flex-1 space-y-1">
                   <p className="whitespace-pre-wrap text-sm">{q.text}</p>
                   <p className="text-xs text-muted-foreground">{t('pr.search.from', { book: q.book, n: q.chapter, p: q.page })} · {marksLabel(t, q.shape.marks)}</p>
@@ -129,7 +124,7 @@ function Mine() {
         ) : (
           <ul className="space-y-2">
             {list.data.map((a) => (
-              <li key={a.id} className="flex flex-wrap items-center justify-between gap-2 rounded-md border p-3 text-sm">
+              <li key={a.id} className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border bg-card p-4 text-sm font-semibold">
                 <span className="min-w-0 flex-1">{a.title}<span className="text-muted-foreground"> · {a.subject}</span></span>
                 <Badge variant="secondary">{t(label(a.submission?.status))}</Badge>
                 <Button asChild size="sm" variant="outline"><Link href={`/dashboard/student/assignments/${a.id}`}>{t('st.list.open')}</Link></Button>
@@ -177,10 +172,10 @@ export default function InkBuddyPage() {
       ) : (
         <div className="space-y-6">
           {s.active ? (
-            <p className="flex flex-wrap gap-x-4 text-sm text-muted-foreground">
-              <span>{t('pr.trial.days', { n: s.daysLeft })}</span>
-              <span>{t('pr.trial.allowance', { pct: s.allowanceLeftPct })}</span>
-            </p>
+            <div className="flex flex-wrap gap-2">
+              <Chip tone="saf" icon="timer">{t('pr.trial.days', { n: s.daysLeft })}</Chip>
+              <Chip tone="sky" icon="gauge">{t('pr.trial.allowance', { pct: s.allowanceLeftPct })}</Chip>
+            </div>
           ) : s.message ? <HwMessage>{s.message[lang]}</HwMessage> : null}
           {s.active && s.scopes.length > 0 && <Finder scopes={s.scopes} />}
           <Mine />

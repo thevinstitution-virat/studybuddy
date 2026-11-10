@@ -36,14 +36,14 @@ function CheckAnswer({ submissionId, questionId, answer }: { submissionId: strin
   return (
     <div className="space-y-3">
       {(answer.transcriptStatus === 'needs_review' || answer.transcriptStatus === 'failed') && (
-        <p className="text-sm text-amber-700 dark:text-amber-400">{t('st.check.review')}</p>
+        <p className="text-sm text-sb-butter-ink ">{t('st.check.review')}</p>
       )}
       <p className="flex flex-wrap gap-x-1 gap-y-2 text-base leading-relaxed" lang="hi">
         {words.map((w) => {
           const on = flags.some((f) => f.start === w.start)
           return (
             <button key={w.start} type="button" onClick={() => toggle(w)} aria-pressed={on}
-              className={on ? 'rounded bg-amber-200 px-1 underline decoration-wavy dark:bg-amber-900' : w.text.includes('[?]') ? 'rounded bg-slate-200 px-1 dark:bg-slate-700' : 'rounded px-1 hover:bg-muted'}>
+              className={on ? 'rounded bg-sb-butter px-1 underline decoration-wavy ' : w.text.includes('[?]') ? 'rounded bg-slate-200 px-1 dark:bg-slate-700' : 'rounded px-1 hover:bg-muted'}>
               {w.text}
             </button>
           )
@@ -54,7 +54,7 @@ function CheckAnswer({ submissionId, questionId, answer }: { submissionId: strin
         <Button size="sm" variant="outline" disabled={sent || save.isPending} onClick={() => save.mutate({ submissionId, questionId, flags })}>
           {save.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}{t('st.check.saveFlags')}
         </Button>
-        {save.error && <span className="text-sm text-red-600">{save.error.message}</span>}
+        {save.error && <span className="text-sm text-sb-rose-ink">{save.error.message}</span>}
       </div>
     </div>
   )
@@ -79,7 +79,7 @@ function ConceptPanel({ submissionId }: { submissionId: string }) {
         {weak.length > 0 && (
           <ul className="space-y-3">
             {weak.map((w) => (
-              <li key={w.concept} className="space-y-1 border-l-2 border-amber-500 pl-3">
+              <li key={w.concept} className="space-y-1 border-l-2 border-sb-butter pl-3">
                 <p>{t(w.questions.length > 1 ? 'st.concepts.lostMany' : 'st.concepts.lost', { lost: w.lost, of: w.outOf, concept: w.concept, qs: w.questions.join(', ') })}</p>
                 {w.revisitFirst.length > 0 && (
                   <p className="text-muted-foreground">
@@ -173,7 +173,7 @@ export function AfterSubmit({ data, onRetry }: { data: Started; onRetry?: () => 
           <Button variant="outline" disabled={retry.isPending} onClick={() => retry.mutate({ submissionId: s.id })}>
             {retry.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}{retry.isPending ? t('pr.retrying') : t('pr.retry')}
           </Button>
-          {retry.error && <p className="text-sm text-red-600">{retry.error.message}</p>}
+          {retry.error && <p className="text-sm text-sb-rose-ink">{retry.error.message}</p>}
         </div>
       )}
       {hasInk && !reading && !data.practice && (

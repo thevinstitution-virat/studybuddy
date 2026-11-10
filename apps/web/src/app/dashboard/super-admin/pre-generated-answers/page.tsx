@@ -103,7 +103,7 @@ export default function PreGeneratedAnswersPage() {
           </div>
           <div className="bg-card p-6 rounded-lg shadow">
             <h3 className="text-sm font-medium text-muted-foreground">Total Cache Hits</h3>
-            <p className="text-3xl font-bold text-green-600">{stats.totalHits}</p>
+            <p className="text-3xl font-bold text-sb-saffron-deep">{stats.totalHits}</p>
           </div>
           <div className="bg-card p-6 rounded-lg shadow">
             <h3 className="text-sm font-medium text-muted-foreground">Avg Hits/Answer</h3>
@@ -231,7 +231,7 @@ export default function PreGeneratedAnswersPage() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                       {answer.board}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-sb-saffron-deep">
                       {answer.hit_count}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
@@ -242,7 +242,7 @@ export default function PreGeneratedAnswersPage() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <button
                         onClick={() => handleDelete(answer.id)}
-                        className="text-red-600 hover:text-red-900"
+                        className="text-sb-rose-ink hover:text-sb-rose-ink"
                       >
                         Delete
                       </button>

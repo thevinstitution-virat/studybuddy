@@ -158,7 +158,7 @@ export default function UploadProgressModal(props: UploadProgressModalProps) {
     return 'Estimating...'
   }, [stage, current, total, etaSec])
 
-  const colorClass = stage === 'error' ? 'bg-red-500' : stage === 'completed' ? 'bg-green-500' : 'bg-blue-600'
+  const colorClass = stage === 'error' ? 'bg-sb-danger' : stage === 'completed' ? 'bg-sb-navy' : 'bg-sb-navy'
 
   const stageLabel = stage === 'uploading' ? 'Uploading' : stage === 'processing' ? 'Processing' : stage === 'indexing' ? 'Indexing' : stage === 'completed' ? 'Completed' : stage === 'error' ? 'Error' : 'Idle'
 
@@ -195,7 +195,7 @@ export default function UploadProgressModal(props: UploadProgressModalProps) {
           <div className="relative h-20 w-20">
             <svg className="h-20 w-20 -rotate-90" viewBox="0 0 100 100">
               <circle cx="50" cy="50" r="45" stroke="#e5e7eb" strokeWidth="10" fill="none" />
-              <circle cx="50" cy="50" r="45" stroke={stage === 'error' ? '#ef4444' : stage === 'completed' ? '#22c55e' : '#3b82f6'} strokeWidth="10" fill="none" strokeDasharray="283" strokeDashoffset={Math.max(0, 283 - (283 * percent) / 100)} style={{ transition: 'stroke-dashoffset 0.4s ease' }} />
+              <circle cx="50" cy="50" r="45" stroke={stage === 'error' ? '#ef4444' : stage === 'completed' ? 'var(--sb-saffron-deep)' : '#3b82f6'} strokeWidth="10" fill="none" strokeDasharray="283" strokeDashoffset={Math.max(0, 283 - (283 * percent) / 100)} style={{ transition: 'stroke-dashoffset 0.4s ease' }} />
             </svg>
             <div className="absolute inset-0 flex items-center justify-center text-lg font-semibold">{percent}%</div>
           </div>
@@ -213,14 +213,14 @@ export default function UploadProgressModal(props: UploadProgressModalProps) {
 
         {/* Success, errors, and status messages */}
         {stage === 'completed' && !error && (
-          <div className="mt-4 p-3 rounded bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300 flex items-center gap-2">
+          <div className="mt-4 p-3 rounded bg-sb-saffron-tint text-sb-saffron-deep   flex items-center gap-2">
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
             <span>Upload completed successfully!</span>
           </div>
         )}
-        {error && <div className="mt-4 p-3 rounded bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300 flex items-center gap-2">
+        {error && <div className="mt-4 p-3 rounded bg-sb-rose text-sb-rose-ink   flex items-center gap-2">
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
           </svg>
@@ -228,7 +228,7 @@ export default function UploadProgressModal(props: UploadProgressModalProps) {
         </div>}
 
         <div className="mt-4">
-          <button className="text-sm text-blue-600 hover:underline" onClick={() => setLogsExpanded(!logsExpanded)}>{logsExpanded ? 'Hide details' : 'Show details'}</button>
+          <button className="text-sm text-sb-sky-ink hover:underline" onClick={() => setLogsExpanded(!logsExpanded)}>{logsExpanded ? 'Hide details' : 'Show details'}</button>
           {logsExpanded && (
             <div className="mt-2 max-h-40 overflow-auto rounded border border-border dark:border-gray-800 p-2 text-xs font-mono text-foreground bg-muted/40 dark:bg-gray-950">
               {logLines.length ? logLines.map((l, i) => <div key={i}>{l}</div>) : <div>No details yet…</div>}
@@ -240,13 +240,13 @@ export default function UploadProgressModal(props: UploadProgressModalProps) {
         <div className="mt-6 flex items-center justify-between">
           <div className="space-x-2">
             {onCancel && stage !== 'completed' && stage !== 'error' && (
-              <button className="px-3 py-2 rounded bg-red-600 text-white hover:bg-red-700" onClick={handleCancel} title="Esc">Cancel Upload</button>
+              <button className="px-3 py-2 rounded bg-sb-danger text-white hover:bg-sb-danger" onClick={handleCancel} title="Esc">Cancel Upload</button>
             )}
             {onRetry && stage === 'error' && (
-              <button className="px-3 py-2 rounded bg-blue-600 text-white hover:bg-blue-700" onClick={handleRetry} title="Enter">Retry</button>
+              <button className="px-3 py-2 rounded bg-sb-navy text-white hover:bg-sb-navy" onClick={handleRetry} title="Enter">Retry</button>
             )}
             {canPause && (
-              <button className="px-3 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-600" onClick={handlePauseResume}>{paused ? 'Resume' : 'Pause'}</button>
+              <button className="px-3 py-2 rounded bg-sb-navy text-white hover:bg-sb-navy" onClick={handlePauseResume}>{paused ? 'Resume' : 'Pause'}</button>
             )}
           </div>
           <button className="px-3 py-2 rounded bg-muted text-foreground" onClick={onClose}>Close</button>

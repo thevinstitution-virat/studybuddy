@@ -15,7 +15,7 @@ export function OverallProgressBar({ percentage }: OverallProgressBarProps) {
       </div>
       <div className="h-4 w-full bg-secondary rounded-full overflow-hidden">
         <div 
-          className="h-full bg-gradient-to-r from-violet-500 to-blue-500 transition-all duration-500 ease-in-out"
+          className="h-full bg-sb-navy   transition-all duration-500 ease-in-out"
           style={{ width: `${boundedPct}%` }}
         />
       </div>

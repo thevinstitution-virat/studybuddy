@@ -1,0 +1,408 @@
+/* ============================================================
+   STUDY BUDDY — paper + saffron theme (Redesign Brief, sections 1, 2, 5).
+
+   Loaded LAST in app/layout.tsx, after buddy-theme.css, so it wins at the token
+   layer. Light-first (warm paper), navy chrome, saffron accent, NO green anywhere.
+   Dark mode is the `.dark` class set by next-themes.
+
+   1. --sb-* tokens (the single source of truth; Tailwind exposes them as `sb-*`).
+   2. shadcn HSL bridge, so bg-background / text-muted-foreground / border-border re-theme.
+   3. Legacy layers re-pointed: Indic pigments, accent layer, --bb-* semantics, and the
+      scoped .dcl / .dcd / .dcs surface sets. Names are kept because many sheets and
+      components still consume them; only the values change.
+   4. Motion keyframes + the highlighter signature.
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* ---- 1. Study Buddy tokens (light) ---- */
+  --sb-paper: #F7F6F2;
+  --sb-surface: #FFFFFF;
+  --sb-surface-2: #F0EFEA;
+  --sb-line: #E7E5DE;
+  --sb-ink: #0A0F24;            /* text */
+  --sb-ink-2: #161C36;          /* hover on navy */
+  --sb-text-2: #3F4459;         /* body copy on paper */
+  --sb-muted: #5C6178;
+  --sb-muted-navy: #9AA0BC;
+  --sb-navy: #0A0F24;           /* chrome + hero-card fill: sidebar, rail, bottom bar */
+  --sb-on-navy: #FFFFFF;
+  --sb-on-navy-muted: #A9AEC6;
+  --sb-saffron: #FF9933;
+  --sb-saffron-deep: #B45309;   /* saffron TEXT/ICON on light backgrounds */
+  --sb-saffron-tint: #FFEBD6;
+  --sb-danger: #D6453D;
+  --sb-danger-tint: #FBE2E2;
+  --sb-danger-ink: #B0302F;
+  /* primary button: navy on light, saffron on dark */
+  --sb-primary: #0A0F24;
+  --sb-primary-fg: #FFFFFF;
+  --sb-primary-hover: #1B2342;
+  /* pastel pairs (bg / ink) */
+  --sb-lav: #E8E5FB;   --sb-lav-ink: #4636B0;
+  --sb-sky: #DDEBFA;   --sb-sky-ink: #1F5CA3;
+  --sb-saf: #FFEBD6;   --sb-saf-ink: #B45309;
+  --sb-butter: #F7EEC4; --sb-butter-ink: #7A5D00;
+  --sb-rose: #FBE2E2;  --sb-rose-ink: #B0302F;
+  --sb-stone: #EDECE6; --sb-stone-ink: #3F4459;
+  /* heatmap ramp */
+  --sb-heat-0: #ECEBE4; --sb-heat-1: #FFE0BF; --sb-heat-2: #FFC27A; --sb-heat-3: #FF9933; --sb-heat-4: #0A0F24;
+  /* phone mock frame + notebook paper (the notebook stays paper in both modes) */
+  --sb-frame: #0A0F24;
+  --sb-notebook: #FFFDF6; --sb-ink-pen: #1F3A8A; --sb-notebook-rule: #1F3A8A1F;
+  /* shape + floating-layer shadows (cards are flat) */
+  --sb-r-card: 24px; --sb-r-hero: 30px; --sb-r-input: 16px; --sb-r-fab: 19px;
+  --sb-float: #FFFFFF;   /* floating layers: speed-dial pills, snackbars on paper */
+  --sb-shadow-fab: 0 16px 30px -14px #0A0F24AA;
+  --sb-shadow-sheet: 0 -20px 40px -20px #0A0F2466;
+  --sb-shadow-snack: 0 18px 40px -16px #0A0F24AA;
+  --sb-shadow-float: 0 20px 40px -24px #0A0F2466;
+  --sb-ease: cubic-bezier(.2, .8, .2, 1);
+  --sb-spring: cubic-bezier(.3, 1.3, .5, 1);
+  /* type */
+  --sb-font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', 'Noto Sans Devanagari', system-ui, sans-serif;
+  --sb-font-ui: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', 'Noto Sans Devanagari', system-ui, sans-serif;
+  --sb-font-hand: 'Kalam', cursive;
+
+  /* ---- 2. shadcn bridge (HSL triplets) ---- */
+  --background: 48 24% 96%;
+  --foreground: 228 57% 9%;
+  --card: 0 0% 100%;
+  --card-foreground: 228 57% 9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 228 57% 9%;
+  --primary: 228 57% 9%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 50 17% 93%;
+  --secondary-foreground: 228 57% 9%;
+  --muted: 50 17% 93%;
+  --muted-foreground: 229 13% 42%;
+  --accent: 31 100% 92%;
+  --accent-foreground: 26 90% 37%;
+  --destructive: 3 65% 54%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 47 16% 89%;
+  --input: 47 16% 89%;
+  --ring: 30 100% 60%;
+  --radius: 16px;
+  --chart-1: 228 57% 9%;
+  --chart-2: 30 100% 60%;
+  --chart-3: 212 68% 38%;
+  --chart-4: 248 53% 45%;
+  --chart-5: 46 100% 24%;
+  --sidebar-background: 228 57% 9%;
+  --sidebar-foreground: 230 30% 96%;
+  --sidebar-primary: 30 100% 60%;
+  --sidebar-primary-foreground: 228 57% 9%;
+  --sidebar-accent: 229 42% 15%;
+  --sidebar-accent-foreground: 230 30% 96%;
+  --sidebar-border: 229 36% 23%;
+  --sidebar-ring: 30 100% 60%;
+
+  /* ---- 3a. --bb-* semantics used by components already migrated to the Buddy layer ---- */
+  --bb-bg: var(--sb-paper); --bb-surface: var(--sb-surface); --bb-surface-2: var(--sb-surface-2);
+  --bb-border: var(--sb-line); --bb-text: var(--sb-ink); --bb-text-muted: var(--sb-muted); --bb-text-faint: var(--sb-muted);
+  --bb-accent: var(--sb-saffron); --bb-accent-soft: var(--sb-saffron-tint); --bb-accent-ink: var(--sb-saffron-deep);
+  --bb-info: var(--sb-sky-ink); --bb-info-soft: var(--sb-sky); --bb-info-ink: var(--sb-sky-ink);
+  /* no green: success is ink + saffron */
+  --bb-success: var(--sb-saffron-deep); --bb-success-soft: var(--sb-saffron-tint); --bb-success-ink: var(--sb-saffron-deep);
+  --bb-warning: var(--sb-butter-ink); --bb-warning-soft: var(--sb-butter); --bb-warning-ink: var(--sb-butter-ink);
+  --bb-danger: var(--sb-danger); --bb-danger-soft: var(--sb-danger-tint); --bb-danger-ink: var(--sb-danger-ink);
+  --bb-hover: var(--sb-surface-2);
+  --bb-on-accent: #0A0F24;
+  /* gradients are retired (brief: no gradients except the highlighter) — flat fills */
+  --bb-grad-primary: linear-gradient(var(--sb-primary), var(--sb-primary));
+  --bb-grad-stage: linear-gradient(var(--sb-navy), var(--sb-navy));
+  --bb-grad-navy: linear-gradient(var(--sb-navy), var(--sb-navy));
+  --bb-grad-cobalt: linear-gradient(var(--sb-sky-ink), var(--sb-sky-ink));
+  --bb-grad-ai-card: linear-gradient(var(--sb-lav-ink), var(--sb-lav-ink));
+  --bb-grad-progress: linear-gradient(var(--sb-saffron), var(--sb-saffron));
+  --bb-glow-stage: radial-gradient(circle, #FF99332E, transparent 70%);
+  --bb-sheen: none;
+  --bb-shadow-glow-blaze: none;
+  --bb-shadow-glow-cobalt: none;
+  --bb-shadow-gloss: none;
+  --bb-focus-ring: 0 0 0 2px var(--sb-paper), 0 0 0 4px var(--sb-saffron);
+  --bb-font-display: var(--sb-font-display);
+  --bb-font-ui: var(--sb-font-ui);
+  --font-display: var(--sb-font-display);
+  --font-body: var(--sb-font-ui);
+  --font-deva: var(--sb-font-ui);
+  --font-vg-primary: var(--sb-font-ui);
+  --font-vg-cultural: var(--sb-font-display);
+  --ic-accent: var(--sb-saffron-deep); --ic-accent-b: var(--sb-sky-ink);
+
+  /* ---- 3b. Indic pigments -> saffron / ink / pastel inks (names kept, values replaced) ---- */
+  --saffron: #FF9933;        --saffron-rgb: 255 153 51;
+  --deep-saffron: #B45309;   --deep-saffron-rgb: 180 83 9;
+  --turmeric: #FF9933;       --turmeric-rgb: 255 153 51;
+  --kumkum: #D6453D;         --kumkum-rgb: 214 69 61;
+  --gold: #FF9933;           --gold-rgb: 255 153 51;
+  --temple-stone: #B45309;   --temple-stone-rgb: 180 83 9;
+  --peacock-teal: #1F5CA3;   --peacock-teal-rgb: 31 92 163;
+  --teal-light: #1F5CA3;     --teal-light-rgb: 31 92 163;
+  --indigo-deep: #0A0F24;    --indigo-deep-rgb: 10 15 36;
+  --indigo-ink: #161C36;     --indigo-ink-rgb: 22 28 54;
+  --lotus-pink: #4636B0;     --lotus-pink-rgb: 70 54 176;
+  --lotus-deep: #4636B0;     --lotus-deep-rgb: 70 54 176;
+  --night-ink: #0A0F24;      --night-ink-rgb: 10 15 36;
+  --navy-deep: #0A0F24;      --navy-deep-rgb: 10 15 36;
+  --slate-night: #131A33;    --slate-night-rgb: 19 26 51;
+  --slate-blue: #1B2342;     --slate-blue-rgb: 27 35 66;
+  --ocean-deep: #161C36;     --ocean-deep-rgb: 22 28 54;
+  --ivory-cream: #F7F6F2;    --ivory-cream-rgb: 247 246 242;
+  --parchment: #FFFFFF;      --parchment-rgb: 255 255 255;
+  --sand-light: #F0EFEA;     --sand-light-rgb: 240 239 234;
+  --clay-soft: #FFC27A;      --clay-soft-rgb: 255 194 122;
+  --clay-mid: #B45309;       --clay-mid-rgb: 180 83 9;
+  --bark: #5C6178;           --bark-rgb: 92 97 120;
+
+  --accent-primary: #FF9933;       --accent-primary-rgb: 255 153 51;
+  --accent-strong: #B45309;        --accent-strong-rgb: 180 83 9;
+  --accent-soft: #FFEBD6;          --accent-soft-rgb: 255 235 214;
+  --accent-contrast: #B45309;      --accent-contrast-rgb: 180 83 9;
+  --accent-primary-dark: #FF9933;  --accent-primary-dark-rgb: 255 153 51;
+
+  /* ---- 3c. scoped sheets (.dcl landing, .dcd dashboards, .dcs student) ---- */
+}
+
+.dcl, .dcd, .dcs, .sb {
+  --bg: #F7F6F2;
+  --bg-2: #F0EFEA;
+  --panel: #FFFFFF;
+  --panel-2: #F0EFEA;
+  --sidebar: #0A0F24;
+  --ink: #0A0F24;
+  --muted: #5C6178;
+  --line: #E7E5DE;
+  --line-soft: #EFEDE6;
+  --accent-text: #B45309;
+  --chip-bg: #FFEBD6;
+  --nav-bg: rgb(247 246 242 / 0.9);
+  --track: #ECEBE4;
+  --field: #FFFFFF;
+  --card-shadow: none;
+  --shadow: 0 20px 40px -24px #0A0F2466;
+  --shadow-sm: 0 18px 40px -16px #0A0F24AA;
+  --emerald: #FF9933;
+  --radius: 24px;
+}
+
+/* ---- dark mode ---- */
+.dark {
+  color-scheme: dark;
+
+  --sb-paper: #0A0F24;
+  --sb-surface: #131A33;
+  --sb-surface-2: #1B2342;
+  --sb-line: #262E50;
+  --sb-ink: #F2F3F8;
+  --sb-ink-2: #1B2342;
+  --sb-text-2: #C9CCDD;
+  --sb-muted: #A9AEC6;
+  --sb-navy: #161D3A;            /* hero cards need to read against the navy page */
+  --sb-saffron-deep: #FFB366;    /* saffron text on dark */
+  --sb-saffron-tint: #2A2216;
+  --sb-danger: #E5675F;
+  --sb-danger-tint: #3A1B1F;
+  --sb-danger-ink: #FF9A94;
+  --sb-primary: #FF9933;
+  --sb-primary-fg: #0A0F24;
+  --sb-primary-hover: #FFA94D;
+  /* pastels: 14% alpha of the (lightened) ink */
+  --sb-lav: #A89BF024;   --sb-lav-ink: #B9AEF5;
+  --sb-sky: #7FB0E824;   --sb-sky-ink: #8FBDEE;
+  --sb-saf: #FFB36624;   --sb-saf-ink: #FFB366;
+  --sb-butter: #E6C75A24; --sb-butter-ink: #E8CD6C;
+  --sb-rose: #E5675F24;  --sb-rose-ink: #FF9A94;
+  --sb-stone: #A9AEC61F; --sb-stone-ink: #C9CCDD;
+  --sb-heat-0: #1B2342; --sb-heat-1: #4A3A24; --sb-heat-2: #8F5F24; --sb-heat-3: #FF9933; --sb-heat-4: #F2F3F8;
+  --sb-frame: #2A3358;
+  --sb-float: #232C52;
+  --sb-shadow-fab: 0 16px 30px -14px #000000CC;
+  --sb-shadow-sheet: 0 -20px 40px -20px #000000AA;
+  --sb-shadow-snack: 0 18px 40px -16px #000000CC;
+  --sb-shadow-float: 0 20px 40px -24px #000000CC;
+
+  --background: 228 57% 9%;
+  --foreground: 230 30% 96%;
+  --card: 227 46% 14%;
+  --card-foreground: 230 30% 96%;
+  --popover: 227 46% 14%;
+  --popover-foreground: 230 30% 96%;
+  --primary: 30 100% 60%;
+  --primary-foreground: 228 57% 9%;
+  --secondary: 228 42% 18%;
+  --secondary-foreground: 230 30% 96%;
+  --muted: 228 42% 18%;
+  --muted-foreground: 230 20% 72%;
+  --accent: 36 31% 13%;
+  --accent-foreground: 30 100% 70%;
+  --destructive: 4 72% 64%;
+  --border: 229 36% 23%;
+  --input: 229 36% 23%;
+  --ring: 30 100% 60%;
+  --chart-1: 230 30% 96%;
+  --chart-2: 30 100% 60%;
+  --chart-3: 212 70% 70%;
+  --chart-4: 249 74% 77%;
+  --chart-5: 47 74% 63%;
+
+  --bb-on-accent: #0A0F24;
+  --bb-focus-ring: 0 0 0 2px var(--sb-paper), 0 0 0 4px var(--sb-saffron);
+  --ic-accent: #FFB366; --ic-accent-b: #8FBDEE;
+
+  --slate-night: #131A33; --slate-blue: #1B2342; --night-ink: #0A0F24;
+  --ivory-cream: #F2F3F8; --ivory-cream-rgb: 242 243 248;
+  --parchment: #131A33; --parchment-rgb: 19 26 51;
+  --sand-light: #1B2342; --sand-light-rgb: 27 35 66;
+  --accent-strong: #FFB366; --accent-strong-rgb: 255 179 102;
+  --accent-contrast: #FFB366; --accent-contrast-rgb: 255 179 102;
+  --peacock-teal: #8FBDEE; --peacock-teal-rgb: 143 189 238;
+  --lotus-pink: #B9AEF5; --lotus-pink-rgb: 185 174 245;
+  --kumkum: #E5675F; --kumkum-rgb: 229 103 95;
+}
+
+.dark .dcl, .dark .dcd, .dark .dcs, .dark .sb {
+  --bg: #0A0F24;
+  --bg-2: #0C1330;
+  --panel: #131A33;
+  --panel-2: #1B2342;
+  --sidebar: #0A0F24;
+  --ink: #F2F3F8;
+  --muted: #A9AEC6;
+  --line: #262E50;
+  --line-soft: #1B2342;
+  --accent-text: #FFB366;
+  --chip-bg: #2A2216;
+  --nav-bg: rgb(10 15 36 / 0.85);
+  --track: #1B2342;
+  --field: #0E1530;
+  --shadow: 0 20px 40px -24px #000000CC;
+  --shadow-sm: 0 18px 40px -16px #000000CC;
+  --emerald: #FF9933;
+}
+
+/* ---- base ---- */
+html { scroll-behavior: smooth; }
+body {
+  background: var(--sb-paper);
+  color: var(--sb-ink);
+  font-family: var(--sb-font-ui);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+h1, h2, h3, h4 { font-family: var(--sb-font-display); letter-spacing: -0.02em; }
+:focus-visible { outline: 2px solid var(--sb-saffron); outline-offset: 2px; }
+
+/* Primary action = navy (saffron in dark). Accent-on-navy = saffron. */
+.dcl .btn-primary, .dcd .btn-primary, .dcs .btn-primary, .btn-primary {
+  background: var(--sb-primary);
+  color: var(--sb-primary-fg);
+  box-shadow: none;
+  border-radius: 16px;
+  font-weight: 800;
+}
+.dcl .btn-primary:hover, .dcd .btn-primary:hover, .dcs .btn-primary:hover:not(:disabled), .btn-primary:hover:not(:disabled) {
+  background: var(--sb-primary-hover);
+  box-shadow: none;
+}
+.dcl .grad, .dcd .grad { background-image: none; color: var(--sb-saffron-deep); -webkit-text-fill-color: currentColor; }
+
+/* Indic ornaments are retired (brief section 1): no spinning plinths, no cultural glow. */
+.mandala-spin, .vg-cultural-glow { display: none !important; }
+.plinth { box-shadow: none !important; }
+.dcd ::-webkit-scrollbar-thumb { background: rgb(92 97 120 / .4); }
+
+/* ---- 4. motion (shared by landing + app) ---- */
+@keyframes sbHi    { from { background-size: 0% 38%; } to { background-size: 100% 38%; } }
+@keyframes sbIn    { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes sbPop   { 0% { opacity: 0; transform: scale(.7); } 70% { opacity: 1; transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes sbSpin  { to { transform: rotate(360deg); } }
+@keyframes sbFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes sbDot   { 0%, 80%, 100% { transform: translateY(0); opacity: .35; } 40% { transform: translateY(-4px); opacity: 1; } }
+@keyframes sbScan  { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+@keyframes sbStamp { 0% { opacity: 0; transform: scale(1.6) rotate(-18deg); } 60% { opacity: 1; transform: scale(.94) rotate(-8deg); } 100% { opacity: 1; transform: scale(1) rotate(-10deg); } }
+@keyframes sbMarq  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes sbShimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@keyframes sbShake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+@keyframes sbWiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-14deg); } 75% { transform: rotate(10deg); } }
+
+/* Signature motif: the highlighter. A saffron marker stroke behind the key word. */
+.sb-hi {
+  white-space: nowrap;
+  background: linear-gradient(var(--sb-saffron), var(--sb-saffron)) no-repeat 0 88%;
+  background-size: 100% 38%;
+  animation: sbHi .9s .35s cubic-bezier(.6, 0, .2, 1) both;
+  padding: 0 6px; margin: 0 -2px;
+}
+.sb-hi-2 { animation-delay: 1.05s; }
+/* On night paper a solid saffron stripe would sit under white text (2:1), so it softens. */
+.dark .sb-hi { background-image: linear-gradient(#FF993385, #FF993385); }
+
+.sb-skeleton {
+  background: linear-gradient(90deg, var(--sb-surface-2) 25%, var(--sb-line) 50%, var(--sb-surface-2) 75%);
+  background-size: 200% 100%;
+  animation: sbShimmer 1.6s linear infinite;
+  border-radius: 16px;
+}
+
+.sb-snap-x { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; }
+.sb-snap-x::-webkit-scrollbar { display: none; }
+.sb-snap-x > * { scroll-snap-align: start; flex: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* ---- legacy utilities: flatten the gradient / glass / lift helpers that older pages still use ---- */
+:root, .dark { --dc-grad: linear-gradient(var(--sb-primary), var(--sb-primary)); --dc-grad-br: linear-gradient(var(--sb-primary), var(--sb-primary)); --dc-grad-cool: linear-gradient(var(--sb-navy), var(--sb-navy)); --dc-grad-warm: linear-gradient(var(--sb-saffron), var(--sb-saffron)); }
+/* primary CTAs written as bg-[image:var(--bb-grad-primary)] + text-white: saffron in night mode needs navy text */
+.dark [class*='--bb-grad-primary'], .dark [class*='--dc-grad'] { color: #0A0F24 !important; }
+.dc-gradient-text, .dc-gradient-text-cool, .dc-gradient-text-warm {
+  background: none !important; background-image: none !important; -webkit-text-fill-color: currentColor !important; color: var(--sb-saffron-deep) !important;
+}
+.dc-glass-card { background: var(--sb-surface) !important; backdrop-filter: none !important; border: 1px solid var(--sb-line) !important; box-shadow: none !important; }
+.dc-gradient-border::before { display: none !important; }
+.dc-gradient-border { border: 1px solid var(--sb-line) !important; background: var(--sb-surface) !important; }
+.dc-hover-lift:hover { transform: none !important; box-shadow: none !important; }
+
+/* scoped dashboard / student sheets: flat cards, 16px buttons, saffron chips, navy active pills */
+.dcd .card, .dcs .card { box-shadow: none; border-radius: 24px; border-color: var(--sb-line); }
+.dcd .card.lift:hover, .dcs .card.lift:hover { transform: none; box-shadow: none; border-color: var(--sb-ink); }
+.dcd .btn, .dcs .btn { border-radius: 16px; font-weight: 800; min-height: 44px; }
+.dcd .btn-primary, .dcs .btn-primary { transform: none !important; }
+.dcd .btn-ghost, .dcs .btn-ghost { border: 1.5px solid var(--sb-ink); color: var(--sb-ink); background: transparent; }
+.dcd .btn-ghost:hover, .dcs .btn-ghost:hover { background: color-mix(in srgb, var(--sb-ink) 6%, transparent); color: var(--sb-ink); border-color: var(--sb-ink); }
+.dcd .pill.on, .dcs .pill.on { background: var(--sb-navy); color: #fff; border-color: transparent; box-shadow: none; }
+.dcd .pill, .dcs .pill { border-radius: 999px; font-weight: 700; }
+.dcd .pill:hover, .dcs .pill:hover { border-color: var(--sb-ink); color: var(--sb-ink); }
+.dcd .eyebrow, .dcs .eyebrow { background: var(--sb-saffron-tint); color: var(--sb-saffron-deep); border: none; }
+.dcd .iconbtn, .dcs .iconbtn { border-radius: 999px; border: none; background: transparent; }
+.dcd .iconbtn:hover, .dcs .iconbtn:hover { background: color-mix(in srgb, var(--sb-ink) 6%, transparent); color: var(--sb-ink); }
+.dcd a, .dcs a { color: var(--sb-saffron-deep); }
+.dcd a:hover, .dcs a:hover { color: var(--sb-ink); }
+.dcd .tag, .dcs .tag { font-weight: 800; }
+/* tables go sticky-header on desktop; on phones the table scrolls inside its card */
+.dcd table th, .dcs table th { position: sticky; top: 0; background: var(--sb-surface); }
+@media (max-width: 639px) { .dcd main table, .dcs main table { display: block; overflow-x: auto; } }
+/* inputs everywhere: 16px, 1.5px line, saffron focus */
+.dcd input:not([type='checkbox']):not([type='radio']), .dcd select, .dcd textarea,
+.dcs input:not([type='checkbox']):not([type='radio']), .dcs select, .dcs textarea { border-radius: 16px; border-width: 1.5px; }
+.dcd input:focus-visible, .dcd select:focus-visible, .dcd textarea:focus-visible,
+.dcs input:focus-visible, .dcs select:focus-visible, .dcs textarea:focus-visible { outline: 2px solid var(--sb-saffron); outline-offset: 2px; }
+
+/* ---- night-mode safety net: pages written before dark mode hard-code light utilities ---- */
+.dark .bg-white, .dark .bg-white\/95, .dark .bg-white\/90, .dark .bg-white\/80, .dark .bg-white\/70, .dark .bg-white\/60 { background-color: hsl(var(--card)); }
+.dark .bg-gray-50, .dark .bg-gray-100, .dark .bg-slate-50, .dark .bg-slate-100, .dark .bg-zinc-50, .dark .bg-zinc-100, .dark .bg-neutral-50, .dark .bg-neutral-100 { background-color: hsl(var(--secondary)); }
+.dark .text-gray-900, .dark .text-gray-800, .dark .text-slate-900, .dark .text-slate-800, .dark .text-zinc-900, .dark .text-neutral-900 { color: hsl(var(--foreground)); }
+.dark .text-gray-700, .dark .text-gray-600, .dark .text-gray-500, .dark .text-slate-700, .dark .text-slate-600, .dark .text-slate-500 { color: hsl(var(--muted-foreground)); }
+.dark .border-gray-100, .dark .border-gray-200, .dark .border-gray-300, .dark .border-slate-200, .dark .border-slate-300 { border-color: hsl(var(--border)); }
+.dark .divide-gray-100 > * + *, .dark .divide-gray-200 > * + * { border-color: hsl(var(--border)); }
+.dark .shadow-lg, .dark .shadow-xl, .dark .shadow-2xl { --tw-shadow-color: #000; }
+
+/* .chip (filter pills in the student sheets): navy when on, saffron-tint hover */
+.dcs .chip, .dcd .chip { border-radius: 999px; font-weight: 700; border: 1.5px solid var(--sb-line); background: var(--sb-surface); color: var(--sb-ink); }
+.dcs .chip.on, .dcd .chip.on { background: var(--sb-navy); color: #fff; border-color: transparent; box-shadow: none; }
+.dcs .chip:hover:not(.on), .dcd .chip:hover:not(.on) { border-color: var(--sb-ink); color: var(--sb-ink); }

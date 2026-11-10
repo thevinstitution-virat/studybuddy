@@ -198,10 +198,10 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
           <motion.div variants={fadeVariants} initial="hidden" animate="visible" exit="exit" className="space-y-6">
             <div className="text-center mb-8">
               <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-orange-500 to-blue-600 text-white rounded-2xl shadow-lg">
+                className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-sb-navy   text-white rounded-2xl shadow-lg">
                 <Sparkles className="h-8 w-8" />
               </motion.div>
-              <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-blue-600">Welcome to Study Buddy!</h3>
+              <h3 className="text-3xl font-bold   text-sb-saffron-deep  ">Welcome to Study Buddy!</h3>
               <p className="text-muted-foreground mt-2 text-lg">Let&apos;s start by getting to know you.</p>
             </div>
             <div className="space-y-5 max-w-sm mx-auto">
@@ -209,7 +209,7 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
                 <label htmlFor="firstName" className="text-sm font-semibold text-foreground tracking-tight">First Name</label>
                 <input type="text" id="firstName" value={formData.firstName} onChange={(e) => updateFormData({ firstName: e.target.value })}
                   className={cn('flex h-12 w-full rounded-xl border bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 transition-all',
-                    errors.firstName ? 'border-destructive focus-visible:ring-destructive/20' : 'border-input hover:border-orange-400/50 focus-visible:ring-orange-500/30 focus-visible:border-orange-500')}
+                    errors.firstName ? 'border-destructive focus-visible:ring-destructive/20' : 'border-input hover:border-sb-saffron focus-visible:ring-sb-saffron focus-visible:border-sb-saffron')}
                   placeholder="e.g., John" />
                 {errors.firstName && <p className="text-xs font-medium text-destructive">{errors.firstName}</p>}
               </div>
@@ -217,7 +217,7 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
                 <label htmlFor="lastName" className="text-sm font-semibold text-foreground tracking-tight">Last Name</label>
                 <input type="text" id="lastName" value={formData.lastName} onChange={(e) => updateFormData({ lastName: e.target.value })}
                   className={cn('flex h-12 w-full rounded-xl border bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 transition-all',
-                    errors.lastName ? 'border-destructive focus-visible:ring-destructive/20' : 'border-input hover:border-blue-400/50 focus-visible:ring-blue-500/30 focus-visible:border-blue-500')}
+                    errors.lastName ? 'border-destructive focus-visible:ring-destructive/20' : 'border-input hover:border-sb-sky focus-visible:ring-sb-sky focus-visible:border-sb-sky')}
                   placeholder="e.g., Doe" />
                 {errors.lastName && <p className="text-xs font-medium text-destructive">{errors.lastName}</p>}
               </div>
@@ -230,23 +230,23 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
         return (
           <motion.div variants={fadeVariants} initial="hidden" animate="visible" exit="exit" className="space-y-6">
             <div className="text-center mb-8">
-              <div className="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg"><User className="h-7 w-7 text-white" /></div>
-              <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">Choose Your Role</h3>
+              <div className="w-14 h-14 mx-auto mb-4 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg"><User className="h-7 w-7 text-white" /></div>
+              <h3 className="text-2xl font-bold   text-sb-saffron-deep  ">Choose Your Role</h3>
               <p className="text-muted-foreground mt-2">Let&apos;s personalize your learning experience</p>
             </div>
             <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {roles.map((role) => (
                 <motion.div key={role.value} variants={itemVariants} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <div className={cn('relative cursor-pointer transition-all duration-300 rounded-2xl border-2 p-5 h-full',
-                    formData.role === role.value ? 'border-purple-500 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 shadow-lg shadow-purple-500/10' : 'border-border/50 hover:border-purple-300/50 hover:bg-muted/50 dark:hover:bg-muted/20')}
+                    formData.role === role.value ? 'border-sb-lav bg-sb-surface-2     shadow-lg ' : 'border-border/50 hover:border-sb-lav hover:bg-muted/50 dark:hover:bg-muted/20')}
                     onClick={() => updateFormData({ role: role.value })}>
                     <div className="flex items-start gap-4">
-                      <div className={cn('p-3 rounded-xl shadow-sm', formData.role === role.value ? 'bg-gradient-to-br from-purple-500 to-indigo-600 text-white' : 'bg-muted text-muted-foreground')}><role.icon className="h-6 w-6" /></div>
+                      <div className={cn('p-3 rounded-xl shadow-sm', formData.role === role.value ? 'bg-sb-navy   text-white' : 'bg-muted text-muted-foreground')}><role.icon className="h-6 w-6" /></div>
                       <div>
-                        <h4 className={cn('font-semibold text-lg', formData.role === role.value ? 'text-purple-600 dark:text-purple-400' : 'text-foreground')}>{role.label}</h4>
+                        <h4 className={cn('font-semibold text-lg', formData.role === role.value ? 'text-sb-lav-ink ' : 'text-foreground')}>{role.label}</h4>
                         <p className="text-sm text-muted-foreground mt-1 leading-snug">{role.description}</p>
                       </div>
-                      {formData.role === role.value && <motion.div initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="absolute top-4 right-4 text-purple-500"><CheckCircle2 className="h-6 w-6 fill-purple-500/20" /></motion.div>}
+                      {formData.role === role.value && <motion.div initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="absolute top-4 right-4 text-sb-lav-ink"><CheckCircle2 className="h-6 w-6 fill-sb-lav-ink" /></motion.div>}
                     </div>
                   </div>
                 </motion.div>
@@ -261,23 +261,23 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
         return (
           <motion.div variants={fadeVariants} initial="hidden" animate="visible" exit="exit" className="space-y-6">
             <div className="text-center mb-6">
-              <div className="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg"><Building2 className="h-7 w-7 text-white" /></div>
-              <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Your Institution</h3>
+              <div className="w-14 h-14 mx-auto mb-4 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg"><Building2 className="h-7 w-7 text-white" /></div>
+              <h3 className="text-2xl font-bold   text-sb-saffron-deep  ">Your Institution</h3>
               <p className="text-muted-foreground mt-2">Join your school/college, or continue on your own</p>
             </div>
 
             {/* Independent option */}
             <div
-              className={cn('cursor-pointer rounded-2xl border-2 p-4 transition-all', formData.institutionId === null ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20 shadow-lg shadow-orange-500/10' : 'border-border/50 hover:border-orange-300/50 hover:bg-muted/40')}
+              className={cn('cursor-pointer rounded-2xl border-2 p-4 transition-all', formData.institutionId === null ? 'border-sb-saffron bg-sb-saffron-tint  shadow-lg ' : 'border-border/50 hover:border-sb-saffron hover:bg-muted/40')}
               onClick={() => updateFormData({ institutionId: null })}
             >
               <div className="flex items-center gap-3">
-                <div className={cn('flex h-10 w-10 items-center justify-center rounded-xl', formData.institutionId === null ? 'bg-gradient-to-br from-orange-500 to-red-500 text-white' : 'bg-muted text-muted-foreground')}><User className="h-5 w-5" /></div>
+                <div className={cn('flex h-10 w-10 items-center justify-center rounded-xl', formData.institutionId === null ? 'bg-sb-navy   text-white' : 'bg-muted text-muted-foreground')}><User className="h-5 w-5" /></div>
                 <div className="flex-1">
                   <p className="font-semibold text-foreground">Independent learner</p>
                   <p className="text-sm text-muted-foreground">Use Study Buddy directly (B2C). You can join an institution later.</p>
                 </div>
-                {formData.institutionId === null && <CheckCircle2 className="h-5 w-5 text-orange-500 fill-orange-500/20" />}
+                {formData.institutionId === null && <CheckCircle2 className="h-5 w-5 text-sb-saffron-deep fill-sb-saffron-deep" />}
               </div>
             </div>
 
@@ -294,13 +294,13 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
                   <p className="px-2 py-3 text-center text-sm text-muted-foreground">No matches for “{instSearch}”.</p>
                 ) : filteredInstitutions.map((inst) => (
                   <button key={inst.id} type="button" onClick={() => updateFormData({ institutionId: inst.id })}
-                    className={cn('flex w-full items-center gap-3 rounded-xl border p-3 text-left transition-colors', formData.institutionId === inst.id ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-border/50 hover:bg-muted/50')}>
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 text-white"><Building2 className="h-4 w-4" /></div>
+                    className={cn('flex w-full items-center gap-3 rounded-xl border p-3 text-left transition-colors', formData.institutionId === inst.id ? 'border-sb-sky bg-sb-sky ' : 'border-border/50 hover:bg-muted/50')}>
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-sb-navy   text-white"><Building2 className="h-4 w-4" /></div>
                     <div className="min-w-0 flex-1">
                       <p className="truncate font-medium text-foreground">{inst.name}</p>
                       {inst.type && <p className="text-xs capitalize text-muted-foreground">{String(inst.type).replace('_', ' ')}</p>}
                     </div>
-                    {formData.institutionId === inst.id && <CheckCircle2 className="h-5 w-5 text-blue-500 fill-blue-500/20" />}
+                    {formData.institutionId === inst.id && <CheckCircle2 className="h-5 w-5 text-sb-sky-ink fill-sb-sky-ink" />}
                   </button>
                 ))}
               </div>
@@ -317,22 +317,22 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
         return (
           <motion.div variants={fadeVariants} initial="hidden" animate="visible" exit="exit" className="space-y-6">
             <div className="text-center mb-8">
-              <div className="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg"><Globe2 className="h-7 w-7 text-white" /></div>
-              <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-emerald-600">Choose Your Education Board</h3>
+              <div className="w-14 h-14 mx-auto mb-4 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg"><Globe2 className="h-7 w-7 text-white" /></div>
+              <h3 className="text-2xl font-bold   text-sb-saffron-deep  ">Choose Your Education Board</h3>
               <p className="text-muted-foreground mt-2">This helps us provide curriculum-specific content</p>
             </div>
             <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="space-y-3 max-w-md mx-auto">
               {boards.map((board) => (
                 <motion.div key={board.value} variants={itemVariants} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <div className={cn('relative cursor-pointer transition-all duration-300 rounded-xl border-2 p-5',
-                    formData.board === board.value ? 'border-green-500 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 shadow-lg shadow-green-500/10' : 'border-border/50 hover:border-green-300/50 hover:bg-muted/50 dark:hover:bg-muted/20')}
+                    formData.board === board.value ? 'border-sb-saffron bg-sb-surface-2     shadow-lg ' : 'border-border/50 hover:border-sb-saffron hover:bg-muted/50 dark:hover:bg-muted/20')}
                     onClick={() => updateFormData({ board: board.value })}>
                     <div className="flex items-center justify-between">
                       <div>
-                        <h4 className={cn('font-semibold text-lg', formData.board === board.value ? 'text-green-600 dark:text-green-400' : 'text-foreground')}>{board.label}</h4>
+                        <h4 className={cn('font-semibold text-lg', formData.board === board.value ? 'text-sb-saffron-deep ' : 'text-foreground')}>{board.label}</h4>
                         <p className="text-sm text-muted-foreground mt-1">{board.description}</p>
                       </div>
-                      {formData.board === board.value && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-green-500"><CheckCircle2 className="h-6 w-6 fill-green-500/20" /></motion.div>}
+                      {formData.board === board.value && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-sb-saffron-deep"><CheckCircle2 className="h-6 w-6 fill-sb-saffron-deep" /></motion.div>}
                     </div>
                   </div>
                 </motion.div>
@@ -347,18 +347,18 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
         return (
           <motion.div variants={fadeVariants} initial="hidden" animate="visible" exit="exit" className="space-y-6">
             <div className="text-center mb-8">
-              <div className="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center shadow-lg"><BookOpen className="h-7 w-7 text-white" /></div>
-              <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-600">Select Language Medium</h3>
+              <div className="w-14 h-14 mx-auto mb-4 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg"><BookOpen className="h-7 w-7 text-white" /></div>
+              <h3 className="text-2xl font-bold   text-sb-saffron-deep  ">Select Language Medium</h3>
               <p className="text-muted-foreground mt-2">Choose your preferred language for study materials</p>
             </div>
             <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto">
               {mediums.map((medium) => (
                 <motion.div key={medium.value} variants={itemVariants} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                   <div className={cn('relative cursor-pointer transition-all duration-300 rounded-2xl border-2 p-6 text-center h-full flex flex-col items-center justify-center',
-                    formData.medium === medium.value ? 'border-blue-500 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 shadow-lg shadow-blue-500/10' : 'border-border/50 hover:border-blue-300/50 hover:bg-muted/50 dark:hover:bg-muted/20')}
+                    formData.medium === medium.value ? 'border-sb-sky bg-sb-surface-2     shadow-lg ' : 'border-border/50 hover:border-sb-sky hover:bg-muted/50 dark:hover:bg-muted/20')}
                     onClick={() => updateFormData({ medium: medium.value })}>
-                    <div className="mb-2 w-full flex justify-end absolute top-3 right-3 h-6">{formData.medium === medium.value && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-blue-500"><CheckCircle2 className="h-5 w-5 fill-blue-500/20" /></motion.div>}</div>
-                    <h4 className={cn('font-semibold text-xl', formData.medium === medium.value ? 'text-blue-600 dark:text-blue-400' : 'text-foreground')}>{medium.label}</h4>
+                    <div className="mb-2 w-full flex justify-end absolute top-3 right-3 h-6">{formData.medium === medium.value && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-sb-sky-ink"><CheckCircle2 className="h-5 w-5 fill-sb-sky-ink" /></motion.div>}</div>
+                    <h4 className={cn('font-semibold text-xl', formData.medium === medium.value ? 'text-sb-sky-ink ' : 'text-foreground')}>{medium.label}</h4>
                     <p className="text-sm text-muted-foreground mt-2">{medium.description}</p>
                   </div>
                 </motion.div>
@@ -373,19 +373,19 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
         return (
           <motion.div variants={fadeVariants} initial="hidden" animate="visible" exit="exit" className="space-y-6">
             <div className="text-center mb-8">
-              <div className="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg"><GraduationCap className="h-7 w-7 text-white" /></div>
-              <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-red-600">Select Your Class</h3>
+              <div className="w-14 h-14 mx-auto mb-4 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg"><GraduationCap className="h-7 w-7 text-white" /></div>
+              <h3 className="text-2xl font-bold   text-sb-saffron-deep  ">Select Your Class</h3>
               <p className="text-muted-foreground mt-2">This helps us provide grade-appropriate content</p>
             </div>
             <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-3 sm:grid-cols-4 gap-3">
               {classNumbers.map((classNum) => (
                 <motion.div key={classNum} variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <div className={cn('relative cursor-pointer transition-all duration-200 rounded-xl border-2 py-4 px-2 text-center h-full flex flex-col justify-center',
-                    formData.class === classNum ? 'border-orange-500 bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 shadow-lg shadow-orange-500/10' : 'border-border/50 hover:border-orange-300/50 hover:bg-muted')}
+                    formData.class === classNum ? 'border-sb-saffron bg-sb-surface-2     shadow-lg ' : 'border-border/50 hover:border-sb-saffron hover:bg-muted')}
                     onClick={() => updateFormData({ class: classNum, stream: undefined })}>
-                    <div className={cn('text-xl font-bold tracking-tight', formData.class === classNum ? 'text-orange-600 dark:text-orange-400' : 'text-foreground')}>{classNum}</div>
-                    {classNum >= 11 && <div className="text-[10px] uppercase font-bold text-orange-500/70 mt-1 tracking-wider">Stream</div>}
-                    {formData.class === classNum && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute -top-2 -right-2 bg-background rounded-full"><CheckCircle2 className="h-5 w-5 text-orange-500 fill-orange-500/20" /></motion.div>}
+                    <div className={cn('text-xl font-bold tracking-tight', formData.class === classNum ? 'text-sb-saffron-deep ' : 'text-foreground')}>{classNum}</div>
+                    {classNum >= 11 && <div className="text-[10px] uppercase font-bold text-sb-saffron-deep mt-1 tracking-wider">Stream</div>}
+                    {formData.class === classNum && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute -top-2 -right-2 bg-background rounded-full"><CheckCircle2 className="h-5 w-5 text-sb-saffron-deep fill-sb-saffron-deep" /></motion.div>}
                   </div>
                 </motion.div>
               ))}
@@ -399,25 +399,25 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
         return (
           <motion.div variants={fadeVariants} initial="hidden" animate="visible" exit="exit" className="space-y-6">
             <div className="text-center mb-8">
-              <div className="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center shadow-lg"><Sparkles className="h-7 w-7 text-white" /></div>
-              <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-rose-600">Choose Your Stream</h3>
+              <div className="w-14 h-14 mx-auto mb-4 bg-sb-navy   rounded-2xl flex items-center justify-center shadow-lg"><Sparkles className="h-7 w-7 text-white" /></div>
+              <h3 className="text-2xl font-bold   text-sb-saffron-deep  ">Choose Your Stream</h3>
               <p className="text-muted-foreground mt-2">Select your specialization for Class {formData.class}</p>
             </div>
             <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {streams.map((stream) => (
                 <motion.div key={stream.value} variants={itemVariants} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <div className={cn('relative cursor-pointer transition-all duration-300 rounded-2xl border-2 p-5 h-full',
-                    formData.stream === stream.value ? 'border-pink-500 bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-900/20 dark:to-rose-900/20 shadow-lg shadow-pink-500/10' : 'border-border/50 hover:border-pink-300/50 hover:bg-muted/50 dark:hover:bg-muted/20')}
+                    formData.stream === stream.value ? 'border-sb-rose bg-sb-surface-2     shadow-lg ' : 'border-border/50 hover:border-sb-rose hover:bg-muted/50 dark:hover:bg-muted/20')}
                     onClick={() => updateFormData({ stream: stream.value, subjects: stream.subjects })}>
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <h4 className={cn('font-semibold text-lg', formData.stream === stream.value ? 'text-pink-600 dark:text-pink-400' : 'text-foreground')}>{stream.label}</h4>
+                        <h4 className={cn('font-semibold text-lg', formData.stream === stream.value ? 'text-sb-rose-ink ' : 'text-foreground')}>{stream.label}</h4>
                         <p className="text-sm text-muted-foreground mt-1 mb-3">{stream.description}</p>
                         <div className="flex flex-wrap gap-1.5 mt-auto">
                           {stream.subjects.map((subject) => <span key={subject} className="inline-flex items-center rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground">{subject}</span>)}
                         </div>
                       </div>
-                      {formData.stream === stream.value && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-pink-500 ml-2"><CheckCircle2 className="h-6 w-6 fill-pink-500/20" /></motion.div>}
+                      {formData.stream === stream.value && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-sb-rose-ink ml-2"><CheckCircle2 className="h-6 w-6 fill-sb-rose-ink" /></motion.div>}
                     </div>
                   </div>
                 </motion.div>
@@ -432,7 +432,7 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
         return (
           <motion.div variants={fadeVariants} initial="hidden" animate="visible" exit="exit" className="space-y-6">
             <div className="text-center mb-2">
-              <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-blue-600">{studiesQuestion}</h3>
+              <h3 className="text-2xl font-bold   text-sb-saffron-deep  ">{studiesQuestion}</h3>
               <p className="text-muted-foreground mt-2">
                 A board&apos;s class, a degree, an exam you are preparing for. We match your materials, tutor and practice to it.
               </p>
@@ -459,22 +459,22 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
         onEscapeKeyDown={(e) => { if (!onSkip) e.preventDefault() }}
       >
         <DialogTitle className="sr-only">Complete your profile</DialogTitle>
-        <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-br from-orange-500/15 via-blue-500/10 to-transparent pointer-events-none" />
-        <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-orange-500/20 to-blue-500/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-gradient-to-tr from-blue-500/15 to-purple-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 inset-x-0 h-40 bg-sb-surface-2   to-transparent pointer-events-none" />
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-sb-surface-2   rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-sb-surface-2   rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative flex flex-col h-full max-h-[90vh]">
           {/* Header */}
           <div className="px-8 pt-8 pb-4">
             <div className="flex items-center justify-between mb-6">
               <span className="text-sm font-semibold tracking-wider uppercase text-muted-foreground/80 flex items-center gap-2">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-blue-600 text-white text-xs font-bold">{currentStep}</span>
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sb-navy   text-white text-xs font-bold">{currentStep}</span>
                 Step {currentStep} of {totalSteps}
               </span>
-              <span className="text-sm font-medium text-white bg-gradient-to-r from-orange-500 to-blue-600 px-3 py-1 rounded-full shadow-sm">{Math.round(progress)}% Complete</span>
+              <span className="text-sm font-medium text-white bg-sb-navy   px-3 py-1 rounded-full shadow-sm">{Math.round(progress)}% Complete</span>
             </div>
-            <Progress value={progress} className="h-1.5 w-full bg-gradient-to-r from-orange-100 to-blue-100 dark:from-orange-900/30 dark:to-blue-900/30"
-              indicatorClassName="bg-gradient-to-r from-orange-500 to-blue-600 shadow-[0_0_12px_rgba(249,115,22,0.4)]" />
+            <Progress value={progress} className="h-1.5 w-full bg-sb-surface-2    "
+              indicatorClassName="bg-sb-navy   shadow-[0_0_12px_rgba(249,115,22,0.4)]" />
           </div>
 
           {/* Content */}
@@ -487,7 +487,7 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
           </div>
 
           {/* Footer */}
-          <div className="px-8 py-6 bg-gradient-to-r from-orange-50/50 to-blue-50/50 dark:from-gray-800/50 dark:to-gray-900/50 border-t border-border/50 mt-auto backdrop-blur-md">
+          <div className="px-8 py-6 bg-sb-surface-2   dark:from-gray-800/50 dark:to-gray-900/50 border-t border-border/50 mt-auto backdrop-blur-md">
             <div className="flex justify-between items-center">
               <Button variant="ghost" onClick={handlePrevious} className={cn('flex items-center gap-2 font-medium transition-opacity', currentStep === 1 ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:bg-muted')}>
                 <ChevronLeft className="h-4 w-4" /> Back
@@ -495,7 +495,7 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
               <div className="flex items-center space-x-3">
                 {onSkip && currentStep === 1 && <Button variant="ghost" onClick={onSkip} className="text-muted-foreground hover:text-foreground">Skip for now</Button>}
                 {currentKey !== 'studies' && <Button onClick={isLastStep ? handleSubmit : handleNext} disabled={isSubmitting}
-                  className="flex items-center gap-2 font-semibold shadow-lg rounded-xl px-6 bg-gradient-to-r from-orange-500 to-blue-600 hover:from-orange-600 hover:to-blue-700 text-white border-0" size="lg">
+                  className="flex items-center gap-2 font-semibold shadow-lg rounded-xl px-6 bg-sb-navy     text-white border-0" size="lg">
                   {isLastStep ? (
                     isSubmitting ? <><Sparkles className="h-4 w-4 animate-spin" /> Finalizing...</> : <>Complete Setup <CheckCircle2 className="h-4 w-4" /></>
                   ) : (

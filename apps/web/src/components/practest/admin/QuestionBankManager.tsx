@@ -158,9 +158,9 @@ export default function QuestionBankManager({ onQuestionEdit, onError }: Questio
   const getValidationStatusBadge = (status: ValidationStatus) => {
     switch (status) {
       case 'APPROVED':
-        return <Badge variant="default" className="bg-green-100 text-green-800">Approved</Badge>
+        return <Badge variant="default" className="bg-sb-saffron-tint text-sb-saffron-deep">Approved</Badge>
       case 'PENDING_REVIEW':
-        return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">Pending</Badge>
+        return <Badge variant="secondary" className="bg-sb-butter text-sb-butter-ink">Pending</Badge>
       case 'REJECTED':
         return <Badge variant="destructive">Rejected</Badge>
       case 'DRAFT':
@@ -175,11 +175,11 @@ export default function QuestionBankManager({ onQuestionEdit, onError }: Questio
   const getDifficultyBadge = (difficulty: DifficultyLevel) => {
     switch (difficulty) {
       case 'EASY':
-        return <Badge variant="secondary" className="bg-green-100 text-green-800">Easy</Badge>
+        return <Badge variant="secondary" className="bg-sb-saffron-tint text-sb-saffron-deep">Easy</Badge>
       case 'MEDIUM':
-        return <Badge variant="default" className="bg-blue-100 text-blue-800">Medium</Badge>
+        return <Badge variant="default" className="bg-sb-sky text-sb-sky-ink">Medium</Badge>
       case 'HARD':
-        return <Badge variant="destructive" className="bg-red-100 text-red-800">Hard</Badge>
+        return <Badge variant="destructive" className="bg-sb-rose text-sb-rose-ink">Hard</Badge>
       default:
         return <Badge variant="outline">{difficulty}</Badge>
     }
@@ -327,7 +327,7 @@ export default function QuestionBankManager({ onQuestionEdit, onError }: Questio
         <CardContent>
           {loading ? (
             <div className="flex items-center justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sb-sky"></div>
               <span className="ml-3">Loading questions...</span>
             </div>
           ) : (
@@ -371,19 +371,19 @@ export default function QuestionBankManager({ onQuestionEdit, onError }: Questio
                               {question.question_type}
                             </Badge>
                             {question.has_math_content && (
-                              <Badge variant="outline" className="text-xs bg-blue-50">
+                              <Badge variant="outline" className="text-xs bg-sb-sky">
                                 Math
                               </Badge>
                             )}
                             {question.has_diagrams && (
-                              <Badge variant="outline" className="text-xs bg-green-50">
+                              <Badge variant="outline" className="text-xs bg-sb-saffron-tint">
                                 Diagram
                               </Badge>
                             )}
                             {question.casa_verified ? (
-                              <Badge variant="outline" className="text-xs bg-green-100 text-green-700">📖 Verified</Badge>
+                              <Badge variant="outline" className="text-xs bg-sb-saffron-tint text-sb-saffron-deep">📖 Verified</Badge>
                             ) : (question.casa_page || question.casa_anchor) ? (
-                              <Badge variant="outline" className="text-xs bg-yellow-100 text-yellow-700">📖 Cited</Badge>
+                              <Badge variant="outline" className="text-xs bg-sb-butter text-sb-butter-ink">📖 Cited</Badge>
                             ) : null}
                           </div>
                         </div>
@@ -431,7 +431,7 @@ export default function QuestionBankManager({ onQuestionEdit, onError }: Questio
                                 size="sm"
                                 variant="outline"
                                 onClick={() => handleQuestionAction(question.id, 'approve')}
-                                className="text-green-600 hover:text-green-700"
+                                className="text-sb-saffron-deep hover:text-sb-saffron-deep"
                               >
                                 <CheckCircleIcon className="h-3 w-3" />
                               </Button>
@@ -439,7 +439,7 @@ export default function QuestionBankManager({ onQuestionEdit, onError }: Questio
                                 size="sm"
                                 variant="outline"
                                 onClick={() => handleQuestionAction(question.id, 'reject')}
-                                className="text-red-600 hover:text-red-700"
+                                className="text-sb-rose-ink hover:text-sb-rose-ink"
                               >
                                 <XCircleIcon className="h-3 w-3" />
                               </Button>
@@ -450,7 +450,7 @@ export default function QuestionBankManager({ onQuestionEdit, onError }: Questio
                             size="sm"
                             variant="outline"
                             onClick={() => handleQuestionAction(question.id, 'delete')}
-                            className="text-red-600 hover:text-red-700"
+                            className="text-sb-rose-ink hover:text-sb-rose-ink"
                           >
                             <TrashIcon className="h-3 w-3" />
                           </Button>

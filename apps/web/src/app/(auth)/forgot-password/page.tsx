@@ -45,7 +45,7 @@ export default function ForgotPasswordPage() {
                 /* Success state */
                 <div className="text-center">
                     <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[rgb(14_159_110_/_0.14)]">
-                        <MailCheck className="h-8 w-8 text-[color:var(--emerald,#12B85A)]" />
+                        <MailCheck className="h-8 w-8 text-[color:var(--emerald,var(--sb-saffron-deep))]" />
                     </div>
                     <p className="mb-6 leading-relaxed text-muted-foreground">
                         If an account exists for <strong className="text-foreground">{email}</strong>,

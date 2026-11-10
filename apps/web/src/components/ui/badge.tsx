@@ -3,27 +3,27 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const badgeVariants = cva(
-  "inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  "inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
     variants: {
       variant: {
         default:
-          "border-transparent bg-primary text-primary-foreground hover:bg-primary/85",
+          "border-transparent bg-primary text-primary-foreground",
         secondary:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "border-transparent bg-secondary text-secondary-foreground",
         destructive:
-          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/85",
+          "border-transparent bg-sb-danger-tint text-sb-danger",
         outline: "border-border text-foreground",
         brand:
-          "border-transparent bg-gradient-to-r from-orange-500 to-blue-600 text-white",
+          "border-transparent bg-sb-saffron text-[#0A0F24]",
         soft:
-          "border-primary/15 bg-primary/10 text-primary",
+          "border-transparent bg-sb-saffron-tint text-sb-saffron-deep",
         success:
-          "border-transparent bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300",
+          "border-transparent bg-sb-navy text-sb-saffron",
         warning:
-          "border-transparent bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300",
+          "border-transparent bg-sb-butter text-sb-butter-ink",
         info:
-          "border-transparent bg-blue-100 text-blue-700 dark:bg-blue-500/15 dark:text-blue-300",
+          "border-transparent bg-sb-sky text-sb-sky-ink",
       },
     },
     defaultVariants: {

@@ -42,7 +42,7 @@ export function IndicConfirmDialog({
 }) {
   const gradient =
     variant === 'destructive'
-      ? 'linear-gradient(135deg,#FF5468,#E5283A 55%,#B0182A)'
+      ? 'var(--sb-navy)'
       : 'var(--bb-grad-primary)'
 
   return (

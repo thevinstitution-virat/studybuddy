@@ -122,9 +122,9 @@ export default function PDFExtractKitMonitoring() {
   const getProcessorBadge = (processor: string) => {
     switch (processor) {
       case 'doc-extract-engine':
-        return <Badge className="bg-green-100 text-green-800">doc-extract-engine</Badge>;
+        return <Badge className="bg-sb-saffron-tint text-sb-saffron-deep">doc-extract-engine</Badge>;
       case 'docling':
-        return <Badge className="bg-blue-100 text-blue-800">Docling</Badge>;
+        return <Badge className="bg-sb-sky text-sb-sky-ink">Docling</Badge>;
       default:
         return <Badge variant="secondary">{processor}</Badge>;
     }
@@ -132,15 +132,15 @@ export default function PDFExtractKitMonitoring() {
 
   const getSuccessBadge = (success: boolean) => {
     return success ? 
-      <Badge className="bg-green-100 text-green-800">Success</Badge> :
-      <Badge className="bg-red-100 text-red-800">Failed</Badge>;
+      <Badge className="bg-sb-saffron-tint text-sb-saffron-deep">Success</Badge> :
+      <Badge className="bg-sb-rose text-sb-rose-ink">Failed</Badge>;
   };
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center p-8">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sb-sky mx-auto"></div>
           <p className="mt-2 text-gray-600">Loading monitoring data...</p>
         </div>
       </div>
@@ -219,13 +219,13 @@ export default function PDFExtractKitMonitoring() {
           </div>
           
           <div className="grid grid-cols-2 gap-4">
-            <div className="text-center p-4 bg-green-50 rounded-lg">
-              <div className="text-2xl font-bold text-green-700">{metrics.pdfExtractKitUsed}</div>
-              <div className="text-sm text-green-600">PDF Extract Kit</div>
+            <div className="text-center p-4 bg-sb-saffron-tint rounded-lg">
+              <div className="text-2xl font-bold text-sb-saffron-deep">{metrics.pdfExtractKitUsed}</div>
+              <div className="text-sm text-sb-saffron-deep">PDF Extract Kit</div>
             </div>
-            <div className="text-center p-4 bg-blue-50 rounded-lg">
-              <div className="text-2xl font-bold text-blue-700">{metrics.doclingUsed}</div>
-              <div className="text-sm text-blue-600">Docling</div>
+            <div className="text-center p-4 bg-sb-sky rounded-lg">
+              <div className="text-2xl font-bold text-sb-sky-ink">{metrics.doclingUsed}</div>
+              <div className="text-sm text-sb-sky-ink">Docling</div>
             </div>
           </div>
         </CardContent>

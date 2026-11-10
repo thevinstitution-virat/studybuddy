@@ -105,7 +105,7 @@ export function DocumentUploader({ spaceId, onUploadStarted }: DocumentUploaderP
             {/* Dropzone */}
             <div
                 {...getRootProps()}
-                className={`border-2 border-dashed rounded-xl p-6 text-center transition-colors cursor-pointer ${isDragActive ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-border dark:border-slate-700 hover:border-input dark:hover:border-slate-600'
+                className={`border-2 border-dashed rounded-xl p-6 text-center transition-colors cursor-pointer ${isDragActive ? 'border-sb-sky bg-sb-sky ' : 'border-border dark:border-slate-700 hover:border-input dark:hover:border-slate-600'
                     } ${isUploading ? 'opacity-50 pointer-events-none' : ''}`}
             >
                 <input {...getInputProps()} />
@@ -142,7 +142,7 @@ export function DocumentUploader({ spaceId, onUploadStarted }: DocumentUploaderP
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
                         placeholder="https://example.com/article"
-                        className="w-full bg-muted/40 dark:bg-slate-800 border-border dark:border-slate-700 rounded-lg pl-9 pr-3 py-2 text-sm focus:ring-2 focus:ring-blue-500"
+                        className="w-full bg-muted/40 dark:bg-slate-800 border-border dark:border-slate-700 rounded-lg pl-9 pr-3 py-2 text-sm focus:ring-2 focus:ring-sb-sky"
                         disabled={isUploading}
                     />
                 </div>

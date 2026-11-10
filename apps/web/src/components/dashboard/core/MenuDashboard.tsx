@@ -28,7 +28,7 @@ export default function MenuDashboard({ userRole = 'student' }: MenuDashboardPro
       description: 'Chat with your intelligent learning assistant',
       icon: Brain,
       href: '/dashboard/user/ai-tutor',
-      gradient: 'from-purple-500 to-indigo-600',
+      gradient: ' ',
       featured: true
     },
     {
@@ -37,7 +37,7 @@ export default function MenuDashboard({ userRole = 'student' }: MenuDashboardPro
       description: 'Access comprehensive learning resources',
       icon: BookOpen,
       href: '/dashboard/user/materials',
-      gradient: 'from-green-500 to-emerald-500',
+      gradient: ' ',
       featured: true
     },
     {
@@ -46,7 +46,7 @@ export default function MenuDashboard({ userRole = 'student' }: MenuDashboardPro
       description: 'English-Hindi dictionary with cultural context',
       icon: FileText,
       href: '/dashboard/user/dictionary',
-      gradient: 'from-blue-500 to-cyan-500'
+      gradient: ' '
     },
     {
       id: 'mitram',
@@ -54,7 +54,7 @@ export default function MenuDashboard({ userRole = 'student' }: MenuDashboardPro
       description: 'Psychological assessment and wellness tools',
       icon: Users,
       href: '/dashboard/user/mitram',
-      gradient: 'from-pink-500 to-rose-500'
+      gradient: ' '
     },
     {
       id: 'productivity',
@@ -62,7 +62,7 @@ export default function MenuDashboard({ userRole = 'student' }: MenuDashboardPro
       description: 'Study utilities and time management',
       icon: Calculator,
       href: '/dashboard/user/productivity',
-      gradient: 'from-orange-500 to-red-500'
+      gradient: ' '
     },
     {
       id: 'analytics',
@@ -70,19 +70,19 @@ export default function MenuDashboard({ userRole = 'student' }: MenuDashboardPro
       description: 'Track your learning progress and performance',
       icon: BarChart3,
       href: '/dashboard/user/analytics',
-      gradient: 'from-indigo-500 to-purple-500'
+      gradient: ' '
     }
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900">
+    <div className="min-h-screen bg-sb-surface-2    dark:from-gray-900  ">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12">
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4"
+            className="text-4xl font-bold text-sb-saffron-deep     mb-4"
           >
             Learning Dashboard
           </motion.h1>
@@ -94,7 +94,7 @@ export default function MenuDashboard({ userRole = 'student' }: MenuDashboardPro
           >
             Choose your learning path and explore educational tools
           </motion.p>
-          <Badge variant="secondary" className="mt-2 bg-blue-100 text-blue-800">
+          <Badge variant="secondary" className="mt-2 bg-sb-sky text-sb-sky-ink">
             {userRole.charAt(0).toUpperCase() + userRole.slice(1)} Dashboard
           </Badge>
         </div>
@@ -111,7 +111,7 @@ export default function MenuDashboard({ userRole = 'student' }: MenuDashboardPro
               <Card className="group relative overflow-hidden bg-white/80 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                 {item.featured && (
                   <div className="absolute top-4 right-4">
-                    <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white">
+                    <Badge className="bg-sb-navy   text-white">
                       Featured
                     </Badge>
                   </div>
@@ -119,11 +119,11 @@ export default function MenuDashboard({ userRole = 'student' }: MenuDashboardPro
                 
                 <CardHeader className="pb-4">
                   <div className="flex items-center space-x-4">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${item.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`w-12 h-12 rounded-xl bg-sb-surface-2 ${item.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                       <item.icon className="h-6 w-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-xl font-bold text-foreground group-hover:text-blue-600 transition-colors">
+                      <CardTitle className="text-xl font-bold text-foreground group-hover:text-sb-sky-ink transition-colors">
                         {item.title}
                       </CardTitle>
                     </div>
@@ -136,7 +136,7 @@ export default function MenuDashboard({ userRole = 'student' }: MenuDashboardPro
                   </p>
                   
                   <Button 
-                    className={`w-full bg-gradient-to-r ${item.gradient} hover:opacity-90 text-white font-medium py-2 px-4 rounded-xl transition-all duration-300 group-hover:shadow-lg`}
+                    className={`w-full bg-sb-surface-2 ${item.gradient} hover:opacity-90 text-white font-medium py-2 px-4 rounded-xl transition-all duration-300 group-hover:shadow-lg`}
                     onClick={() => window.location.href = item.href}
                   >
                     Get Started
@@ -145,7 +145,7 @@ export default function MenuDashboard({ userRole = 'student' }: MenuDashboardPro
                 </CardContent>
 
                 {/* Hover Effect Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`} />
+                <div className={`absolute inset-0 bg-sb-surface-2 ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`} />
               </Card>
             </motion.div>
           ))}
@@ -158,20 +158,20 @@ export default function MenuDashboard({ userRole = 'student' }: MenuDashboardPro
           transition={{ delay: 0.6 }}
           className="mt-12"
         >
-          <Card className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white border-0 shadow-xl">
+          <Card className="bg-sb-navy   text-white border-0 shadow-xl">
             <CardContent className="p-8">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                 <div>
                   <div className="text-3xl font-bold mb-2">6</div>
-                  <div className="text-blue-100">Learning Tools</div>
+                  <div className="text-white">Learning Tools</div>
                 </div>
                 <div>
                   <div className="text-3xl font-bold mb-2">AI</div>
-                  <div className="text-blue-100">Powered Assistance</div>
+                  <div className="text-white">Powered Assistance</div>
                 </div>
                 <div>
                   <div className="text-3xl font-bold mb-2">24/7</div>
-                  <div className="text-blue-100">Available Support</div>
+                  <div className="text-white">Available Support</div>
                 </div>
               </div>
             </CardContent>
@@ -195,7 +195,7 @@ export default function MenuDashboard({ userRole = 'student' }: MenuDashboardPro
               </p>
               <Button 
                 variant="outline" 
-                className="border-blue-300 text-blue-600 hover:bg-blue-50"
+                className="border-sb-sky text-sb-sky-ink hover:bg-sb-sky"
                 onClick={() => window.location.href = '/dashboard/user/ai-tutor'}
               >
                 <Brain className="h-4 w-4 mr-2" />

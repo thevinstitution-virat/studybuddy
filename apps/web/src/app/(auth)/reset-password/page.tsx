@@ -92,7 +92,7 @@ function ResetPasswordForm() {
             <AuthShell title="Password reset!">
                 <div className="text-center">
                     <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[rgb(14_159_110_/_0.14)]">
-                        <CheckCircle2 className="h-8 w-8 text-[color:var(--emerald,#12B85A)]" />
+                        <CheckCircle2 className="h-8 w-8 text-[color:var(--emerald,var(--sb-saffron-deep))]" />
                     </div>
                     <p className="mb-6 leading-relaxed text-muted-foreground">
                         Your password has been reset successfully. You can now sign in with your new password.
@@ -147,7 +147,7 @@ function ResetPasswordForm() {
                         {passwordRequirements.map((req, i) => (
                             <div
                                 key={i}
-                                className={`flex items-center gap-2 text-[12.5px] ${req.met ? 'text-[color:var(--emerald,#12B85A)]' : 'text-muted-foreground'}`}
+                                className={`flex items-center gap-2 text-[12.5px] ${req.met ? 'text-[color:var(--emerald,var(--sb-saffron-deep))]' : 'text-muted-foreground'}`}
                             >
                                 {req.met ? <CheckCircle2 className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
                                 {req.label}

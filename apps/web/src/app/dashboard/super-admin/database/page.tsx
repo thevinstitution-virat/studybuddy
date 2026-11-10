@@ -129,9 +129,9 @@ export default function DatabaseManagementPage() {
       <div className="mx-auto max-w-4xl space-y-6">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center space-x-3 bg-gradient-to-r from-orange-500/10 to-primary/10 backdrop-blur-sm border border-orange-200/30 rounded-2xl px-6 py-3 mb-4">
-            <Database className="h-6 w-6 text-orange-500" />
-            <span className="text-lg font-semibold bg-gradient-to-r from-orange-600 to-primary/80 bg-clip-text text-transparent">
+          <div className="inline-flex items-center space-x-3 bg-sb-surface-2  to-primary/10 backdrop-blur-sm border border-sb-saffron rounded-2xl px-6 py-3 mb-4">
+            <Database className="h-6 w-6 text-sb-saffron-deep" />
+            <span className="text-lg font-semibold text-sb-saffron-deep  to-primary/80  ">
               Database Management
             </span>
           </div>
@@ -226,7 +226,7 @@ export default function DatabaseManagementPage() {
               <Button 
                 onClick={runMigration}
                 disabled={isLoading}
-                className="h-12 bg-gradient-to-r from-orange-500 to-primary/80 hover:from-orange-600 hover:to-primary/80 text-white font-medium"
+                className="h-12 bg-sb-navy  to-primary/80  hover:to-primary/80 text-white font-medium"
               >
                 {isLoading ? (
                   <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
@@ -264,9 +264,9 @@ export default function DatabaseManagementPage() {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 {migrationResult.success ? (
-                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <CheckCircle className="h-5 w-5 text-sb-saffron-deep" />
                 ) : (
-                  <XCircle className="h-5 w-5 text-red-500" />
+                  <XCircle className="h-5 w-5 text-sb-rose-ink" />
                 )}
                 <span>Migration Result</span>
               </CardTitle>
@@ -274,25 +274,25 @@ export default function DatabaseManagementPage() {
             <CardContent>
               <div className={`p-4 rounded-lg border-l-4 ${
                 migrationResult.success 
-                  ? 'bg-green-50 dark:bg-green-900/20 border-green-500' 
-                  : 'bg-red-50 dark:bg-red-900/20 border-red-500'
+                  ? 'bg-sb-saffron-tint  border-sb-saffron' 
+                  : 'bg-sb-rose  border-sb-danger'
               }`}>
                 <p className={`font-medium ${
                   migrationResult.success 
-                    ? 'text-green-800 dark:text-green-200' 
-                    : 'text-red-800 dark:text-red-200'
+                    ? 'text-sb-saffron-deep ' 
+                    : 'text-sb-rose-ink '
                 }`}>
                   {migrationResult.message}
                 </p>
                 
                 {migrationResult.success && migrationResult.totalWords && (
-                  <p className="text-sm text-green-700 dark:text-green-300 mt-2">
+                  <p className="text-sm text-sb-saffron-deep  mt-2">
                     Total words in database: {migrationResult.totalWords}
                   </p>
                 )}
                 
                 {migrationResult.error && (
-                  <p className="text-sm text-red-700 dark:text-red-300 mt-2">
+                  <p className="text-sm text-sb-rose-ink  mt-2">
                     Error: {migrationResult.error}
                   </p>
                 )}
@@ -317,8 +317,8 @@ export default function DatabaseManagementPage() {
               <p><strong>Step 4:</strong> Check status again to verify the migration was successful</p>
             </div>
             
-            <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded border-l-4 border-yellow-500">
-              <p className="text-yellow-800 dark:text-yellow-200 text-sm">
+            <div className="mt-4 p-3 bg-sb-butter  rounded border-l-4 border-sb-butter">
+              <p className="text-sb-butter-ink  text-sm">
                 <strong>Note:</strong> The migration will create a table with 40+ essential English words with Hindi translations, 
                 pronunciations, and audio URLs for the dictionary feature.
               </p>

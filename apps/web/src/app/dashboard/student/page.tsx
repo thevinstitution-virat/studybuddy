@@ -1,5 +1,6 @@
 'use client';
 
+import { PageHeader } from '@/components/sb'
 import React from 'react';
 import { trpc } from '@/lib/trpc/client';
 import { BatchCard } from '@/components/student/BatchCard';
@@ -32,10 +33,7 @@ export default function StudentDashboardPage() {
     <div className="p-6 max-w-7xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">My Courses</h1>
-          <p className="text-muted-foreground mt-2">
-            Pick up where you left off
-          </p>
+          <PageHeader kicker="Classroom" icon="classroom" tone="lav" title="My" highlight="Courses" description="Pick up where you left off" />
         </div>
         {batches && batches.length > 0 && (
           <Button onClick={() => setJoinModalOpen(true)}>

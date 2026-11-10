@@ -119,7 +119,7 @@ export default function ParentPulse() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card>
           <CardContent className="p-4 text-center">
-            <ClockIcon className="h-8 w-8 mx-auto mb-2 text-blue-600" />
+            <ClockIcon className="h-8 w-8 mx-auto mb-2 text-sb-sky-ink" />
             <div className="text-2xl font-bold">{weeklyStats.totalStudyHours}h</div>
             <div className="text-sm text-muted-foreground">This Week</div>
           </CardContent>
@@ -127,7 +127,7 @@ export default function ParentPulse() {
         
         <Card>
           <CardContent className="p-4 text-center">
-            <AcademicCapIcon className="h-8 w-8 mx-auto mb-2 text-green-600" />
+            <AcademicCapIcon className="h-8 w-8 mx-auto mb-2 text-sb-saffron-deep" />
             <div className="text-2xl font-bold">{weeklyStats.focusScore}%</div>
             <div className="text-sm text-muted-foreground">Focus Score</div>
           </CardContent>
@@ -135,7 +135,7 @@ export default function ParentPulse() {
         
         <Card>
           <CardContent className="p-4 text-center">
-            <TrophyIcon className="h-8 w-8 mx-auto mb-2 text-yellow-600" />
+            <TrophyIcon className="h-8 w-8 mx-auto mb-2 text-sb-butter-ink" />
             <div className="text-2xl font-bold">{weeklyStats.completedTasks}</div>
             <div className="text-sm text-muted-foreground">Tasks Done</div>
           </CardContent>
@@ -143,7 +143,7 @@ export default function ParentPulse() {
         
         <Card>
           <CardContent className="p-4 text-center">
-            <CalendarDaysIcon className="h-8 w-8 mx-auto mb-2 text-purple-600" />
+            <CalendarDaysIcon className="h-8 w-8 mx-auto mb-2 text-sb-lav-ink" />
             <div className="text-2xl font-bold">{upcomingEvents.filter(e => e.type === 'test').length}</div>
             <div className="text-sm text-muted-foreground">Upcoming Tests</div>
           </CardContent>
@@ -174,11 +174,11 @@ export default function ParentPulse() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                   <div>
-                    <span className="font-medium text-green-600">Strengths:</span>
+                    <span className="font-medium text-sb-saffron-deep">Strengths:</span>
                     <ul className="mt-1 space-y-1">
                       {subject.strengths.map((strength, i) => (
                         <li key={i} className="flex items-center space-x-1">
-                          <CheckCircleIcon className="h-3 w-3 text-green-500" />
+                          <CheckCircleIcon className="h-3 w-3 text-sb-saffron-deep" />
                           <span>{strength}</span>
                         </li>
                       ))}
@@ -186,11 +186,11 @@ export default function ParentPulse() {
                   </div>
                   
                   <div>
-                    <span className="font-medium text-orange-600">Needs Improvement:</span>
+                    <span className="font-medium text-sb-saffron-deep">Needs Improvement:</span>
                     <ul className="mt-1 space-y-1">
                       {subject.improvements.map((improvement, i) => (
                         <li key={i} className="flex items-center space-x-1">
-                          <ExclamationTriangleIcon className="h-3 w-3 text-orange-500" />
+                          <ExclamationTriangleIcon className="h-3 w-3 text-sb-saffron-deep" />
                           <span>{improvement}</span>
                         </li>
                       ))}
@@ -198,10 +198,10 @@ export default function ParentPulse() {
                   </div>
                   
                   <div>
-                    <span className="font-medium text-blue-600">Upcoming Tests:</span>
+                    <span className="font-medium text-sb-sky-ink">Upcoming Tests:</span>
                     <ul className="mt-1 space-y-1">
                       {subject.upcomingTests.map((test, i) => (
-                        <li key={i} className="text-blue-700 dark:text-blue-300">{test}</li>
+                        <li key={i} className="text-sb-sky-ink ">{test}</li>
                       ))}
                     </ul>
                   </div>
@@ -222,7 +222,7 @@ export default function ParentPulse() {
             {upcomingEvents.map((event, index) => (
               <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
                 <div className="flex items-center space-x-3">
-                  <CalendarDaysIcon className="h-5 w-5 text-blue-600" />
+                  <CalendarDaysIcon className="h-5 w-5 text-sb-sky-ink" />
                   <div>
                     <div className="font-medium">{event.event}</div>
                     <div className="text-sm text-muted-foreground">{event.date}</div>
@@ -278,7 +278,7 @@ export default function ParentPulse() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Card className="p-4">
                 <div className="flex items-center space-x-3">
-                  <EnvelopeIcon className="h-6 w-6 text-blue-600" />
+                  <EnvelopeIcon className="h-6 w-6 text-sb-sky-ink" />
                   <div>
                     <div className="font-medium">Email</div>
                     <div className="text-sm text-muted-foreground">Detailed reports</div>
@@ -296,7 +296,7 @@ export default function ParentPulse() {
 
               <Card className="p-4">
                 <div className="flex items-center space-x-3">
-                  <PhoneIcon className="h-6 w-6 text-green-600" />
+                  <PhoneIcon className="h-6 w-6 text-sb-saffron-deep" />
                   <div>
                     <div className="font-medium">SMS</div>
                     <div className="text-sm text-muted-foreground">Quick alerts</div>
@@ -314,7 +314,7 @@ export default function ParentPulse() {
 
               <Card className="p-4">
                 <div className="flex items-center space-x-3">
-                  <BellIcon className="h-6 w-6 text-purple-600" />
+                  <BellIcon className="h-6 w-6 text-sb-lav-ink" />
                   <div>
                     <div className="font-medium">WhatsApp</div>
                     <div className="text-sm text-muted-foreground">Instant updates</div>
@@ -344,26 +344,26 @@ export default function ParentPulse() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <div className="p-4 border rounded-lg bg-blue-50 dark:bg-blue-950">
-              <h4 className="font-semibold text-blue-800 dark:text-blue-200">Daily Progress Report - March 14, 2024</h4>
-              <p className="text-sm text-blue-700 dark:text-blue-300 mt-2">
+            <div className="p-4 border rounded-lg bg-sb-sky ">
+              <h4 className="font-semibold text-sb-sky-ink ">Daily Progress Report - March 14, 2024</h4>
+              <p className="text-sm text-sb-sky-ink  mt-2">
                 Arjun studied for 3.5 hours today, completing 85% of planned tasks. 
                 Strong performance in Mathematics (2 hours) and Chemistry (1.5 hours). 
                 Recommendation: Allocate more time to Physics tomorrow.
               </p>
             </div>
 
-            <div className="p-4 border rounded-lg bg-green-50 dark:bg-green-950">
-              <h4 className="font-semibold text-green-800 dark:text-green-200">Achievement Alert</h4>
-              <p className="text-sm text-green-700 dark:text-green-300 mt-2">
+            <div className="p-4 border rounded-lg bg-sb-saffron-tint ">
+              <h4 className="font-semibold text-sb-saffron-deep ">Achievement Alert</h4>
+              <p className="text-sm text-sb-saffron-deep  mt-2">
                 🎉 Congratulations! Arjun has achieved a 7-day study streak and mastered 
                 the Quadratic Equations chapter. Keep up the excellent work!
               </p>
             </div>
 
-            <div className="p-4 border rounded-lg bg-orange-50 dark:bg-orange-950">
-              <h4 className="font-semibold text-orange-800 dark:text-orange-200">Test Reminder</h4>
-              <p className="text-sm text-orange-700 dark:text-orange-300 mt-2">
+            <div className="p-4 border rounded-lg bg-sb-saffron-tint ">
+              <h4 className="font-semibold text-sb-saffron-deep ">Test Reminder</h4>
+              <p className="text-sm text-sb-saffron-deep  mt-2">
                 📅 Reminder: Mathematics Unit Test on Quadratic Equations is scheduled 
                 for tomorrow (March 15). Current preparation level: 78%. 
                 Suggested review: Practice problems 15-20.
@@ -457,13 +457,13 @@ export default function ParentPulse() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <Card className="border-orange-200 bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-950 dark:to-red-950 dark:border-orange-800">
+      <Card className="border-sb-saffron bg-sb-surface-2     ">
         <CardHeader>
-          <CardTitle className="flex items-center space-x-2 text-orange-800 dark:text-orange-200">
+          <CardTitle className="flex items-center space-x-2 text-sb-saffron-deep ">
             <ChartBarIcon className="h-6 w-6" />
             <span>ParentPulse - Family Dashboard</span>
           </CardTitle>
-          <CardDescription className="text-orange-700 dark:text-orange-300">
+          <CardDescription className="text-sb-saffron-deep ">
             🇮🇳 Stay connected with your child's learning journey and academic progress
           </CardDescription>
         </CardHeader>

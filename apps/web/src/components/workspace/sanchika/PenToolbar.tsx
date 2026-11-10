@@ -68,11 +68,11 @@ export interface PenToolbarProps {
 
 const COLOR_GRID = [
   // Row 1 — vivid
-  '#ef4444', '#f97316', '#eab308', '#84cc16', '#22c55e', '#14b8a6', '#3b82f6', '#8b5cf6',
+  '#ef4444', '#f97316', '#eab308', '#84cc16', 'var(--sb-saffron-deep)', 'var(--sb-saffron-deep)', '#3b82f6', '#8b5cf6',
   // Row 2 — pastel
   '#fca5a5', '#fed7aa', '#fef08a', '#bbf7d0', '#a7f3d0', '#99f6e4', '#bfdbfe', '#ddd6fe',
   // Row 3 — deep
-  '#991b1b', '#9a3412', '#854d0e', '#166534', '#065f46', '#155e75', '#1e3a8a', '#581c87',
+  '#991b1b', '#9a3412', '#854d0e', 'var(--sb-saffron-deep)', '#065f46', '#155e75', '#1e3a8a', '#581c87',
   // Row 4 — neutrals
   '#ffffff', '#d1d5db', '#9ca3af', '#6b7280', '#374151', '#1f2937', '#111827', '#000000',
 ];
@@ -850,10 +850,7 @@ export default function PenToolbar(props: PenToolbarProps) {
           height: 6px;
           border-radius: 3px;
           background-image:
-            linear-gradient(45deg, #d1d5db 25%, transparent 25%),
-            linear-gradient(-45deg, #d1d5db 25%, transparent 25%),
-            linear-gradient(45deg, transparent 75%, #d1d5db 75%),
-            linear-gradient(-45deg, transparent 75%, #d1d5db 75%);
+            var(--sb-surface-2);
           background-size: 8px 8px;
           background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
           z-index: 0;

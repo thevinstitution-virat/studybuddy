@@ -118,9 +118,9 @@ export default function QuestionImporter({ onImported }: { onImported?: () => vo
           </div>
 
           {error && (
-            <Alert className="border-rose-200 bg-rose-50 dark:border-rose-900/40 dark:bg-rose-950/30">
-              <XCircleIcon className="h-4 w-4 text-rose-600" />
-              <AlertDescription className="text-rose-800 dark:text-rose-300">{error}</AlertDescription>
+            <Alert className="border-sb-rose bg-sb-rose  ">
+              <XCircleIcon className="h-4 w-4 text-sb-rose-ink" />
+              <AlertDescription className="text-sb-rose-ink ">{error}</AlertDescription>
             </Alert>
           )}
 
@@ -140,9 +140,9 @@ export default function QuestionImporter({ onImported }: { onImported?: () => vo
       </Card>
 
       {committed && (
-        <Alert className="border-emerald-200 bg-emerald-50 dark:border-emerald-900/40 dark:bg-emerald-950/30">
-          <CheckCircleIcon className="h-4 w-4 text-emerald-600" />
-          <AlertDescription className="text-emerald-800 dark:text-emerald-300">
+        <Alert className="border-sb-saffron bg-sb-saffron-tint  ">
+          <CheckCircleIcon className="h-4 w-4 text-sb-saffron-deep" />
+          <AlertDescription className="text-sb-saffron-deep ">
             Imported <strong>{committed.inserted}</strong> question{committed.inserted !== 1 ? 's' : ''} as DRAFT
             {committed.skipped ? `, skipped ${committed.skipped}` : ''}. {committed.note}
           </AlertDescription>
@@ -184,7 +184,7 @@ export default function QuestionImporter({ onImported }: { onImported?: () => vo
                           </span>
                         )}
                       </td>
-                      <td className="p-2.5 text-xs text-rose-600 dark:text-rose-400">{r.errors.join('; ')}</td>
+                      <td className="p-2.5 text-xs text-sb-rose-ink ">{r.errors.join('; ')}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -95,7 +95,7 @@ function NewAssignment({ onDone }: { onDone: () => void }) {
               ))}
             </div>
           </fieldset>
-          {create.error && <p className="text-sm text-red-600 sm:col-span-2">{create.error.message}</p>}
+          {create.error && <p className="text-sm text-sb-rose-ink sm:col-span-2">{create.error.message}</p>}
           <div className="flex gap-2 sm:col-span-2">
             <Button type="submit" disabled={!valid || create.isPending}>{create.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}{t('tc.new.create')}</Button>
             <Button type="button" variant="outline" onClick={onDone}>{t('common.cancel')}</Button>

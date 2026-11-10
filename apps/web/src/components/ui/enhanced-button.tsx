@@ -17,7 +17,7 @@ const enhancedButtonVariants = cva(
         // Primary Apple-inspired button
         primary: [
           "vg-apple-button-primary text-white",
-          "before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent",
+          "before:absolute before:inset-0 before:bg-sb-surface-2 before:from-transparent before:via-white/20 before:to-transparent",
           "before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700"
         ],
         
@@ -29,7 +29,7 @@ const enhancedButtonVariants = cva(
           "transition: all 0.3s ease",
           "transform: translateY(0)",
           "hover:shadow-[0_4px_12px_rgba(255,126,95,0.3)] hover:transform hover:translate-y-[-2px]",
-          "before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent",
+          "before:absolute before:inset-0 before:bg-sb-surface-2 before:from-transparent before:via-white/20 before:to-transparent",
           "before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700"
         ],
         
@@ -37,7 +37,7 @@ const enhancedButtonVariants = cva(
         success: [
           "vg-success-gradient text-white shadow-vg-md hover:shadow-vg-lg",
           "transform hover:-translate-y-0.5 active:scale-98",
-          "before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent",
+          "before:absolute before:inset-0 before:bg-sb-surface-2 before:from-transparent before:via-white/20 before:to-transparent",
           "before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700"
         ],
         

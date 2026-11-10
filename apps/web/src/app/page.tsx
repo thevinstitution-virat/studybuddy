@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { EnhancedLandingPage } from '@/components/landing/EnhancedLandingPage'
+import { StudyBuddyLanding } from '@/components/landing/StudyBuddyLanding'
 import { useBetterAuthUser } from '@/hooks/useBetterAuthUser'
 
 export default function Home() {
@@ -24,18 +24,18 @@ export default function Home() {
   // The landing page is rendered on the server and shown straight away, while the session is still being checked. Only once we know the
   // visitor is signed in do we swap to the short "processing" screen below and send them to the dashboard.
   if (!user) {
-    return <EnhancedLandingPage />
+    return <StudyBuddyLanding />
   }
 
   // Fallback loading state during redirect for authenticated users
   return (
-    <div className="indic-landing min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--sb-paper)' }}>
       <div className="flex flex-col items-center space-y-4">
         <div
-          className="animate-spin rounded-full h-16 w-16 border-4 border-transparent"
-          style={{ borderBottomColor: 'var(--accent-strong)', borderRightColor: 'var(--gold)' }}
+          className="animate-spin rounded-full h-14 w-14 border-4 border-transparent"
+          style={{ borderBottomColor: 'var(--sb-saffron)', borderRightColor: 'var(--sb-ink)' }}
         />
-        <p className="indic-muted font-medium">Processing authentication…</p>
+        <p className="font-semibold" style={{ color: 'var(--sb-muted)' }}>Processing authentication…</p>
       </div>
     </div>
   )

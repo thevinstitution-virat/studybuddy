@@ -92,7 +92,7 @@ export default function OnboardingWizard() {
   if (done) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-16 text-center">
-        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 shadow-lg">
+        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-sb-navy   shadow-lg">
           <PartyPopper className="h-8 w-8 text-white" />
         </div>
         <h1 className="text-2xl font-bold text-foreground">{name} is onboarded!</h1>
@@ -104,17 +104,17 @@ export default function OnboardingWizard() {
         </p>
 
         {done.emailTestMode && (
-          <div className="mx-auto mt-5 max-w-lg rounded-xl border border-amber-300 bg-amber-50 p-4 text-left text-sm text-amber-800 dark:border-amber-700 dark:bg-amber-900/20 dark:text-amber-200">
+          <div className="mx-auto mt-5 max-w-lg rounded-xl border border-sb-butter bg-sb-butter p-4 text-left text-sm text-sb-butter-ink   ">
             <p className="font-semibold">⚠️ Email is in Resend test mode — the invite was NOT delivered.</p>
             <p className="mt-1">
-              Your sender is <code className="rounded bg-amber-100 px-1 dark:bg-amber-900/40">onboarding@resend.dev</code>,
+              Your sender is <code className="rounded bg-sb-butter px-1 ">onboarding@resend.dev</code>,
               which can only deliver to your own Resend account email. To email real institution admins, verify a
-              domain at <span className="font-medium">resend.com/domains</span> and set <code className="rounded bg-amber-100 px-1 dark:bg-amber-900/40">EMAIL_FROM</code> to use it.
+              domain at <span className="font-medium">resend.com/domains</span> and set <code className="rounded bg-sb-butter px-1 ">EMAIL_FROM</code> to use it.
             </p>
           </div>
         )}
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link href="/dashboard/super-admin/organizations" className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-primary/80 px-5 py-2.5 font-semibold text-white shadow hover:shadow-lg">
+          <Link href="/dashboard/super-admin/organizations" className="inline-flex items-center gap-2 rounded-xl bg-sb-surface-2 from-primary to-primary/80 px-5 py-2.5 font-semibold text-white shadow hover:shadow-lg">
             View organizations <ArrowRight className="h-4 w-4" />
           </Link>
           <button
@@ -150,14 +150,14 @@ export default function OnboardingWizard() {
           <div key={label} className="flex flex-1 items-center last:flex-none">
             <div className="flex items-center gap-2">
               <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold ${
-                i < step ? 'bg-green-500 text-white'
+                i < step ? 'bg-sb-navy text-white'
                 : i === step ? 'bg-primary text-white'
                 : 'bg-muted text-muted-foreground'}`}>
                 {i < step ? <Check className="h-4 w-4" /> : i + 1}
               </div>
               <span className={`hidden text-sm font-medium sm:block ${i === step ? 'text-foreground' : 'text-muted-foreground'}`}>{label}</span>
             </div>
-            {i < STEPS.length - 1 && <div className={`mx-2 h-0.5 flex-1 ${i < step ? 'bg-green-500' : 'bg-muted'}`} />}
+            {i < STEPS.length - 1 && <div className={`mx-2 h-0.5 flex-1 ${i < step ? 'bg-sb-navy' : 'bg-muted'}`} />}
           </div>
         ))}
       </div>
@@ -227,7 +227,7 @@ export default function OnboardingWizard() {
                   className={`rounded-xl border-2 p-4 text-left transition-all ${
                     plan === p.key ? 'border-primary bg-primary/10' : 'border-border hover:border-input'}`}
                 >
-                  <div className={`mb-2 inline-flex rounded-lg bg-gradient-to-br ${p.grad} px-2 py-1 text-xs font-bold text-white`}>{p.name}</div>
+                  <div className={`mb-2 inline-flex rounded-lg bg-sb-surface-2 ${p.grad} px-2 py-1 text-xs font-bold text-white`}>{p.name}</div>
                   <p className="text-xs text-muted-foreground">{p.tagline}</p>
                   <p className="mt-2 text-sm font-semibold text-foreground">{PLAN_FEATURES[p.key].length} features</p>
                 </button>
@@ -238,7 +238,7 @@ export default function OnboardingWizard() {
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                 {planFeatures.map((k) => (
                   <div key={k} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Check className="h-4 w-4 shrink-0 text-green-500" /> {featureName(k)}
+                    <Check className="h-4 w-4 shrink-0 text-sb-saffron-deep" /> {featureName(k)}
                   </div>
                 ))}
               </div>
@@ -269,7 +269,7 @@ export default function OnboardingWizard() {
                 />
               </div>
               {adminEmail && !emailOk(adminEmail) && (
-                <p className="mt-1 text-xs text-red-500">Enter a valid email address.</p>
+                <p className="mt-1 text-xs text-sb-rose-ink">Enter a valid email address.</p>
               )}
             </div>
           </div>
@@ -296,7 +296,7 @@ export default function OnboardingWizard() {
               ))}
             </dl>
             {error && (
-              <div className="flex items-start gap-2 rounded-xl bg-red-50 p-3 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-300">
+              <div className="flex items-start gap-2 rounded-xl bg-sb-rose p-3 text-sm text-sb-rose-ink  ">
                 <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" /> {error}
               </div>
             )}
@@ -320,7 +320,7 @@ export default function OnboardingWizard() {
             type="button"
             disabled={!canNext}
             onClick={() => setStep((s) => s + 1)}
-            className="inline-flex items-center gap-1 rounded-xl bg-gradient-to-r from-primary to-primary/80 px-5 py-2.5 font-semibold text-white shadow disabled:opacity-40 hover:shadow-lg"
+            className="inline-flex items-center gap-1 rounded-xl bg-sb-surface-2 from-primary to-primary/80 px-5 py-2.5 font-semibold text-white shadow disabled:opacity-40 hover:shadow-lg"
           >
             Continue <ChevronRight className="h-4 w-4" />
           </button>
@@ -329,7 +329,7 @@ export default function OnboardingWizard() {
             type="button"
             disabled={submitting}
             onClick={submit}
-            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 px-5 py-2.5 font-semibold text-white shadow disabled:opacity-60 hover:shadow-lg"
+            className="inline-flex items-center gap-2 rounded-xl bg-sb-navy   px-5 py-2.5 font-semibold text-white shadow disabled:opacity-60 hover:shadow-lg"
           >
             {submitting ? <><Loader2 className="h-4 w-4 animate-spin" /> Onboarding…</> : <><Building2 className="h-4 w-4" /> Onboard institution</>}
           </button>

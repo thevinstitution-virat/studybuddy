@@ -102,7 +102,7 @@ export default function AdminSettingsPage() {
           <button
             onClick={handleSave}
             disabled={updateSettings.isPending}
-            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 to-primary/80 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-all hover:shadow-xl disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-xl bg-sb-navy  to-primary/80 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-all hover:shadow-xl disabled:opacity-50"
           >
             {updateSettings.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />} 
             {updateSettings.isPending ? 'Saving…' : 'Save Changes'}
@@ -111,15 +111,15 @@ export default function AdminSettingsPage() {
       />
 
       {successMessage && (
-        <div className="flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 dark:border-emerald-500/20 dark:bg-emerald-500/10">
-          <CheckCircle className="h-5 w-5 text-emerald-500" />
-          <p className="text-sm font-medium text-emerald-700 dark:text-emerald-300">{successMessage}</p>
+        <div className="flex items-center gap-3 rounded-2xl border border-sb-saffron bg-sb-saffron-tint p-4  ">
+          <CheckCircle className="h-5 w-5 text-sb-saffron-deep" />
+          <p className="text-sm font-medium text-sb-saffron-deep ">{successMessage}</p>
         </div>
       )}
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <div className={cardClass}>
-          <SectionTitle icon={Monitor} tint="bg-orange-50 text-orange-600 dark:bg-orange-500/10 dark:text-orange-400" title="System Control" desc="Core operational modes (Live)" />
+          <SectionTitle icon={Monitor} tint="bg-sb-saffron-tint text-sb-saffron-deep  " title="System Control" desc="Core operational modes (Live)" />
           <div className="space-y-3">
             <Toggle k="maintenanceMode" label="Maintenance Mode" desc="Temporarily disable user access" />
             <Toggle k="debugMode" label="Debug Mode" desc="Enable detailed error logging" />
@@ -140,7 +140,7 @@ export default function AdminSettingsPage() {
         </div>
 
         <div className={cardClass}>
-          <SectionTitle icon={Bell} tint="bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400" title="Notifications" desc="Alerts & preferences" />
+          <SectionTitle icon={Bell} tint="bg-sb-butter text-sb-butter-ink  " title="Notifications" desc="Alerts & preferences" />
           <div className="space-y-3">
             <Toggle k="emailNotifications" label="Email Notifications (Mock)" desc="Send admin alerts via email" />
             <Toggle k="systemAlerts" label="System Alerts (Mock)" desc="In-app system notifications" />
@@ -148,7 +148,7 @@ export default function AdminSettingsPage() {
         </div>
 
         <div className={cardClass}>
-          <SectionTitle icon={Database} tint="bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400" title="Data Management" desc="Retention & storage" />
+          <SectionTitle icon={Database} tint="bg-sb-saffron-tint text-sb-saffron-deep  " title="Data Management" desc="Retention & storage" />
           <div className="space-y-3">
             <div className="rounded-xl border border-border bg-muted/40 p-4 dark:border-white/5 dark:bg-white/[0.02]">
               <label className="mb-2 block text-sm font-semibold text-foreground">Data Retention (days, Mock)</label>
@@ -172,10 +172,10 @@ export default function AdminSettingsPage() {
             { name: 'Backup', state: 'Scheduled', ok: false },
           ].map((s) => (
             <div key={s.name} className="flex items-center gap-2.5 rounded-xl border border-border bg-muted/40 p-4 dark:border-white/5 dark:bg-white/[0.02]">
-              <span className={`h-2 w-2 animate-pulse rounded-full ${s.ok ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+              <span className={`h-2 w-2 animate-pulse rounded-full ${s.ok ? 'bg-sb-navy' : 'bg-sb-navy'}`} />
               <div>
                 <p className="text-sm font-semibold text-foreground">{s.name}</p>
-                <p className={`text-xs font-medium ${s.ok ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600 dark:text-amber-400'}`}>{s.state}</p>
+                <p className={`text-xs font-medium ${s.ok ? 'text-sb-saffron-deep ' : 'text-sb-butter-ink '}`}>{s.state}</p>
               </div>
             </div>
           ))}

@@ -91,7 +91,7 @@ export default function PractestAnalytics() {
       <Card>
         <CardContent className="p-8">
           <div className="flex items-center justify-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sb-sky"></div>
             <span className="ml-3">Loading analytics...</span>
           </div>
         </CardContent>
@@ -106,15 +106,15 @@ export default function PractestAnalytics() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <DocumentTextIcon className="h-5 w-5 text-blue-600" />
+              <div className="p-2 bg-sb-sky rounded-lg">
+                <DocumentTextIcon className="h-5 w-5 text-sb-sky-ink" />
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Total Tests</p>
                 <p className="text-2xl font-bold">{analyticsData.overview.totalTests.toLocaleString()}</p>
                 <div className="flex items-center gap-1 mt-1">
-                  <TrendingUpIcon className="h-3 w-3 text-green-600" />
-                  <span className="text-xs text-green-600">+12%</span>
+                  <TrendingUpIcon className="h-3 w-3 text-sb-saffron-deep" />
+                  <span className="text-xs text-sb-saffron-deep">+12%</span>
                 </div>
               </div>
             </div>
@@ -124,15 +124,15 @@ export default function PractestAnalytics() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-green-100 rounded-lg">
-                <UsersIcon className="h-5 w-5 text-green-600" />
+              <div className="p-2 bg-sb-saffron-tint rounded-lg">
+                <UsersIcon className="h-5 w-5 text-sb-saffron-deep" />
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Active Users</p>
                 <p className="text-2xl font-bold">{analyticsData.overview.activeUsers.toLocaleString()}</p>
                 <div className="flex items-center gap-1 mt-1">
-                  <TrendingUpIcon className="h-3 w-3 text-green-600" />
-                  <span className="text-xs text-green-600">+8%</span>
+                  <TrendingUpIcon className="h-3 w-3 text-sb-saffron-deep" />
+                  <span className="text-xs text-sb-saffron-deep">+8%</span>
                 </div>
               </div>
             </div>
@@ -142,15 +142,15 @@ export default function PractestAnalytics() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-purple-100 rounded-lg">
-                <ChartBarIcon className="h-5 w-5 text-purple-600" />
+              <div className="p-2 bg-sb-lav rounded-lg">
+                <ChartBarIcon className="h-5 w-5 text-sb-lav-ink" />
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Avg Score</p>
                 <p className="text-2xl font-bold">{analyticsData.overview.averageScore}%</p>
                 <div className="flex items-center gap-1 mt-1">
-                  <TrendingUpIcon className="h-3 w-3 text-green-600" />
-                  <span className="text-xs text-green-600">+2.3%</span>
+                  <TrendingUpIcon className="h-3 w-3 text-sb-saffron-deep" />
+                  <span className="text-xs text-sb-saffron-deep">+2.3%</span>
                 </div>
               </div>
             </div>
@@ -160,15 +160,15 @@ export default function PractestAnalytics() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-orange-100 rounded-lg">
-                <CheckCircleIcon className="h-5 w-5 text-orange-600" />
+              <div className="p-2 bg-sb-saffron-tint rounded-lg">
+                <CheckCircleIcon className="h-5 w-5 text-sb-saffron-deep" />
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Completion Rate</p>
                 <p className="text-2xl font-bold">{analyticsData.overview.testCompletionRate}%</p>
                 <div className="flex items-center gap-1 mt-1">
-                  <TrendingDownIcon className="h-3 w-3 text-red-600" />
-                  <span className="text-xs text-red-600">-1.2%</span>
+                  <TrendingDownIcon className="h-3 w-3 text-sb-rose-ink" />
+                  <span className="text-xs text-sb-rose-ink">-1.2%</span>
                 </div>
               </div>
             </div>
@@ -178,15 +178,15 @@ export default function PractestAnalytics() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-yellow-100 rounded-lg">
-                <ClockIcon className="h-5 w-5 text-yellow-600" />
+              <div className="p-2 bg-sb-butter rounded-lg">
+                <ClockIcon className="h-5 w-5 text-sb-butter-ink" />
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Avg Response</p>
                 <p className="text-2xl font-bold">{analyticsData.systemMetrics.apiResponseTime}ms</p>
                 <div className="flex items-center gap-1 mt-1">
-                  <TrendingDownIcon className="h-3 w-3 text-green-600" />
-                  <span className="text-xs text-green-600">-15ms</span>
+                  <TrendingDownIcon className="h-3 w-3 text-sb-saffron-deep" />
+                  <span className="text-xs text-sb-saffron-deep">-15ms</span>
                 </div>
               </div>
             </div>
@@ -276,8 +276,8 @@ export default function PractestAnalytics() {
                   {analyticsData.userPerformance.topPerformers.map((performer, index) => (
                     <div key={performer.userId} className="flex items-center justify-between p-3 border rounded-lg">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                          <span className="text-sm font-bold text-blue-600">#{index + 1}</span>
+                        <div className="w-8 h-8 bg-sb-sky rounded-full flex items-center justify-center">
+                          <span className="text-sm font-bold text-sb-sky-ink">#{index + 1}</span>
                         </div>
                         <div>
                           <p className="font-medium">{performer.userName}</p>
@@ -286,7 +286,7 @@ export default function PractestAnalytics() {
                           </p>
                         </div>
                       </div>
-                      <Badge variant="default" className="bg-green-100 text-green-800">
+                      <Badge variant="default" className="bg-sb-saffron-tint text-sb-saffron-deep">
                         {performer.averageScore}%
                       </Badge>
                     </div>
@@ -374,7 +374,7 @@ export default function PractestAnalytics() {
               <CardContent className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span>Question Generation Service</span>
-                  <Badge variant="default" className="bg-green-100 text-green-800">
+                  <Badge variant="default" className="bg-sb-saffron-tint text-sb-saffron-deep">
                     <CheckCircleIcon className="h-3 w-3 mr-1" />
                     Operational
                   </Badge>
@@ -382,7 +382,7 @@ export default function PractestAnalytics() {
                 
                 <div className="flex justify-between items-center">
                   <span>Database Connection</span>
-                  <Badge variant="default" className="bg-green-100 text-green-800">
+                  <Badge variant="default" className="bg-sb-saffron-tint text-sb-saffron-deep">
                     <CheckCircleIcon className="h-3 w-3 mr-1" />
                     Healthy
                   </Badge>
@@ -390,7 +390,7 @@ export default function PractestAnalytics() {
                 
                 <div className="flex justify-between items-center">
                   <span>User Authentication</span>
-                  <Badge variant="default" className="bg-green-100 text-green-800">
+                  <Badge variant="default" className="bg-sb-saffron-tint text-sb-saffron-deep">
                     <CheckCircleIcon className="h-3 w-3 mr-1" />
                     Active
                   </Badge>
@@ -398,7 +398,7 @@ export default function PractestAnalytics() {
                 
                 <div className="flex justify-between items-center">
                   <span>File Upload Service</span>
-                  <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">
+                  <Badge variant="secondary" className="bg-sb-butter text-sb-butter-ink">
                     <ClockIcon className="h-3 w-3 mr-1" />
                     Maintenance
                   </Badge>

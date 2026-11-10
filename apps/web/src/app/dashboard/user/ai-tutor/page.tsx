@@ -1,5 +1,7 @@
 'use client'
 
+import { BrandTile } from '@/components/sb/Brand'
+import { Chip } from '@/components/sb'
 import React from 'react'
 import { Badge } from '@/components/core/ui/badge'
 import FormattedContent from '@/components/ai/core/FormattedContent'
@@ -141,7 +143,7 @@ export default function AITutorPage() {
         {subscriptionError && subscriptionError !== 'NO_SUBSCRIPTION' && (
           <div className="card" style={{ padding: 16, borderColor: 'rgb(229 40 58 / 0.3)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: 'linear-gradient(135deg,#FF5468,#E5283A 55%,#B0182A)' }}>
+              <span className="plinth" style={{ width: 40, height: 40, flex: 'none', background: 'var(--sb-navy)' }}>
                 <span style={{ fontSize: 20 }}>⚠️</span>
               </span>
               <div>
@@ -169,20 +171,15 @@ export default function AITutorPage() {
                     <div className={`flex max-w-[90%] ${message.role === 'user' ? 'flex-row-reverse' : 'flex-row'} items-start gap-2.5`}>
                       {/* Avatar — bot only (mock: neurology plinth; user bubble stands alone) */}
                       {message.role === 'assistant' && (
-                        <span
-                          className="plinth"
-                          style={{ width: 32, height: 32, flex: 'none', background: 'var(--bb-grad-cobalt)' }}
-                        >
-                          <Bot className="h-[17px] w-[17px]" />
-                        </span>
+                        <BrandTile size={32} />
                       )}
 
                       {/* Message Content */}
                       <div
                         className="overflow-hidden"
                         style={message.role === 'user'
-                          ? { borderRadius: '16px 16px 4px 16px', padding: '12px 15px', background: 'var(--peacock-teal)', color: '#fff', fontSize: 14, lineHeight: 1.6 }
-                          : { borderRadius: '4px 16px 16px 16px', padding: '12px 15px', background: 'var(--panel-2)', color: 'var(--ink)', border: '1px solid var(--line-soft)', fontSize: 14, lineHeight: 1.6 }
+                          ? { borderRadius: '22px 22px 6px 22px', padding: '13px 17px', background: 'var(--sb-navy)', color: '#fff', fontSize: 15, lineHeight: 1.55, fontWeight: 500 }
+                          : { borderRadius: '6px 22px 22px 22px', padding: '14px 17px', background: 'var(--sb-surface)', color: 'var(--sb-ink)', border: '1px solid var(--sb-line)', fontSize: 15, lineHeight: 1.6 }
                         }
                       >
                         <div className="flex-1">
@@ -228,19 +225,14 @@ export default function AITutorPage() {
                               {/* Source Citations - Compact Display (Max 20 words) */}
                               {message.sources && message.sources.length > 0 && (
                                 <div style={{ marginTop: 9, paddingTop: 9, borderTop: '1px solid var(--line-soft)' }}>
-                                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11.5, color: 'var(--muted)', flexWrap: 'wrap' }}>
-                                    <BookOpen className="h-[14px] w-[14px]" style={{ color: 'var(--accent-text)' }} />
-                                    <strong>Sources:</strong>
-                                    <span>
-                                      {message.sources.slice(0, 3).map((source, index) => (
-                                        <span key={source.id || index}>
-                                          {index > 0 && ', '}
-                                          {source.title}
-                                          {source.page && source.page !== 'Unknown Page' && ` (Pg. ${source.page})`}
-                                        </span>
-                                      ))}
-                                      {message.sources.length > 3 && ` +${message.sources.length - 3} more`}
-                                    </span>
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+                                    {message.sources.slice(0, 3).map((source, index) => (
+                                      <Chip key={source.id || index} tone="lav" icon="book-open-text" style={{ fontSize: 11.5, padding: '4px 10px' }}>
+                                        {source.title}
+                                        {source.page && source.page !== 'Unknown Page' && ` · p.${source.page}`}
+                                      </Chip>
+                                    ))}
+                                    {message.sources.length > 3 && <Chip tone="stone" style={{ fontSize: 11.5, padding: '4px 10px' }}>+{message.sources.length - 3} more</Chip>}
                                   </div>
                                 </div>
                               )}
@@ -267,7 +259,7 @@ export default function AITutorPage() {
                                   <div className="space-y-3 overflow-hidden">
                                     {message.sources.map((source, index) => (
                                       <div key={source.id} className={`p-3 rounded-lg border transition-colors hover:border-primary/40 overflow-hidden ${source.display_format === 'student_friendly' ? 'bg-primary/10 border-primary/30' :
-                                        source.display_format === 'academic' ? 'bg-green-50/90 border-green-200' :
+                                        source.display_format === 'academic' ? 'bg-sb-saffron-tint border-sb-saffron' :
                                           source.display_format === 'accessible' ? 'bg-primary/10 border-primary/30' :
                                             'bg-card border-border'
                                         }`}>
@@ -314,11 +306,11 @@ export default function AITutorPage() {
 
                                             {/* Language adaptation */}
                                             {source.language_adaptation?.hindiTranslation && (
-                                              <div className="mt-2 p-2 bg-orange-50/60 dark:bg-orange-900/20 rounded">
-                                                <div className="font-medium text-xs text-orange-700 dark:text-orange-400 mb-1">🇮🇳 हिंदी में:</div>
-                                                <div className="text-xs text-orange-800 dark:text-orange-300">{source.language_adaptation.hindiTranslation}</div>
+                                              <div className="mt-2 p-2 bg-sb-saffron-tint  rounded">
+                                                <div className="font-medium text-xs text-sb-saffron-deep  mb-1">🇮🇳 हिंदी में:</div>
+                                                <div className="text-xs text-sb-saffron-deep ">{source.language_adaptation.hindiTranslation}</div>
                                                 {source.language_adaptation.culturalContext && (
-                                                  <div className="text-xs text-orange-700 dark:text-orange-400 mt-1 italic">
+                                                  <div className="text-xs text-sb-saffron-deep  mt-1 italic">
                                                     {source.language_adaptation.culturalContext}
                                                   </div>
                                                 )}

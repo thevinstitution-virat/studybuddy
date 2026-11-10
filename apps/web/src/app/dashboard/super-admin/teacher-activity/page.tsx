@@ -95,9 +95,9 @@ export default function AdminTeacherActivityPage() {
 
   const getActivityColor = (type: string) => {
     if (type.includes('created') || type.includes('approved'))
-  return 'text-green-600 bg-green-50'
+  return 'text-sb-saffron-deep bg-sb-saffron-tint'
     if (type.includes('deleted') || type.includes('rejected'))
-  return 'text-red-600 bg-red-50'
+  return 'text-sb-rose-ink bg-sb-rose'
     if (type.includes('updated') || type.includes('assigned'))
   return 'text-primary bg-primary/10'
     return 'text-muted-foreground bg-muted/40'
@@ -198,10 +198,10 @@ export default function AdminTeacherActivityPage() {
                       <span
                         className={`px-2 py-1 text-xs font-medium rounded ${
                           teacher.approvalStatus === 'approved'
-                            ? 'bg-green-100 text-green-800'
+                            ? 'bg-sb-saffron-tint text-sb-saffron-deep'
                             : teacher.approvalStatus === 'pending'
-                            ? 'bg-yellow-100 text-yellow-800'
-                            : 'bg-red-100 text-red-800'
+                            ? 'bg-sb-butter text-sb-butter-ink'
+                            : 'bg-sb-rose text-sb-rose-ink'
                         }`}
                       >
                         {teacher.approvalStatus}

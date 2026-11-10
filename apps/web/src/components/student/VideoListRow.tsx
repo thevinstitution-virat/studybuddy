@@ -56,7 +56,7 @@ export function VideoListRow({ video, onWatch }: VideoListRowProps) {
             <div className="text-sm text-muted-foreground mt-1 flex items-center gap-2">
               <span>{formatDuration(video.duration)}</span>
               {isCompleted && (
-                <span className="flex items-center text-green-600 dark:text-green-500 text-xs font-medium">
+                <span className="flex items-center text-sb-saffron-deep  text-xs font-medium">
                   <CheckCircle2 className="w-3.5 h-3.5 mr-1" />
                   Completed
                 </span>

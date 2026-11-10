@@ -469,12 +469,12 @@ export default function CurricuTimer({
   const getEngagementStatus = () => {
     const score = getCurrentEngagementScore()
     if (score >= 80)
-  return { level: 'excellent', color: 'text-green-600', icon: '🔥' }
+  return { level: 'excellent', color: 'text-sb-saffron-deep', icon: '🔥' }
     if (score >= 60)
-  return { level: 'good', color: 'text-blue-600', icon: '👍' }
+  return { level: 'good', color: 'text-sb-sky-ink', icon: '👍' }
     if (score >= 40)
-  return { level: 'fair', color: 'text-yellow-600', icon: '⚡' }
-    return { level: 'needs focus', color: 'text-red-600', icon: '⚠️' }
+  return { level: 'fair', color: 'text-sb-butter-ink', icon: '⚡' }
+    return { level: 'needs focus', color: 'text-sb-rose-ink', icon: '⚠️' }
   }
 
   // Cleanup on unmount
@@ -492,10 +492,10 @@ export default function CurricuTimer({
   if (isLoadingSchedule) {
     return (
       <div className="space-y-6">
-        <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 dark:border-blue-800">
+        <Card className="border-sb-sky bg-sb-surface-2     ">
           <CardContent className="pt-6">
             <div className="text-center">
-              <ClockIcon className="h-12 w-12 mx-auto mb-4 text-blue-600 animate-spin" />
+              <ClockIcon className="h-12 w-12 mx-auto mb-4 text-sb-sky-ink animate-spin" />
               <h3 className="text-lg font-semibold mb-2">Loading Your Personalized Schedule...</h3>
               <p className="text-muted-foreground">
                 Analyzing {selectedBoard} Grade {selectedGrade} {selectedSubject} curriculum
@@ -510,14 +510,14 @@ export default function CurricuTimer({
   if (!schedule) {
     return (
       <div className="space-y-6">
-        <Card className="border-red-200 bg-red-50 dark:bg-red-950 dark:border-red-800">
+        <Card className="border-sb-danger bg-sb-rose  ">
           <CardContent className="pt-6">
             <div className="text-center">
-              <ClockIcon className="h-12 w-12 mx-auto mb-4 text-red-600" />
-              <h3 className="text-lg font-semibold mb-2 text-red-800 dark:text-red-200">
+              <ClockIcon className="h-12 w-12 mx-auto mb-4 text-sb-rose-ink" />
+              <h3 className="text-lg font-semibold mb-2 text-sb-rose-ink ">
                 Unable to Load Schedule
               </h3>
-              <p className="text-red-700 dark:text-red-300 mb-4">
+              <p className="text-sb-rose-ink  mb-4">
                 There was an issue loading your study schedule. Please try again.
               </p>
               <Button onClick={loadSchedule} variant="outline">
@@ -536,13 +536,13 @@ export default function CurricuTimer({
   return (
     <div className="space-y-6">
       {/* Timer Header */}
-      <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 dark:border-blue-800">
+      <Card className="border-sb-sky bg-sb-surface-2     ">
         <CardHeader>
-          <CardTitle className="flex items-center space-x-2 text-blue-800 dark:text-blue-200">
+          <CardTitle className="flex items-center space-x-2 text-sb-sky-ink ">
             <ClockIcon className="h-6 w-6" />
             <span>CurricuTimer - Comprehensive Study Timer</span>
           </CardTitle>
-          <CardDescription className="text-blue-700 dark:text-blue-300">
+          <CardDescription className="text-sb-sky-ink ">
             🇮🇳 AI-powered adaptive sessions with {selectedBoard} Grade {selectedGrade} curriculum integration
           </CardDescription>
         </CardHeader>
@@ -630,7 +630,7 @@ export default function CurricuTimer({
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <LightBulbIcon className="h-5 w-5 text-yellow-600" />
+              <LightBulbIcon className="h-5 w-5 text-sb-butter-ink" />
               <span>Smart Recommendations</span>
             </CardTitle>
             <CardDescription>AI-powered suggestions based on your curriculum</CardDescription>
@@ -663,7 +663,7 @@ export default function CurricuTimer({
                   <ul className="text-sm space-y-1">
                     {schedule.recommendations.slice(0, 3).map((rec: string, index: number) => (
                       <li key={index} className="flex items-start space-x-2">
-                        <span className="text-blue-600">•</span>
+                        <span className="text-sb-sky-ink">•</span>
                         <span>{rec}</span>
                       </li>
                     ))}
@@ -737,8 +737,8 @@ export default function CurricuTimer({
                   strokeDasharray={`${2 * Math.PI * 90}`}
                   strokeDashoffset={`${2 * Math.PI * 90 * (1 - progress / 100)}`}
                   className={`transition-all duration-1000 ${
-                    isIdle ? 'text-yellow-500' :
-                    isRunning ? 'text-green-500' : 'text-blue-500'
+                    isIdle ? 'text-sb-butter-ink' :
+                    isRunning ? 'text-sb-saffron-deep' : 'text-sb-sky-ink'
                   }`}
                 />
               </svg>
@@ -781,7 +781,7 @@ export default function CurricuTimer({
                 <Button
                   onClick={startSession}
                   size="lg"
-                  className="bg-green-600 hover:bg-green-700 text-white px-8"
+                  className="bg-sb-navy hover:bg-sb-navy text-white px-8"
                   disabled={!schedule}
                 >
                   <PlayIcon className="h-5 w-5 mr-2" />
@@ -815,7 +815,7 @@ export default function CurricuTimer({
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card>
           <CardContent className="p-4 text-center">
-            <TrophyIcon className="h-8 w-8 mx-auto mb-2 text-yellow-600" />
+            <TrophyIcon className="h-8 w-8 mx-auto mb-2 text-sb-butter-ink" />
             <div className="text-2xl font-bold">{stats.sessionsCompleted}</div>
             <div className="text-sm text-muted-foreground">Sessions Completed</div>
           </CardContent>
@@ -823,7 +823,7 @@ export default function CurricuTimer({
 
         <Card>
           <CardContent className="p-4 text-center">
-            <ClockIcon className="h-8 w-8 mx-auto mb-2 text-blue-600" />
+            <ClockIcon className="h-8 w-8 mx-auto mb-2 text-sb-sky-ink" />
             <div className="text-2xl font-bold">{Math.round(stats.totalFocusTime / 60)}</div>
             <div className="text-sm text-muted-foreground">Total Hours</div>
           </CardContent>
@@ -831,7 +831,7 @@ export default function CurricuTimer({
 
         <Card>
           <CardContent className="p-4 text-center">
-            <FireIcon className="h-8 w-8 mx-auto mb-2 text-orange-600" />
+            <FireIcon className="h-8 w-8 mx-auto mb-2 text-sb-saffron-deep" />
             <div className="text-2xl font-bold">{stats.currentStreak}</div>
             <div className="text-sm text-muted-foreground">Current Streak</div>
           </CardContent>
@@ -839,7 +839,7 @@ export default function CurricuTimer({
 
         <Card>
           <CardContent className="p-4 text-center">
-            <ChartBarIcon className="h-8 w-8 mx-auto mb-2 text-green-600" />
+            <ChartBarIcon className="h-8 w-8 mx-auto mb-2 text-sb-saffron-deep" />
             <div className="text-2xl font-bold">{stats.averageEngagement}%</div>
             <div className="text-sm text-muted-foreground">Avg Engagement</div>
           </CardContent>
@@ -858,28 +858,28 @@ export default function CurricuTimer({
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center">
-                <div className="text-lg font-bold text-green-600">
+                <div className="text-lg font-bold text-sb-saffron-deep">
                   {Math.round(metrics.activeTime / 1000)}s
                 </div>
                 <div className="text-sm text-muted-foreground">Active Time</div>
               </div>
 
               <div className="text-center">
-                <div className="text-lg font-bold text-yellow-600">
+                <div className="text-lg font-bold text-sb-butter-ink">
                   {Math.round(metrics.idleTime / 1000)}s
                 </div>
                 <div className="text-sm text-muted-foreground">Idle Time</div>
               </div>
 
               <div className="text-center">
-                <div className="text-lg font-bold text-blue-600">
+                <div className="text-lg font-bold text-sb-sky-ink">
                   {metrics.interactions}
                 </div>
                 <div className="text-sm text-muted-foreground">Interactions</div>
               </div>
 
               <div className="text-center">
-                <div className="text-lg font-bold text-purple-600">
+                <div className="text-lg font-bold text-sb-lav-ink">
                   {metrics.focusEvents}
                 </div>
                 <div className="text-sm text-muted-foreground">Focus Events</div>
@@ -899,15 +899,15 @@ export default function CurricuTimer({
 
       {/* Adaptive Insights */}
       {schedule?.adaptiveReason && (
-        <Card className="border-purple-200 bg-purple-50 dark:bg-purple-950 dark:border-purple-800">
+        <Card className="border-sb-lav bg-sb-lav  ">
           <CardContent className="pt-6">
             <div className="flex items-start space-x-3">
-              <LightBulbIcon className="h-6 w-6 text-purple-600 mt-1" />
+              <LightBulbIcon className="h-6 w-6 text-sb-lav-ink mt-1" />
               <div>
-                <h4 className="font-semibold text-purple-800 dark:text-purple-200">
+                <h4 className="font-semibold text-sb-lav-ink ">
                   Adaptive Adjustment
                 </h4>
-                <p className="text-sm text-purple-700 dark:text-purple-300 mt-1">
+                <p className="text-sm text-sb-lav-ink  mt-1">
                   {schedule.adaptiveReason}
                 </p>
               </div>

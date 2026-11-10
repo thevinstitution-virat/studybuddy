@@ -21,7 +21,7 @@ function Result({ studentId, submissionId }: { studentId: string; submissionId: 
   const res = r.data!
   return (
     <div className="space-y-3 border-t pt-3" data-testid="parent-result">
-      <p className="text-sm font-medium text-green-700 dark:text-green-400">{t('pa.total', { got: res.total, of: res.assignment.totalMarks })}</p>
+      <p className="text-sm font-medium text-sb-saffron-deep ">{t('pa.total', { got: res.total, of: res.assignment.totalMarks })}</p>
       {res.questions.map((q) => (
         <div key={q.id} className="rounded-md border p-3 text-sm">
           <p className="font-medium">{t('mk.question', { i: q.position + 1 })}: {q.prompt}</p>
@@ -32,7 +32,7 @@ function Result({ studentId, submissionId }: { studentId: string; submissionId: 
               {q.keyPoints.map((k, i) => <li key={i}>{k.description} — {k.marks}/{k.outOf}</li>)}
             </ul>
           )}
-          {q.comment && <p className="mt-2 rounded bg-amber-50 p-2 dark:bg-amber-950/30"><span className="font-medium">{t('pa.teacherComment')}: </span>{q.comment}</p>}
+          {q.comment && <p className="mt-2 rounded bg-sb-butter p-2 "><span className="font-medium">{t('pa.teacherComment')}: </span>{q.comment}</p>}
         </div>
       ))}
     </div>

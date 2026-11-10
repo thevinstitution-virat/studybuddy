@@ -18,7 +18,7 @@ const CREDIT_PACKAGES = [
         originalPrice: 149,
         save: 33,
         popular: false,
-        gradient: 'from-primary to-cyan-500'
+        gradient: 'from-primary '
     },
     {
         id: 'pack_200',
@@ -38,7 +38,7 @@ const CREDIT_PACKAGES = [
         originalPrice: 2980,
         save: 66,
         popular: false,
-        gradient: 'from-orange-500 to-red-500'
+        gradient: ' '
     }
 ];
 
@@ -66,7 +66,7 @@ export default function CreditStorePage() {
             style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
 
             {/* Hero Header Section */}
-            <section className="relative bg-gradient-to-br from-primary/10 via-primary/10 to-primary/10 dark:from-[var(--night-ink)] dark:via-[var(--indigo-deep)] dark:to-[var(--indigo-ink)] py-16">
+            <section className="relative bg-sb-surface-2 from-primary/10 via-primary/10 to-primary/10 dark:from-[var(--night-ink)] dark:via-[var(--indigo-deep)] dark:to-[var(--indigo-ink)] py-16">
                 <div className="absolute inset-0 bg-white/30 dark:bg-black/20 backdrop-blur-sm" />
 
                 <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,13 +76,13 @@ export default function CreditStorePage() {
                             Back to Sarvagya
                         </Link>
 
-                        <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-full border border-amber-200/50 dark:border-amber-200/20 mb-6 backdrop-blur-sm mx-auto block">
-                            <Coins className="h-4 w-4 text-amber-500 mr-2" />
+                        <div className="inline-flex items-center px-4 py-2 bg-sb-surface-2   rounded-full border border-sb-butter  mb-6 backdrop-blur-sm mx-auto block">
+                            <Coins className="h-4 w-4 text-sb-butter-ink mr-2" />
                             <span className="text-sm font-medium text-foreground">Credit Store</span>
                         </div>
 
                         <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                            Top Up Your <span className="bg-gradient-to-r from-orange-500 to-primary/80 bg-clip-text text-transparent">Research Balance</span>
+                            Top Up Your <span className="text-sb-saffron-deep  to-primary/80  ">Research Balance</span>
                         </h1>
 
                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -91,7 +91,7 @@ export default function CreditStorePage() {
                     </div>
 
                     {/* Balance Card inside hero */}
-                    <div className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-8 text-white shadow-xl relative overflow-hidden max-w-3xl mx-auto">
+                    <div className="bg-sb-surface-2 from-primary to-primary/80 rounded-2xl p-8 text-white shadow-xl relative overflow-hidden max-w-3xl mx-auto">
                         <div className="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-card opacity-10 rounded-full blur-3xl" />
 
                         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -112,7 +112,7 @@ export default function CreditStorePage() {
                             {!isPremium && (
                                 <div className="bg-white/10 backdrop-blur-md border border-white/20 p-5 rounded-2xl max-w-xs">
                                     <div className="flex gap-2 items-start mb-2">
-                                        <Zap className="w-5 h-5 text-amber-400 mt-0.5" />
+                                        <Zap className="w-5 h-5 text-sb-butter-ink mt-0.5" />
                                         <h3 className="font-bold">Pro Subscribers get +100 Credits Monthly</h3>
                                     </div>
                                     <button className="mt-3 w-full py-2 bg-card text-primary rounded-xl font-bold hover:bg-muted/40 transition-colors shadow-sm">
@@ -129,7 +129,7 @@ export default function CreditStorePage() {
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                        Top Up <span className="bg-gradient-to-r from-orange-500 to-primary/80 bg-clip-text text-transparent">Packages</span>
+                        Top Up <span className="text-sb-saffron-deep  to-primary/80  ">Packages</span>
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                         Choose the research power that fits your needs
@@ -141,21 +141,21 @@ export default function CreditStorePage() {
                         <div
                             key={pkg.id}
                             className={`relative bg-card rounded-2xl border-2 flex flex-col overflow-hidden transition-all duration-300 hover:shadow-2xl transform hover:scale-105 group ${pkg.popular
-                                ? 'border-primary shadow-xl shadow-indigo-100 scale-100 md:scale-105 z-10'
+                                ? 'border-primary shadow-xl  scale-100 md:scale-105 z-10'
                                 : 'border-border'
                                 }`}
                         >
-                            <div className={`absolute inset-0 bg-gradient-to-br ${pkg.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+                            <div className={`absolute inset-0 bg-sb-surface-2 ${pkg.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
 
                             {pkg.popular && (
-                                <div className="bg-gradient-to-r from-primary to-primary/80 text-white text-xs font-bold uppercase tracking-wider text-center py-2 w-full">
+                                <div className="bg-sb-surface-2 from-primary to-primary/80 text-white text-xs font-bold uppercase tracking-wider text-center py-2 w-full">
                                     ✨ Most Popular
                                 </div>
                             )}
 
                             <div className="p-6 md:p-8 flex-1 flex flex-col relative z-10">
                                 <div className="mb-4">
-                                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${pkg.gradient} text-white mb-3`}>
+                                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-sb-surface-2 ${pkg.gradient} text-white mb-3`}>
                                         {pkg.save}% OFF
                                     </span>
                                     <h3 className="text-xl font-bold text-foreground">{pkg.title}</h3>
@@ -173,7 +173,7 @@ export default function CreditStorePage() {
                                                 +{pkg.credits}
                                             </span>
                                             <span className="text-sm font-medium text-muted-foreground flex items-center justify-center gap-1">
-                                                <Coins className="w-4 h-4 text-amber-500" />
+                                                <Coins className="w-4 h-4 text-sb-butter-ink" />
                                                 Credits
                                             </span>
                                         </div>
@@ -183,8 +183,8 @@ export default function CreditStorePage() {
                                 <button
                                     onClick={() => handlePurchase(pkg.id)}
                                     className={`w-full py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-all duration-200 transform active:scale-95 ${pkg.popular
-                                        ? 'bg-gradient-to-r from-primary to-primary/80 hover:from-primary hover:to-primary/80 text-white shadow-md shadow-indigo-200 dark:shadow-none'
-                                        : 'bg-gradient-to-r from-orange-500 to-primary/80 hover:from-orange-600 hover:to-primary/80 text-white shadow-md'
+                                        ? 'bg-sb-surface-2 from-primary to-primary/80 hover:from-primary hover:to-primary/80 text-white shadow-md  dark:shadow-none'
+                                        : 'bg-sb-navy  to-primary/80  hover:to-primary/80 text-white shadow-md'
                                         }`}
                                 >
                                     <CreditCard className="w-4 h-4" />
@@ -197,7 +197,7 @@ export default function CreditStorePage() {
 
                 {/* Info footer */}
                 <div className="mt-12 bg-card rounded-2xl p-6 border border-border shadow-lg flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+                    <div className="w-12 h-12 bg-sb-navy   rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
                         <ShieldCheck className="w-6 h-6 text-white" />
                     </div>
                     <div>

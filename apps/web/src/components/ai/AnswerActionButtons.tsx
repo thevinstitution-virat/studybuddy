@@ -731,14 +731,14 @@ export default function AnswerActionButtons({
           size="sm"
           onClick={handleTranslate}
           disabled={isTranslating}
-          className="flex items-center gap-2 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 border-purple-200 dark:border-purple-700 hover:from-purple-100 hover:to-indigo-100 dark:hover:from-purple-900/30 dark:hover:to-indigo-900/30 hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-200 hover:shadow-md"
+          className="flex items-center gap-2 bg-sb-surface-2     border-sb-lav      hover:border-sb-lav  transition-all duration-200 hover:shadow-md"
         >
           {isTranslating ? (
-            <Loader2 className="h-4 w-4 animate-spin text-purple-600 dark:text-purple-400" />
+            <Loader2 className="h-4 w-4 animate-spin text-sb-lav-ink " />
           ) : (
-            <Globe className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+            <Globe className="h-4 w-4 text-sb-lav-ink " />
           )}
-          <span className="text-purple-700 dark:text-purple-300 font-medium">
+          <span className="text-sb-lav-ink  font-medium">
             {translatedText ? 'Toggle Translation' : 'Translate'}
           </span>
         </Button>
@@ -749,15 +749,15 @@ export default function AnswerActionButtons({
           size="sm"
           onClick={handleWordMeanings}
           disabled={isLoadingWords}
-          className="flex items-center gap-2 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border-blue-200 dark:border-blue-700 hover:from-blue-100 hover:to-cyan-100 dark:hover:from-blue-900/30 dark:hover:to-cyan-900/30 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-md"
+          className="flex items-center gap-2 bg-sb-surface-2     border-sb-sky      hover:border-sb-sky  transition-all duration-200 hover:shadow-md"
         >
           {isLoadingWords ? (
-            <Loader2 className="h-4 w-4 animate-spin text-blue-600 dark:text-blue-400" />
+            <Loader2 className="h-4 w-4 animate-spin text-sb-sky-ink " />
           ) : (
-            <BookOpenText className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+            <BookOpenText className="h-4 w-4 text-sb-sky-ink " />
           )}
-          <span className="hidden sm:inline text-blue-700 dark:text-blue-300 font-medium">Word Meanings</span>
-          <span className="sm:hidden text-blue-700 dark:text-blue-300 font-medium">Words</span>
+          <span className="hidden sm:inline text-sb-sky-ink  font-medium">Word Meanings</span>
+          <span className="sm:hidden text-sb-sky-ink  font-medium">Words</span>
         </Button>
 
         {/* Generate Visual Aid Button - ImagePlus icon with toggle behavior */}
@@ -766,17 +766,17 @@ export default function AnswerActionButtons({
           size="sm"
           onClick={handleGenerateVisual}
           disabled={isGeneratingVisual}
-          className="flex items-center gap-2 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-700 hover:from-green-100 hover:to-emerald-100 dark:hover:from-green-900/30 dark:hover:to-emerald-900/30 hover:border-green-300 dark:hover:border-green-600 transition-all duration-200 hover:shadow-md"
+          className="flex items-center gap-2 bg-sb-surface-2     border-sb-saffron      hover:border-sb-saffron  transition-all duration-200 hover:shadow-md"
         >
           {isGeneratingVisual ? (
-            <Loader2 className="h-4 w-4 animate-spin text-green-600 dark:text-green-400" />
+            <Loader2 className="h-4 w-4 animate-spin text-sb-saffron-deep " />
           ) : (
-            <ImagePlus className="h-4 w-4 text-green-600 dark:text-green-400" />
+            <ImagePlus className="h-4 w-4 text-sb-saffron-deep " />
           )}
-          <span className="hidden sm:inline text-green-700 dark:text-green-300 font-medium">
+          <span className="hidden sm:inline text-sb-saffron-deep  font-medium">
             {generatedVisualization ? 'Toggle Visual Aid' : 'Visual Aid'}
           </span>
-          <span className="sm:hidden text-green-700 dark:text-green-300 font-medium">Visual</span>
+          <span className="sm:hidden text-sb-saffron-deep  font-medium">Visual</span>
         </Button>
 
         {/* Add to Sanchika Button - BookmarkPlus icon */}
@@ -785,15 +785,15 @@ export default function AnswerActionButtons({
           size="sm"
           onClick={handleAddToNotes}
           disabled={isSavingNote}
-          className="flex items-center gap-2 bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 border-orange-200 dark:border-orange-700 hover:from-orange-100 hover:to-amber-100 dark:hover:from-orange-900/30 dark:hover:to-amber-900/30 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-200 hover:shadow-md"
+          className="flex items-center gap-2 bg-sb-surface-2     border-sb-saffron      hover:border-sb-saffron  transition-all duration-200 hover:shadow-md"
         >
           {isSavingNote ? (
-            <Loader2 className="h-4 w-4 animate-spin text-orange-600 dark:text-orange-400" />
+            <Loader2 className="h-4 w-4 animate-spin text-sb-saffron-deep " />
           ) : (
-            <BookmarkPlus className="h-4 w-4 text-orange-600 dark:text-orange-400" />
+            <BookmarkPlus className="h-4 w-4 text-sb-saffron-deep " />
           )}
-          <span className="hidden sm:inline text-orange-700 dark:text-orange-300 font-medium">Add to Sanchika</span>
-          <span className="sm:hidden text-orange-700 dark:text-orange-300 font-medium">Save</span>
+          <span className="hidden sm:inline text-sb-saffron-deep  font-medium">Add to Sanchika</span>
+          <span className="sm:hidden text-sb-saffron-deep  font-medium">Save</span>
         </Button>
 
         {/*
@@ -808,35 +808,35 @@ export default function AnswerActionButtons({
           onClick={handleExplainDifferently}
           disabled={isExplaining}
           title="Get the same concept explained from a different angle"
-          className="flex items-center gap-2 bg-gradient-to-r from-rose-50 to-pink-50 dark:from-rose-900/20 dark:to-pink-900/20 border-rose-200 dark:border-rose-700 hover:from-rose-100 hover:to-pink-100 dark:hover:from-rose-900/30 dark:hover:to-pink-900/30 hover:border-rose-300 dark:hover:border-rose-600 transition-all duration-200 hover:shadow-md"
+          className="flex items-center gap-2 bg-sb-surface-2     border-sb-rose      hover:border-sb-rose  transition-all duration-200 hover:shadow-md"
         >
           {isExplaining ? (
-            <Loader2 className="h-4 w-4 animate-spin text-rose-600 dark:text-rose-400" />
+            <Loader2 className="h-4 w-4 animate-spin text-sb-rose-ink " />
           ) : (
-            <Lightbulb className="h-4 w-4 text-rose-600 dark:text-rose-400" />
+            <Lightbulb className="h-4 w-4 text-sb-rose-ink " />
           )}
-          <span className="hidden sm:inline text-rose-700 dark:text-rose-300 font-medium">
+          <span className="hidden sm:inline text-sb-rose-ink  font-medium">
             {altExplanation ? 'Another Way' : 'Explain Differently'}
           </span>
-          <span className="sm:hidden text-rose-700 dark:text-rose-300 font-medium">Differently</span>
+          <span className="sm:hidden text-sb-rose-ink  font-medium">Differently</span>
         </Button>
       </div>
 
       {/* Alternative Explanation Display */}
       {showAltExplanation && altExplanation && (
-        <div className="bg-rose-50 dark:bg-rose-900/20 border border-rose-200 dark:border-rose-700 rounded-lg p-4">
+        <div className="bg-sb-rose  border border-sb-rose  rounded-lg p-4">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="text-sm font-semibold text-rose-900 dark:text-rose-100">
+            <h4 className="text-sm font-semibold text-sb-rose-ink ">
               💡 Another way to see it{altAngleLabel ? ` — ${altAngleLabel}` : ''}
             </h4>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setShowAltExplanation(false)}
-              className="h-8 w-8 p-0 hover:bg-rose-100 dark:hover:bg-rose-800"
+              className="h-8 w-8 p-0 hover:bg-sb-rose "
               title="Hide this explanation"
             >
-              <X className="h-4 w-4 text-rose-600 dark:text-rose-400" />
+              <X className="h-4 w-4 text-sb-rose-ink " />
             </Button>
           </div>
           <div className="prose prose-sm max-w-none text-foreground">
@@ -849,19 +849,19 @@ export default function AnswerActionButtons({
 
       {/* Translation Display - Bidirectional with proper script support */}
       {showTranslation && translatedText && (
-        <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700 rounded-lg p-4">
+        <div className="bg-sb-lav  border border-sb-lav  rounded-lg p-4">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="text-sm font-semibold text-purple-900 dark:text-purple-100">
+            <h4 className="text-sm font-semibold text-sb-lav-ink ">
               {translationHeaderLabel}
             </h4>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => playAudio(translatedText, targetLanguage === 'HINDI' ? 'hi' : 'en')}
-              className="h-8 w-8 p-0 hover:bg-purple-100 dark:hover:bg-purple-800"
+              className="h-8 w-8 p-0 hover:bg-sb-lav "
               title="Listen to translation"
             >
-              <Volume2 className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+              <Volume2 className="h-4 w-4 text-sb-lav-ink " />
             </Button>
           </div>
           <div className="prose prose-sm max-w-none text-foreground">
@@ -869,8 +869,8 @@ export default function AnswerActionButtons({
               {translatedText}
             </ReactMarkdown>
           </div>
-          <div className="mt-3 pt-3 border-t border-purple-200 dark:border-purple-700">
-            <p className="text-xs text-purple-600 dark:text-purple-400 italic">
+          <div className="mt-3 pt-3 border-t border-sb-lav ">
+            <p className="text-xs text-sb-lav-ink  italic">
               {currentMedium === 'ENGLISH'
                 ? '💡 Technical terms are kept in English to help you learn vocabulary for exams. Difficult Hindi words show their English meaning in brackets for better comprehension.'
                 : '💡 तकनीकी शब्द हिंदी में रखे गए हैं ताकि आप अपनी सांस्कृतिक विरासत को समझ सकें। कठिन अंग्रेजी शब्दों के हिंदी अर्थ कोष्ठक में दिए गए हैं।'}
@@ -881,26 +881,26 @@ export default function AnswerActionButtons({
 
       {/* Word Meanings Table */}
       {showWordMeanings && wordMeanings.length > 0 && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <h4 className="text-sm font-semibold text-blue-900 mb-3">Difficult Words & Meanings</h4>
+        <div className="bg-sb-sky border border-sb-sky rounded-lg p-4">
+          <h4 className="text-sm font-semibold text-sb-sky-ink mb-3">Difficult Words & Meanings</h4>
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
               <thead>
-                <tr className="border-b border-blue-300">
-                  <th className="text-left p-2 font-semibold text-blue-900">Word (English)</th>
-                  <th className="text-left p-2 font-semibold text-blue-900">Pronunciation (Devanagari)</th>
-                  <th className="text-left p-2 font-semibold text-blue-900">Meaning (Hindi)</th>
+                <tr className="border-b border-sb-sky">
+                  <th className="text-left p-2 font-semibold text-sb-sky-ink">Word (English)</th>
+                  <th className="text-left p-2 font-semibold text-sb-sky-ink">Pronunciation (Devanagari)</th>
+                  <th className="text-left p-2 font-semibold text-sb-sky-ink">Meaning (Hindi)</th>
                 </tr>
               </thead>
               <tbody>
                 {wordMeanings.map((item, index) => (
-                  <tr key={index} className="border-b border-blue-200 hover:bg-blue-100 transition-colors">
+                  <tr key={index} className="border-b border-sb-sky hover:bg-sb-sky transition-colors">
                     <td className="p-2">
                       <div className="flex items-center gap-2">
                         <span className="font-medium">{item.word}</span>
                         <button
                           onClick={() => playAudio(item.word, 'en')}
-                          className="text-blue-600 hover:text-blue-800"
+                          className="text-sb-sky-ink hover:text-sb-sky-ink"
                         >
                           <Volume2 className="h-3 w-3" />
                         </button>
@@ -911,7 +911,7 @@ export default function AnswerActionButtons({
                         <span>{item.pronunciation}</span>
                         <button
                           onClick={() => playAudio(item.pronunciation, 'hi')}
-                          className="text-blue-600 hover:text-blue-800"
+                          className="text-sb-sky-ink hover:text-sb-sky-ink"
                         >
                           <Volume2 className="h-3 w-3" />
                         </button>
@@ -922,7 +922,7 @@ export default function AnswerActionButtons({
                         <span>{item.meaning}</span>
                         <button
                           onClick={() => playAudio(item.meaning, 'hi')}
-                          className="text-blue-600 hover:text-blue-800"
+                          className="text-sb-sky-ink hover:text-sb-sky-ink"
                         >
                           <Volume2 className="h-3 w-3" />
                         </button>
@@ -938,7 +938,7 @@ export default function AnswerActionButtons({
 
       {/* Visual Learning Aid Display */}
       {showVisualization && generatedVisualization && (
-        <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-lg p-4">
+        <div className="bg-sb-saffron-tint  border border-sb-saffron  rounded-lg p-4">
           <VisualizationRenderer visualizations={[generatedVisualization]} />
         </div>
       )}
@@ -955,7 +955,7 @@ export default function AnswerActionButtons({
               <button
                 onClick={() => setSaveMode('new')}
                 className={`flex-1 px-4 py-2.5 text-sm font-medium transition-all ${saveMode === 'new'
-                  ? 'bg-gradient-to-r from-orange-500 to-blue-500 text-white'
+                  ? 'bg-sb-navy   text-white'
                   : 'bg-muted/40 text-muted-foreground hover:bg-muted'
                   }`}
               >
@@ -964,7 +964,7 @@ export default function AnswerActionButtons({
               <button
                 onClick={() => setSaveMode('append')}
                 className={`flex-1 px-4 py-2.5 text-sm font-medium transition-all ${saveMode === 'append'
-                  ? 'bg-gradient-to-r from-orange-500 to-blue-500 text-white'
+                  ? 'bg-sb-navy   text-white'
                   : 'bg-muted/40 text-muted-foreground hover:bg-muted'
                   }`}
               >
@@ -996,7 +996,7 @@ export default function AnswerActionButtons({
                 <select
                   value={selectedNoteId}
                   onChange={(e) => setSelectedNoteId(e.target.value)}
-                  className="w-full px-3 py-2 bg-card border border-input rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 bg-card border border-input rounded-md text-sm focus:ring-2 focus:ring-sb-sky focus:border-sb-sky"
                   disabled={isLoadingNotes}
                 >
                   <option value="">-- Select a note --</option>
@@ -1010,8 +1010,8 @@ export default function AnswerActionButtons({
                   <p className="text-xs text-muted-foreground mt-1">No existing notes found. Create a new note instead.</p>
                 )}
                 {selectedNoteId && (
-                  <div className="mt-2 p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
-                    <p className="text-xs text-blue-700 dark:text-blue-300">
+                  <div className="mt-2 p-2 bg-sb-sky  rounded-lg border border-sb-sky ">
+                    <p className="text-xs text-sb-sky-ink ">
                       ✨ The AI answer will be added as a new section at the end of this note with a page separator.
                     </p>
                   </div>
@@ -1039,7 +1039,7 @@ export default function AnswerActionButtons({
                         }
                       }}
                     />
-                    <Button onClick={handleCreateFolder} size="sm" className="bg-green-600 hover:bg-green-700">
+                    <Button onClick={handleCreateFolder} size="sm" className="bg-sb-navy hover:bg-sb-navy">
                       <Plus className="h-4 w-4" />
                     </Button>
                     <Button onClick={() => setIsCreatingFolder(false)} variant="outline" size="sm">
@@ -1051,7 +1051,7 @@ export default function AnswerActionButtons({
                     <select
                       value={selectedFolderId}
                       onChange={(e) => setSelectedFolderId(e.target.value)}
-                      className="flex-1 px-3 py-2 bg-card border border-input rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="flex-1 px-3 py-2 bg-card border border-input rounded-md text-sm focus:ring-2 focus:ring-sb-sky focus:border-sb-sky"
                       disabled={isLoadingFolders}
                     >
                       <option value="none">-- No folder --</option>
@@ -1080,21 +1080,21 @@ export default function AnswerActionButtons({
 
             {/* Included Content Indicators */}
             {(translatedText || wordMeanings.length > 0 || generatedVisualization) && (
-              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-3">
-                <p className="text-xs font-medium text-blue-700 dark:text-blue-300 mb-2">✨ Will also save:</p>
+              <div className="bg-sb-sky  border border-sb-sky  rounded-lg p-3">
+                <p className="text-xs font-medium text-sb-sky-ink  mb-2">✨ Will also save:</p>
                 <div className="flex flex-wrap gap-2">
                   {translatedText && (
-                    <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300">
+                    <Badge className="bg-sb-lav text-sb-lav-ink  ">
                       🌐 Translation
                     </Badge>
                   )}
                   {wordMeanings.length > 0 && (
-                    <Badge className="bg-cyan-100 text-cyan-700 dark:bg-cyan-900 dark:text-cyan-300">
+                    <Badge className="bg-sb-sky text-sb-sky-ink  ">
                       📚 Word Meanings ({wordMeanings.length})
                     </Badge>
                   )}
                   {generatedVisualization && (
-                    <Badge className="bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">
+                    <Badge className="bg-sb-saffron-tint text-sb-saffron-deep  ">
                       📊 Visual Aid
                     </Badge>
                   )}
@@ -1131,7 +1131,7 @@ export default function AnswerActionButtons({
                       {tag}
                       <button
                         onClick={() => handleRemoveTag(tag)}
-                        className="ml-1 hover:text-red-600"
+                        className="ml-1 hover:text-sb-rose-ink"
                       >
                         <X className="h-3 w-3" />
                       </button>
@@ -1166,7 +1166,7 @@ export default function AnswerActionButtons({
               <Button
                 onClick={handleSaveNote}
                 disabled={isSavingNote || (saveMode === 'new' ? !noteTitle.trim() : !selectedNoteId)}
-                className="bg-gradient-to-r from-orange-500 to-blue-500 hover:from-orange-600 hover:to-blue-600"
+                className="bg-sb-navy    "
               >
                 {isSavingNote ? (
                   <>

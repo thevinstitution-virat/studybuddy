@@ -1,99 +1,98 @@
 'use client'
 
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react'
-import MandalaMark from '@/components/dashboard/MandalaMark'
+import { Icon } from '@/components/ui/Icon'
+import { Brand } from '@/components/sb/Brand'
+import { ThemeToggle } from '@/components/sb/ThemeToggle'
 
 /**
- * LandingFooter — the app's existing footer, preserved verbatim from the prior
- * landing. Kept deliberately (per request) rather than porting the mock's
- * footer, and rendered OUTSIDE the `.dcl` wrapper so it uses the app's normal
- * tokens rather than the landing-scoped surface set.
+ * LandingFooter — the app's existing footer, kept (per request) with the Study Buddy name:
+ * company blurb, ecosystem badge, socials, quick links, contact info and the legal block.
+ * Restyled onto the paper + saffron tokens, and it takes the best parts of the new landing
+ * footer: the "Buddy family" cards and a day/night toggle. Rendered on every public page.
  */
+
+const QUICK_LINKS = [
+  { label: 'About Us', href: '#' },
+  { label: 'Features', href: '/#features' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Blog', href: '#' },
+  { label: 'Help Center', href: '#' },
+  { label: 'Contact', href: '#contact' },
+]
+
+const FAMILY = [
+  { name: 'Book Buddy', blurb: 'Digital library', href: 'https://bookbuddy.live', icon: 'books', tile: ['#0A0F24', '#FFFFFF'] },
+  { name: 'Vidyaverse', blurb: 'Campus OS', href: 'https://vgraphics.in', icon: 'graduation-cap', tile: ['#DDEBFA', '#1F5CA3'] },
+]
+
+const dim = '#A9AEC6'
+const heading = { fontSize: 12, fontWeight: 800, letterSpacing: '.09em', textTransform: 'uppercase' as const, color: '#FF9933', margin: '0 0 18px' }
+const link = 'transition-colors duration-200 hover:text-[#FF9933]'
+
 export function LandingFooter() {
   return (
-    <footer
-      id="contact"
-      className="py-16"
-      style={{ background: 'var(--night-ink)', color: 'var(--ivory-cream)' }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Company Info */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
-              <MandalaMark size={40} />
-              <span className="text-2xl" style={{ fontFamily: 'var(--font-display)' }}>Study Buddy</span>
-            </div>
-            <p className="mb-6 max-w-md" style={{ color: 'rgb(var(--ivory-cream-rgb) / 0.72)' }}>
+    <footer id="contact" style={{ background: 'var(--sb-navy)', color: '#F2F3F8', borderTop: '1px solid var(--sb-line)' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-12">
+          {/* Company info */}
+          <div className="lg:col-span-4">
+            <div className="mb-5"><Brand size={40} onNavy /></div>
+            <p className="mb-6 max-w-md" style={{ color: dim, lineHeight: 1.6 }}>
               Revolutionizing education with AI-powered, NCERT-grounded learning. Launching 2026 —
               join the founding cohort shaping the future of CBSE &amp; ICSE study.
             </p>
             {/* Ecosystem badge — part of the Vidyaverse trio */}
             <a
               href="https://vgraphics.in"
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-6 transition-colors duration-300"
-              style={{
-                background: 'rgb(var(--ivory-cream-rgb) / 0.05)',
-                border: '1px solid rgb(var(--gold-rgb) / 0.22)',
-              }}
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-6"
+              style={{ background: '#FFFFFF0D', border: '1px solid #FF99332E' }}
             >
-              <span
-                className="w-2 h-2 rounded-full"
-                style={{ background: 'linear-gradient(90deg, var(--accent-primary), var(--gold))' }}
-              />
-              <span className="text-xs font-semibold" style={{ color: 'rgb(var(--ivory-cream-rgb) / 0.75)' }}>
-                Part of the <span className="gradient-text-indic-soft font-bold">Vidyaverse</span> ecosystem — one login across Campus OS, Library &amp; Tutor
+              <span className="w-2 h-2 rounded-full" style={{ background: '#FF9933' }} />
+              <span className="text-xs font-semibold" style={{ color: '#C9CCDD' }}>
+                Part of the <span style={{ color: '#FF9933', fontWeight: 800 }}>Vidyaverse</span> ecosystem — one login across Campus OS, Library &amp; Tutor
               </span>
             </a>
-            <div className="flex gap-4">
-              {[Facebook, Twitter, Instagram, Linkedin, Youtube].map((Icon, index) => (
+            <div className="flex gap-3">
+              {(['facebook', 'twitter', 'instagram', 'linkedin', 'youtube'] as const).map((n) => (
                 <a
-                  key={index}
+                  key={n}
                   href="#"
-                  className="w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
-                  style={{
-                    background: 'rgb(var(--ivory-cream-rgb) / 0.06)',
-                    border: '1px solid rgb(var(--gold-rgb) / 0.18)',
-                  }}
+                  aria-label={n}
+                  className="w-11 h-11 rounded-xl flex items-center justify-center transition-transform duration-200 hover:scale-110"
+                  style={{ background: '#FFFFFF10', border: '1px solid #FFFFFF1F' }}
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon name={n} size={20} />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg mb-6" style={{ color: 'var(--gold)' }}>Quick Links</h3>
+          {/* Quick links */}
+          <div className="lg:col-span-2">
+            <h3 style={heading}>Quick Links</h3>
             <ul className="space-y-3">
-              {['About Us', 'Features', 'Pricing', 'Blog', 'Help Center', 'Contact'].map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
-                    className="transition-colors duration-300 hover:text-[color:var(--gold)]"
-                    style={{ color: 'rgb(var(--ivory-cream-rgb) / 0.72)' }}
-                  >
-                    {link}
-                  </a>
+              {QUICK_LINKS.map((l) => (
+                <li key={l.label}>
+                  <a href={l.href} className={link} style={{ color: dim, fontWeight: 600 }}>{l.label}</a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-lg mb-6" style={{ color: 'var(--gold)' }}>Contact Info</h3>
-            <div className="space-y-4" style={{ color: 'rgb(var(--ivory-cream-rgb) / 0.72)' }}>
-              <div className="flex items-center">
-                <Mail className="h-5 w-5 mr-3" style={{ color: 'var(--accent-primary)' }} />
+          {/* Contact info */}
+          <div className="lg:col-span-3">
+            <h3 style={heading}>Contact Info</h3>
+            <div className="space-y-4" style={{ color: dim }}>
+              <div className="flex items-center gap-3">
+                <Icon name="mail" size={20} color="#FF9933" />
                 <span>support@mydigiclassroom.com</span>
               </div>
-              <div className="flex items-center">
-                <Phone className="h-5 w-5 mr-3" style={{ color: 'var(--accent-primary)' }} />
-                <a href="tel:+919310959596" className="transition-colors duration-300 hover:text-[color:var(--gold)]">+91 93109 59596</a>
+              <div className="flex items-center gap-3">
+                <Icon name="phone" size={20} color="#FF9933" />
+                <a href="tel:+919310959596" className={link}>+91 93109 59596</a>
               </div>
-              <div className="flex items-start">
-                <MapPin className="h-5 w-5 mr-3 mt-1" style={{ color: 'var(--accent-primary)' }} />
+              <div className="flex items-start gap-3">
+                <span className="mt-0.5"><Icon name="pin" size={20} color="#FF9933" /></span>
                 <span>
                   Vinstitution, 2nd Floor, Property No. 44, Regal Building,
                   Connaught Place, New Delhi — 110090
@@ -101,34 +100,57 @@ export function LandingFooter() {
               </div>
             </div>
           </div>
+
+          {/* The Buddy family (from the new landing footer) */}
+          <div className="lg:col-span-3">
+            <h3 style={heading}>The Buddy family</h3>
+            <div className="flex flex-col gap-2.5">
+              {FAMILY.map((f) => (
+                <a
+                  key={f.name}
+                  href={f.href}
+                  className="flex items-center gap-3 px-3 py-2.5 transition-colors duration-200 hover:bg-white/10"
+                  style={{ borderRadius: 16, border: '1px solid #FFFFFF1F' }}
+                >
+                  <span style={{ width: 36, height: 36, borderRadius: 12, background: f.tile[0], color: f.tile[1], display: 'grid', placeItems: 'center', flex: 'none' }}>
+                    <Icon name={f.icon} size={20} weight="duotone" />
+                  </span>
+                  <span>
+                    <span style={{ display: 'block', fontWeight: 800, fontSize: 14, color: '#fff' }}>{f.name}</span>
+                    <span style={{ display: 'block', fontSize: 12, color: dim }}>{f.blurb}</span>
+                  </span>
+                  <span className="ml-auto"><Icon name="arrow-up-right" size={16} color={dim} /></span>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8" style={{ borderTop: '1px solid rgb(var(--gold-rgb) / 0.14)' }}>
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4" style={{ color: 'rgb(var(--ivory-cream-rgb) / 0.6)' }}>
+        {/* Bottom bar */}
+        <div className="pt-8" style={{ borderTop: '1px solid #FFFFFF1F' }}>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4" style={{ color: dim }}>
             <p className="text-center md:text-left leading-relaxed">
               Study Buddy is a brand of the Vinstitution segment of VPD Vastus
               Ventures Private Limited.
             </p>
-            <div className="flex gap-6">
-              <a href="#" className="transition-colors duration-300 hover:text-[color:var(--gold)]">Privacy Policy</a>
-              <a href="#" className="transition-colors duration-300 hover:text-[color:var(--gold)]">Terms of Service</a>
-              <a href="#" className="transition-colors duration-300 hover:text-[color:var(--gold)]">Cookie Policy</a>
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+              <a href="#" className={link}>Privacy Policy</a>
+              <a href="#" className={link}>Terms of Service</a>
+              <a href="#" className={link}>Cookie Policy</a>
+              <ThemeToggle variant="pill" />
             </div>
           </div>
 
           {/* Legal identifiers + copyright — same block across the trio, only the brand name above changes */}
           <div
             className="mt-6 pt-6 flex flex-col items-center gap-1.5 text-center text-xs"
-            style={{ borderTop: '1px solid rgb(var(--gold-rgb) / 0.1)', color: 'rgb(var(--ivory-cream-rgb) / 0.35)' }}
+            style={{ borderTop: '1px solid #FFFFFF14', color: '#7F85A3' }}
           >
             <p>PAN: AAMCV2938B &middot; GSTIN: 07AAMCV2938B1ZA &middot; ISO 9001:2015 Certified</p>
             <p>
               &copy; {new Date().getFullYear()} VPD Vastus Ventures Pvt. Ltd. All rights reserved.
               &middot; Proudly powered by Vinstitution &middot; Designed by{' '}
-              <a href="https://vgraphics.in" className="transition-colors duration-300 hover:text-[color:var(--gold)]">
-                VGraphics.in
-              </a>
+              <a href="https://vgraphics.in" className={link}>VGraphics.in</a>
             </p>
           </div>
         </div>

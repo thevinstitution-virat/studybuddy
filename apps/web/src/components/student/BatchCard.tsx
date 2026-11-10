@@ -54,21 +54,21 @@ export function BatchCard({ batch, onNavigate }: BatchCardProps) {
 
   if (isPendingPayment) {
     return (
-      <Card className="flex flex-col h-full border-amber-200 bg-amber-50/50">
+      <Card className="flex flex-col h-full border-sb-butter bg-sb-butter">
         <CardHeader>
-          <div className="text-sm text-amber-700/80 mb-1">
+          <div className="text-sm text-sb-butter-ink mb-1">
             {batch.domain.name} / {batch.course.name} / {batch.level.name}
           </div>
-          <CardTitle className="text-xl line-clamp-2 text-amber-900">{batch.batchName}</CardTitle>
+          <CardTitle className="text-xl line-clamp-2 text-sb-butter-ink">{batch.batchName}</CardTitle>
         </CardHeader>
         <CardContent className="flex-1">
-          <div className="text-sm text-amber-800 flex items-center justify-center h-full py-4 text-center">
+          <div className="text-sm text-sb-butter-ink flex items-center justify-center h-full py-4 text-center">
             Payment pending. Complete your payment to start learning.
           </div>
         </CardContent>
         <CardFooter>
           <Button 
-            className="w-full bg-amber-600 hover:bg-amber-700 text-white" 
+            className="w-full bg-sb-navy hover:bg-sb-navy text-white" 
             onClick={() => resumePayment.mutate({ batchId: batch.batchId })}
             disabled={resumePayment.isPending}
           >

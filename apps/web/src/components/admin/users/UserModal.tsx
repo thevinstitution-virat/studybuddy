@@ -123,7 +123,7 @@ export default function UserModal({
                 type="text"
                 value={formData.firstName}
                 onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
                 placeholder="Enter first name"
               />
             </div>
@@ -137,7 +137,7 @@ export default function UserModal({
                 type="text"
                 value={formData.lastName}
                 onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
                 placeholder="Enter last name"
               />
             </div>
@@ -151,14 +151,14 @@ export default function UserModal({
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
                 placeholder="Enter email address"
               />
               <div className="mt-1 flex items-center">
                 {user.emailVerified ? (
-                  <span className="text-xs text-green-600">✓ Email verified</span>
+                  <span className="text-xs text-sb-saffron-deep">✓ Email verified</span>
                 ) : (
-                  <span className="text-xs text-red-600">✗ Email not verified</span>
+                  <span className="text-xs text-sb-rose-ink">✗ Email not verified</span>
                 )}
               </div>
             </div>
@@ -171,7 +171,7 @@ export default function UserModal({
               <select
                 value={formData.role}
                 onChange={(e) => setFormData({ ...formData, role: e.target.value as any })}
-                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
               >
                 {USER_ROLES.map(role => (
                   <option key={role.value} value={role.value}>
@@ -192,7 +192,7 @@ export default function UserModal({
               <select
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
-                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-sb-sky"
               >
                 {USER_STATUSES.map(status => (
                   <option key={status.value} value={status.value}>
@@ -246,7 +246,7 @@ export default function UserModal({
             <button
               type="submit"
               disabled={loading}
-              className="px-4 py-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+              className="px-4 py-2 text-sm bg-sb-navy text-white rounded hover:bg-sb-navy disabled:opacity-50"
             >
               {loading ? 'Saving...' : 'Save Changes'}
             </button>

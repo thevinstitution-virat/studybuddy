@@ -87,8 +87,8 @@ export default function InstitutionAssignmentsPage() {
                   : <p className="text-muted-foreground">{usage.data!.monthlyAnswerQuota ? t('ad.quota', { n: usage.data!.monthlyAnswerQuota }) : t('ad.quotaOff')}</p>}
                 {month && month.keyBuilds > 0 && <p className="text-muted-foreground">{t('ad.keys', { n: month.keyBuilds, cost: (month.keyCostPaise / 100).toFixed(2) })}</p>}
                 {month?.exhausted
-                  ? <p role="alert" className="rounded border border-red-300 bg-red-50 p-2 text-red-800">{t('ad.budgetFull')}</p>
-                  : month?.warn && <p role="status" className="rounded border border-amber-300 bg-amber-50 p-2 text-amber-900">{t('ad.budgetWarn', { pct })}</p>}
+                  ? <p role="alert" className="rounded border border-sb-danger bg-sb-rose p-2 text-sb-rose-ink">{t('ad.budgetFull')}</p>
+                  : month?.warn && <p role="status" className="rounded border border-sb-butter bg-sb-butter p-2 text-sb-butter-ink">{t('ad.budgetWarn', { pct })}</p>}
               </>
             )}
           </CardContent>
@@ -127,7 +127,7 @@ export default function InstitutionAssignmentsPage() {
                 </Field>
                 <div className="sm:col-span-4">
                   <Button type="submit" disabled={!teacherId || !classId || assign.isPending}>{assign.isPending && <Loader2 className="mr-1 h-4 w-4 animate-spin" />}{t('ad.link')}</Button>
-                  {assign.error && <span className="ml-3 text-sm text-red-600">{assign.error.message}</span>}
+                  {assign.error && <span className="ml-3 text-sm text-sb-rose-ink">{assign.error.message}</span>}
                 </div>
               </form>
             )}

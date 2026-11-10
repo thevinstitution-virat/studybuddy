@@ -25,11 +25,11 @@ export function LoadingButton({
   const baseClasses = "inline-flex items-center justify-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
   
   const variantClasses = {
-    primary: "bg-gradient-to-r from-orange-500 to-blue-600 text-white hover:from-orange-600 hover:to-blue-700 shadow-md hover:shadow-lg focus:ring-orange-500",
+    primary: "bg-sb-navy   text-white   shadow-md hover:shadow-lg focus:ring-sb-saffron",
     secondary: "bg-muted text-foreground hover:bg-muted border border-input focus:ring-gray-500",
-    outline: "border-2 border-input text-foreground hover:border-orange-500 hover:text-orange-500 hover:bg-orange-50 focus:ring-orange-500",
+    outline: "border-2 border-input text-foreground hover:border-sb-saffron hover:text-sb-saffron-deep hover:bg-sb-saffron-tint focus:ring-sb-saffron",
     ghost: "text-foreground hover:bg-muted hover:text-foreground focus:ring-gray-500",
-    destructive: "bg-red-500 text-white hover:bg-red-600 shadow-md hover:shadow-lg focus:ring-red-500"
+    destructive: "bg-sb-danger text-white hover:bg-sb-danger shadow-md hover:shadow-lg focus:ring-sb-danger"
   }
 
   const sizeClasses = {

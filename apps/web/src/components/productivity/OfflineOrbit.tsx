@@ -534,9 +534,9 @@ export default function OfflineOrbit() {
       return {
         icon: SignalIcon,
         text: 'Offline Mode',
-        color: 'text-orange-600',
-        bgColor: 'bg-orange-50 dark:bg-orange-950',
-        borderColor: 'border-orange-200 dark:border-orange-800'
+        color: 'text-sb-saffron-deep',
+        bgColor: 'bg-sb-saffron-tint ',
+        borderColor: 'border-sb-saffron '
       }
     }
 
@@ -546,25 +546,25 @@ export default function OfflineOrbit() {
         return {
           icon: WifiIcon,
           text: 'Fast Connection (4G)',
-          color: 'text-green-600',
-          bgColor: 'bg-green-50 dark:bg-green-950',
-          borderColor: 'border-green-200 dark:border-green-800'
+          color: 'text-sb-saffron-deep',
+          bgColor: 'bg-sb-saffron-tint ',
+          borderColor: 'border-sb-saffron '
         }
       } else if (speed === '3g') {
         return {
           icon: WifiIcon,
           text: 'Good Connection (3G)',
-          color: 'text-blue-600',
-          bgColor: 'bg-blue-50 dark:bg-blue-950',
-          borderColor: 'border-blue-200 dark:border-blue-800'
+          color: 'text-sb-sky-ink',
+          bgColor: 'bg-sb-sky ',
+          borderColor: 'border-sb-sky '
         }
       } else {
         return {
           icon: WifiIcon,
           text: 'Slow Connection (2G)',
-          color: 'text-yellow-600',
-          bgColor: 'bg-yellow-50 dark:bg-yellow-950',
-          borderColor: 'border-yellow-200 dark:border-yellow-800'
+          color: 'text-sb-butter-ink',
+          bgColor: 'bg-sb-butter ',
+          borderColor: 'border-sb-butter '
         }
       }
     }
@@ -572,9 +572,9 @@ export default function OfflineOrbit() {
     return {
       icon: WifiIcon,
       text: 'Online',
-      color: 'text-green-600',
-      bgColor: 'bg-green-50 dark:bg-green-950',
-      borderColor: 'border-green-200 dark:border-green-800'
+      color: 'text-sb-saffron-deep',
+      bgColor: 'bg-sb-saffron-tint ',
+      borderColor: 'border-sb-saffron '
     }
   }, [syncStatus.isOnline, connectionInfo])
 
@@ -582,10 +582,10 @@ export default function OfflineOrbit() {
   if (isInitializing) {
     return (
       <div className="space-y-6">
-        <Card className="border-indigo-200 bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-950 dark:to-blue-950 dark:border-indigo-800">
+        <Card className="border-sb-lav bg-sb-surface-2     ">
           <CardContent className="pt-6">
             <div className="text-center">
-              <CircleStackIcon className="h-12 w-12 mx-auto mb-4 text-indigo-600 animate-pulse" />
+              <CircleStackIcon className="h-12 w-12 mx-auto mb-4 text-sb-lav-ink animate-pulse" />
               <h3 className="text-lg font-semibold mb-2">Initializing OfflineOrbit...</h3>
               <p className="text-muted-foreground">
                 Setting up offline capabilities and service workers
@@ -602,13 +602,13 @@ export default function OfflineOrbit() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <Card className="border-indigo-200 bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-950 dark:to-blue-950 dark:border-indigo-800">
+      <Card className="border-sb-lav bg-sb-surface-2     ">
         <CardHeader>
-          <CardTitle className="flex items-center space-x-2 text-indigo-800 dark:text-indigo-200">
+          <CardTitle className="flex items-center space-x-2 text-sb-lav-ink ">
             <CircleStackIcon className="h-6 w-6" />
             <span>OfflineOrbit - Advanced Offline System</span>
           </CardTitle>
-          <CardDescription className="text-indigo-700 dark:text-indigo-300">
+          <CardDescription className="text-sb-lav-ink ">
             🇮🇳 Enterprise-grade offline capabilities designed for India's diverse connectivity
           </CardDescription>
         </CardHeader>
@@ -616,19 +616,19 @@ export default function OfflineOrbit() {
 
       {/* Service Worker Update Banner */}
       {updateAvailable && (
-        <Card className="border-blue-200 bg-blue-50 dark:bg-blue-950 dark:border-blue-800">
+        <Card className="border-sb-sky bg-sb-sky  ">
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <ArrowDownTrayIcon className="h-6 w-6 text-blue-600" />
+                <ArrowDownTrayIcon className="h-6 w-6 text-sb-sky-ink" />
                 <div>
-                  <h4 className="font-semibold text-blue-800 dark:text-blue-200">Update Available</h4>
-                  <p className="text-sm text-blue-700 dark:text-blue-300">
+                  <h4 className="font-semibold text-sb-sky-ink ">Update Available</h4>
+                  <p className="text-sm text-sb-sky-ink ">
                     A new version of OfflineOrbit is ready to install
                   </p>
                 </div>
               </div>
-              <Button onClick={updateServiceWorker} className="bg-blue-600 hover:bg-blue-700">
+              <Button onClick={updateServiceWorker} className="bg-sb-navy hover:bg-sb-navy">
                 Update Now
               </Button>
             </div>
@@ -665,12 +665,12 @@ export default function OfflineOrbit() {
                 {syncStatus.isOnline ? 'Connected' : 'Offline'}
               </Badge>
               {syncStatus.pendingItems > 0 && (
-                <div className="text-sm text-orange-600 mt-1">
+                <div className="text-sm text-sb-saffron-deep mt-1">
                   {syncStatus.pendingItems} pending sync{syncStatus.pendingItems > 1 ? 's' : ''}
                 </div>
               )}
               {syncStatus.errors.length > 0 && (
-                <div className="text-sm text-red-600 mt-1">
+                <div className="text-sm text-sb-rose-ink mt-1">
                   {syncStatus.errors.length} sync error{syncStatus.errors.length > 1 ? 's' : ''}
                 </div>
               )}
@@ -743,7 +743,7 @@ export default function OfflineOrbit() {
                 <ul className="text-sm space-y-1">
                   {syncRecommendations.map((rec, index) => (
                     <li key={index} className="flex items-start space-x-2">
-                      <span className="text-blue-600 mt-0.5">•</span>
+                      <span className="text-sb-sky-ink mt-0.5">•</span>
                       <span className="text-muted-foreground">{rec}</span>
                     </li>
                   ))}
@@ -777,17 +777,17 @@ export default function OfflineOrbit() {
 
             <div className="text-sm">
               {storageUsage.percentage < 60 ? (
-                <div className="flex items-center space-x-1 text-green-600">
+                <div className="flex items-center space-x-1 text-sb-saffron-deep">
                   <CheckCircleIcon className="h-4 w-4" />
                   <span>Storage is healthy</span>
                 </div>
               ) : storageUsage.percentage < 80 ? (
-                <div className="flex items-center space-x-1 text-yellow-600">
+                <div className="flex items-center space-x-1 text-sb-butter-ink">
                   <ExclamationTriangleIcon className="h-4 w-4" />
                   <span>Storage usage moderate</span>
                 </div>
               ) : (
-                <div className="flex items-center space-x-1 text-red-600">
+                <div className="flex items-center space-x-1 text-sb-rose-ink">
                   <ExclamationTriangleIcon className="h-4 w-4" />
                   <span>Storage getting full</span>
                 </div>
@@ -799,11 +799,11 @@ export default function OfflineOrbit() {
               <div className="text-sm font-medium">Service Worker Status:</div>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <div className="flex items-center space-x-1">
-                  <div className={`w-2 h-2 rounded-full ${swStatus.isActive ? 'bg-green-500' : 'bg-gray-400'}`} />
+                  <div className={`w-2 h-2 rounded-full ${swStatus.isActive ? 'bg-sb-navy' : 'bg-gray-400'}`} />
                   <span>Active: {swStatus.isActive ? 'Yes' : 'No'}</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <div className={`w-2 h-2 rounded-full ${swStatus.isRegistered ? 'bg-green-500' : 'bg-gray-400'}`} />
+                  <div className={`w-2 h-2 rounded-full ${swStatus.isRegistered ? 'bg-sb-navy' : 'bg-gray-400'}`} />
                   <span>Registered: {swStatus.isRegistered ? 'Yes' : 'No'}</span>
                 </div>
               </div>
@@ -822,7 +822,7 @@ export default function OfflineOrbit() {
               <Button
                 onClick={clearOfflineData}
                 variant="outline"
-                className="flex-1 text-red-600 border-red-300 hover:bg-red-50"
+                className="flex-1 text-sb-rose-ink border-sb-danger hover:bg-sb-rose"
               >
                 <TrashIcon className="h-4 w-4 mr-2" />
                 Clear Data
@@ -843,26 +843,26 @@ export default function OfflineOrbit() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center p-4 bg-blue-50 dark:bg-blue-950 rounded-lg border border-blue-200 dark:border-blue-800">
-              <BookOpenIcon className="h-8 w-8 mx-auto mb-2 text-blue-600" />
+            <div className="text-center p-4 bg-sb-sky  rounded-lg border border-sb-sky ">
+              <BookOpenIcon className="h-8 w-8 mx-auto mb-2 text-sb-sky-ink" />
               <div className="text-2xl font-bold">{offlineData.flashcards}</div>
               <div className="text-sm text-muted-foreground">Flashcards</div>
             </div>
 
-            <div className="text-center p-4 bg-green-50 dark:bg-green-950 rounded-lg border border-green-200 dark:border-green-800">
-              <ClockIcon className="h-8 w-8 mx-auto mb-2 text-green-600" />
+            <div className="text-center p-4 bg-sb-saffron-tint  rounded-lg border border-sb-saffron ">
+              <ClockIcon className="h-8 w-8 mx-auto mb-2 text-sb-saffron-deep" />
               <div className="text-2xl font-bold">{offlineData.studySessions}</div>
               <div className="text-sm text-muted-foreground">Study Sessions</div>
             </div>
 
-            <div className="text-center p-4 bg-purple-50 dark:bg-purple-950 rounded-lg border border-purple-200 dark:border-purple-800">
-              <DocumentArrowDownIcon className="h-8 w-8 mx-auto mb-2 text-purple-600" />
+            <div className="text-center p-4 bg-sb-lav  rounded-lg border border-sb-lav ">
+              <DocumentArrowDownIcon className="h-8 w-8 mx-auto mb-2 text-sb-lav-ink" />
               <div className="text-2xl font-bold">{offlineData.dictionaryWords}</div>
               <div className="text-sm text-muted-foreground">Dictionary Words</div>
             </div>
 
-            <div className="text-center p-4 bg-orange-50 dark:bg-orange-950 rounded-lg border border-orange-200 dark:border-orange-800">
-              <ArrowUpTrayIcon className="h-8 w-8 mx-auto mb-2 text-orange-600" />
+            <div className="text-center p-4 bg-sb-saffron-tint  rounded-lg border border-sb-saffron ">
+              <ArrowUpTrayIcon className="h-8 w-8 mx-auto mb-2 text-sb-saffron-deep" />
               <div className="text-2xl font-bold">{syncStatus.pendingItems}</div>
               <div className="text-sm text-muted-foreground">Pending Sync</div>
             </div>
@@ -888,10 +888,10 @@ export default function OfflineOrbit() {
 
       {/* Advanced Features */}
       {showAdvanced && (
-        <Card className="border-purple-200 bg-purple-50 dark:bg-purple-950 dark:border-purple-800">
+        <Card className="border-sb-lav bg-sb-lav  ">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <CogIcon className="h-5 w-5 text-purple-600" />
+              <CogIcon className="h-5 w-5 text-sb-lav-ink" />
               <span>Advanced Configuration</span>
             </CardTitle>
             <CardDescription>Expert-level offline management options</CardDescription>
@@ -899,7 +899,7 @@ export default function OfflineOrbit() {
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-3">
-                <h4 className="font-semibold text-purple-800 dark:text-purple-200">Service Worker Controls</h4>
+                <h4 className="font-semibold text-sb-lav-ink ">Service Worker Controls</h4>
                 <div className="space-y-2">
                   <Button
                     onClick={handleCheckForUpdates}
@@ -918,7 +918,7 @@ export default function OfflineOrbit() {
                   <Button
                     onClick={handleUnregisterSW}
                     variant="outline"
-                    className="w-full text-red-600"
+                    className="w-full text-sb-rose-ink"
                   >
                     Unregister SW
                   </Button>
@@ -926,7 +926,7 @@ export default function OfflineOrbit() {
               </div>
 
               <div className="space-y-3">
-                <h4 className="font-semibold text-purple-800 dark:text-purple-200">Data Management</h4>
+                <h4 className="font-semibold text-sb-lav-ink ">Data Management</h4>
                 <div className="space-y-2">
                   <Button
                     onClick={handleExportData}
@@ -956,10 +956,10 @@ export default function OfflineOrbit() {
             {/* Sync Errors */}
             {syncStatus.errors.length > 0 && (
               <div className="space-y-2">
-                <h4 className="font-semibold text-red-600">Sync Errors</h4>
+                <h4 className="font-semibold text-sb-rose-ink">Sync Errors</h4>
                 <div className="max-h-32 overflow-y-auto space-y-1">
                   {syncStatus.errors.map((error, index) => (
-                    <div key={index} className="text-sm text-red-600 bg-red-50 dark:bg-red-950 p-2 rounded">
+                    <div key={index} className="text-sm text-sb-rose-ink bg-sb-rose  p-2 rounded">
                       {error}
                     </div>
                   ))}
@@ -982,7 +982,7 @@ export default function OfflineOrbit() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-3">
-              <h4 className="font-semibold text-green-600">✅ Fully Available Offline</h4>
+              <h4 className="font-semibold text-sb-saffron-deep">✅ Fully Available Offline</h4>
               <ul className="space-y-2 text-sm">
                 {(offlineCapabilities.length > 0 ? offlineCapabilities : [
                   'Study with downloaded flashcards',
@@ -995,7 +995,7 @@ export default function OfflineOrbit() {
                   'Progress analytics'
                 ]).map((capability, index) => (
                   <li key={index} className="flex items-center space-x-2">
-                    <CheckCircleIcon className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <CheckCircleIcon className="h-4 w-4 text-sb-saffron-deep flex-shrink-0" />
                     <span>{capability}</span>
                   </li>
                 ))}
@@ -1003,7 +1003,7 @@ export default function OfflineOrbit() {
             </div>
 
             <div className="space-y-3">
-              <h4 className="font-semibold text-orange-600">🌐 Requires Internet</h4>
+              <h4 className="font-semibold text-sb-saffron-deep">🌐 Requires Internet</h4>
               <ul className="space-y-2 text-sm">
                 {(onlineRequiredFeatures.length > 0 ? onlineRequiredFeatures : [
                   'Dictionary translations',
@@ -1015,7 +1015,7 @@ export default function OfflineOrbit() {
                   'New content downloads'
                 ]).map((feature, index) => (
                   <li key={index} className="flex items-center space-x-2">
-                    <ExclamationTriangleIcon className="h-4 w-4 text-orange-500 flex-shrink-0" />
+                    <ExclamationTriangleIcon className="h-4 w-4 text-sb-saffron-deep flex-shrink-0" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -1033,9 +1033,9 @@ export default function OfflineOrbit() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 bg-blue-50 dark:bg-blue-950 rounded-lg border border-blue-200 dark:border-blue-800">
-              <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-3">📱 Mobile Data Optimization</h4>
-              <ul className="text-sm space-y-2 text-blue-700 dark:text-blue-300">
+            <div className="p-4 bg-sb-sky  rounded-lg border border-sb-sky ">
+              <h4 className="font-semibold text-sb-sky-ink  mb-3">📱 Mobile Data Optimization</h4>
+              <ul className="text-sm space-y-2 text-sb-sky-ink ">
                 <li>• Download content during WiFi hours (school/home)</li>
                 <li>• Sync only essential data on mobile networks</li>
                 <li>• Use offline mode during commute/travel</li>
@@ -1044,9 +1044,9 @@ export default function OfflineOrbit() {
               </ul>
             </div>
 
-            <div className="p-4 bg-green-50 dark:bg-green-950 rounded-lg border border-green-200 dark:border-green-800">
-              <h4 className="font-semibold text-green-800 dark:text-green-200 mb-3">⚡ Performance Enhancement</h4>
-              <ul className="text-sm space-y-2 text-green-700 dark:text-green-300">
+            <div className="p-4 bg-sb-saffron-tint  rounded-lg border border-sb-saffron ">
+              <h4 className="font-semibold text-sb-saffron-deep  mb-3">⚡ Performance Enhancement</h4>
+              <ul className="text-sm space-y-2 text-sb-saffron-deep ">
                 <li>• Clear cache weekly for optimal performance</li>
                 <li>• Download study materials in advance</li>
                 <li>• Use compressed content mode</li>
@@ -1055,9 +1055,9 @@ export default function OfflineOrbit() {
               </ul>
             </div>
 
-            <div className="p-4 bg-orange-50 dark:bg-orange-950 rounded-lg border border-orange-200 dark:border-orange-800">
-              <h4 className="font-semibold text-orange-800 dark:text-orange-200 mb-3">🇮🇳 India-Specific Tips</h4>
-              <ul className="text-sm space-y-2 text-orange-700 dark:text-orange-300">
+            <div className="p-4 bg-sb-saffron-tint  rounded-lg border border-sb-saffron ">
+              <h4 className="font-semibold text-sb-saffron-deep  mb-3">🇮🇳 India-Specific Tips</h4>
+              <ul className="text-sm space-y-2 text-sb-saffron-deep ">
                 <li>• Best sync times: Early morning (5-7 AM)</li>
                 <li>• Use WiFi at libraries/coaching centers</li>
                 <li>• Download before monsoon season</li>
@@ -1099,12 +1099,12 @@ export default function OfflineOrbit() {
           </div>
 
           {/* Cultural Context */}
-          <div className="mt-6 p-4 bg-gradient-to-r from-orange-50 to-green-50 dark:from-orange-950 dark:to-green-950 rounded-lg border border-orange-200 dark:border-orange-800">
+          <div className="mt-6 p-4 bg-sb-surface-2     rounded-lg border border-sb-saffron ">
             <div className="text-center">
-              <h4 className="font-semibold text-orange-800 dark:text-orange-200 mb-2">
+              <h4 className="font-semibold text-sb-saffron-deep  mb-2">
                 🇮🇳 "ज्ञान कहीं भी, कभी भी" - Knowledge Anywhere, Anytime
               </h4>
-              <p className="text-sm text-orange-700 dark:text-orange-300">
+              <p className="text-sm text-sb-saffron-deep ">
                 OfflineOrbit ensures your education never stops, whether you're in a bustling Mumbai local train,
                 a remote village in Rajasthan, or during power cuts in monsoon season.
                 Your learning journey continues uninterrupted.

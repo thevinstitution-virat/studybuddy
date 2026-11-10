@@ -190,11 +190,11 @@ export function FeedbackWidget(props: FeedbackWidgetProps) {
           disabled={isSubmitted}
           className={cn(
             'p-1.5 rounded-lg transition-all duration-200',
-            'hover:bg-green-50 dark:hover:bg-green-900/20',
+            'hover:bg-sb-saffron-tint ',
             'disabled:opacity-50 disabled:cursor-not-allowed',
             thumbsRating === 'up'
-              ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400'
-              : 'text-muted-foreground hover:text-green-600'
+              ? 'bg-sb-saffron-tint  text-sb-saffron-deep '
+              : 'text-muted-foreground hover:text-sb-saffron-deep'
           )}
           aria-label="Like this answer"
         >
@@ -208,11 +208,11 @@ export function FeedbackWidget(props: FeedbackWidgetProps) {
           disabled={isSubmitted}
           className={cn(
             'p-1.5 rounded-lg transition-all duration-200',
-            'hover:bg-red-50 dark:hover:bg-red-900/20',
+            'hover:bg-sb-rose ',
             'disabled:opacity-50 disabled:cursor-not-allowed',
             thumbsRating === 'down'
-              ? 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400'
-              : 'text-muted-foreground hover:text-red-600'
+              ? 'bg-sb-rose  text-sb-rose-ink '
+              : 'text-muted-foreground hover:text-sb-rose-ink'
           )}
           aria-label="Dislike this answer"
         >
@@ -244,7 +244,7 @@ export function FeedbackWidget(props: FeedbackWidgetProps) {
               className={cn(
                 'h-4 w-4 transition-all duration-150',
                 (hoveredStar >= star || starRating >= star)
-                  ? 'fill-orange-400 text-orange-400'
+                  ? 'fill-sb-saffron-deep text-sb-saffron-deep'
                   : 'text-muted-foreground/60 dark:text-muted-foreground'
               )}
             />
@@ -259,7 +259,7 @@ export function FeedbackWidget(props: FeedbackWidgetProps) {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-          className="flex items-center gap-1.5 text-green-600 dark:text-green-400"
+          className="flex items-center gap-1.5 text-sb-saffron-deep "
         >
           <Check className="h-4 w-4" />
           <span className="text-xs font-medium">Thanks!</span>

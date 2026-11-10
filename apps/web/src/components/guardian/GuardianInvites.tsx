@@ -77,9 +77,9 @@ export function GuardianInvites({ mode }: { mode: 'institution' | 'independent' 
               </form>
             )
           )}
-          {send.error && <p role="alert" className="text-red-600">{send.error.message}</p>}
+          {send.error && <p role="alert" className="text-sb-rose-ink">{send.error.message}</p>}
           {sent && (
-            <div role="status" className="space-y-2 rounded border border-green-300 bg-green-50 p-3 text-green-900 dark:bg-green-950/30 dark:text-green-200">
+            <div role="status" className="space-y-2 rounded border border-sb-saffron bg-sb-saffron-tint p-3 text-sb-saffron-deep  ">
               <p>{sent.emailSent ? t('gi.sent', { email: sent.email }) : t('gi.notSent')}</p>
               <div className="flex flex-wrap items-center gap-2">
                 <code className="break-all rounded bg-background/60 px-2 py-1 text-xs">{sent.link}</code>
@@ -107,7 +107,7 @@ export function GuardianInvites({ mode }: { mode: 'institution' | 'independent' 
                 ))}
               </ul>
             )}
-          {revoke.error && <p role="alert" className="mt-2 text-red-600">{revoke.error.message}</p>}
+          {revoke.error && <p role="alert" className="mt-2 text-sb-rose-ink">{revoke.error.message}</p>}
         </CardContent>
       </Card>
 
@@ -125,7 +125,7 @@ export function GuardianInvites({ mode }: { mode: 'institution' | 'independent' 
                 ))}
               </ul>
             )}
-          {end.error && <p role="alert" className="mt-2 text-red-600">{end.error.message}</p>}
+          {end.error && <p role="alert" className="mt-2 text-sb-rose-ink">{end.error.message}</p>}
         </CardContent>
       </Card>
     </div>

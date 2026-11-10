@@ -1,18 +1,18 @@
 'use client'
 
 import type { ReactNode } from 'react'
-import MandalaMark from '@/components/dashboard/MandalaMark'
+import Link from 'next/link'
+import { Brand } from '@/components/sb/Brand'
+import { ThemeToggle } from '@/components/sb/ThemeToggle'
+import { Icon } from '@/components/ui/Icon'
 
 /**
- * AuthShell — the single centered auth card on the Buddy "stage".
+ * AuthShell — split auth layout (Redesign Brief §7.8).
  *
- * Navy stage gradient with a blaze + cobalt corner glow behind one raised card
- * (the same backdrop as Book Buddy's auth), with the Study Buddy mark above the
- * title. App-local rather than the vendored AuthBackdrop, which carries the
- * lotus mandala and a brand aside this app does not want.
- *
- * The title is forced to the display face (Bricolage) via an arbitrary-property
- * class, which beats the global element rule without touching it.
+ * Left: a navy brand panel with the headline "Study with a buddy that cites the book." (last words
+ * in saffron) and a slow dashed ring. Right: the form on paper. On a phone the navy panel becomes a
+ * 300px header band above the form. The day/night toggle sits top-right. App-local rather than the
+ * vendored AuthBackdrop, which carries the lotus mandala this app does not want.
  */
 export function AuthShell({
   title,
@@ -24,30 +24,35 @@ export function AuthShell({
   children: ReactNode
 }) {
   return (
-    <div
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-5 py-16"
-      style={{ background: 'var(--bb-grad-stage)' }}
-    >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(38rem 30rem at 86% -8%, rgb(255 77 0 / 0.30), transparent 62%), radial-gradient(40rem 32rem at 4% 108%, rgb(59 91 219 / 0.34), transparent 62%)',
-        }}
-      />
-      <div className="relative w-full max-w-[440px] animate-scale-in rounded-[28px] border border-border bg-card p-7 shadow-[var(--bb-shadow-stage)] motion-reduce:animate-none sm:p-9">
-        <div className="mb-6 text-center">
-          <div className="mx-auto mb-4 flex justify-center">
-            <MandalaMark size={48} spinCls="" />
-          </div>
-          <h1 className="text-[clamp(26px,3.4vw,32px)] font-extrabold leading-[1.1] tracking-tight text-foreground [font-family:var(--bb-font-display)]">
-            {title}
-          </h1>
-          {subtitle && <p className="mt-2 text-[14.5px] text-muted-foreground">{subtitle}</p>}
+    <div className="sb-auth">
+      <aside className="sb-auth-panel">
+        <span aria-hidden className="sb-auth-ring" />
+        <Link href="/" style={{ position: 'relative', textDecoration: 'none', color: '#fff' }}><Brand onNavy /></Link>
+        <div style={{ position: 'relative', marginTop: 'auto' }}>
+          <h2 className="sb-auth-headline">
+            Study with a buddy that <span style={{ color: '#FF9933' }}>cites the book.</span>
+          </h2>
+          <p className="sb-auth-sub">Every answer shows the NCERT chapter and page. If it isn&apos;t in your books, Study Buddy says so.</p>
+          <ul className="sb-auth-points">
+            {['Gyankosh answers from your textbook', 'InkBuddy marks your handwriting', 'Hindi and English, Classes 6–12'].map((t) => (
+              <li key={t}><Icon name="check" size={16} weight="bold" color="#FF9933" />{t}</li>
+            ))}
+          </ul>
         </div>
-        {children}
-      </div>
+      </aside>
+
+      <main className="sb-auth-form">
+        <div style={{ position: 'absolute', top: 12, right: 12 }}><ThemeToggle /></div>
+        <div className="sb-auth-card">
+          <div style={{ marginBottom: 24 }}>
+            <h1 style={{ margin: 0, fontFamily: 'var(--sb-font-display)', fontWeight: 700, fontSize: 'clamp(28px,4vw,36px)', lineHeight: 1.08, letterSpacing: '-.035em', color: 'var(--sb-ink)' }}>
+              {title}
+            </h1>
+            {subtitle && <p style={{ margin: '10px 0 0', fontSize: 15, lineHeight: 1.55, color: 'var(--sb-muted)' }}>{subtitle}</p>}
+          </div>
+          {children}
+        </div>
+      </main>
     </div>
   )
 }

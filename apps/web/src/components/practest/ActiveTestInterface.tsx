@@ -217,7 +217,7 @@ export default function ActiveTestInterface({ session, onTestCompleted, onError,
             <span>{Math.round(progress)}%</span>
           </div>
           <div style={{ height: 8, borderRadius: 999, background: 'var(--track)', overflow: 'hidden' }}>
-            <div style={{ height: '100%', borderRadius: 999, width: `${progress}%`, background: 'linear-gradient(90deg,var(--accent-strong),var(--gold))', transition: 'width .3s' }} />
+            <div style={{ height: '100%', borderRadius: 999, width: `${progress}%`, background: 'var(--sb-navy)', transition: 'width .3s' }} />
           </div>
         </div>
 

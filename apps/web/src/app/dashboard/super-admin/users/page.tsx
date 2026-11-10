@@ -170,7 +170,7 @@ export default function UserManagementPage() {
     <div className="space-y-8">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-primary/80 text-white shadow-lg shadow-primary/20">
+        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-sb-navy  to-primary/80 text-white shadow-lg shadow-primary/20">
           <Users className="h-6 w-6" />
         </div>
         <div>
@@ -201,7 +201,7 @@ export default function UserManagementPage() {
 
             <button
               onClick={() => { setAddError(''); setShowAddModal(true) }}
-              className="px-6 py-3 h-12 bg-gradient-to-r from-orange-500 to-primary/80 hover:from-orange-600 hover:to-primary/80 text-white font-semibold rounded-xl shadow-md hover:shadow-lg transition-all flex items-center"
+              className="px-6 py-3 h-12 bg-sb-navy  to-primary/80  hover:to-primary/80 text-white font-semibold rounded-xl shadow-md hover:shadow-lg transition-all flex items-center"
             >
               <Users className="h-4 w-4 mr-2" />
               <span>Add User</span>
@@ -291,13 +291,13 @@ export default function UserManagementPage() {
                   {USER_ROLES.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
                 </select>
               </div>
-              {addError && <p className="text-sm text-red-600">{addError}</p>}
+              {addError && <p className="text-sm text-sb-rose-ink">{addError}</p>}
             </div>
             <div className="mt-6 flex justify-end gap-3">
               <button onClick={() => setShowAddModal(false)}
                 className="rounded-xl border border-border px-4 py-2 font-medium text-foreground hover:bg-muted/50">Cancel</button>
               <button onClick={handleAddUser} disabled={addLoading || !addForm.email}
-                className="rounded-xl bg-gradient-to-r from-orange-500 to-primary/80 px-5 py-2 font-semibold text-white shadow disabled:opacity-50">
+                className="rounded-xl bg-sb-navy  to-primary/80 px-5 py-2 font-semibold text-white shadow disabled:opacity-50">
                 {addLoading ? 'Adding…' : 'Add User'}
               </button>
             </div>

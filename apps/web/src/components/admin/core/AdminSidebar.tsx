@@ -40,7 +40,7 @@ export default function AdminSidebar({ user, isOwner = false }: AdminSidebarProp
       brandName="Study Buddy"
       brandSubtitle={isOwner ? 'Platform Owner' : 'Admin Portal'}
       brandIcon={AdminBrandIcon}
-      brandColor="bg-blue-600"
+      brandColor="bg-sb-navy"
       theme="dark"
       profilePath="/dashboard/super-admin/profile"
       showLogout

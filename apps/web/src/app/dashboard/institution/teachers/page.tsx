@@ -189,28 +189,28 @@ export default function TeacherInvitation() {
 
       {/* Success */}
       {success && (
-        <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl flex items-center gap-2 text-green-700 dark:text-green-400">
+        <div className="mt-4 p-4 bg-sb-saffron-tint  border border-sb-saffron  rounded-xl flex items-center gap-2 text-sb-saffron-deep ">
           <CheckCircle2 className="w-4 h-4" /> {success}
         </div>
       )}
 
       {/* Error */}
       {error && (
-        <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl flex items-center gap-2 text-red-600 dark:text-red-400">
+        <div className="mt-4 p-4 bg-sb-rose  border border-sb-danger  rounded-xl flex items-center gap-2 text-sb-rose-ink ">
           <AlertCircle className="w-4 h-4" /> {error}
         </div>
       )}
 
       {/* Bulk Result */}
       {bulkResult && (
-        <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl">
-          <div className="flex items-center gap-2 text-green-700 dark:text-green-400 font-medium mb-2">
+        <div className="mt-4 p-4 bg-sb-saffron-tint  border border-sb-saffron  rounded-xl">
+          <div className="flex items-center gap-2 text-sb-saffron-deep  font-medium mb-2">
             <CheckCircle2 className="w-4 h-4" /> Invitations Processed
           </div>
           <div className="grid grid-cols-3 gap-4 text-sm">
             <div><span className="text-muted-foreground">Total:</span> <strong>{bulkResult.total}</strong></div>
-            <div><span className="text-muted-foreground">Sent:</span> <strong className="text-green-600">{bulkResult.sent}</strong></div>
-            <div><span className="text-muted-foreground">Failed:</span> <strong className="text-red-600">{bulkResult.failed}</strong></div>
+            <div><span className="text-muted-foreground">Sent:</span> <strong className="text-sb-saffron-deep">{bulkResult.sent}</strong></div>
+            <div><span className="text-muted-foreground">Failed:</span> <strong className="text-sb-rose-ink">{bulkResult.failed}</strong></div>
           </div>
         </div>
       )}
