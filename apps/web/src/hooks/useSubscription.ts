@@ -90,6 +90,32 @@ export function useSubscription(): UseSubscriptionReturn {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
+  // A student with no plan yet: a safe zero-quota fallback so the quota does not render 0/0 and the UI can
+  // offer "Start free trial" instead of an error.
+  const applyNoSubscription = () => {
+    setError('NO_SUBSCRIPTION')
+    console.warn('⚠️ [useSubscription] No subscription found')
+    setSubscriptionData({
+      subscription: {
+        plan_name: 'No Plan',
+        plan_code: 'NONE',
+        subscription_status: 'inactive',
+        purchased_board: null,
+        purchased_class: null,
+        class_access_type: 'none',
+        purchased_subjects: null,
+        daily_question_limit: 0,
+        expiry_date: new Date().toISOString()
+      },
+      quota: { daily_limit: 0, questions_asked: 0, questions_remaining: 0, can_ask_question: false, percentage_used: 100 },
+      access: { boards: [], classes: [], subjects: [], has_full_access: false, has_all_classes: false, has_all_subjects: false },
+      is_trial: false,
+      is_active: false,
+      is_expired: true,
+      needs_upgrade: true
+    })
+  }
+
   // Fetch subscription data
   const fetchSubscription = async () => {
     if (!user) {
@@ -109,28 +135,7 @@ export function useSubscription(): UseSubscriptionReturn {
         const errorData = await response.json()
 
         if (response.status === 404) {
-          // No subscription found - provide a fallback so quota doesn't show 0/0
-          setError('NO_SUBSCRIPTION')
-          console.warn('⚠️ [useSubscription] No subscription found')
-          setSubscriptionData({
-            subscription: {
-              plan_name: 'No Plan',
-              plan_code: 'NONE',
-              subscription_status: 'inactive',
-              purchased_board: null,
-              purchased_class: null,
-              class_access_type: 'none',
-              purchased_subjects: null,
-              daily_question_limit: 0,
-              expiry_date: new Date().toISOString()
-            },
-            quota: { daily_limit: 0, questions_asked: 0, questions_remaining: 0, can_ask_question: false, percentage_used: 100 },
-            access: { boards: [], classes: [], subjects: [], has_full_access: false, has_all_classes: false, has_all_subjects: false },
-            is_trial: false,
-            is_active: false,
-            is_expired: true,
-            needs_upgrade: true
-          })
+          applyNoSubscription()
         } else {
           setError(errorData.error || 'Failed to load subscription')
           console.error('❌ [useSubscription] Error response:', errorData)
@@ -149,6 +154,9 @@ export function useSubscription(): UseSubscriptionReturn {
           subjects: data.data.subscription.purchased_subjects,
           hasAllSubjects: data.data.access.has_all_subjects
         })
+      } else if (data.status === 'NO_SUBSCRIPTION') {
+        // The API answers 200 { status: 'NO_SUBSCRIPTION', data: null } for a student who has not started a plan.
+        applyNoSubscription()
       } else {
         setError('Invalid subscription data')
         console.error('❌ [useSubscription] Invalid data structure:', data)

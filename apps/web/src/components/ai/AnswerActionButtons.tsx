@@ -731,14 +731,14 @@ export default function AnswerActionButtons({
           size="sm"
           onClick={handleTranslate}
           disabled={isTranslating}
-          className="flex items-center gap-2 bg-sb-surface-2     border-sb-lav      hover:border-sb-lav  transition-all duration-200 hover:shadow-md"
+          className="sb-act"
         >
           {isTranslating ? (
-            <Loader2 className="h-4 w-4 animate-spin text-sb-lav-ink " />
+            <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            <Globe className="h-4 w-4 text-sb-lav-ink " />
+            <Globe className="h-4 w-4" />
           )}
-          <span className="text-sb-lav-ink  font-medium">
+          <span>
             {translatedText ? 'Toggle Translation' : 'Translate'}
           </span>
         </Button>
@@ -749,15 +749,15 @@ export default function AnswerActionButtons({
           size="sm"
           onClick={handleWordMeanings}
           disabled={isLoadingWords}
-          className="flex items-center gap-2 bg-sb-surface-2     border-sb-sky      hover:border-sb-sky  transition-all duration-200 hover:shadow-md"
+          className="sb-act"
         >
           {isLoadingWords ? (
-            <Loader2 className="h-4 w-4 animate-spin text-sb-sky-ink " />
+            <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            <BookOpenText className="h-4 w-4 text-sb-sky-ink " />
+            <BookOpenText className="h-4 w-4" />
           )}
-          <span className="hidden sm:inline text-sb-sky-ink  font-medium">Word Meanings</span>
-          <span className="sm:hidden text-sb-sky-ink  font-medium">Words</span>
+          <span className="hidden sm:inline">Word Meanings</span>
+          <span className="sm:hidden">Words</span>
         </Button>
 
         {/* Generate Visual Aid Button - ImagePlus icon with toggle behavior */}
@@ -766,17 +766,17 @@ export default function AnswerActionButtons({
           size="sm"
           onClick={handleGenerateVisual}
           disabled={isGeneratingVisual}
-          className="flex items-center gap-2 bg-sb-surface-2     border-sb-saffron      hover:border-sb-saffron  transition-all duration-200 hover:shadow-md"
+          className="sb-act"
         >
           {isGeneratingVisual ? (
-            <Loader2 className="h-4 w-4 animate-spin text-sb-saffron-deep " />
+            <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            <ImagePlus className="h-4 w-4 text-sb-saffron-deep " />
+            <ImagePlus className="h-4 w-4" />
           )}
-          <span className="hidden sm:inline text-sb-saffron-deep  font-medium">
+          <span className="hidden sm:inline">
             {generatedVisualization ? 'Toggle Visual Aid' : 'Visual Aid'}
           </span>
-          <span className="sm:hidden text-sb-saffron-deep  font-medium">Visual</span>
+          <span className="sm:hidden">Visual</span>
         </Button>
 
         {/* Add to Sanchika Button - BookmarkPlus icon */}
@@ -785,15 +785,15 @@ export default function AnswerActionButtons({
           size="sm"
           onClick={handleAddToNotes}
           disabled={isSavingNote}
-          className="flex items-center gap-2 bg-sb-surface-2     border-sb-saffron      hover:border-sb-saffron  transition-all duration-200 hover:shadow-md"
+          className="sb-act"
         >
           {isSavingNote ? (
-            <Loader2 className="h-4 w-4 animate-spin text-sb-saffron-deep " />
+            <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            <BookmarkPlus className="h-4 w-4 text-sb-saffron-deep " />
+            <BookmarkPlus className="h-4 w-4" />
           )}
-          <span className="hidden sm:inline text-sb-saffron-deep  font-medium">Add to Sanchika</span>
-          <span className="sm:hidden text-sb-saffron-deep  font-medium">Save</span>
+          <span className="hidden sm:inline">Add to Sanchika</span>
+          <span className="sm:hidden">Save</span>
         </Button>
 
         {/*
@@ -808,23 +808,23 @@ export default function AnswerActionButtons({
           onClick={handleExplainDifferently}
           disabled={isExplaining}
           title="Get the same concept explained from a different angle"
-          className="flex items-center gap-2 bg-sb-surface-2     border-sb-rose      hover:border-sb-rose  transition-all duration-200 hover:shadow-md"
+          className="sb-act"
         >
           {isExplaining ? (
-            <Loader2 className="h-4 w-4 animate-spin text-sb-rose-ink " />
+            <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            <Lightbulb className="h-4 w-4 text-sb-rose-ink " />
+            <Lightbulb className="h-4 w-4" />
           )}
-          <span className="hidden sm:inline text-sb-rose-ink  font-medium">
+          <span className="hidden sm:inline">
             {altExplanation ? 'Another Way' : 'Explain Differently'}
           </span>
-          <span className="sm:hidden text-sb-rose-ink  font-medium">Differently</span>
+          <span className="sm:hidden">Differently</span>
         </Button>
       </div>
 
       {/* Alternative Explanation Display */}
       {showAltExplanation && altExplanation && (
-        <div className="bg-sb-rose  border border-sb-rose  rounded-lg p-4">
+        <div className="sb-act-panel">
           <div className="flex items-center justify-between mb-2">
             <h4 className="text-sm font-semibold text-sb-rose-ink ">
               💡 Another way to see it{altAngleLabel ? ` — ${altAngleLabel}` : ''}
@@ -836,7 +836,7 @@ export default function AnswerActionButtons({
               className="h-8 w-8 p-0 hover:bg-sb-rose "
               title="Hide this explanation"
             >
-              <X className="h-4 w-4 text-sb-rose-ink " />
+              <X className="h-4 w-4" />
             </Button>
           </div>
           <div className="prose prose-sm max-w-none text-foreground">
@@ -849,7 +849,7 @@ export default function AnswerActionButtons({
 
       {/* Translation Display - Bidirectional with proper script support */}
       {showTranslation && translatedText && (
-        <div className="bg-sb-lav  border border-sb-lav  rounded-lg p-4">
+        <div className="sb-act-panel">
           <div className="flex items-center justify-between mb-2">
             <h4 className="text-sm font-semibold text-sb-lav-ink ">
               {translationHeaderLabel}
@@ -861,7 +861,7 @@ export default function AnswerActionButtons({
               className="h-8 w-8 p-0 hover:bg-sb-lav "
               title="Listen to translation"
             >
-              <Volume2 className="h-4 w-4 text-sb-lav-ink " />
+              <Volume2 className="h-4 w-4" />
             </Button>
           </div>
           <div className="prose prose-sm max-w-none text-foreground">
@@ -881,7 +881,7 @@ export default function AnswerActionButtons({
 
       {/* Word Meanings Table */}
       {showWordMeanings && wordMeanings.length > 0 && (
-        <div className="bg-sb-sky border border-sb-sky rounded-lg p-4">
+        <div className="sb-act-panel">
           <h4 className="text-sm font-semibold text-sb-sky-ink mb-3">Difficult Words & Meanings</h4>
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
