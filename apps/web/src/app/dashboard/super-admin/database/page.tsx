@@ -129,7 +129,7 @@ export default function DatabaseManagementPage() {
       <div className="mx-auto max-w-4xl space-y-6">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center space-x-3 bg-sb-navy  to-primary/10 backdrop-blur-sm border border-sb-saffron rounded-2xl px-6 py-3 mb-4">
+          <div className="inline-flex items-center space-x-3 bg-sb-surface-2  to-primary/10 backdrop-blur-sm border border-sb-saffron rounded-2xl px-6 py-3 mb-4">
             <Database className="h-6 w-6 text-sb-saffron-deep" />
             <span className="text-lg font-semibold text-sb-saffron-deep  to-primary/80  ">
               Database Management

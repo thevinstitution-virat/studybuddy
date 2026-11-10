@@ -170,7 +170,7 @@ export default function AdminProfilePage() {
       <div className="mx-auto max-w-6xl space-y-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center px-4 py-2 bg-sb-navy  to-primary/10 rounded-full border border-sb-saffron dark:border-primary/30 mb-6 backdrop-blur-sm">
+          <div className="inline-flex items-center px-4 py-2 bg-sb-surface-2  to-primary/10 rounded-full border border-sb-saffron dark:border-primary/30 mb-6 backdrop-blur-sm">
             <Shield className="h-4 w-4 text-sb-saffron-deep mr-2 animate-pulse" />
             <span className="text-sm font-medium text-foreground">Administrator Portal</span>
           </div>
@@ -217,7 +217,7 @@ export default function AdminProfilePage() {
           {/* Profile Information */}
           <div className="lg:col-span-2 space-y-8">
             <div className="relative p-8 bg-white/90 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] border border-border/50 group overflow-hidden backdrop-blur-xl">
-              <div className="absolute inset-0 bg-sb-navy  to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-sb-surface-2  to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="relative z-10">
                 <div className="flex flex-row items-center justify-between mb-6">
                   <div>
@@ -357,7 +357,7 @@ export default function AdminProfilePage() {
           <div className="space-y-8">
             {/* Account Info */}
             <div className="relative p-6 bg-white/90 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] border border-border/50 group overflow-hidden backdrop-blur-xl">
-              <div className="absolute inset-0 bg-sb-navy   opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-sb-surface-2   opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="inline-flex items-center justify-center w-10 h-10 bg-sb-navy   rounded-xl shadow-lg">

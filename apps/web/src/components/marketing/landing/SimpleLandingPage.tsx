@@ -16,7 +16,7 @@ export const SimpleLandingPage: React.FC = () => {
 
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <div className="mb-6">
-            <div className="inline-flex items-center px-4 py-2 bg-sb-navy   rounded-full border border-sb-saffron  mb-6 backdrop-blur-sm">
+            <div className="inline-flex items-center px-4 py-2 bg-sb-surface-2   rounded-full border border-sb-saffron  mb-6 backdrop-blur-sm">
               <Zap className="h-4 w-4 text-sb-saffron-deep mr-2 animate-pulse" />
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Powered by Advanced AI & Machine Learning</span>
             </div>

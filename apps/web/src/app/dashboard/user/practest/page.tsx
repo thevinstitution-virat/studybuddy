@@ -4,6 +4,7 @@
 // Presentation ported to the .dcs Indic mock (DigiClassroom Student App.dc.html);
 // all state, fetches (/api/practest/*) and sub-component wiring are unchanged.
 
+import { PageHeader } from '@/components/sb'
 import React, { useState, useEffect } from 'react'
 import {
   Clock,
@@ -174,17 +175,9 @@ export default function PractestPage() {
     <div className="dcs">
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
         {/* Header */}
-        <div style={{ textAlign: 'center' }}>
-          <span className="tag" style={{ background: 'var(--chip-bg)', color: 'var(--accent-text)', border: '1px solid rgb(var(--accent-primary-rgb) / 0.28)', padding: '7px 15px' }}>
-            <Sparkles className="h-[15px] w-[15px]" /> AI-Powered Assessment Engine
-          </span>
-          <h2 className="grad" style={{ margin: '14px 0 6px', fontSize: 'clamp(26px,3.6vw,38px)', fontWeight: 800, letterSpacing: '-.02em' }}>
-            e-Learning Practest
-          </h2>
-          <p style={{ margin: '0 auto', color: 'var(--muted)', fontSize: 15, maxWidth: '60ch', lineHeight: 1.55 }}>
-            Adaptive testing, intelligent question generation and detailed analytics.
-          </p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 18, flexWrap: 'wrap' }}>
+        <div>
+          <PageHeader kicker="AI-powered assessment" icon="practest" tone="butter" title="Practest" highlight="Engine" description="Adaptive testing, intelligent question generation and detailed analytics." />
+          <div style={{ display: 'flex', justifyContent: 'flex-start', gap: 10, marginTop: 4, flexWrap: 'wrap' }}>
             <button
               className={`chip ${state.currentView === 'generator' ? 'on' : ''}`}
               onClick={handleBackToGenerator}
@@ -301,28 +294,6 @@ export default function PractestPage() {
           </div>
         )}
 
-        {/* Quick stats footer */}
-        <div style={{ marginTop: 16, display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(160px,1fr))', gap: 14 }}>
-          {[
-            { icon: FileText, label: 'Question Bank', value: '50,000+', grad: GC },
-            { icon: GraduationCap, label: 'Subjects', value: '15+', grad: GT },
-            { icon: Clock, label: 'Avg. Test Time', value: '45 min', grad: GV },
-            { icon: Award, label: 'Success Rate', value: '87%', grad: GW },
-          ].map((s) => {
-            const Icon = s.icon
-            return (
-              <div key={s.label} className="card lift" style={{ padding: 18, display: 'flex', alignItems: 'center', gap: 13 }}>
-                <span className="plinth" style={{ width: 46, height: 46, flex: 'none', background: s.grad }}>
-                  <Icon className="h-[23px] w-[23px]" />
-                </span>
-                <div>
-                  <div style={{ fontSize: 12.5, color: 'var(--muted)', fontWeight: 600 }}>{s.label}</div>
-                  <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--ink)' }}>{s.value}</div>
-                </div>
-              </div>
-            )
-          })}
-        </div>
       </div>
     </div>
   )

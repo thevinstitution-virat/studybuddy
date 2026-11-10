@@ -1,5 +1,6 @@
 'use client';
 
+import { IconTile } from '@/components/sb'
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -492,18 +493,13 @@ export default function SanchikaListPage() {
   return (
     <div className="min-h-screen bg-sb-surface-2 from-primary/10 via-primary/10 to-primary/10 dark:from-[var(--night-ink)] dark:via-[var(--indigo-deep)] dark:to-[var(--indigo-ink)]">
       {/* ============ HEADER ============ */}
-      <div className="sticky top-0 z-10 backdrop-blur-md bg-white/80 border-b border-border shadow-sm">
+      <div className="sticky top-0 z-10 backdrop-blur-md bg-card/85 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
             <div className="flex items-center gap-3 sm:gap-4">
-              <div className="relative flex-shrink-0">
-                <div className="absolute inset-0 bg-sb-navy  to-primary/80 rounded-2xl blur-lg opacity-30 animate-pulse"></div>
-                <div className="relative bg-sb-navy  to-primary/80 p-2 sm:p-3 rounded-2xl shadow-lg">
-                  <BookMarked className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
-                </div>
-              </div>
+              <IconTile icon="sanchika" tone="saf" size={56} />
               <div className="min-w-0 flex-1">
-                <h1 className="text-2xl sm:text-3xl font-bold text-sb-saffron-deep  to-primary/80   truncate">
+                <h1 className="truncate">
                   Sanchika Notes
                 </h1>
                 <p className="text-xs sm:text-sm text-muted-foreground mt-0.5 sm:mt-1 flex items-center gap-1.5 sm:gap-2 flex-wrap">

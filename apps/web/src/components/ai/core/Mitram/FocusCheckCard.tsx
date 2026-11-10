@@ -101,7 +101,7 @@ export const FocusCheckCard: React.FC<FocusCheckCardProps> = ({ className = '' }
   return (
     <div className={`relative p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-200 dark:border-gray-700 group overflow-hidden ${className}`}>
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-sb-navy   opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-0 bg-sb-surface-2   opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       <div className="relative z-10">
         {/* Header */}

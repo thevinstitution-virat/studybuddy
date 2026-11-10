@@ -401,3 +401,8 @@ h1, h2, h3, h4 { font-family: var(--sb-font-display); letter-spacing: -0.02em; }
 .dark .border-gray-100, .dark .border-gray-200, .dark .border-gray-300, .dark .border-slate-200, .dark .border-slate-300 { border-color: hsl(var(--border)); }
 .dark .divide-gray-100 > * + *, .dark .divide-gray-200 > * + * { border-color: hsl(var(--border)); }
 .dark .shadow-lg, .dark .shadow-xl, .dark .shadow-2xl { --tw-shadow-color: #000; }
+
+/* .chip (filter pills in the student sheets): navy when on, saffron-tint hover */
+.dcs .chip, .dcd .chip { border-radius: 999px; font-weight: 700; border: 1.5px solid var(--sb-line); background: var(--sb-surface); color: var(--sb-ink); }
+.dcs .chip.on, .dcd .chip.on { background: var(--sb-navy); color: #fff; border-color: transparent; box-shadow: none; }
+.dcs .chip:hover:not(.on), .dcd .chip:hover:not(.on) { border-color: var(--sb-ink); color: var(--sb-ink); }

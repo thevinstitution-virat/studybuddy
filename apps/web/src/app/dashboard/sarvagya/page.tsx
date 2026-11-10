@@ -88,7 +88,7 @@ export default function SarvagyaDashboard() {
 
                 {/* ── Header Card (matching TutorHeader pattern) ── */}
                 <div className="mb-4 bg-white/90 backdrop-blur-md border-0 shadow-lg rounded-2xl overflow-hidden">
-                    <div className="pb-4 pt-5 px-6 bg-sb-navy  to-primary/80  dark:to-primary/10">
+                    <div className="pb-4 pt-5 px-6 bg-sb-surface-2  to-primary/80  dark:to-primary/10">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-4">
                                 <div className="w-12 h-12 rounded-2xl bg-sb-navy  to-primary/80 flex items-center justify-center shadow-lg">

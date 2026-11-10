@@ -76,7 +76,7 @@ export default function CreditStorePage() {
                             Back to Sarvagya
                         </Link>
 
-                        <div className="inline-flex items-center px-4 py-2 bg-sb-navy   rounded-full border border-sb-butter  mb-6 backdrop-blur-sm mx-auto block">
+                        <div className="inline-flex items-center px-4 py-2 bg-sb-surface-2   rounded-full border border-sb-butter  mb-6 backdrop-blur-sm mx-auto block">
                             <Coins className="h-4 w-4 text-sb-butter-ink mr-2" />
                             <span className="text-sm font-medium text-foreground">Credit Store</span>
                         </div>

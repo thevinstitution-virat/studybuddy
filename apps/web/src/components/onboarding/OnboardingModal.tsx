@@ -459,9 +459,9 @@ export default function OnboardingModal({ isOpen, onComplete, onSkip }: Onboardi
         onEscapeKeyDown={(e) => { if (!onSkip) e.preventDefault() }}
       >
         <DialogTitle className="sr-only">Complete your profile</DialogTitle>
-        <div className="absolute top-0 inset-x-0 h-40 bg-sb-navy   to-transparent pointer-events-none" />
-        <div className="absolute -top-24 -right-24 w-64 h-64 bg-sb-navy   rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-sb-navy   rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 inset-x-0 h-40 bg-sb-surface-2   to-transparent pointer-events-none" />
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-sb-surface-2   rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-sb-surface-2   rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative flex flex-col h-full max-h-[90vh]">
           {/* Header */}

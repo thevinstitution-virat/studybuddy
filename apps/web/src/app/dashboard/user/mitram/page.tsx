@@ -5,6 +5,7 @@
 
 'use client'
 
+import { PageHeader } from '@/components/sb'
 import React, { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -395,24 +396,8 @@ export default function MitramDashboard() {
     <div className="dcs">
       <div className="container mx-auto px-4 py-8 max-w-7xl space-y-8">
         {/* Enhanced Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center space-x-2 bg-sb-navy  to-primary/10 backdrop-blur-sm border border-sb-saffron rounded-2xl px-6 py-3 mb-6">
-            <Sparkles className="h-5 w-5 text-sb-saffron-deep" />
-            <span className="text-sm font-medium text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
-              AI-Powered Psychological Assessment Platform
-            </span>
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]   flex items-center justify-center gap-4">
-              <Brain className="h-12 w-12 text-sb-saffron-deep" />
-              मित्रम् (Mitram)
-            </span>
-          </h1>
-          
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            Your comprehensive psychological and aptitude assessment companion designed for Indian students
-          </p>
+        <div className="mb-8">
+          <PageHeader kicker="AI-powered assessment" icon="mitram" tone="lav" title="मित्रम्" highlight="Mitram" description="Your comprehensive psychological and aptitude assessment companion designed for Indian students." />
         </div>
 
         {/* Enhanced Sanskrit Shloka Card */}

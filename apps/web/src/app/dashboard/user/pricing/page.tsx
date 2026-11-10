@@ -1,5 +1,6 @@
 'use client'
 
+import { IconTile } from '@/components/sb'
 import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
@@ -267,14 +268,9 @@ export default function AITutorPricingPage() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center justify-center mb-4">
-              <div className="relative">
-                <div className="absolute inset-0 bg-sb-navy  to-primary/80 rounded-full blur-xl opacity-50 animate-pulse"></div>
-                <div className="relative bg-sb-navy  to-primary/80 p-4 rounded-full">
-                  <Brain className="h-12 w-12 text-white" />
-                </div>
-              </div>
+              <IconTile icon="gyankosh" tone="lav" size={72} />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-sb-saffron-deep  to-primary/80   mb-4">
+            <h1 className="mb-4">
               AI Tutor Subscription Plans
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -412,7 +408,7 @@ export default function AITutorPricingPage() {
 
         {/* Feature Comparison */}
         <div className="mt-16">
-          <h2 className="text-3xl font-bold text-center mb-8 text-sb-saffron-deep  to-primary/80  ">
+          <h2 className="text-3xl font-bold text-center mb-8">
             Why Choose AI Tutor?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

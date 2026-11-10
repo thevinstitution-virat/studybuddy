@@ -1,5 +1,6 @@
 'use client';
 
+import { PageHeader } from '@/components/sb'
 import React from 'react';
 import { trpc } from '@/lib/trpc/client';
 import { OverallProgressBar } from '@/components/student/OverallProgressBar';
@@ -11,12 +12,7 @@ export default function StudentProgressPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
-      <h1 className="text-sb-saffron-deep from-primary to-primary/80  text-2xl font-bold ">
-        My Progress
-      </h1>
-      <p className="mt-2 text-muted-foreground">
-        Track your learning journey across all your enrolled courses.
-      </p>
+      <PageHeader kicker="Progress" icon="progress" tone="sky" title="My" highlight="Progress" description="Track your learning journey across all your enrolled courses." />
 
       {/* Overall Progress */}
       <div className="mt-8 bg-card rounded-2xl p-6 border border-border shadow-sm">

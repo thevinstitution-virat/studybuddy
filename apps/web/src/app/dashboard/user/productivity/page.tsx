@@ -5,6 +5,7 @@
 
 'use client'
 
+import { PageHeader } from '@/components/sb'
 import React, { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -193,7 +194,7 @@ export default function ProductivityPage() {
                     <div className="w-12 h-12 bg-sb-surface-2 from-[#E5283A] to-[#FF6B35] rounded-xl flex items-center justify-center shadow-lg">
                       <IconComponent className="h-6 w-6 text-white" />
                     </div>
-                    <Badge className="px-3 py-1 rounded-xl bg-sb-navy   text-sb-saffron-deep border-sb-saffron font-medium">
+                    <Badge className="px-3 py-1 rounded-xl bg-sb-surface-2   text-sb-saffron-deep border-sb-saffron font-medium">
                       {feature.status}
                     </Badge>
                   </div>
@@ -301,24 +302,8 @@ export default function ProductivityPage() {
     <div className="dcs">
       <div className="container mx-auto px-4 py-8 max-w-7xl space-y-8">
         {/* Enhanced Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center space-x-2 bg-sb-navy  to-primary/10 backdrop-blur-sm border border-sb-saffron rounded-2xl px-6 py-3 mb-6">
-            <Sparkles className="h-5 w-5 text-sb-saffron-deep" />
-            <span className="text-sm font-medium text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]  ">
-              Revolutionary Productivity Suite
-            </span>
-          </div>
-
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-sb-saffron-deep from-[#FF6B35] via-[#FF4D00] to-[#FF8A3D]   flex items-center justify-center gap-4">
-              <Zap className="h-12 w-12 text-sb-saffron-deep" />
-              VG Kosh Productivity
-            </span>
-          </h1>
-
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            Revolutionary productivity tools designed specifically for Indian students with cultural context and curriculum integration
-          </p>
+        <div className="mb-8">
+          <PageHeader kicker="Plan, focus, study" icon="productivity" tone="butter" title="Productivity" highlight="Suite" description="Productivity tools designed for Indian students, with cultural context and curriculum integration." />
         </div>
 
         {/* Enhanced Navigation */}
@@ -334,7 +319,7 @@ export default function ProductivityPage() {
                 <span>Back to Overview</span>
               </Button>
               <div className="flex items-center space-x-3">
-                <Badge className="px-4 py-2 rounded-xl bg-sb-navy  to-primary/10 text-sb-saffron-deep border-sb-saffron font-medium">
+                <Badge className="px-4 py-2 rounded-xl bg-sb-surface-2  to-primary/10 text-sb-saffron-deep border-sb-saffron font-medium">
                   {productivityFeatures.find(f => f.id === selectedTool)?.name}
                 </Badge>
               </div>

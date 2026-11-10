@@ -373,7 +373,7 @@ export default function UploadPage() {
       <div className="space-y-8">
         {/* Enhanced Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center space-x-2 bg-sb-navy  to-primary/10 backdrop-blur-sm border border-sb-saffron rounded-2xl px-6 py-3 mb-6">
+          <div className="inline-flex items-center space-x-2 bg-sb-surface-2  to-primary/10 backdrop-blur-sm border border-sb-saffron rounded-2xl px-6 py-3 mb-6">
             <BookOpen className="h-5 w-5 text-sb-saffron-deep" />
             <span className="text-sm font-medium text-sb-saffron-deep  to-primary/80  ">
               Content Management System

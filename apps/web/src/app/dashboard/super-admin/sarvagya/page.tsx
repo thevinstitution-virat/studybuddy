@@ -146,7 +146,7 @@ export default function AdminSarvagyaPage() {
 
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <div className="inline-flex items-center space-x-2 bg-sb-navy   backdrop-blur-sm border border-sb-butter rounded-2xl px-6 py-3 mb-6">
+                    <div className="inline-flex items-center space-x-2 bg-sb-surface-2   backdrop-blur-sm border border-sb-butter rounded-2xl px-6 py-3 mb-6">
                         <Brain className="h-5 w-5 text-sb-butter-ink" />
                         <span className="text-sm font-medium text-sb-saffron-deep    ">
                             AI Microservice Configuration

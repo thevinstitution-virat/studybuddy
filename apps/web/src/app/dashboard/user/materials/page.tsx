@@ -1,5 +1,6 @@
 'use client'
 
+import { PageHeader } from '@/components/sb'
 import React, { useState, useEffect } from 'react'
 import {
   Search,
@@ -211,12 +212,7 @@ export default function MaterialsPage() {
     <div className="dcs">
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10 }}>
-          <div>
-            <h1 style={{ margin: 0, fontSize: 'clamp(20px,2.4vw,26px)', fontWeight: 800, color: 'var(--ink)' }}>Study Materials</h1>
-            <p style={{ margin: '4px 0 0', fontSize: 13, color: 'var(--muted)' }}>
-              {userProfile ? `Access your ${userProfile.board} Class ${userProfile.class} materials` : 'Access your study materials'}
-            </p>
-          </div>
+          <PageHeader kicker="NCERT-aligned" icon="materials" tone="stone" title="Study" highlight="Materials" description={userProfile ? `Access your ${userProfile.board} Class ${userProfile.class} materials` : 'Access your study materials'} />
           {userProfile && (
             <div style={{ display: 'flex', gap: 8 }}>
               <span className="tag" style={{ background: 'var(--chip-bg)', color: 'var(--accent-text)' }}>{userProfile.board} · Class {userProfile.class}</span>
