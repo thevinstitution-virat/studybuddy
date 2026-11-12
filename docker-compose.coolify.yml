@@ -90,6 +90,11 @@ services:
     build:
       context: .
       dockerfile: apps/api/Dockerfile
+    # `default` keeps the stack's own network (postgres, redis, qdrant); trio-data adds the shared library database (read-only roles),
+    # as Book Buddy does. Never the whole `coolify` network: Coolify's own database answers to `postgres` there.
+    networks:
+      - default
+      - trio-data
     environment:
       NODE_ENV: production
       PORT: "3000"
@@ -184,6 +189,7 @@ services:
       LIBRARY_QDRANT_COLLECTION: ${LIBRARY_QDRANT_COLLECTION:-}
       LIBRARY_READER_DATABASE_URL: ${LIBRARY_READER_DATABASE_URL:-}
       LIBRARY_EVALUATOR_DATABASE_URL: ${LIBRARY_EVALUATOR_DATABASE_URL:-}
+      LIBRARY_GRAPH_ENABLED: ${LIBRARY_GRAPH_ENABLED:-false}
       TUTOR_TIERS_ENABLED: ${TUTOR_TIERS_ENABLED:-false}
       TAXONOMY_V2_ENABLED: ${TAXONOMY_V2_ENABLED:-false}
     depends_on:
@@ -231,6 +237,14 @@ services:
     image: qdrant/qdrant:v1.19.1
     volumes:
       - qdrant-data:/qdrant/storage
+
+# Holds the shared library database and the APIs that read it (Book Buddy's, this one), so Study Buddy can read the library without
+# joining the whole `coolify` network. It already exists on the server (made for Book Buddy). The library database container joins it
+# by hand, once:  docker network connect trio-data sn7jgws05e0uq48u31u5ezr8
+# A missing external network stops the deploy.
+networks:
+  trio-data:
+    external: true
 
 volumes:
   postgres-data:
