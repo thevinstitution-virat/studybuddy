@@ -12,6 +12,7 @@ import { hwAssignment, hwQuestion } from '@/db/hw-schema';
 import { hwEligibility, hwEligibilityEvent, hwEvalGateResult } from '@/db/hw-control-schema';
 import { writeAudit } from '../admin-audit';
 import { getHwConfig, requireModel } from '../config';
+import { PRACTICE_ORG_ID } from '../practice/rules';
 import { HwError } from '../errors';
 import { requireSuperAdmin, type EvalActor } from '../eval-tools/access';
 import { markPromptVersion } from '../grader/mark-mode';
@@ -59,6 +60,8 @@ export async function eligibilityOfQuestion(x: Exec, questionId: string, opts: {
   if (!q) return { eligible: false, reason: 'no_record' };
   const key = await checkKeyForMarking(x, q, { rebuild: opts.rebuild });
   if (!key.ok) return { eligible: false, reason: key.reason };
+  // InkBuddy (owner, 13 Nov 2026): with its gate off, a practice question with a ready key is AI-marked; the learner sees a practice estimate
+  if (q.organizationId === PRACTICE_ORG_ID && !getHwConfig().HW_SELF_PRACTICE_REQUIRE_ELIGIBLE_GROUP) return { eligible: true, reason: 'eligible', scheme: key.scheme };
   const parts = await groupOfQuestion(x, questionId);
   return parts ? eligibilityOfGroup(x, parts) : { eligible: false, reason: 'no_record' };
 }
