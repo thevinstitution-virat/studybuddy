@@ -108,6 +108,7 @@ import {
   Highlighter as PhHighlighter,
   HouseSimple as PhHouseSimple,
   Image as PhImage,
+  Images as PhImages,
   Info as PhInfo,
   InstagramLogo as PhInstagramLogo,
   Key as PhKey,
@@ -389,6 +390,7 @@ export const WifiOff = wrap(PhWifiSlash, 'WifiOff')
 export const Volume2 = wrap(PhSpeakerHigh, 'Volume2')
 export const VolumeX = wrap(PhSpeakerSlash, 'VolumeX')
 export const Camera = wrap(PhCamera, 'Camera')
+export const Images = wrap(PhImages, 'Images')
 export const Lightbulb = wrap(PhLightbulb, 'Lightbulb')
 export const Flame = wrap(PhFire, 'Flame')
 export const Gift = wrap(PhGift, 'Gift')
