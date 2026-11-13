@@ -109,6 +109,7 @@ import {
   HouseSimple as PhHouseSimple,
   Image as PhImage,
   Images as PhImages,
+  Gauge as PhGauge,
   Info as PhInfo,
   InstagramLogo as PhInstagramLogo,
   Key as PhKey,
@@ -391,6 +392,7 @@ export const Volume2 = wrap(PhSpeakerHigh, 'Volume2')
 export const VolumeX = wrap(PhSpeakerSlash, 'VolumeX')
 export const Camera = wrap(PhCamera, 'Camera')
 export const Images = wrap(PhImages, 'Images')
+export const Gauge = wrap(PhGauge, 'Gauge')
 export const Lightbulb = wrap(PhLightbulb, 'Lightbulb')
 export const Flame = wrap(PhFire, 'Flame')
 export const Gift = wrap(PhGift, 'Gift')
