@@ -129,6 +129,42 @@ const EnvSchema = z.object({
    * is still unspent, so the limit holds to within one step. PLATFORM_BUDGET_PAISE is the practice space's monthly ceiling over all learners.
    */
   HW_SELF_PRACTICE_ENABLED: bool(false),
+  /**
+   * Exam packages for learners (docs/hw-eval/exam-packages.md, migration 034): the catalogue, timed attempts and their clock. Off = learners see
+   * nothing and cannot start an attempt; the super-admin builder works either way.
+   */
+  HW_EXAMS_ENABLED: bool(false),
+  /** The exam space's monthly AI ceiling over all learners (paise), set once when the space is created; changed afterwards on the Tenants tab. */
+  HW_EXAMS_PLATFORM_BUDGET_PAISE: num(500_000, 0, 100_000_000),
+  /** Handed-in attempts the job runner starts evaluating per pass (each reads every page of one booklet). */
+  HW_EXAMS_EVAL_PER_PASS: num(2, 1, 50),
+  /** An evaluation that fails is retried this many times before the attempt is left for a person. */
+  HW_EXAMS_EVAL_MAX_TRIES: num(3, 1, 10),
+  /**
+   * How a booklet page is read: 'halves' (default) reads the top and bottom half separately, overlapping, at about twice the resolution the
+   * provider keeps of a whole page, and joins them (exams/halves.ts); 'page' reads the whole page in one call. Measured on real handwriting
+   * (docs/hw-eval/real-handwriting-read-1.md): halves read the question numbers right and stopped filling unreadable words with the textbook's
+   * idea, at about 1.6 times the cost.
+   */
+  /**
+   * Printed answer-sheet pages are read by code and box by box (exams/sheet-read.ts): corners, page code, the multiple-choice grid from the
+   * ink, then one reader call per box with writing. A page code cannot square up is read the HW_EXAMS_READ_SPLIT way. Measured on phone-style
+   * photos of real handwriting: 93-96% of words read right against 88% for halves, every grid letter right, cheaper.
+   */
+  HW_EXAMS_SHEET_VISION: bool(true),
+  /**
+   * Exam booklets are read and marked through the provider's batch API at half price (exams/batch.ts), with a "report ready by" time the
+   * learner sees; anything that fails or runs late is re-run on the standard path. Off = every booklet is read and marked straight away.
+   */
+  HW_EXAMS_BATCH_ENABLED: bool(false),
+  /** Hours from hand-in to the promised report on the batch path; reading gets 60% of it, marking the rest. */
+  HW_EXAMS_BATCH_HOURS: num(24, 2, 96),
+  /**
+   * The exam report's writing check (prompts/writing-profile.v1.ts): one text-only call per report for spelling, grammar and punctuation, as
+   * advice that never moves a mark. Off = those three parameters are reported as not checked.
+   */
+  HW_EXAMS_WRITING_PROFILE: bool(true),
+  HW_EXAMS_READ_SPLIT: z.preprocess((v) => (v === '' || v === undefined ? undefined : String(v).trim().toLowerCase()), z.enum(['halves', 'page']).optional()).transform((v) => v ?? 'halves'),
   HW_SELF_PRACTICE_TRIAL_DAYS: num(7, 1, 90),
   HW_SELF_PRACTICE_TRIAL_BUDGET_PAISE: num(1000, 0, 100_000),
   HW_SELF_PRACTICE_STEP_RESERVE_PAISE: num(5, 0, 1000),
@@ -194,6 +230,12 @@ const EnvSchema = z.object({
    * Turn this on only when teacher-rubric marking has become its own measured, eligible group. Ignored while HW_ELIGIBILITY_ENFORCED is off.
    */
   HW_TEACHER_RUBRIC_AI_ENABLED: bool(false),
+  /**
+   * Decision D3 for exam packages only (owner, 12 Nov 2026): questions a super admin wrote (a teacher's rubric) in the exam space (vgp-exams) are
+   * AI-marked, although that group has not passed the evaluation gates. Teachers' own homework everywhere else keeps HW_TEACHER_RUBRIC_AI_ENABLED and
+   * the eligibility registry. Off = authored exam questions are marked by a person, as before.
+   */
+  HW_EXAMS_AUTHORED_AI_ENABLED: bool(false),
   /**
    * Monitoring and alerts (roadmap 5.4). Rates are over the last 7 Indian-time days, for one group, on the marking setup that was promoted.
    * A rate over its limit raises an alert only when the sample is at least HW_MONITOR_MIN_ANSWERS. Only the two marking-quality alerts

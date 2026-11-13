@@ -15,6 +15,7 @@ import { institutionClasses } from '@/db/schema';
 import { hwAssignment, hwQuestion, hwRubricItem, type HwQuestionSchemeSource, type HwRubricKind } from '@/db/hw-schema';
 import { db, monthKey, newId, num, type Exec } from '../db';
 import { getHwConfig } from '../config';
+import { EXAM_ORG_ID } from '../exams/space';
 import { HwError, describeError } from '../errors';
 import { quotaAllows, quotaRefusal, quotaState } from '../cost/quota';
 import { costOf } from '../cost/usage';
@@ -25,6 +26,7 @@ import { buildKey, currentKeyServiceVersion, keyConfigHash, keySettingsFromEnv, 
 import { defaultKeyDeps } from './index';
 import { passageTexts } from '../../library/db';
 import { pgSharedKeyStore } from './shared-pg';
+import { lookupOfficialScheme, officialSourceValid } from '../bank/official-store';
 import type { AnswerKey, KeyRequest, KeyResult, ValuePoint } from './types';
 
 export type KeyStatus = 'building' | 'ready' | 'partial' | 'no_grounding' | 'failed' | 'not_available';
@@ -43,7 +45,8 @@ export function _setKeyRuntime(f: (() => KeyRuntime) | null): void { override = 
 export function keyRuntime(): KeyRuntime {
   if (override) return override();
   const settings = keySettingsFromEnv();
-  const deps = defaultKeyDeps();
+  // A board-paper question's official scheme is read from the person-checked bank (migrations 032, 033): only a row a person has checked is ever offered.
+  const deps = defaultKeyDeps({ official: (ref) => lookupOfficialScheme(db, ref) });
   if (settings.sharedKeys) deps.shared = pgSharedKeyStore();
   return { deps, settings };
 }
@@ -86,7 +89,10 @@ async function requestFor(x: Exec, q: QuestionRow): Promise<KeyRequest> {
     ...(q.passage?.trim() ? { passageText: q.passage } : {}),
     ...(ref.book || ref.chapter ? { bookHint: { title: ref.book, chapter: ref.chapter } } : {}),
     ...(q.origin === 'board_paper' && ref.kind && ref.session && ref.subjectCode && ref.questionNo
-      ? { officialRef: { kind: ref.kind as 'sqp' | 'past_paper', session: ref.session, subjectCode: ref.subjectCode, questionNo: ref.questionNo } } : {}),
+      ? { officialRef: {
+        kind: ref.kind as 'sqp' | 'past_paper', session: ref.session, subjectCode: ref.subjectCode, questionNo: ref.questionNo,
+        ...(ref.board ? { board: ref.board } : {}), ...(Number.isInteger(Number(ref.classLevel)) && Number(ref.classLevel) > 0 ? { classLevel: Number(ref.classLevel) } : {}),
+      } } : {}),
   };
 }
 
@@ -194,7 +200,7 @@ async function settle(k: Claimed): Promise<void> {
         config_hash = ${r ? (out.configHash ?? null) : null},
         r_min = ${out.rMin ?? null},
         source_ref = ${r ? sourceRefOf(r) : null},
-        passage_hashes = ${r ? JSON.stringify(Object.fromEntries(r.passages.map((p) => [p.id, sha(p.text)]))) : null}::jsonb,
+        passage_hashes = ${r ? JSON.stringify(passageHashesOf(r)) : null}::jsonb,
         from_shared = ${out.fromShared}, cost_paise = ${out.cost}, built_at = now(), locked_at = NULL
        WHERE id = ${k.id}`);
     if (out.calls > 0 || out.cost > 0) {
@@ -209,7 +215,16 @@ async function settle(k: Claimed): Promise<void> {
 }
 
 const monthOf = () => monthKey();
+
+const BANK_PREFIX = 'bank:';
+/** What a key rests on, as hashes: the book text for a textbook key; for an official key, the bank row and the content it had when the key was made. */
+export function passageHashesOf(r: Extract<KeyResult, { status: 'grounded' }>): Record<string, string> {
+  if (r.officialSource) return { [`${BANK_PREFIX}${r.officialSource.id}`]: r.officialSource.contentHash };
+  return Object.fromEntries(r.passages.map((p) => [p.id, sha(p.text)]));
+}
+
 function sourceRefOf(r: Extract<KeyResult, { status: 'grounded' }>): string {
+  if (r.officialSource) return `official: bank row ${r.officialSource.id}`;
   const books = [...new Set(r.citations.map((c) => `${c.isbn ?? c.contentItemId}|${c.edition ?? ''}`))].sort();
   return `${r.source}: ${books.join(',') || 'given passage'}`;
 }
@@ -309,7 +324,8 @@ const TEACHER_STAMP: SchemeStamp = { source: 'teacher_rubric', keyId: null, keyS
  */
 export async function checkKeyForMarking(x: Exec, q: QuestionRow, opts: { rt?: KeyRuntime | null; enforceTeacherRubric?: boolean; /** false = look only, never queue a rebuild (previews and listings) */ rebuild?: boolean; /** tests: the library passage reader */ libraryPassages?: typeof passageTexts } = {}): Promise<KeyCheck> {
   if (q.rubricMode === 'teacher') {
-    return opts.enforceTeacherRubric === false || getHwConfig().HW_TEACHER_RUBRIC_AI_ENABLED ? { ok: true, scheme: TEACHER_STAMP } : { ok: false, reason: 'teacher_rubric' };
+    const examOverride = q.organizationId === EXAM_ORG_ID && getHwConfig().HW_EXAMS_AUTHORED_AI_ENABLED; // D3 for exams only
+    return opts.enforceTeacherRubric === false || getHwConfig().HW_TEACHER_RUBRIC_AI_ENABLED || examOverride ? { ok: true, scheme: TEACHER_STAMP } : { ok: false, reason: 'teacher_rubric' };
   }
   const cur = (await currentKeys(x, [q.id])).get(q.id);
   if (!q.activeKeyId) {
@@ -336,6 +352,14 @@ export async function checkKeyForMarking(x: Exec, q: QuestionRow, opts: { rt?: K
   if (k.config_hash !== currentConfigHash(rt)) return stale('key_stale_config');
   if (k.question_hash !== questionHash(q)) return stale('key_stale_question');
   const ids = Object.keys(k.passage_hashes ?? {}).filter((i) => i !== 'given');
+  if (k.scheme_source === 'board_scheme_key') {
+    // An official key is good only while the bank row it came from is still checked and says what it said then (a revised row goes back to draft).
+    const bank = ids.find((i) => i.startsWith(BANK_PREFIX));
+    if (!bank) return stale('key_stale_book');
+    let valid = false;
+    try { valid = await officialSourceValid(x, bank.slice(BANK_PREFIX.length), k.passage_hashes![bank]); } catch { return { ok: false, reason: 'key_stale_book' }; }
+    if (!valid) return stale('key_stale_book');
+  }
   if (k.scheme_source === 'textbook_key' && ids.length) {
     // A key built through the library hub cites the library's passages; read them there, not in the old Gyankosh content tables (13 Nov 2026:
     // reading them there found nothing, or failed where those tables are not configured, so every InkBuddy key looked stale and nothing was marked).

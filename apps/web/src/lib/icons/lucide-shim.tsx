@@ -56,6 +56,7 @@ import {
   CheckCircle as PhCheckCircle,
   CheckSquare as PhCheckSquare,
   Circle as PhCircle,
+  CircleDashed as PhCircleDashed,
   CircleNotch as PhCircleNotch,
   Clipboard as PhClipboard,
   ClipboardText as PhClipboardText,
@@ -302,6 +303,7 @@ export const EyeOff = wrap(PhEyeSlash, 'EyeOff')
 export const Download = wrap(PhDownloadSimple, 'Download')
 export const ClipboardCheck = wrap(PhClipboardText, 'ClipboardCheck')
 export const Circle = wrap(PhCircle, 'Circle')
+export const CircleDashed = wrap(PhCircleDashed, 'CircleDashed')
 export const Calendar = wrap(PhCalendar, 'Calendar')
 export const CalendarIcon = wrap(PhCalendar, 'CalendarIcon')
 export const Award = wrap(PhMedal, 'Award')

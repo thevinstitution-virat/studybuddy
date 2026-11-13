@@ -6,7 +6,7 @@
 // back as data: URLs, so answers can be tried without touching the shared bucket.
 // In production the variable is ignored.
 
-import { GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
+import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { r2Client } from '@/lib/services/r2';
 import { HwError, isHwError } from '../errors';
@@ -72,4 +72,9 @@ export async function signedReadUrl(key: string): Promise<string> {
   const dev = devPath(key);
   if (dev) return `data:${key.endsWith('.json.gz') ? 'application/gzip' : mimeOfKey(key)};base64,${(await readFile(dev)).toString('base64')}`;
   return getSignedUrl(r2Client, new GetObjectCommand({ Bucket: bucket(), Key: key }), { expiresIn: READ_URL_SECONDS });
+}
+
+export async function deleteHwObject(key: string): Promise<void> {
+  assertHwKey(key);
+  await r2Client.send(new DeleteObjectCommand({ Bucket: bucket(), Key: key }));
 }

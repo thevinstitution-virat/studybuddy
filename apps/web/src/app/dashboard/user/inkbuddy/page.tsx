@@ -19,6 +19,7 @@ import { marksLabel, useHwT, type HwKey } from '@/components/hw/strings'
 import { Chip, PageHeader } from '@/components/sb'
 import { useHwSpace } from '@/lib/trpc/hw-space'
 import { PracticeProgress } from '@/components/hw/practice/PracticeProgress'
+import { PaperPractice } from '@/components/hw/practice/PaperPractice'
 
 const SUBJECTS: { value: string; key: HwKey }[] = [
   { value: 'Science', key: 'pr.sub.science' },
@@ -164,6 +165,7 @@ export default function InkBuddyPage() {
               <Button asChild size="sm" variant="outline" className="mt-2"><Link href="/dashboard/user/profile">{t('pr.noClass.link')}</Link></Button>
             </HwMessage>
           ) : <HwMessage>{t('pr.noBooks', { cls: ('classLevels' in s ? s.classLevels : []).join(', ') })}</HwMessage>)}
+          {s.active && <PaperPractice />}
           <PracticeProgress />
         </div>
       )}

@@ -14,6 +14,7 @@ import { QUESTION_PRESETS } from '@/lib/hw/presets';
 import * as assignments from '@/lib/hw/services/assignments';
 import * as submissions from '@/lib/hw/services/submissions';
 import * as marking from '@/lib/hw/services/marking';
+import * as revisions from '@/lib/hw/revisions';
 import * as guardian from '@/lib/hw/services/guardian';
 import { getHwConfig } from '@/lib/hw/config';
 import { institutionMonitor } from '@/lib/hw/monitoring/views';
@@ -22,9 +23,15 @@ import { libraryGraphEnabled } from '@/lib/library/graph-client';
 import { PRACTICE_ORG_ID } from '@/lib/hw/practice/rules';
 import { practiceOverview, startTrial } from '@/lib/hw/practice/trial';
 import { offeredScopesFor, parseScope, practiceReady, searchPracticeQuestions } from '@/lib/hw/practice/catalog';
+import { learnerClass } from '@/lib/hw/practice/learner-class';
 import { db as hwDb } from '@/lib/hw/db';
 import { retryAttempt, startAttempt } from '@/lib/hw/practice/attempt';
 import { attemptCounts, practiceProgress, writeAgain } from '@/lib/hw/practice/attempts';
+import { offeredPapers, paperQuestions, startPaperAttempt } from '@/lib/hw/practice/paper';
+import { practiceEnabled } from '@/lib/hw/practice/trial';
+import { addBankQuestion } from '@/lib/hw/bank/teacher';
+import { requireRole } from '@/lib/hw/access/guards';
+import { hwExamsRouter } from './hw-exams';
 
 const TRPC_CODE: Record<HwErrorCode, TRPCError['code']> = {
   UNAUTHORIZED: 'UNAUTHORIZED',
@@ -76,6 +83,10 @@ const practiceScope = z.object({
 const mode = z.enum(['typed', 'ink', 'photo']);
 const marks = z.number().positive().max(100).refine((n) => Math.round(n * 2) === n * 2, 'Marks must be whole or half marks');
 const itemMarks = z.array(z.object({ rubric_item_id: id, marks: z.number().min(0).max(100) })).max(20);
+export const revisionInput = z.object({
+  answerId: id, itemMarks: itemMarks.optional(), marks: z.number().min(0).max(100).optional(),
+  reason: z.string().trim().min(3).max(1000), name: z.string().max(120).optional(), designation: z.string().max(120).optional(),
+});
 
 const assignmentInput = z.object({
   classId: id,
@@ -156,10 +167,40 @@ export const hwRouter = createTRPCRouter({
     retry: protectedProcedure.use(rateLimit(10, 60_000))
       .input(z.object({ submissionId: id }))
       .mutation(({ ctx, input }) => runUser(ctx, (u) => retryAttempt(u, input.submissionId))),
+    /** Board papers a learner can practise from (published, with at least one question that can be offered and marked now). */
+    papers: protectedProcedure.use(rateLimit(30, 60_000))
+      .query(({ ctx }) => runUser(ctx, async (u) => {
+        if (!practiceEnabled()) return { available: false, papers: [] };
+        // the learner's own class only, as for textbook questions
+        const mine = (await learnerClass(u)).classLevels;
+        return { available: true, papers: (await offeredPapers(hwDb)).filter((p) => mine.includes(p.classLevel)) };
+      })),
+    /** The questions of one such paper. Never includes options, answers or the marking scheme. */
+    paperQuestions: protectedProcedure.use(rateLimit(30, 60_000))
+      .input(z.object({ paperId: id }))
+      .query(({ ctx, input }) => runUser(ctx, async (u) => {
+        if (!practiceEnabled()) return null;
+        const r = await paperQuestions(hwDb, input.paperId);
+        return r && (await learnerClass(u)).classLevels.includes(r.paper.classLevel) ? r : null;
+      })),
+    /** Start one question of a board paper; returns the assignment to open. The server re-checks that it is on offer. */
+    startPaperQuestion: protectedProcedure.use(rateLimit(20, 60_000))
+      .input(z.object({ rowId: id }))
+      .mutation(({ ctx, input }) => runUser(ctx, (u) => startPaperAttempt(u, input.rowId))),
     /** Start one picked question; returns the assignment to open (the ordinary student answer screen). */
     startQuestion: protectedProcedure.use(rateLimit(20, 60_000))
       .input(practiceScope.extend({ passageId: z.string().min(1).max(200), index: z.number().int().min(0).max(99), text: z.string().trim().min(8).max(2000) }))
       .mutation(({ ctx, input }) => runUser(ctx, (u) => startAttempt(u, input))),
+  }),
+
+  // ── Teacher: the board-paper picker in the builder ─────────────────────────────
+  bank: createTRPCRouter({
+    papers: protectedProcedure.query(({ ctx }) => run(ctx, async (a) => { requireRole(a, 'admin', 'teacher'); return offeredPapers(hwDb, 'teacher'); })),
+    questions: protectedProcedure.input(z.object({ paperId: id }))
+      .query(({ ctx, input }) => run(ctx, async (a) => { requireRole(a, 'admin', 'teacher'); return paperQuestions(hwDb, input.paperId, 'teacher'); })),
+    /** Adds the question to a draft assignment; the server makes it from the bank row. */
+    addQuestion: protectedProcedure.input(z.object({ assignmentId: id, rowId: id }))
+      .mutation(({ ctx, input }) => run(ctx, (a) => addBankQuestion(a, input.assignmentId, input.rowId))),
   }),
 
   // ── Teacher: build ────────────────────────────────────────────────────────
@@ -283,6 +324,10 @@ export const hwRouter = createTRPCRouter({
       .mutation(({ ctx, input }) => run(ctx, (a) => marking.fixTranscript(a, input.answerId, input))),
     returnAssignment: protectedProcedure.input(z.object({ assignmentId: id }))
       .mutation(({ ctx, input }) => run(ctx, (a) => marking.returnAssignment(a, input.assignmentId))),
+    /** Marks changed after the work was returned (migration 036): with the reviser's name, designation and a reason. */
+    revise: protectedProcedure.input(revisionInput)
+      .mutation(({ ctx, input }) => run(ctx, (a) => revisions.reviseHomeworkAnswer(a, input))),
+    reviser: protectedProcedure.query(({ ctx }) => run(ctx, (a) => revisions.homeworkReviserDefaults(a))),
   }),
 
   // ── A parent's view of a linked child's returned work (off unless HW_PARENT_VIEW_ENABLED). Links are made through guardian invitations (guardian router). ──
@@ -295,6 +340,9 @@ export const hwRouter = createTRPCRouter({
     result: protectedProcedure.input(z.object({ studentId: z.string().min(1).max(255), submissionId: id }))
       .query(({ ctx, input }) => run(ctx, (a) => guardian.childResult(a, input.studentId, input.submissionId))),
   }),
+
+  // ── Exam packages (docs/hw-eval/exam-packages.md): super-admin builder; learner side from phase 3 ──
+  exams: hwExamsRouter,
 
   // ── Institution admin / platform ──────────────────────────────────────────
   admin: createTRPCRouter({

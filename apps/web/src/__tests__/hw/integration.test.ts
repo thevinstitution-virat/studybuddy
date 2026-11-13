@@ -1124,6 +1124,118 @@ suite('handwritten assignments — integration', () => {
       expect(await gk(textbook.qid)).toBe('science|short|en|textbook_key')
     })
 
+    // ── the board-paper bank as the official scheme (phase 3) ──
+    it('a board-paper question is keyed from the person-checked bank, and its key goes stale when the row is no longer checked', async () => {
+      const { cloneBank } = await import('@/test-support/hw/bank-fixture')
+      const { expandBank, sha256 } = await import('@/lib/hw/bank/expand')
+      const bankStore = await import('@/lib/hw/bank/store')
+      const reviewStore = await import('@/lib/hw/bank/review-store')
+      const { lookupOfficialScheme } = await import('@/lib/hw/bank/official-store')
+      const code = `IT-${randomUUID().slice(0, 8)}`
+      const b = cloneBank(); b.paper.code = code
+      await bankStore.importDraft(appDb as never, expandBank(b), { actor: 'itest', sourceSha256: sha256(JSON.stringify(b)) })
+      const hashOf = async () => (await raw.query(`SELECT q.content_hash FROM hw_bank_question q JOIN hw_bank_paper p ON p.id = q.paper_id WHERE p.subject_code = $1 AND q.number = 2 AND q.alt = 'B' AND q.variant IS NULL`, [code])).rows[0].content_hash as string
+      const verdict = async (v: 'ok' | 'fix', note = '') => reviewStore.applyReview(appDb as never, {
+        format: 'cbse-paper-check/1', paper: { board: 'TESTBOARD', klass: 10, code, year: '2099-00', kind: 'sqp' }, reviewer: 'Mrs Rao',
+        verdicts: [{ q: 2, alt: 'B', variant: null, content_hash: await hashOf(), verdict: v, confirmed: [], note }],
+      }, { recordedBy: 'itest' })
+      const ref = { kind: 'sqp', session: '2099-00', subjectCode: code, questionNo: '2B', board: 'TESTBOARD' }
+      const BOARDG = 'science|short|en|board_scheme_key'
+      try {
+        official = false
+        const w = await makeWorld()
+        // The real lookup, in place of the fake one.
+        keys._setKeyRuntime(() => { const rt = runtime() as { deps: Record<string, unknown> }; rt.deps.official = (r: never) => lookupOfficialScheme(appDb as never, r); return rt as never })
+        const a = await keyed(w, { origin: 'board_paper', originRef: ref, prompt: 'Name the organ that filters blood.', marks: 2 })
+
+        // Not checked yet: the bank is not a source, so no official key (the question falls through to the other sources).
+        expect(await lookupOfficialScheme(appDb as never, ref as never)).toBeNull()
+
+        await verdict('ok')
+        await drainAll()
+        const k = await currentKey(a.qid)
+        expect(k).toMatchObject({ status: 'ready', scheme_source: 'board_scheme_key' })
+        expect(k.source_ref).toMatch(/^official: bank row /)
+        expect(Object.keys(k.passage_hashes)).toEqual([expect.stringMatching(/^bank:/)])
+        expect(await rubricOf(a.qid)).toEqual([{ description: 'Kidney', marks: 1, source: 'key' }, { description: 'It filters the blood', marks: 1, source: 'key' }])
+        expect(await qrow(a.qid)).toMatchObject({ rubric_mode: 'key', scheme_source: 'board_scheme_key' })
+        expect(gem.calls.length).toBe(0)   // an official key is not written by a model
+
+        // The key is good while the row is checked...
+        enforce(true); await unregister(BOARDG); await promoteGroup(BOARDG)
+        expect(await decision(a.qid)).toEqual({ eligible: true, reason: 'eligible' })
+        // ...is withdrawn the moment a person says the row needs a correction...
+        await verdict('fix', 'The second point should say the blood is filtered in the nephron')
+        expect(await decision(a.qid)).toEqual({ eligible: false, reason: 'key_stale_book' })
+        // ...and good again when the row is checked again with the same content.
+        await verdict('ok')
+        expect(await decision(a.qid)).toEqual({ eligible: true, reason: 'eligible' })
+      } finally {
+        await unregister('science|short|en|board_scheme_key')
+        await raw.query(`DELETE FROM hw_bank_paper WHERE subject_code = $1`, [code])
+      }
+    })
+
+    it('a teacher adds a published paper question from the picker: made from the bank row, keyed officially, and the student sees its figure', async () => {
+      const { cloneBank } = await import('@/test-support/hw/bank-fixture')
+      const { expandBank, sha256 } = await import('@/lib/hw/bank/expand')
+      const bankStore = await import('@/lib/hw/bank/store')
+      const reviewStore = await import('@/lib/hw/bank/review-store')
+      const figures = await import('@/lib/hw/bank/figures')
+      const { lookupOfficialScheme } = await import('@/lib/hw/bank/official-store')
+      const { addBankQuestion } = await import('@/lib/hw/bank/teacher')
+      const { putHwObject } = await import('@/lib/hw/storage/r2')
+      const code = `IT-${randomUUID().slice(0, 8)}`
+      const ident = { board: 'TESTBOARD', klass: 10, code, year: '2099-00', kind: 'sqp' as const }
+      const b = cloneBank(); b.paper.code = code
+      await bankStore.importDraft(appDb as never, expandBank(b), { actor: 'itest', sourceSha256: sha256(JSON.stringify(b)) })
+      const be32 = (n: number) => [(n >>> 24) & 255, (n >>> 16) & 255, (n >>> 8) & 255, n & 255]
+      const png = Uint8Array.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0, 0, 0, 13, 0x49, 0x48, 0x44, 0x52, ...be32(120), ...be32(80), 8, 2, 0, 0, 0, ...new Array(40).fill(7)])
+      try {
+        await figures.attachFigureImage(appDb as never, putHwObject, ident, 'q4-fig1', png)
+        const drafts = (await raw.query(`SELECT q.number, q.alt, q.variant, q.content_hash, q.needs_check FROM hw_bank_question q JOIN hw_bank_paper p ON p.id = q.paper_id WHERE p.subject_code = $1`, [code])).rows
+        await reviewStore.applyReview(appDb as never, {
+          format: 'cbse-paper-check/1', paper: ident, reviewer: 'Mrs Rao',
+          verdicts: drafts.map((r) => ({ q: r.number, alt: r.alt, variant: r.variant, content_hash: r.content_hash, verdict: 'ok' as const, confirmed: r.needs_check, note: '' })),
+        }, { recordedBy: 'itest' })
+        const rowId = async (n: number) => (await raw.query(`SELECT q.id FROM hw_bank_question q JOIN hw_bank_paper p ON p.id = q.paper_id WHERE p.subject_code = $1 AND q.number = $2 AND q.variant IS NULL`, [code, n])).rows[0].id as string
+
+        const w = await makeWorld()
+        const a = await svc.assignments.createAssignment(w.teacher, { classId: w.classId, sectionId: null, subject: 'Science', title: 'From a paper', allowedModes: ['typed'] })
+        // Not published yet: not on offer, so not added.
+        await expect(addBankQuestion(w.teacher, a.id, await rowId(4))).rejects.toMatchObject({ code: 'NOT_FOUND' })
+        await reviewStore.setPublished(appDb as never, ident, true, { actor: 'itest-owner' })
+        // Q3 has a figure with no picture: not on offer either.
+        await expect(addBankQuestion(w.teacher, a.id, await rowId(3))).rejects.toMatchObject({ code: 'NOT_FOUND' })
+
+        const added = await addBankQuestion(w.teacher, a.id, await rowId(4))
+        expect(added).toMatchObject({ marks: 2, excludedMarks: 2 })   // the drawing's marks are not counted
+        const q = (await raw.query(`SELECT * FROM hw_question WHERE id = $1`, [added.id])).rows[0]
+        expect(q).toMatchObject({ origin: 'board_paper', rubric_mode: 'key', type: 'long' })
+        expect(q.origin_ref).toMatchObject({ kind: 'sqp', session: '2099-00', subjectCode: code, questionNo: '4', board: 'TESTBOARD', classLevel: '10' })
+        expect(q.prompt).toContain('Part i asks for a drawing')
+        // The custom question next to it carries no figures.
+        const plain = await svc.assignments.addQuestion(w.teacher, a.id, { type: 'short', prompt: 'A question of my own.', marks: 1 } as never)
+
+        // Keyed from the board's own scheme, with the real lookup; no model writes it.
+        keys._setKeyRuntime(() => { const rt = runtime() as { deps: Record<string, unknown> }; rt.deps.official = (r: never) => lookupOfficialScheme(appDb as never, r); return rt as never })
+        await drainAll()
+        expect(await currentKey(added.id)).toMatchObject({ status: 'ready', scheme_source: 'board_scheme_key' })
+        expect((await rubricOf(added.id)).map((r) => [r.description, r.marks])).toEqual([['F = m a', 2]])
+        void plain
+
+        await svc.assignments.publishAssignment(w.teacher, a.id)
+        const opened = await svc.submissions.startSubmission(w.s1, a.id)
+        const shown = opened.questions.find((x) => x.id === added.id) as { figures?: { figureId: string; description: string; url: string }[] }
+        expect(shown.figures).toEqual([{ figureId: 'q4-fig1', description: 'A blank circle to draw in.', url: expect.stringMatching(/^https:\/\/signed\.test\/hw-bank\/[0-9a-f-]+\.v1\.png$/) }])
+        expect((opened.questions.find((x) => x.id === plain.id) as { figures?: unknown }).figures).toBeUndefined()
+        // The student's view never carries the marking scheme or accepted answers.
+        expect(JSON.stringify(opened.questions)).not.toMatch(/value_points|acceptedAnswers|F = m a/)
+      } finally {
+        await raw.query(`DELETE FROM hw_bank_paper WHERE subject_code = $1`, [code])
+      }
+    })
+
     // ── the backstop at marking time ──
     async function readyPublished(opts: { student?: boolean } = {}) {
       enforce(true)

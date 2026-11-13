@@ -18,8 +18,10 @@ import { answerFileKey, answerImageKey, keyVersion } from '../storage/keys';
 import { attemptStatus, marksStanding, practiceRefOf } from '../practice/attempts';
 import { activeWritingMs, countWords, handwritingFacts, handwritingNote, pacingGuide, percentileOf, unclearCount, writingSpeed, type HandFacts } from '../practice/pace';
 import { putHwObject, signedReadUrl } from '../storage/r2';
+import { learnerFigures, type LearnerFigure } from '../bank/figures';
 import { PRACTICE_ORG_ID, PRACTICE_TEXT, answerModesOf } from '../practice/rules';
 import { requireUsableTrial } from '../practice/trial';
+import { latestRevisionsFor } from '../revisions';
 import { readImageHeader } from '../photo/image';
 import { PHOTO_LIMITS, SOFT_PAGE_PROBLEMS, pageVerdict } from '../photo/rules';
 
@@ -39,6 +41,16 @@ const PHOTO_PROBLEM_TEXT = {
 function studentQuestion(q: typeof hwQuestion.$inferSelect) {
   // The passage is part of the question and is shown; the answer key, the rubric and the model answer never are.
   return { id: q.id, position: q.position, type: q.type, prompt: q.prompt, passage: q.passage, marks: num(q.marks), languageHint: q.languageHint, answerLines: q.answerLines };
+}
+
+/** A question made from a board paper shows the paper's own figures: private pictures, as short-lived links, with their words for a screen reader. */
+async function withFigures(questions: (typeof hwQuestion.$inferSelect)[]) {
+  const ids = [...new Set(questions.filter((q) => q.origin === 'board_paper' && q.originRef?.bankRowId).map((q) => q.originRef.bankRowId))];
+  const figs = await learnerFigures(db, ids, signedReadUrl);
+  return questions.map((q): ReturnType<typeof studentQuestion> & { figures?: LearnerFigure[] } => {
+    const f = q.origin === 'board_paper' && q.originRef?.bankRowId ? figs.get(q.originRef.bankRowId) : undefined;
+    return f?.length ? { ...studentQuestion(q), figures: f } : studentQuestion(q);
+  });
 }
 
 export async function myAssignments(actor: HwActor) {
@@ -86,7 +98,7 @@ export async function startSubmission(actor: HwActor, assignmentId: string) {
     // Self-practice: no teacher is involved, and the screens say so.
     practice: a.organizationId === PRACTICE_ORG_ID,
     submission: { id: s.id, status: s.status, submittedAt: s.submittedAt, isLate: s.isLate },
-    questions: questions.map(studentQuestion),
+    questions: await withFigures(questions),
     answers: await Promise.all(answers.map(async (x) => ({
       questionId: x.questionId, mode: x.mode, typedText: x.typedText, hasInk: Boolean(x.inkKey), timeSpentMs: x.timeSpentMs,
       // the learner's own photo of their answer, as a short-lived link, so it shows again on another device or after a reload
@@ -384,6 +396,8 @@ export async function myResult(actor: HwActor, submissionId: string) {
   const itemIds = answers.flatMap(({ g }) => (g?.itemMarks ?? []).map((m) => m.rubric_item_id));
   const items = itemIds.length ? await db.select().from(hwRubricItem).where(inArray(hwRubricItem.id, itemIds)) : [];
   const total = answers.reduce((s, { g }) => s + num(g?.marks), 0);
+  // marks changed after the work was returned (migration 036): who, only when a school's admin or teacher did it
+  const revised = await latestRevisionsFor(db, answers.map(({ a }) => a.id));
   const practice = assignment.organizationId === PRACTICE_ORG_ID;
   // InkBuddy: the answer as the learner gave it (to set beside the reading), and the book's own answer with its pages
   const yours = new Map<string, { mode: string; url: string | null; typed: string | null }>();
@@ -433,6 +447,7 @@ export async function myResult(actor: HwActor, submissionId: string) {
         } : {}),
         awarded: g ? num(g.marks) : null,
         comment: g?.comment ?? null,
+        revision: row ? revised.get(row.a.id) ?? null : null,
         keyPoints: (g?.itemMarks ?? []).map((m) => {
           const it = items.find((i) => i.id === m.rubric_item_id);
           return { description: it?.description ?? '', marks: m.marks, outOf: num(it?.marks) };
