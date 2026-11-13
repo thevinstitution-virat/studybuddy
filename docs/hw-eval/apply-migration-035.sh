@@ -45,7 +45,7 @@ ok "backups in $BK (schema-before-035-$T.sql, hw-data-before-035-$T.dump)"
 echo "      RESTORE POINT (UTC): $(val $DB "select now() at time zone 'utc'")"
 
 echo "== 2. rehearsal on a throwaway copy of the production schema"
-docker exec "$P" psql -U "$SUPER" -qc "drop database if exists $REH" -c "create database $REH owner $APP template template0"
+docker exec "$P" psql -U "$SUPER" -d postgres -qc "drop database if exists $REH" -c "create database $REH owner \"$APP\" template template0"
 docker exec -i "$P" psql -U "$SUPER" -d $REH -q -v ON_ERROR_STOP=0 < "$BK/schema-before-035-$T.sql" > /dev/null 2>&1 || true
 [ "$(val $REH "select count(*) from pg_tables where schemaname='public'")" = "$BEFORE" ] || fail "the rehearsal copy does not have production's $BEFORE tables"; ok "rehearsal copy restored ($BEFORE tables)"
 PGROLE=$APP pg $REH < "$DIR/$F.sql" > /dev/null || fail "rehearsal: 035 failed"
@@ -56,7 +56,7 @@ PGROLE=$APP pg $REH < "$DIR/$F.down.sql" > /dev/null || fail "rehearsal: 035 dow
 PGROLE=$APP pg $REH < "$DIR/$F.sql" > /dev/null || fail "rehearsal: re-apply failed"
 norm $REH > /tmp/pt_up2.sql
 diff -q /tmp/pt_up.sql /tmp/pt_up2.sql > /dev/null || fail "rehearsal: schema after re-apply differs from the first apply"; ok "re-apply gives an identical schema"
-docker exec "$P" psql -U "$SUPER" -qc "drop database $REH"; ok "throwaway database dropped"
+docker exec "$P" psql -U "$SUPER" -d postgres -qc "drop database $REH"; ok "throwaway database dropped"
 
 if [ "$APPLY" != 1 ]; then echo; echo "Rehearsal passed. Production is UNCHANGED. Re-run with --apply to apply 035."; exit 0; fi
 

@@ -24,6 +24,8 @@ The bank files, the marking scheme and the pool files are board documents and st
 
 ## Apply the migrations by hand, before deploying the code
 
+**Done 13 Nov 2026 (UTC evening):** 032 to 037 were rehearsed and applied in order with the steps below; Study Buddy's database has 138 tables, like Digi Classroom's. Backups are in `/root/backups/studybuddy` (`schema-before-03N-*.sql`, `hw-data-before-03N-*.dump`). On Study Buddy the role names a database of its own that does not exist and starts with a digit, so the scripts connect to the `postgres` maintenance database to create and drop the rehearsal copy and quote the owner. The migrations' own `ALTER ... OWNER TO digiclassroom_app` is skipped there (that role does not exist), so the tables are owned by the applying role, which is the app's own.
+
 There is no migration ledger in Study Buddy's database. It is at 031 (verified identical to Digi Classroom's at 031 on 10 Nov). Apply 032 to 037 **in order**, on the server, each first as a rehearsal and then with `--apply`. The scripts take Digi Classroom's names by default; for Study Buddy, set:
 
 ```bash
