@@ -17,6 +17,7 @@ import { clearDrafts, unqueueSubmit } from '../ink/local-store'
 import { AnswerToggle, AttemptsCard, BookAnswer, EvaluatedNote } from '../practice/ResultExtras'
 import { MarkedAnswer, TeacherRemark } from '../practice/TeacherPen'
 import { PaceCard } from '../practice/PaceCard'
+import { GradeCard } from '../practice/GradeCard'
 
 type Started = HwOut['student']['start']
 type Answer = Started['answers'][number]
@@ -108,10 +109,16 @@ function Result({ submissionId }: { submissionId: string }) {
   return (
     <div className="space-y-4">
       {d.practiceEstimate && <EvaluatedNote label={d.practiceEstimate.label} note={d.practiceEstimate.note} how={d.practiceEstimate.how} />}
-      <Card>
-        <CardHeader><CardTitle>{t('st.result.title')}</CardTitle></CardHeader>
-        <CardContent className="text-2xl font-semibold">{t('st.result.total', { got: d.total, of: d.assignment.totalMarks })}</CardContent>
-      </Card>
+      {d.attempts ? (
+        // InkBuddy: the grade card (one question per attempt, so its pace is the attempt's)
+        <GradeCard total={d.total} outOf={d.assignment.totalMarks} attempts={d.attempts} standing={d.standing ?? null}
+          pace={(d.questions[0] && 'pace' in d.questions[0] ? d.questions[0].pace : null) ?? null} />
+      ) : (
+        <Card>
+          <CardHeader><CardTitle>{t('st.result.title')}</CardTitle></CardHeader>
+          <CardContent className="text-2xl font-semibold">{t('st.result.total', { got: d.total, of: d.assignment.totalMarks })}</CardContent>
+        </Card>
+      )}
       {d.attempts && <AttemptsCard attempts={d.attempts} assignmentId={d.assignment.id} />}
       <ConceptPanel submissionId={submissionId} />
       {d.questions.map((q) => (
