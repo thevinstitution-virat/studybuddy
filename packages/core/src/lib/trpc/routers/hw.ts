@@ -24,6 +24,7 @@ import { practiceOverview, startTrial } from '@/lib/hw/practice/trial';
 import { offeredScopesFor, parseScope, practiceReady, searchPracticeQuestions } from '@/lib/hw/practice/catalog';
 import { db as hwDb } from '@/lib/hw/db';
 import { retryAttempt, startAttempt } from '@/lib/hw/practice/attempt';
+import { attemptCounts, writeAgain } from '@/lib/hw/practice/attempts';
 
 const TRPC_CODE: Record<HwErrorCode, TRPCError['code']> = {
   UNAUTHORIZED: 'UNAUTHORIZED',
@@ -140,8 +141,15 @@ export const hwRouter = createTRPCRouter({
       .input(practiceScope.extend({ query: z.string().trim().min(2).max(200) }))
       .query(({ ctx, input }) => runUser(ctx, async (u) => {
         const { query, ...scope } = input;
-        return searchPracticeQuestions(parseScope(scope), query, undefined, u);
+        const res = await searchPracticeQuestions(parseScope(scope), query, undefined, u);
+        // "Attempted (n)" on questions the learner has already written
+        const counts = await attemptCounts(hwDb, u, res.questions.map((q) => q.ref));
+        return { ...res, questions: res.questions.map((q) => ({ ...q, attempts: counts.get(q.ref)?.attempts ?? 0 })) };
       })),
+    /** Write a marked practice question again: a new attempt (up to the plan's limit per question); returns the attempt to open. */
+    writeAgain: protectedProcedure.use(rateLimit(10, 60_000))
+      .input(z.object({ assignmentId: id }))
+      .mutation(({ ctx, input }) => runUser(ctx, (u) => writeAgain(u, input.assignmentId))),
     /** "Write it again": a practice answer that got no mark becomes a draft again, on the same question. */
     retry: protectedProcedure.use(rateLimit(10, 60_000))
       .input(z.object({ submissionId: id }))

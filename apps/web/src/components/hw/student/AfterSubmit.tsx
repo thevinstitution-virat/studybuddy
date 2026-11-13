@@ -14,6 +14,7 @@ import { marksLabel, useHwT } from '../strings'
 import type { HwOut } from '../types'
 import { wordsOf } from '../text-spans'
 import { clearDrafts, unqueueSubmit } from '../ink/local-store'
+import { AnswerToggle, AttemptsCard, BookAnswer, EvaluatedNote } from '../practice/ResultExtras'
 
 type Started = HwOut['student']['start']
 type Answer = Started['answers'][number]
@@ -97,23 +98,19 @@ function ConceptPanel({ submissionId }: { submissionId: string }) {
 }
 
 function Result({ submissionId }: { submissionId: string }) {
-  const { t, lang } = useHwT()
+  const { t } = useHwT()
   const r = api.hw.student.result.useQuery({ submissionId })
   if (r.isLoading) return <HwLoading />
   if (r.error) return <HwError message={r.error.message} onRetry={() => r.refetch()} />
   const d = r.data!
   return (
     <div className="space-y-4">
-      {d.practiceEstimate && (
-        <HwMessage>
-          <p className="font-medium">{d.practiceEstimate.label[lang]}</p>
-          <p>{d.practiceEstimate.note[lang]}</p>
-        </HwMessage>
-      )}
+      {d.practiceEstimate && <EvaluatedNote label={d.practiceEstimate.label} note={d.practiceEstimate.note} how={d.practiceEstimate.how} />}
       <Card>
         <CardHeader><CardTitle>{t('st.result.title')}</CardTitle></CardHeader>
         <CardContent className="text-2xl font-semibold">{t('st.result.total', { got: d.total, of: d.assignment.totalMarks })}</CardContent>
       </Card>
+      {d.attempts && <AttemptsCard attempts={d.attempts} assignmentId={d.assignment.id} />}
       <ConceptPanel submissionId={submissionId} />
       {d.questions.map((q) => (
         <Card key={q.id}>
@@ -131,7 +128,7 @@ function Result({ submissionId }: { submissionId: string }) {
           )}
           </CardHeader>
           <CardContent className="space-y-3 text-sm">
-            <p className="whitespace-pre-wrap rounded bg-muted p-3">{q.transcript || '—'}</p>
+            {'yours' in q ? <AnswerToggle yours={q.yours ?? null} transcript={q.transcript} /> : <p className="whitespace-pre-wrap rounded bg-muted p-3">{q.transcript || '—'}</p>}
             {q.keyPoints.length > 0 && (
               <ul className="space-y-1">
                 {q.keyPoints.map((k, i) => (
@@ -142,6 +139,7 @@ function Result({ submissionId }: { submissionId: string }) {
                 ))}
               </ul>
             )}
+            {'bookAnswer' in q && q.bookAnswer && <BookAnswer text={q.bookAnswer.text} source={q.bookAnswer.source} />}
             {q.comment && (
               <div>
                 <p className="font-medium">{t('st.result.teacherComment')}</p>
