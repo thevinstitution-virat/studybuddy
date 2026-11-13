@@ -22,7 +22,10 @@
 #
 # File storage is Cloudflare R2 (no storage container here):
 #   R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY - from the R2 API token
-#   R2_BUCKET_NAME is written below (private bucket `studybuddy`).
+#   R2_BUCKET_NAME - the private bucket's exact name (default `studybuddy`). A name that does not exist in that account
+#                    shows learners "File storage did not accept this (NoSuchBucket)".
+#   R2_ENDPOINT    - only for a bucket created with an EU jurisdiction: https://<ACCOUNT_ID>.eu.r2.cloudflarestorage.com
+#                    (default: https://<ACCOUNT_ID>.r2.cloudflarestorage.com, built from R2_ACCOUNT_ID).
 #
 # Error tracking: GlitchTip at https://errors.vinstitution.com, org "Vidyaverse Trio", projects
 # studybuddy-backend (SENTRY_DSN on api) and studybuddy-frontend (SENTRY_DSN + NEXT_PUBLIC_SENTRY_DSN
@@ -129,7 +132,8 @@ services:
       R2_ACCOUNT_ID: ${R2_ACCOUNT_ID:-}
       R2_ACCESS_KEY_ID: ${R2_ACCESS_KEY_ID:-}
       R2_SECRET_ACCESS_KEY: ${R2_SECRET_ACCESS_KEY:-}
-      R2_BUCKET_NAME: studybuddy
+      R2_BUCKET_NAME: ${R2_BUCKET_NAME:-studybuddy}
+      R2_ENDPOINT: ${R2_ENDPOINT:-}
       # AI (empty = that feature reports "not configured").
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}

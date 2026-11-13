@@ -14,7 +14,8 @@ if (!accountId || !accessKeyId || !secretAccessKey || !bucketName) {
 
 export const r2Client = new S3Client({
     region: "auto",
-    endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
+    // R2_ENDPOINT only for a bucket in an EU jurisdiction (https://<account>.eu.r2.cloudflarestorage.com); the default serves every other bucket
+    endpoint: process.env.R2_ENDPOINT?.trim() || `https://${accountId}.r2.cloudflarestorage.com`,
     credentials: {
         accessKeyId: accessKeyId || "",
         secretAccessKey: secretAccessKey || "",
