@@ -23,7 +23,7 @@ import { claim, claimBatchPending, complete, enqueueGrade, fail, markBatchPendin
 import { shadowAfterGrade } from '../shadow/shadow';
 import { aiOffMessage } from '../eligibility/decision';
 import { eligibilityOfQuestion } from '../eligibility/registry';
-import { decideBatch, dueFor, fallbackNote, homeworkBatchSettings, isOverdue, readyBy, requeueStandard, saveStamp, stampPayload } from './homework-batch';
+import { decideBatch, dueFor, fallbackNote, homeworkBatchSettings, isOverdue, isSmallWork, readyBy, requeueStandard, saveStamp, stampPayload } from './homework-batch';
 
 const RUBRIC_CHANGED = 'rubric changed while marking; suggestions discarded and re-queued';
 
@@ -214,7 +214,11 @@ export async function runGradeJobs(workerId: string, deadline: number): Promise<
       const p = await plan(job);
       if (!p) continue;
       const inPayload = payloadOf<GradePayload>(job);
-      if (cfg.HW_HOMEWORK_BATCH_ENABLED) {
+      if (isSmallWork(p.chunks.reduce((n, c) => n + c.length, 0), cfg.HW_BATCH_SMALL_MAX)) {
+        // A few answers to mark (one InkBuddy attempt is one): marked now, not after a batch.
+        await runSync(job, p.q, p.chunks, { followers: p.followers, keyHash: p.keyHash });
+        continue;
+      } else if (cfg.HW_HOMEWORK_BATCH_ENABLED) {
         // Homework batches; urgent work and a fallback stay on the standard path.
         const d = decideBatch({
           standardForced: Boolean(inPayload?.standard), fallbackReason: inPayload?.fallbackReason, providerCanBatch: true,
