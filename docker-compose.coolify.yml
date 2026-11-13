@@ -166,6 +166,8 @@ services:
       # Batching (half price, minutes to hours): on by default; work of HW_BATCH_SMALL_MAX answers or fewer is never batched.
       HW_BATCH_ENABLED: ${HW_BATCH_ENABLED:-true}
       HW_BATCH_SMALL_MAX: ${HW_BATCH_SMALL_MAX:-5}
+      # InkBuddy's teacher's pen (remark and underlines after a mark): off until set to true.
+      HW_TEACHER_PEN_ENABLED: ${HW_TEACHER_PEN_ENABLED:-false}
       HW_STRICT_MARKING_ENABLED: ${HW_STRICT_MARKING_ENABLED:-}
       HW_INSTRUCTION_GUARD_ENABLED: ${HW_INSTRUCTION_GUARD_ENABLED:-}
       HW_ELIGIBILITY_ENFORCED: ${HW_ELIGIBILITY_ENFORCED:-}
