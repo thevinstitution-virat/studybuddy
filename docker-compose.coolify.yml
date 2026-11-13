@@ -29,7 +29,7 @@
 # on web). DSNs are set in Coolify. NEXT_PUBLIC_SENTRY_DSN is a BUILD arg, so a change needs a redeploy.
 #
 # Federation with Vidyaverse and the shared library hub stay OFF here (FEDERATION_ENABLED=false,
-# no TRIO_* / LIBRARY_HUB_* values): this stack is self-contained until deliberately linked.
+# no TRIO_* values; LIBRARY_HUB_* are passed through but off until set): this stack is self-contained until deliberately linked.
 
 services:
   web:
@@ -90,6 +90,11 @@ services:
     build:
       context: .
       dockerfile: apps/api/Dockerfile
+    # `default` keeps the stack's own network (postgres, redis, qdrant); trio-data adds the shared library database (read-only roles),
+    # as Book Buddy does. Never the whole `coolify` network: Coolify's own database answers to `postgres` there.
+    networks:
+      - default
+      - trio-data
     environment:
       NODE_ENV: production
       PORT: "3000"
@@ -146,6 +151,45 @@ services:
       # Homework evaluator and tutor tiers: same defaults as Digi Classroom; tune in Coolify.
       HW_FEATURE_DEFAULT_ENABLED: ${HW_FEATURE_DEFAULT_ENABLED:-false}
       HW_AI_PROVIDER: ${HW_AI_PROVIDER:-gemini}
+      # Models and marking: set in Coolify as on Digi Classroom (empty = the code's default or "not configured").
+      HW_READ_MODEL: ${HW_READ_MODEL:-}
+      HW_ESCALATE_MODEL: ${HW_ESCALATE_MODEL:-}
+      HW_GRADE_MODEL: ${HW_GRADE_MODEL:-}
+      HW_RUBRIC_MODEL: ${HW_RUBRIC_MODEL:-}
+      HW_THINKING_LEVEL: ${HW_THINKING_LEVEL:-}
+      HW_GRADE_REASONING_EFFORT: ${HW_GRADE_REASONING_EFFORT:-}
+      HW_PRICE_TABLE_JSON: ${HW_PRICE_TABLE_JSON:-}
+      HW_STRICT_MARKING_ENABLED: ${HW_STRICT_MARKING_ENABLED:-}
+      HW_INSTRUCTION_GUARD_ENABLED: ${HW_INSTRUCTION_GUARD_ENABLED:-}
+      HW_ELIGIBILITY_ENFORCED: ${HW_ELIGIBILITY_ENFORCED:-}
+      # Answer keys (InkBuddy builds one per question from the textbook).
+      HW_KEY_WRITER_PROVIDER: ${HW_KEY_WRITER_PROVIDER:-}
+      HW_KEY_WRITER_MODEL: ${HW_KEY_WRITER_MODEL:-}
+      HW_KEY_VERIFIER_PROVIDER: ${HW_KEY_VERIFIER_PROVIDER:-}
+      HW_KEY_VERIFIER_MODEL: ${HW_KEY_VERIFIER_MODEL:-}
+      HW_KEY_R_MIN: ${HW_KEY_R_MIN:-}
+      HW_KEY_ALLOW_SAME_FAMILY: ${HW_KEY_ALLOW_SAME_FAMILY:-}
+      HW_SHARED_KEYS_ENABLED: ${HW_SHARED_KEYS_ENABLED:-}
+      # InkBuddy (self-practice): off until HW_SELF_PRACTICE_ENABLED=true. Classes and subjects come from the library.
+      HW_SELF_PRACTICE_ENABLED: ${HW_SELF_PRACTICE_ENABLED:-false}
+      HW_SELF_PRACTICE_REQUIRE_ELIGIBLE_GROUP: ${HW_SELF_PRACTICE_REQUIRE_ELIGIBLE_GROUP:-}
+      HW_SELF_PRACTICE_SCOPES: ${HW_SELF_PRACTICE_SCOPES:-}
+      HW_SELF_PRACTICE_TRIAL_DAYS: ${HW_SELF_PRACTICE_TRIAL_DAYS:-}
+      HW_SELF_PRACTICE_TRIAL_BUDGET_PAISE: ${HW_SELF_PRACTICE_TRIAL_BUDGET_PAISE:-}
+      HW_SELF_PRACTICE_PLATFORM_BUDGET_PAISE: ${HW_SELF_PRACTICE_PLATFORM_BUDGET_PAISE:-}
+      HW_SELF_PRACTICE_MAX_ATTEMPTS: ${HW_SELF_PRACTICE_MAX_ATTEMPTS:-}
+      # The shared library (PDLMS hub, read-only). Off until LIBRARY_HUB_ENABLED=true; values as on Digi Classroom,
+      # ideally with Study Buddy's own hub app id and secret.
+      LIBRARY_HUB_ENABLED: ${LIBRARY_HUB_ENABLED:-false}
+      LIBRARY_HUB_URL: ${LIBRARY_HUB_URL:-}
+      LIBRARY_HUB_APP_ID: ${LIBRARY_HUB_APP_ID:-}
+      LIBRARY_HUB_SECRET: ${LIBRARY_HUB_SECRET:-}
+      LIBRARY_QDRANT_URL: ${LIBRARY_QDRANT_URL:-}
+      LIBRARY_QDRANT_API_KEY: ${LIBRARY_QDRANT_API_KEY:-}
+      LIBRARY_QDRANT_COLLECTION: ${LIBRARY_QDRANT_COLLECTION:-}
+      LIBRARY_READER_DATABASE_URL: ${LIBRARY_READER_DATABASE_URL:-}
+      LIBRARY_EVALUATOR_DATABASE_URL: ${LIBRARY_EVALUATOR_DATABASE_URL:-}
+      LIBRARY_GRAPH_ENABLED: ${LIBRARY_GRAPH_ENABLED:-false}
       TUTOR_TIERS_ENABLED: ${TUTOR_TIERS_ENABLED:-false}
       TAXONOMY_V2_ENABLED: ${TAXONOMY_V2_ENABLED:-false}
     depends_on:
@@ -193,6 +237,14 @@ services:
     image: qdrant/qdrant:v1.19.1
     volumes:
       - qdrant-data:/qdrant/storage
+
+# Holds the shared library database and the APIs that read it (Book Buddy's, this one), so Study Buddy can read the library without
+# joining the whole `coolify` network. It already exists on the server (made for Book Buddy). The library database container joins it
+# by hand, once:  docker network connect trio-data sn7jgws05e0uq48u31u5ezr8
+# A missing external network stops the deploy.
+networks:
+  trio-data:
+    external: true
 
 volumes:
   postgres-data:
