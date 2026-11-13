@@ -101,7 +101,7 @@ const EnvSchema = z.object({
   /**
    * Small work is never batched (owner, 13 Nov 2026): a hand-in with this many answers to read or fewer, and a marking job with this many
    * answers or fewer, go straight to the AI so a learner is not kept waiting on the batch queue to save a fraction of a rupee. 0 = batch
-   * everything the batch settings allow.
+   * everything the batch settings allow. Exam booklets keep their own rules (exams/batch.ts).
    */
   HW_BATCH_SMALL_MAX: num(5, 0, 1000),
   /** A key built from the official scheme or the textbook for a public question is reused across tenants. */

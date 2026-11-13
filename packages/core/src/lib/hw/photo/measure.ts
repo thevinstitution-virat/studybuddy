@@ -1,6 +1,6 @@
 // Measures a photographed answer page in the browser, before it is uploaded: how bright it is, how much of it is blown out by glare, and how
 // sharp it is. Pure arithmetic on pixels, so it is tested without a browser; the screen draws the photo to a small canvas and passes the pixels.
-// Used by photo answers to homework and InkBuddy.
+// Shared by exam booklets and photo answers to homework and InkBuddy.
 //
 // The numbers feed photo/rules.pageVerdict. Its thresholds are PROVISIONAL until they are calibrated on real photographs of real answer pages; until
 // then a learner may override the soft problems (blur, light, glare), and the override is recorded with the page.

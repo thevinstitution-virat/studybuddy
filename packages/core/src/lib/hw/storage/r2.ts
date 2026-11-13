@@ -3,14 +3,14 @@
 // module only logs a warning).
 //
 // For local development ONLY: when HW_DEV_LOCAL_STORAGE_DIR is set and NODE_ENV is not 'production', files are kept in that folder and read
-// back as data: URLs, so answers can be tried without touching the shared bucket.
+// back as data: URLs, so answers can be tried without touching the shared bucket (the exam booklet's stand-in, exam-pages.ts, does the same).
 // In production the variable is ignored.
 
 import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { r2Client } from '@/lib/services/r2';
 import { HwError, isHwError } from '../errors';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { assertHwKey } from './keys';
 import { mimeOfKey } from '../photo/image';
@@ -76,5 +76,7 @@ export async function signedReadUrl(key: string): Promise<string> {
 
 export async function deleteHwObject(key: string): Promise<void> {
   assertHwKey(key);
+  const dev = devPath(key);
+  if (dev) { await rm(dev, { force: true }); return; }
   await r2Client.send(new DeleteObjectCommand({ Bucket: bucket(), Key: key }));
 }

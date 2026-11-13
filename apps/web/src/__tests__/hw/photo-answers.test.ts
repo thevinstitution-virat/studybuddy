@@ -4,6 +4,10 @@
 import { answerFileKey, answerImageKey, assertHwKey, keyVersion } from '@/lib/hw/storage/keys'
 import { mimeOfKey, readImageHeader } from '@/lib/hw/photo/image'
 import { PHOTO_LIMITS, pageVerdict } from '@/lib/hw/photo/rules'
+import { PAGE_LIMITS } from '@/lib/hw/exams/rules'
+import { readImageHeader as figuresHeader } from '@/lib/hw/bank/figures'
+import { measurePage as examMeasure } from '@/lib/hw/exams/page-measure'
+import { measurePage } from '@/lib/hw/photo/measure'
 import { PRACTICE_ORG_ID, answerModesOf } from '@/lib/hw/practice/rules'
 
 /** The smallest bytes readImageHeader takes for a JPEG of this size (a start marker and one frame header). */
@@ -53,8 +57,10 @@ describe('photo answers: keys and pictures', () => {
     for (const [w, h] of [[1200, 1600], [1600, 1200], [1600, 900]]) expect(pageVerdict({ ...good, widthPx: w, heightPx: h })).toEqual({ ok: true })
   })
 
-  it('the limits are the shared ones', () => {
-    expect(PHOTO_LIMITS.minPx).toBe(1_000_000)
+  it('exam booklets keep their limits and checks: the same functions, plus the page count', () => {
+    expect(PAGE_LIMITS).toEqual({ ...PHOTO_LIMITS, maxPages: 40 })
+    expect(figuresHeader).toBe(readImageHeader)
+    expect(examMeasure).toBe(measurePage)
   })
 })
 

@@ -1,5 +1,5 @@
-// Is a photographed page of handwriting good enough to send to the reader? Refused before it costs a token, not after. Used by photo answers to
-// homework and InkBuddy (services/submissions.ts storePhoto). Pure.
+// Is a photographed page of handwriting good enough to send to the reader? Refused before it costs a token, not after. Shared by exam booklets
+// (exams/rules.ts adds the page count) and photo answers to homework and InkBuddy (services/submissions.ts storePhoto). Pure.
 
 /** What the browser measured about one photographed page before it was sent. */
 export interface PageFacts {

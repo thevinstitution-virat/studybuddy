@@ -1,6 +1,6 @@
 // Getting a photo of handwriting ready to upload, in the browser: turned the right way up, measured for light, glare and focus
 // (lib/hw/photo/measure.ts) on a small copy, and shrunk to a sensible size as JPEG (greyscale when asked). Re-drawing the picture drops its
-// EXIF data, the phone's location included. Used by photo answers.
+// EXIF data, the phone's location included. Shared by exam booklet pages and photo answers.
 // The server checks the bytes again (lib/hw/photo/rules.ts); nothing here is trusted for anything but the learner's own convenience.
 
 import { measurePage, measureSize } from '@/lib/hw/photo/measure'

@@ -1,5 +1,5 @@
 // What an uploaded picture really is, from its own header bytes (never from a file name or a declared type): PNG, JPEG or WebP, and its size
-// in pixels. Used by photo answers.
+// in pixels. Shared by board-paper figures, exam booklet pages and photo answers.
 
 export interface ImageInfo { mime: 'image/png' | 'image/jpeg' | 'image/webp'; ext: 'png' | 'jpg' | 'webp'; width: number; height: number; bytes: number }
 
